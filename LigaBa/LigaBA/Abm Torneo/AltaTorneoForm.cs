@@ -38,6 +38,7 @@ namespace LigaBA.Abm_Torneo
             List<SqlParameter> param = new List<SqlParameter>();
             param.Add(new SqlParameter("@nombre", this.NombreTextBox.Text));
             param.Add(new SqlParameter("@tipo", this.TipoTorneoComboBox.ValueMember.ToString()));
+            param.Add(new SqlParameter("@tabla_general", this.TablaGeneralComboBox.ValueMember.ToString()));
             SqlParameter result_param = new SqlParameter("@result", "-1");
             //TODO: configurar retorno en result
 

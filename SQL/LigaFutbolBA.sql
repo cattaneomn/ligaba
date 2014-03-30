@@ -787,3 +787,30 @@ BEGIN
 END
 
 GO
+
+--ALTA TORNEO
+CREATE PROCEDURE [LigaBA].[p_AltaTorneo]
+(                
+        @nombre nvarchar(50),
+        @tipo int,
+        @tabla_general bit,
+        @result int output
+        
+)       
+AS
+BEGIN transaction
+        
+        IF EXISTS(SELECT 1 FROM LigaBA.Torneo WHERE nombre = @nombre)
+        BEGIN
+                RAISERROR ('El torneo que intenta agregar ya existe.',16,1)
+                ROLLBACK
+                RETURN          
+        END                
+                        
+		INSERT INTO LigaBA.Torneo(nombre,tipodetorneo,tablageneral) VALUES (@nombre,@tipo,@tabla_general)
+        
+		SELECT @result = SCOPE_IDENTITY()        		
+	
+COMMIT
+
+GO
