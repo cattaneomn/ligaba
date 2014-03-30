@@ -31,10 +31,21 @@ namespace LigaBA.Abm_Jugador
             Carnet Repo = new Carnet();
 
             //Variables
+            TextObject InstitucionRepo;
+            InstitucionRepo = (TextObject)Repo.ReportDefinition.ReportObjects["Institucion"];
+            InstitucionRepo.Text = "River Plate";
+
+            TextObject NombreRepo;
+            NombreRepo = (TextObject)Repo.ReportDefinition.ReportObjects["Nombre"];
+            NombreRepo.Text = "Luciano Ariel Colucci";
+
             TextObject DniRepo;
             DniRepo = (TextObject)Repo.ReportDefinition.ReportObjects["Dni"];
             DniRepo.Text = "34998295";
-            
+
+            TextObject FechaNacRepo;
+            FechaNacRepo = (TextObject)Repo.ReportDefinition.ReportObjects["FechaNacimiento"];
+            FechaNacRepo.Text = "21/04/1990";
 
             Repo.ExportToDisk(ExportFormatType.PortableDocFormat, "Carnet");
 
