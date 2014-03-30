@@ -276,14 +276,25 @@ CREATE PROCEDURE [LigaBA].[p_AltaCategoria]
 AS
 BEGIN transaction
         
-        IF EXISTS(SELECT 1 FROM LigaBA.Categoria WHERE nombre = @categoria)
+        IF EXISTS(SELECT 1 FROM LigaBA.Categoria WHERE nombre = @categoria AND borrado=0)
         BEGIN
                 RAISERROR ('La categoria que intenta agregar ya existe.',16,1)
                 ROLLBACK
                 RETURN          
         END
         
-        INSERT INTO LigaBA.Categoria(nombre) VALUES (@categoria)
+        IF EXISTS(SELECT 1 FROM LigaBA.Categoria WHERE nombre = @categoria AND borrado=1)
+        BEGIN	
+				DECLARE @id int
+				SELECT TOP 1 @id=id FROM LigaBA.Categoria WHERE nombre = @categoria AND borrado=1
+                UPDATE LigaBA.Categoria SET borrado=0,nombre = @categoria WHERE id = @id                                                                              
+        END 
+        ELSE
+        BEGIN
+			INSERT INTO LigaBA.Categoria(nombre) VALUES (@categoria)
+		END
+		
+        
 
 COMMIT
 
