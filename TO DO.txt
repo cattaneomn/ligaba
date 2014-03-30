@@ -1,0 +1,2 @@
+1- Arreglar BajaCategoria se agrego columna borrado logico.
+2- Revisar todo el codigo para que en la carga de combobox se agrege el borrado=0

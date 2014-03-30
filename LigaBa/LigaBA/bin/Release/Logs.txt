@@ -1,0 +1,35 @@
+[]-[20/03/2014 11:35:40]-[Login]-[Error de inicio de sesión del usuario 'ingeniar'.]
+[]-[20/03/2014 11:47:50]-[Login]-[Error de inicio de sesión del usuario 'ingeniar'.]
+[]-[20/03/2014 11:49:02]-[Login]-[Error de inicio de sesión del usuario 'ingeniar'.]
+[]-[20/03/2014 11:50:38]-[Login]-[No se encontró el procedimiento almacenado 'ingeniAR.p_login'.]
+[admin]-[21/03/2014 14:37:15]-[Alta Categoria]-[La categoria que intenta agregar ya existe.]
+[admin]-[21/03/2014 16:39:03]-[Jugadores]-[El nombre de columna 'amarillas' no es válido.]
+[admin]-[24/03/2014 16:16:25]-[Instituciones]-[El procedimiento o la función 'p_BajaInstitucion' esperaba el parámetro '@id', que no se ha especificado.]
+[admin]-[24/03/2014 16:20:44]-[Instituciones]-[Instrucción DELETE en conflicto con la restricción REFERENCE "FK_Equipo_Institucion". El conflicto ha aparecido en la base de datos "LigabaDB", tabla "LigaBA.Equipo", column 'institucion'.
+Se terminó la instrucción.]
+[admin]-[24/03/2014 16:28:30]-[Instituciones]-[Instrucción DELETE en conflicto con la restricción REFERENCE "FK_Equipo_Institucion". El conflicto ha aparecido en la base de datos "LigabaDB", tabla "LigaBA.Equipo", column 'institucion'.
+Se terminó la instrucción.]
+[admin]-[24/03/2014 16:29:51]-[Instituciones]-[Instrucción DELETE en conflicto con la restricción REFERENCE "FK_Equipo_Institucion". El conflicto ha aparecido en la base de datos "LigabaDB", tabla "LigaBA.Equipo", column 'institucion'.
+Se terminó la instrucción.]
+[admin]-[24/03/2014 16:31:16]-[Instituciones]-[Instrucción DELETE en conflicto con la restricción REFERENCE "FK_Equipo_Institucion". El conflicto ha aparecido en la base de datos "LigabaDB", tabla "LigaBA.Equipo", column 'institucion'.
+Se terminó la instrucción.]
+[admin]-[24/03/2014 16:31:45]-[Instituciones]-[Instrucción DELETE en conflicto con la restricción REFERENCE "FK_Equipo_Institucion". El conflicto ha aparecido en la base de datos "LigabaDB", tabla "LigaBA.Equipo", column 'institucion'.
+Se terminó la instrucción.]
+[admin]-[24/03/2014 17:17:51]-[Modificar Institucion]-[Ya existe una institucion con ese nombre.]
+[admin]-[24/03/2014 17:17:55]-[Modificar Institucion]-[Ya existe una institucion con ese nombre.]
+[admin]-[24/03/2014 17:28:57]-[Usuarios]-[No se encontró el procedimiento almacenado 'LigaBA.p_buscarUsuario'.]
+[admin]-[24/03/2014 17:43:42]-[Usuarios]-[No se encontró el procedimiento almacenado 'LigaBA.p_buscarUsuario'.]
+[admin]-[24/03/2014 17:48:55]-[Modificar Categoria]-[hola.]
+[admin]-[24/03/2014 18:15:11]-[Alta Tipo de torneo]-[No se encontró el procedimiento almacenado 'LigaBA.p_AltaTipoDeTorneo'.]
+[admin]-[24/03/2014 18:45:17]-[Jugadores]-[No se encontró el procedimiento almacenado 'LigaBA.p_BuscarJugador'.]
+[admin]-[25/03/2014 14:05:41]-[Categorias]-[Instrucción DELETE en conflicto con la restricción REFERENCE "FK_Equipo_Categoria". El conflicto ha aparecido en la base de datos "LigabaDB", tabla "LigaBA.Equipo", column 'categoria'.
+Se terminó la instrucción.]
+[admin]-[25/03/2014 14:05:43]-[Categorias]-[Instrucción DELETE en conflicto con la restricción REFERENCE "FK_Equipo_Categoria". El conflicto ha aparecido en la base de datos "LigabaDB", tabla "LigaBA.Equipo", column 'categoria'.
+Se terminó la instrucción.]
+[admin]-[25/03/2014 14:08:52]-[Categorias]-[Instrucción DELETE en conflicto con la restricción REFERENCE "FK_Equipo_Categoria". El conflicto ha aparecido en la base de datos "LigabaDB", tabla "LigaBA.Equipo", column 'categoria'.
+Se terminó la instrucción.]
+[admin]-[25/03/2014 14:11:56]-[Categorias]-[Instrucción DELETE en conflicto con la restricción REFERENCE "FK_Equipo_Categoria". El conflicto ha aparecido en la base de datos "LigabaDB", tabla "LigaBA.Equipo", column 'categoria'.
+Se terminó la instrucción.]
+[admin]-[25/03/2014 14:17:55]-[Categorias]-[El procedimiento o la función 'p_BajaCategoria' esperaba el parámetro '@Id', que no se ha especificado.]
+[admin]-[25/03/2014 14:08:02]-[Categorias]-[No puede eliminar esa categoria por que existe al menos un equipo con esa categoria asignada.]
+[admin]-[25/03/2014 16:04:03]-[Categorias]-[No puede eliminar esa categoria por que existe al menos un equipo con esa categoria asignada.]

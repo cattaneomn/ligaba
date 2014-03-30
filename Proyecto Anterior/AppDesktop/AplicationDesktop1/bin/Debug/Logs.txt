@@ -1,0 +1,2 @@
+[]-[04/09/2013 15:45:44]-[Login]-[Error de inicio de sesión del usuario 'gd'. Motivo: la contraseña de la cuenta expiró.]
+[]-[18/10/2013 10:39:00]-[Login]-[Error de inicio de sesión del usuario 'gd'. Motivo: la contraseña de la cuenta expiró.]

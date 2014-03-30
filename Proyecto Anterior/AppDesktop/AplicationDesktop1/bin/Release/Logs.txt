@@ -1,0 +1,17 @@
+[]-[09/12/2013 13:34:30]-[Login]-[No se puede abrir la base de datos "AplicationDesktop" solicitada por el inicio de sesión. Error de inicio de sesión.
+Error de inicio de sesión del usuario 'gd '.]
+[]-[10/12/2013 15:23:52]-[Login]-[No se puede abrir la base de datos "AplicationDesktop" solicitada por el inicio de sesión. Error de inicio de sesión.
+Error de inicio de sesión del usuario 'gd '.]
+[]-[27/12/2013 14:17:27]-[Login]-[Error relacionado con la red o específico de la instancia mientras se establecía una conexión con el servidor SQL Server. No se encontró el servidor o éste no estaba accesible. Compruebe que el nombre de la instancia es correcto y que SQL Server está configurado para admitir conexiones remotas. (provider: SQL Network Interfaces, error: 26 - Error al buscar el servidor o instancia especificado)]
+[]-[27/12/2013 14:17:53]-[Login]-[No se puede abrir la base de datos "AplicationDesktop" solicitada por el inicio de sesión. Error de inicio de sesión.
+Error de inicio de sesión del usuario 'gd '.]
+[]-[27/12/2013 14:17:56]-[Login]-[No se puede abrir la base de datos "AplicationDesktop" solicitada por el inicio de sesión. Error de inicio de sesión.
+Error de inicio de sesión del usuario 'gd '.]
+[admin]-[14/02/2014 14:13:01]-[Alta Cliente]-[Error al convertir el tipo de datos nvarchar a numeric.]
+[admin]-[14/02/2014 14:13:09]-[Alta Cliente]-[Error al convertir el tipo de datos nvarchar a numeric.]
+[]-[17/02/2014 12:10:16]-[Login]-[Error relacionado con la red o específico de la instancia mientras se establecía una conexión con el servidor SQL Server. No se encontró el servidor o éste no estaba accesible. Compruebe que el nombre de la instancia es correcto y que SQL Server está configurado para admitir conexiones remotas. (provider: SQL Network Interfaces, error: 26 - Error al buscar el servidor o instancia especificado)]
+[]-[17/02/2014 12:10:46]-[Login]-[No se puede abrir la base de datos "AplicationDesktop" solicitada por el inicio de sesión. Error de inicio de sesión.
+Error de inicio de sesión del usuario 'gd '.]
+[]-[10/03/2014 14:50:20]-[Login]-[Error relacionado con la red o específico de la instancia mientras se establecía una conexión con el servidor SQL Server. No se encontró el servidor o éste no estaba accesible. Compruebe que el nombre de la instancia es correcto y que SQL Server está configurado para admitir conexiones remotas. (provider: SQL Network Interfaces, error: 26 - Error al buscar el servidor o instancia especificado)]
+[]-[10/03/2014 14:51:05]-[Login]-[Error relacionado con la red o específico de la instancia mientras se establecía una conexión con el servidor SQL Server. No se encontró el servidor o éste no estaba accesible. Compruebe que el nombre de la instancia es correcto y que SQL Server está configurado para admitir conexiones remotas. (provider: SQL Network Interfaces, error: 26 - Error al buscar el servidor o instancia especificado)]
+[]-[10/03/2014 14:52:07]-[Login]-[Error relacionado con la red o específico de la instancia mientras se establecía una conexión con el servidor SQL Server. No se encontró el servidor o éste no estaba accesible. Compruebe que el nombre de la instancia es correcto y que SQL Server está configurado para admitir conexiones remotas. (provider: SQL Network Interfaces, error: 26 - Error al buscar el servidor o instancia especificado)]

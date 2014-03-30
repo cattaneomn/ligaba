@@ -1,0 +1,307 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C3903E1F-3C49-454A-BDB4-5306104D90D7}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LigaBA</RootNamespace>
+    <AssemblyName>LigaBA</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Ingeniar.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Abm Categorias\AltaCategoriaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Categorias\AltaCategoriaForm.Designer.cs">
+      <DependentUpon>AltaCategoriaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Categorias\CategoriasForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Categorias\CategoriasForm.Designer.cs">
+      <DependentUpon>CategoriasForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Categorias\ModificarCategoriaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Categorias\ModificarCategoriaForm.Designer.cs">
+      <DependentUpon>ModificarCategoriaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Equipos\AltaEquipoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Equipos\AltaEquipoForm.Designer.cs">
+      <DependentUpon>AltaEquipoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Equipos\EquiposForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Equipos\EquiposForm.Designer.cs">
+      <DependentUpon>EquiposForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Equipos\ModificarEquipoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Equipos\ModificarEquipoForm.Designer.cs">
+      <DependentUpon>ModificarEquipoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Jugadores\AltaJugadorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Jugadores\AltaJugadorForm.designer.cs">
+      <DependentUpon>AltaJugadorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Jugadores\JugadorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Jugadores\JugadorForm.designer.cs">
+      <DependentUpon>JugadorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Jugadores\ModificarJugadorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Jugadores\ModificarJugadorForm.designer.cs">
+      <DependentUpon>ModificarJugadorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Tipo Torneo\AltaTipoTorneoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Tipo Torneo\AltaTipoTorneoForm.Designer.cs">
+      <DependentUpon>AltaTipoTorneoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Tipo Torneo\ModificarTipoTorneoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Tipo Torneo\ModificarTipoTorneoForm.Designer.cs">
+      <DependentUpon>ModificarTipoTorneoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Tipo Torneo\TipoTorneoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Tipo Torneo\TipoTorneoForm.Designer.cs">
+      <DependentUpon>TipoTorneoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Torneo\AltaTorneoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Torneo\AltaTorneoForm.Designer.cs">
+      <DependentUpon>AltaTorneoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Torneo\TorneosForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Torneo\TorneosForm.Designer.cs">
+      <DependentUpon>TorneosForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Usuarios\AltaUsuariosForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Usuarios\AltaUsuariosForm.Designer.cs">
+      <DependentUpon>AltaUsuariosForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Usuarios\UsuariosForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Usuarios\UsuariosForm.Designer.cs">
+      <DependentUpon>UsuariosForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Usuarios\ModificarPasswordUsuarioForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Usuarios\ModificarPasswordUsuarioForm.Designer.cs">
+      <DependentUpon>ModificarPasswordUsuarioForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Intituciones\AltaInstitucionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Intituciones\AltaInstitucionForm.Designer.cs">
+      <DependentUpon>AltaInstitucionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Intituciones\InstitucionesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Intituciones\InstitucionesForm.Designer.cs">
+      <DependentUpon>InstitucionesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Intituciones\ModificarInstitucionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Intituciones\ModificarInstitucionForm.Designer.cs">
+      <DependentUpon>ModificarInstitucionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Clases\BaseDeDatos.cs" />
+    <Compile Include="Clases\CargadorDeDatos.cs" />
+    <Compile Include="Clases\Configuracion.cs" />
+    <Compile Include="Clases\Logs.cs" />
+    <Compile Include="Clases\ModDataGridView.cs" />
+    <Compile Include="Login\LoginMainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login\LoginMainForm.Designer.cs">
+      <DependentUpon>LoginMainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main.Designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SplashScreen\SplashScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SplashScreen\SplashScreen.Designer.cs">
+      <DependentUpon>SplashScreen.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Abm Categorias\AltaCategoriaForm.resx">
+      <DependentUpon>AltaCategoriaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Categorias\CategoriasForm.resx">
+      <DependentUpon>CategoriasForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Categorias\ModificarCategoriaForm.resx">
+      <DependentUpon>ModificarCategoriaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Equipos\AltaEquipoForm.resx">
+      <DependentUpon>AltaEquipoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Equipos\EquiposForm.resx">
+      <DependentUpon>EquiposForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Equipos\ModificarEquipoForm.resx">
+      <DependentUpon>ModificarEquipoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Intituciones\AltaInstitucionForm.resx">
+      <DependentUpon>AltaInstitucionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Intituciones\ModificarInstitucionForm.resx">
+      <DependentUpon>ModificarInstitucionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Jugadores\AltaJugadorForm.resx">
+      <DependentUpon>AltaJugadorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Jugadores\JugadorForm.resx">
+      <DependentUpon>JugadorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Jugadores\ModificarJugadorForm.resx">
+      <DependentUpon>ModificarJugadorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Tipo Torneo\AltaTipoTorneoForm.resx">
+      <DependentUpon>AltaTipoTorneoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Tipo Torneo\ModificarTipoTorneoForm.resx">
+      <DependentUpon>ModificarTipoTorneoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Tipo Torneo\TipoTorneoForm.resx">
+      <DependentUpon>TipoTorneoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Torneo\AltaTorneoForm.resx">
+      <DependentUpon>AltaTorneoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Torneo\TorneosForm.resx">
+      <DependentUpon>TorneosForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Usuarios\AltaUsuariosForm.resx">
+      <DependentUpon>AltaUsuariosForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Usuarios\UsuariosForm.resx">
+      <DependentUpon>UsuariosForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Usuarios\ModificarPasswordUsuarioForm.resx">
+      <DependentUpon>ModificarPasswordUsuarioForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Intituciones\InstitucionesForm.resx">
+      <DependentUpon>InstitucionesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login\LoginMainForm.resx">
+      <DependentUpon>LoginMainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="SplashScreen\SplashScreen.resx">
+      <DependentUpon>SplashScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Icons\add-icon.png" />
+    <Content Include="Icons\delete-icon.png" />
+    <Content Include="Icons\edit-icon.png" />
+    <Content Include="Icons\favicon.ico" />
+    <Content Include="Icons\Ingeniar.ico" />
+    <Content Include="Images\favicon.ico" />
+    <Content Include="Images\ingeniar.png" />
+    <Content Include="Images\login.jpg" />
+    <Content Include="Ingeniar.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

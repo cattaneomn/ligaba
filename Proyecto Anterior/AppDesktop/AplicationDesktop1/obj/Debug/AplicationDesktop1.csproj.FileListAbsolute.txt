@@ -1,0 +1,10 @@
+C:\Users\sa\Documents\Visual Studio 2012\Projects\AplicationDesktop1\AplicationDesktop1\bin\Debug\AplicationDesktop1.exe
+C:\Users\sa\Documents\Visual Studio 2012\Projects\AplicationDesktop1\AplicationDesktop1\bin\Debug\AplicationDesktop1.pdb
+C:\Users\sa\Documents\Visual Studio 2012\Projects\AplicationDesktop1\AplicationDesktop1\obj\Debug\AplicationDesktop1.csprojResolveAssemblyReference.cache
+C:\Users\sa\Documents\Visual Studio 2012\Projects\AplicationDesktop1\AplicationDesktop1\obj\Debug\AplicationDesktop1.Properties.Resources.resources
+C:\Users\sa\Documents\Visual Studio 2012\Projects\AplicationDesktop1\AplicationDesktop1\obj\Debug\AplicationDesktop1.csproj.GenerateResource.Cache
+C:\Users\sa\Documents\Visual Studio 2012\Projects\AplicationDesktop1\AplicationDesktop1\obj\Debug\AplicationDesktop1.exe
+C:\Users\sa\Documents\Visual Studio 2012\Projects\AplicationDesktop1\AplicationDesktop1\obj\Debug\AplicationDesktop1.pdb
+C:\Users\sa\documents\visual studio 2012\Projects\AplicationDesktop1\AplicationDesktop1\bin\Debug\AplicationDesktop1.exe.config
+C:\Users\sa\documents\visual studio 2012\Projects\AplicationDesktop1\AplicationDesktop1\obj\Debug\AplicationDesktop1.LoginForm1.resources
+C:\Users\sa\documents\visual studio 2012\Projects\AplicationDesktop1\AplicationDesktop1\obj\Debug\AplicationDesktop1.MainForm.resources

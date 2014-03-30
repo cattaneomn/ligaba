@@ -1,0 +1,529 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{ED1850B7-E7F9-449F-881F-658BEF2FEC79}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AplicationDesktop1</RootNamespace>
+    <AssemblyName>AplicationDesktop1</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>IngeniarIco2.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Abm Clientes\AltaClienteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Clientes\AltaClienteForm.Designer.cs">
+      <DependentUpon>AltaClienteForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Clientes\AsignarProducto\AltaPrecioProductoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Clientes\AsignarProducto\AltaPrecioProductoForm.Designer.cs">
+      <DependentUpon>AltaPrecioProductoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Clientes\AsignarProducto\AsignarProductoClienteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Clientes\AsignarProducto\AsignarProductoClienteForm.Designer.cs">
+      <DependentUpon>AsignarProductoClienteForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Clientes\AsignarProducto\BusquedaAsignarProductoClienteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Clientes\AsignarProducto\BusquedaAsignarProductoClienteForm.Designer.cs">
+      <DependentUpon>BusquedaAsignarProductoClienteForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Clientes\BajaClienteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Clientes\BajaClienteForm.Designer.cs">
+      <DependentUpon>BajaClienteForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Clientes\BajaProductoClienteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Clientes\BajaProductoClienteForm.Designer.cs">
+      <DependentUpon>BajaProductoClienteForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Clientes\BusquedaModificarClienteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Clientes\BusquedaModificarClienteForm.Designer.cs">
+      <DependentUpon>BusquedaModificarClienteForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Clientes\ModificarClienteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Clientes\ModificarClienteForm.Designer.cs">
+      <DependentUpon>ModificarClienteForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Clientes\ModificarProducto\BusquedaModificarProductoClienteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Clientes\ModificarProducto\BusquedaModificarProductoClienteForm.Designer.cs">
+      <DependentUpon>BusquedaModificarProductoClienteForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Clientes\ModificarProducto\ModificarPrecioForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Clientes\ModificarProducto\ModificarPrecioForm.Designer.cs">
+      <DependentUpon>ModificarPrecioForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Clientes\ModificarProducto\ModificarTodosPreciosForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Clientes\ModificarProducto\ModificarTodosPreciosForm.Designer.cs">
+      <DependentUpon>ModificarTodosPreciosForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Clientes\ModificarProducto\SeleccionarModificacionProductoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Clientes\ModificarProducto\SeleccionarModificacionProductoForm.Designer.cs">
+      <DependentUpon>SeleccionarModificacionProductoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Clientes\VisualizarProductosClienteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Clientes\VisualizarProductosClienteForm.Designer.cs">
+      <DependentUpon>VisualizarProductosClienteForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Estadisticas\EstadisticasForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Estadisticas\EstadisticasForm.Designer.cs">
+      <DependentUpon>EstadisticasForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Productos\AltaProductosForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Productos\AltaProductosForm.Designer.cs">
+      <DependentUpon>AltaProductosForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Productos\BajaProductoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Productos\BajaProductoForm.Designer.cs">
+      <DependentUpon>BajaProductoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Productos\BusquedaModificarProductoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Productos\BusquedaModificarProductoForm.Designer.cs">
+      <DependentUpon>BusquedaModificarProductoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Productos\ModificarProductoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Productos\ModificarProductoForm.Designer.cs">
+      <DependentUpon>ModificarProductoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Usuarios\AltaUsuariosForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Usuarios\AltaUsuariosForm.Designer.cs">
+      <DependentUpon>AltaUsuariosForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Usuarios\BajaUsuarioForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Usuarios\BajaUsuarioForm.Designer.cs">
+      <DependentUpon>BajaUsuarioForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Usuarios\BusquedaModificarUsuarioForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Usuarios\BusquedaModificarUsuarioForm.Designer.cs">
+      <DependentUpon>BusquedaModificarUsuarioForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Usuarios\LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Usuarios\LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Usuarios\ModificarPasswordUsuarioForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Usuarios\ModificarPasswordUsuarioForm.Designer.cs">
+      <DependentUpon>ModificarPasswordUsuarioForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Usuarios\ModificarUsuarioPermisosForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Usuarios\ModificarUsuarioPermisosForm.Designer.cs">
+      <DependentUpon>ModificarUsuarioPermisosForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Ventas\AltaFacturaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Ventas\AltaFacturaForm.Designer.cs">
+      <DependentUpon>AltaFacturaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Ventas\BajaFacturaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Ventas\BajaFacturaForm.Designer.cs">
+      <DependentUpon>BajaFacturaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Ventas\BusquedaModificarFacturaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Ventas\BusquedaModificarFacturaForm.Designer.cs">
+      <DependentUpon>BusquedaModificarFacturaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Ventas\DetalleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Ventas\DetalleForm.Designer.cs">
+      <DependentUpon>DetalleForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Ventas\ModificarFacturaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Ventas\ModificarFacturaForm.Designer.cs">
+      <DependentUpon>ModificarFacturaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Ventas\PrintForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Ventas\PrintForm.Designer.cs">
+      <DependentUpon>PrintForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Ventas\ReporteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Ventas\ReporteForm.Designer.cs">
+      <DependentUpon>ReporteForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Ventas\SeleccionProductoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Ventas\SeleccionProductoForm.Designer.cs">
+      <DependentUpon>SeleccionProductoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Ventas\VisualizarFacturaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Ventas\VisualizarFacturaForm.Designer.cs">
+      <DependentUpon>VisualizarFacturaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AboutBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutBox.Designer.cs">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDeDatos.cs" />
+    <Compile Include="Configuracion.cs" />
+    <Compile Include="CrystalReport2.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrystalReport2.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DataSet1.cs">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="LoginMainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginMainForm.Designer.cs">
+      <DependentUpon>LoginMainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Logs.cs" />
+    <Compile Include="Mail\MensajeMailForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mail\MensajeMailForm.Designer.cs">
+      <DependentUpon>MensajeMailForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mail\MailForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mail\MailForm.Designer.cs">
+      <DependentUpon>MailForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModDataGridView.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="StartImage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StartImage.Designer.cs">
+      <DependentUpon>StartImage.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Abm Clientes\AltaClienteForm.resx">
+      <DependentUpon>AltaClienteForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Clientes\AsignarProducto\AltaPrecioProductoForm.resx">
+      <DependentUpon>AltaPrecioProductoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Clientes\AsignarProducto\AsignarProductoClienteForm.resx">
+      <DependentUpon>AsignarProductoClienteForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Clientes\AsignarProducto\BusquedaAsignarProductoClienteForm.resx">
+      <DependentUpon>BusquedaAsignarProductoClienteForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Clientes\BajaClienteForm.resx">
+      <DependentUpon>BajaClienteForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Clientes\BajaProductoClienteForm.resx">
+      <DependentUpon>BajaProductoClienteForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Clientes\BusquedaModificarClienteForm.resx">
+      <DependentUpon>BusquedaModificarClienteForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Clientes\ModificarClienteForm.resx">
+      <DependentUpon>ModificarClienteForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Clientes\ModificarProducto\BusquedaModificarProductoClienteForm.resx">
+      <DependentUpon>BusquedaModificarProductoClienteForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Clientes\ModificarProducto\ModificarPrecioForm.resx">
+      <DependentUpon>ModificarPrecioForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Clientes\ModificarProducto\ModificarTodosPreciosForm.resx">
+      <DependentUpon>ModificarTodosPreciosForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Clientes\ModificarProducto\SeleccionarModificacionProductoForm.resx">
+      <DependentUpon>SeleccionarModificacionProductoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Clientes\VisualizarProductosClienteForm.resx">
+      <DependentUpon>VisualizarProductosClienteForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Estadisticas\EstadisticasForm.resx">
+      <DependentUpon>EstadisticasForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Productos\AltaProductosForm.resx">
+      <DependentUpon>AltaProductosForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Productos\BajaProductoForm.resx">
+      <DependentUpon>BajaProductoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Productos\BusquedaModificarProductoForm.resx">
+      <DependentUpon>BusquedaModificarProductoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Productos\ModificarProductoForm.resx">
+      <DependentUpon>ModificarProductoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Usuarios\AltaUsuariosForm.resx">
+      <DependentUpon>AltaUsuariosForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Usuarios\BajaUsuarioForm.resx">
+      <DependentUpon>BajaUsuarioForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Usuarios\BusquedaModificarUsuarioForm.resx">
+      <DependentUpon>BusquedaModificarUsuarioForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Usuarios\LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Usuarios\ModificarPasswordUsuarioForm.resx">
+      <DependentUpon>ModificarPasswordUsuarioForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Usuarios\ModificarUsuarioPermisosForm.resx">
+      <DependentUpon>ModificarUsuarioPermisosForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Ventas\AltaFacturaForm.resx">
+      <DependentUpon>AltaFacturaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Ventas\BajaFacturaForm.resx">
+      <DependentUpon>BajaFacturaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Ventas\BusquedaModificarFacturaForm.resx">
+      <DependentUpon>BusquedaModificarFacturaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Ventas\DetalleForm.resx">
+      <DependentUpon>DetalleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Ventas\ModificarFacturaForm.resx">
+      <DependentUpon>ModificarFacturaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Ventas\PrintForm.resx">
+      <DependentUpon>PrintForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Ventas\ReporteForm.resx">
+      <DependentUpon>ReporteForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Ventas\SeleccionProductoForm.resx">
+      <DependentUpon>SeleccionProductoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Ventas\VisualizarFacturaForm.resx">
+      <DependentUpon>VisualizarFacturaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AboutBox.resx">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReport2.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrystalReport2.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginMainForm.resx">
+      <DependentUpon>LoginMainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mail\MensajeMailForm.resx">
+      <DependentUpon>MensajeMailForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mail\MailForm.resx">
+      <DependentUpon>MailForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="StartImage.resx">
+      <DependentUpon>StartImage.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="DataSet1.xsc">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet1.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet1.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSet1.xss">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 y x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Encabezado.jpg" />
+    <Content Include="FondoDePantalla.jpg" />
+    <Content Include="ingeniar.png" />
+    <Content Include="IngeniarIco2.ico" />
+    <Content Include="login.jpg" />
+    <Content Include="Mail\email.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

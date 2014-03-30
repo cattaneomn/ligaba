@@ -1,0 +1,8 @@
+[admin]-[24/03/2014 12:34:03]-[Jugadores]-[No se encontró el procedimiento almacenado 'LigaBA.p_BuscarJugador'.]
+[admin]-[24/03/2014 13:07:47]-[Jugadores]-[No se encontró el procedimiento almacenado 'LigaBA.p_BuscarJugador'.]
+[admin]-[24/03/2014 13:07:48]-[Jugadores]-[No se encontró el procedimiento almacenado 'LigaBA.p_BuscarJugador'.]
+[admin]-[24/03/2014 13:45:22]-[Instituciones]-[No se encontró el procedimiento almacenado 'LigaBA.p_BajaInstitucion'.]
+[admin]-[25/03/2014 16:49:00]-[Equipos]-[Sintaxis incorrecta cerca de ','.]
+[admin]-[26/03/2014 9:56:43]-[Modificar Equipo]-[El procedimiento o la función 'p_ModificarEquipo' esperaba el parámetro '@categoria', que no se ha especificado.]
+[admin]-[26/03/2014 9:58:33]-[Modificar Equipo]-[No se puede guardar el equipo porque ya existe un equipo con ese nombre y categoria.]
+[admin]-[26/03/2014 9:59:30]-[Equipos]-[No se encontró el procedimiento almacenado 'LigaBA.p_BajaEquipo'.]
