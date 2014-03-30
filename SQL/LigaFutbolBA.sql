@@ -121,7 +121,8 @@ CREATE TABLE LigaBA.Torneo(
         id int NOT NULL IDENTITY,
         nombre nvarchar(300) NOT NULL UNIQUE,
         tipodetorneo int NOT NULL,
-        tablageneral nvarchar(50),
+        tablageneral bit NOT NULL,
+        tipoDeTablaGeneral nvarchar(100),
  CONSTRAINT PK_Torneo PRIMARY KEY(id),
  CONSTRAINT FK_Torneo_TipoDeTorneo FOREIGN KEY (tipodetorneo) REFERENCES LigaBA.TipoDeTorneo(id),
  );

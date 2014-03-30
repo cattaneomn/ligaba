@@ -102,7 +102,7 @@ namespace LigaBA.Abm_Jugador
             if (InstitucionComboBox.SelectedValue != null)
             {
                 this.institucion = InstitucionComboBox.SelectedValue.ToString();
-                CargarEquiposComboBox();
+                CargarInstitucionesComboBox();
             }
         }
 
