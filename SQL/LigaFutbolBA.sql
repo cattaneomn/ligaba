@@ -1,4 +1,3 @@
-dos
 CREATE DATABASE LigabaDB;
 GO
 

@@ -43,8 +43,7 @@ namespace LigaBA.Abm_Tipo_Torneo
             if (TerminoBien == true)
             {
                 MessageBox.Show("Se ha dado modificado el tipo de torneo '" + TipoTorneoTextBox.Text + "' correctamente.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.LimpiarButton.PerformClick();
-                this.TipoTorneoTextBox.Focus();
+                DialogResult = DialogResult.OK;
             } 
 
         }

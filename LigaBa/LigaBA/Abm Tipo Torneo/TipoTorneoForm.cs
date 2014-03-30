@@ -64,7 +64,11 @@ namespace LigaBA.Abm_Tipo_Torneo
                 return;
             }
             ModificarTipoTorneoForm abrir = new ModificarTipoTorneoForm(this.TipoTorneo_DataGridView.CurrentRow.Cells["Id"].Value.ToString(), this.TipoTorneo_DataGridView.CurrentRow.Cells["Nombre"].Value.ToString());
-            abrir.ShowDialog();
+            DialogResult Resultado = abrir.ShowDialog();
+            if (Resultado == DialogResult.OK)
+            {
+                ModDataGridView.limpiarDataGridView(TipoTorneo_DataGridView, "");
+            }
         }
 
         private void BuscarButton_Click(object sender, EventArgs e)
@@ -81,6 +85,7 @@ namespace LigaBA.Abm_Tipo_Torneo
                 MessageBox.Show("No se encontraron resultados que coincidan con la busqueda.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
+            this.TipoTorneo_DataGridView.Columns["id"].Visible = false;
             this.TipoTorneo_DataGridView.Focus();
         }
 
