@@ -49,7 +49,7 @@ CREATE TABLE LigaBA.Jugador(
  		apellido nvarchar(50) NOT NULL,
  		fecha_de_nacimiento date NOT NULL,
  		habilitado bit DEFAULT 1,
-                borrado bit DEFAULT 0,
+        borrado bit DEFAULT 0,
  CONSTRAINT PK_jugador PRIMARY KEY(id)
  );
 
@@ -159,21 +159,6 @@ CREATE TABLE LigaBA.TorneoXCategoriaXEquipo(
 
 GO
 
---TORNEOXJUGADOR
-CREATE TABLE LigaBA.PartidoXJugador(
-        partido int NOT NULL,
-        jugador int NOT NULL,
-        goles int DEFAULT 0,
-        amarillas int DEFAULT 0,
-        rojas int DEFAULT 0,
- CONSTRAINT PK_PartidoXJugador PRIMARY KEY(torneoxcategoria,jugador),
- CONSTRAINT FK_PartidoXJugador_Partido FOREIGN KEY (partido) REFERENCES LigaBA.Partido(id),
- CONSTRAINT FK_PartidoXJugador_Jugador FOREIGN KEY (jugador) REFERENCES LigaBA.jugador(id),
- );
-
-GO
-
-
 --PARTIDOS
 CREATE TABLE LigaBA.Partido(
         id int NOT NULL IDENTITY,
@@ -192,7 +177,19 @@ CREATE TABLE LigaBA.Partido(
 
 GO
 
+--PARTIDOXJUGADOR
+CREATE TABLE LigaBA.PartidoXJugador(
+        partido int NOT NULL,
+        jugador int NOT NULL,
+        goles int DEFAULT 0,
+        amarillas int DEFAULT 0,
+        rojas int DEFAULT 0,
+ CONSTRAINT PK_PartidoXJugador PRIMARY KEY(partido,jugador),
+ CONSTRAINT FK_PartidoXJugador_Partido FOREIGN KEY (partido) REFERENCES LigaBA.Partido(id),
+ CONSTRAINT FK_PartidoXJugador_Jugador FOREIGN KEY (jugador) REFERENCES LigaBA.jugador(id),
+ );
 
+GO
 
 --CREAR USUARIO
 
@@ -354,20 +351,33 @@ CREATE PROCEDURE [LigaBA].[p_AltaJugador]
 AS
 BEGIN transaction
         
-        IF EXISTS(SELECT 1 FROM LigaBA.Jugador WHERE dni = @dni)
+        IF EXISTS(SELECT 1 FROM LigaBA.Jugador WHERE dni = @dni AND borrado=0)
         BEGIN
                 RAISERROR ('El jugador que intenta agregar ya existe.',16,1)
                 ROLLBACK
                 RETURN          
         END                
         
-        DECLARE @jugador int
-        INSERT INTO LigaBA.Jugador(dni,nombre,apellido,fecha_de_nacimiento ) VALUES (@dni,@nombre,@apellido,@fecha_de_nacimiento)
-        
-		SELECT @jugador = SCOPE_IDENTITY()
-        
-        INSERT INTO LigaBA.JugadorXEquipo(jugador,equipo) VALUES (@jugador,@equipo)
-
+        IF EXISTS(SELECT 1 FROM LigaBA.Jugador WHERE dni = @dni AND borrado=1)
+        BEGIN	
+				declare @id int
+				SELECT TOP 1 @id=id FROM LigaBA.Jugador WHERE dni = @dni AND borrado=1
+                UPDATE LigaBA.Jugador SET borrado=0,dni=@dni, nombre=@nombre, apellido=@apellido, fecha_de_nacimiento=@fecha_de_nacimiento WHERE id = @id 
+                
+                IF NOT(EXISTS(SELECT 1 FROM LigaBA.JugadorXEquipo WHERE jugador = @id AND equipo = @equipo)) 
+                BEGIN
+					INSERT INTO LigaBA.JugadorXEquipo(jugador,equipo) VALUES (@id,@equipo)
+                END                                             
+        END 
+        ELSE
+        BEGIN
+			DECLARE @jugador int
+			INSERT INTO LigaBA.Jugador(dni,nombre,apellido,fecha_de_nacimiento ) VALUES (@dni,@nombre,@apellido,@fecha_de_nacimiento)
+	        
+			SELECT @jugador = SCOPE_IDENTITY()
+	        
+			INSERT INTO LigaBA.JugadorXEquipo(jugador,equipo) VALUES (@jugador,@equipo)
+		END
 COMMIT
 
 GO
@@ -390,7 +400,7 @@ BEGIN transaction
 		DECLARE @where nvarchar(100)
 		DECLARE @condiciones nvarchar(500)
 		
-		SET @consulta = 'SELECT Jugador.id as Id, Jugador.dni as Dni,Jugador.nombre as Nombre, Jugador.apellido as Apellido,Jugador.fecha_de_nacimiento as 'Fecha de Nacimiento', Equipo.nombre as Equipo, Jugador.amarillas as 'Tarjetas Amarillas', Jugador.rojas as 'TarjetasRojas''
+		SET @consulta = 'SELECT Jugador.id as Id, Jugador.dni as Dni,Jugador.nombre as Nombre, Jugador.apellido as Apellido,Jugador.fecha_de_nacimiento as Fecha_de_Nacimiento, Equipo.nombre as Equipo, Jugador.amarillas as Tarjetas_Amarillas, Jugador.rojas as Tarjetas_Rojas'
 		SET @from = ' FROM LigaBA.Jugador as Jugador INNER JOIN LigaBA.JugadorXEquipo as JugadorXEquipo ON Jugador.id = JugadorXEquipo.jugador INNER JOIN LigaBA.Equipo ON JugadorXEquipo.equipo = Equipo.id'
 		SET @where = ' WHERE '
 		SET @condiciones = ''
@@ -611,7 +621,7 @@ END
         (SELECT JXE.jugador FROM LigaBA.JugadorXEquipo AS JXE WHERE JXE.equipo=@id)
 
         --ACTUALIZAR EQUIPO
-        UPDATE LigaBA.Equipo borrado=1 WHERE id=@id
+        UPDATE LigaBA.Equipo SET borrado=1 WHERE id=@id
 
 COMMIT
 
@@ -639,7 +649,7 @@ BEGIN transaction
         UPDATE LigaBA.Equipo SET nombre=@nombre WHERE id=@id
 
 COMMIT
-
+GO
 --ALTA INSTITUCION
 CREATE PROCEDURE [LigaBA].[p_AltaInstitucion]
 (
@@ -648,7 +658,7 @@ CREATE PROCEDURE [LigaBA].[p_AltaInstitucion]
         @localidad nvarchar(300),
         @telefono nvarchar(100),
         @email nvarchar(100),
-        @delegado nvarchar(100),
+        @delegado nvarchar(100),        
         @coordinador nvarchar(100)
 )       
 AS
@@ -729,7 +739,7 @@ BEGIN transaction
         WHERE id=@id
 
 COMMIT
-
+GO
 
 --FUNCIONES
 
