@@ -46,7 +46,7 @@ namespace LigaBA.Clases
         }
         public static void CargarInstitucionComboBox(ComboBox comboBox, string txt)
         {
-            CargadorDeDatos.CargarComboBox("select id,nombre from LigaBA.Institucion", new List<SqlParameter>(), comboBox, txt, "id", "nombre");
+            CargadorDeDatos.CargarComboBox("select id,nombre from LigaBA.Institucion WHERE borrado=0", new List<SqlParameter>(), comboBox, txt, "id", "nombre");
         }
         public static void CargarEquipoComboBox(ComboBox comboBox, string txt,string institucion ,string categoria)
         {
@@ -65,7 +65,7 @@ namespace LigaBA.Clases
         }
         public static void CargarInstitucionesCheckedListBox(CheckedListBox checkedListBox, string txt)
         {
-            CargadorDeDatos.CargarCheckedListBox("select id,nombre from LigaBA.Institucion --WHERE borrado=0", new List<SqlParameter>(), checkedListBox, txt, "id", "nombre");
+            CargadorDeDatos.CargarCheckedListBox("select id,nombre from LigaBA.Institucion WHERE borrado=0", new List<SqlParameter>(), checkedListBox, txt, "id", "nombre");
         }
 
     }
