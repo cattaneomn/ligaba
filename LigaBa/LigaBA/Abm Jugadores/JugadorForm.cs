@@ -67,13 +67,13 @@ namespace LigaBA.Abm_Jugador
 
                 DataSet ds = BaseDeDatos.GetInstance.ejecutarConsulta("p_BuscarJugador", param, "Jugadores", this.Text);
 
-                Jugador_DataGridView.DataSource = ds.Tables["Jugadores"];
-
-                if (Jugador_DataGridView.DataSource == null)
+                if (ds.Tables["Jugadores"].Rows.Count == 0)
                 {
                     MessageBox.Show("No se encontraron resultados que coincidan con la busqueda.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
+                
+                Jugador_DataGridView.DataSource = ds.Tables["Jugadores"];
                 this.Jugador_DataGridView.Focus();
             }
 
