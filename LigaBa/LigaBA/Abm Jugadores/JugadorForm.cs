@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 
 using LigaBA.Clases;
+using System.Threading;
 
 namespace LigaBA.Abm_Jugador
 {
@@ -192,6 +193,19 @@ namespace LigaBA.Abm_Jugador
         private void FechaNacimientoDateTimePicker_CloseUp(object sender, EventArgs e)
         {
             this.FechaNacimientoDateTimePicker.Format = DateTimePickerFormat.Short;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Thread hilo = new Thread(AbrirFormReporte);
+            hilo.SetApartmentState(System.Threading.ApartmentState.STA);
+            hilo.Start(); 
+        }
+
+        private void AbrirFormReporte()
+        {
+            ReporteForm abrir = new ReporteForm();
+            abrir.ShowDialog();
         }
 
     }

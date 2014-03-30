@@ -55,6 +55,7 @@
             this.AgregarButton = new System.Windows.Forms.Button();
             this.EliminarButton = new System.Windows.Forms.Button();
             this.ModificarButton = new System.Windows.Forms.Button();
+            this.ImprimirCarnetButton = new System.Windows.Forms.Button();
             this.JugadorGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Jugador_DataGridView)).BeginInit();
             this.SuspendLayout();
@@ -356,6 +357,20 @@
             this.ModificarButton.UseVisualStyleBackColor = true;
             this.ModificarButton.Click += new System.EventHandler(this.ModificarButton_Click);
             // 
+            // ImprimirCarnetButton
+            // 
+            this.ImprimirCarnetButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ImprimirCarnetButton.Image = ((System.Drawing.Image)(resources.GetObject("ImprimirCarnetButton.Image")));
+            this.ImprimirCarnetButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ImprimirCarnetButton.Location = new System.Drawing.Point(620, 193);
+            this.ImprimirCarnetButton.Name = "ImprimirCarnetButton";
+            this.ImprimirCarnetButton.Size = new System.Drawing.Size(152, 35);
+            this.ImprimirCarnetButton.TabIndex = 14;
+            this.ImprimirCarnetButton.Text = " Imprimir Carnet";
+            this.ImprimirCarnetButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.ImprimirCarnetButton.UseVisualStyleBackColor = true;
+            this.ImprimirCarnetButton.Click += new System.EventHandler(this.button1_Click);
+            // 
             // JugadorForm
             // 
             this.AcceptButton = this.BuscarButton;
@@ -363,6 +378,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.CancelarButton;
             this.ClientSize = new System.Drawing.Size(784, 562);
+            this.Controls.Add(this.ImprimirCarnetButton);
             this.Controls.Add(this.ModificarButton);
             this.Controls.Add(this.EliminarButton);
             this.Controls.Add(this.AgregarButton);
@@ -408,5 +424,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox CategoriasComboBox;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button ImprimirCarnetButton;
     }
 }

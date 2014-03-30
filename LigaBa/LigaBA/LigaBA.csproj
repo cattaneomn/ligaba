@@ -11,7 +11,8 @@
     <RootNamespace>LigaBA</RootNamespace>
     <AssemblyName>LigaBA</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
@@ -37,10 +38,17 @@
     <ApplicationIcon>Ingeniar.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.DirectoryServices" />
     <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -104,6 +112,12 @@
     </Compile>
     <Compile Include="Abm Jugadores\ModificarJugadorForm.designer.cs">
       <DependentUpon>ModificarJugadorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Jugadores\ReporteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Jugadores\ReporteForm.Designer.cs">
+      <DependentUpon>ReporteForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Abm Tipo Torneo\AltaTipoTorneoForm.cs">
       <SubType>Form</SubType>
@@ -171,6 +185,12 @@
     <Compile Include="Abm Intituciones\ModificarInstitucionForm.Designer.cs">
       <DependentUpon>ModificarInstitucionForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reportes\Carnet.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Carnet.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Clases\BaseDeDatos.cs" />
     <Compile Include="Clases\CargadorDeDatos.cs" />
     <Compile Include="Clases\Configuracion.cs" />
@@ -229,6 +249,9 @@
     <EmbeddedResource Include="Abm Jugadores\ModificarJugadorForm.resx">
       <DependentUpon>ModificarJugadorForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Abm Jugadores\ReporteForm.resx">
+      <DependentUpon>ReporteForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Abm Tipo Torneo\AltaTipoTorneoForm.resx">
       <DependentUpon>AltaTipoTorneoForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -256,6 +279,10 @@
     <EmbeddedResource Include="Abm Intituciones\InstitucionesForm.resx">
       <DependentUpon>InstitucionesForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Carnet.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Carnet.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Login\LoginMainForm.resx">
       <DependentUpon>LoginMainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -270,6 +297,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="SplashScreen\SplashScreen.resx">
       <DependentUpon>SplashScreen.cs</DependentUpon>
@@ -295,6 +323,9 @@
     <Content Include="Images\ingeniar.png" />
     <Content Include="Images\login.jpg" />
     <Content Include="Ingeniar.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
