@@ -141,6 +141,7 @@
             // TipoTablaComboBox
             // 
             this.TipoTablaComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.TipoTablaComboBox.Enabled = false;
             this.TipoTablaComboBox.FormattingEnabled = true;
             this.TipoTablaComboBox.Items.AddRange(new object[] {
             "Todas las categorias",

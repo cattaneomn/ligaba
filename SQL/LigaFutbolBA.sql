@@ -602,10 +602,19 @@ BEGIN transaction
                 ROLLBACK
                 RETURN          
         END
-        
-        INSERT INTO LigaBA.Equipo (nombre,institucion,categoria)
-        VALUES (@nombre,@institucion,@categoria)
 
+        IF EXISTS(SELECT @id=id FROM LigaBA.Equipo WHERE nombre = @nombre AND borrado=1)
+        BEGIN   
+                
+                UPDATE LigaBA.Equipo SET borrado=0,nombre=@nombre,institucion=@institucion,
+                categoria=@categoria WHERE id = @id  
+
+        END
+        ELSE
+        BEGIN
+                INSERT INTO LigaBA.Equipo (nombre,institucion,categoria)
+                VALUES (@nombre,@institucion,@categoria)
+        END
 COMMIT
 
 GO
@@ -675,16 +684,29 @@ CREATE PROCEDURE [LigaBA].[p_AltaInstitucion]
 AS
 BEGIN transaction
         
-        IF EXISTS(SELECT 1 FROM LigaBA.Institucion WHERE nombre = @nombre)
+        IF EXISTS(SELECT 1 FROM LigaBA.Institucion WHERE nombre = @nombre AND borrado=0)
         BEGIN
-                RAISERROR ('Ya existe una institucion con ese nombre.',16,1)
+                RAISERROR ('No puede guardar la institucion por que ya existe una institucion con ese nombre.',16,1)
                 ROLLBACK
                 RETURN          
         END
         
-        INSERT INTO LigaBA.Institucion (nombre,direccion,localidad,telefono,email,delegado,coordinador)
-        VALUES (@nombre,@direccion,@localidad,@telefono,@email,@delegado,@coordinador)
+        declare @id int
 
+        IF EXISTS(SELECT @id=id FROM LigaBA.Institucion WHERE nombre = @nombre AND borrado=1)
+        BEGIN   
+                
+                UPDATE LigaBA.Institucion SET borrado=0,nombre=@nombre,direccion=@direccion,
+                localidad=@localidad,telefono=@telefono,email=@email,delegado=@delegado,
+                coordinador=@coordinador WHERE id = @id  
+
+        END 
+        ELSE
+        BEGIN
+
+                INSERT INTO LigaBA.Institucion (nombre,direccion,localidad,telefono,email,delegado,coordinador)
+                VALUES (@nombre,@direccion,@localidad,@telefono,@email,@delegado,@coordinador)
+        END
 COMMIT
 GO
 
