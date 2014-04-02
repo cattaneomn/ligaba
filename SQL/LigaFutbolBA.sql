@@ -816,27 +816,70 @@ GO
 
 --ALTA TORNEO
 CREATE PROCEDURE [LigaBA].[p_AltaTorneo]
-(                
-        @nombre nvarchar(50),
-        @tipo int,
-        @tabla_general bit,
-        @result int output
-        
+(
+        @nombre nvarchar(300),
+        @tipodetorneo int,
+        @tablageneral nvarchar(2),
+        @tipodetablageneral nvarchar(100),
+        @respuesta int OUTPUT 
 )       
 AS
 BEGIN transaction
         
         IF EXISTS(SELECT 1 FROM LigaBA.Torneo WHERE nombre = @nombre)
         BEGIN
-                RAISERROR ('El torneo que intenta agregar ya existe.',16,1)
+                RAISERROR ('No se pudo crear el torneo por que ya existe un torneo con ese nombre.',16,1)
                 ROLLBACK
                 RETURN          
-        END                
-                        
-        INSERT INTO LigaBA.Torneo(nombre,tipodetorneo,tablageneral) VALUES (@nombre,@tipo,@tabla_general)
+        END
         
-        SELECT @result = SCOPE_IDENTITY()               
+        --Torneo        
+        INSERT INTO LigaBA.Torneo(nombre,tipodetorneo,tablageneral,tipodetablageneral) 
+        VALUES (@nombre,@tipodetorneo,@tablageneral,@tipodetablageneral)
+        
+
+        select @respuesta = @@IDENTITY
     
 COMMIT
 
+return @respuesta
+
 GO
+
+--ALTA TORNEOXCATEGORIA
+CREATE PROCEDURE [LigaBA].[p_AltaTorneoXCategoria]
+(
+        @torneogeneral int,
+        @categoria int,
+        @respuesta int OUTPUT
+)       
+AS
+BEGIN transaction
+
+        --TorneoXCategoria
+        INSERT INTO LigaBA.TorneoXCategoria(torneogeneral,categoria) 
+        VALUES (@torneogeneral,@categoria)
+
+        select @respuesta = @@IDENTITY
+    
+COMMIT
+
+return @respuesta
+
+GO
+
+--ALTA TORNEOXCATEGORIAXEQUIPO
+CREATE PROCEDURE [LigaBA].[p_AltaTorneoXCategoriaXEquipo]
+(
+        @torneoxcategoria int,
+        @equipo int
+)       
+AS
+BEGIN transaction
+
+        --TorneoXCategoriaXEquipo
+        INSERT INTO LigaBA.TorneoXCategoriaXEquipo(torneoxcategoria,equipo) 
+        VALUES (@torneoxcategoria,@equipo)
+
+COMMIT
+
