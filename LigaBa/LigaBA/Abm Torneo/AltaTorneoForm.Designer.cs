@@ -84,7 +84,7 @@
             this.GuardarButton.Name = "GuardarButton";
             this.GuardarButton.Size = new System.Drawing.Size(75, 23);
             this.GuardarButton.TabIndex = 6;
-            this.GuardarButton.Text = "Guardar";
+            this.GuardarButton.Text = "Siguiente";
             this.GuardarButton.UseVisualStyleBackColor = true;
             this.GuardarButton.Click += new System.EventHandler(this.GuardarButton_Click);
             // 

@@ -43,12 +43,14 @@ GO
 
 --JUGADOR
 CREATE TABLE LigaBA.Jugador(
-		id int IDENTITY NOT NULL,
+        id int IDENTITY NOT NULL,
         dni int NOT NULL UNIQUE,
         nombre nvarchar(50) NOT NULL,
- 		apellido nvarchar(50) NOT NULL,
- 		fecha_de_nacimiento date NOT NULL,
- 		habilitado bit DEFAULT 1,
+        apellido nvarchar(50) NOT NULL,
+        fecha_de_nacimiento date NOT NULL,
+        amarillas int DEFAULT 0,
+        rojas int DEFAULT 0,
+        habilitado bit DEFAULT 1,
         borrado bit DEFAULT 0,
  CONSTRAINT PK_jugador PRIMARY KEY(id)
  );
@@ -59,12 +61,12 @@ GO
 CREATE TABLE LigaBA.Institucion(
         id int NOT NULL IDENTITY,
         nombre nvarchar(100) NOT NULL UNIQUE,
- 		direccion nvarchar(300),
- 		localidad nvarchar(300),
- 		delegado nvarchar(100), 
- 		coordinador nvarchar(100),
- 		telefono nvarchar(100),
- 		email nvarchar(100),
+        direccion nvarchar(300),
+        localidad nvarchar(300),
+        delegado nvarchar(100), 
+        coordinador nvarchar(100),
+        telefono nvarchar(100),
+        email nvarchar(100),
                 borrado bit DEFAULT 0,
  CONSTRAINT PK_institucion PRIMARY KEY(id)
  );
@@ -121,8 +123,8 @@ CREATE TABLE LigaBA.Torneo(
         id int NOT NULL IDENTITY,
         nombre nvarchar(300) NOT NULL UNIQUE,
         tipodetorneo int NOT NULL,
-        tablageneral bit NOT NULL,
-        tipoDeTablaGeneral nvarchar(100),
+        tablageneral nvarchar(2) NOT NULL,
+        tipodetablageneral nvarchar(100),
  CONSTRAINT PK_Torneo PRIMARY KEY(id),
  CONSTRAINT FK_Torneo_TipoDeTorneo FOREIGN KEY (tipodetorneo) REFERENCES LigaBA.TipoDeTorneo(id),
  );
@@ -283,17 +285,17 @@ BEGIN transaction
                 RETURN          
         END
         
-        IF EXISTS(SELECT 1 FROM LigaBA.Categoria WHERE nombre = @categoria AND borrado=1)
-        BEGIN	
-				DECLARE @id int
-				SELECT TOP 1 @id=id FROM LigaBA.Categoria WHERE nombre = @categoria AND borrado=1
+        DECLARE @id int
+        
+        IF EXISTS(SELECT id=@id FROM LigaBA.Categoria WHERE nombre = @categoria AND borrado=1)
+        BEGIN               
                 UPDATE LigaBA.Categoria SET borrado=0,nombre = @categoria WHERE id = @id                                                                              
         END 
         ELSE
         BEGIN
-			INSERT INTO LigaBA.Categoria(nombre) VALUES (@categoria)
-		END
-		
+            INSERT INTO LigaBA.Categoria(nombre) VALUES (@categoria)
+        END
+        
         
 
 COMMIT
@@ -369,26 +371,26 @@ BEGIN transaction
                 RETURN          
         END                
         
-        IF EXISTS(SELECT 1 FROM LigaBA.Jugador WHERE dni = @dni AND borrado=1)
-        BEGIN	
-				declare @id int
-				SELECT TOP 1 @id=id FROM LigaBA.Jugador WHERE dni = @dni AND borrado=1
+        declare @id int
+        
+        IF EXISTS(SELECT id=@id FROM LigaBA.Jugador WHERE dni = @dni AND borrado=1)
+        BEGIN   
                 UPDATE LigaBA.Jugador SET borrado=0,dni=@dni, nombre=@nombre, apellido=@apellido, fecha_de_nacimiento=@fecha_de_nacimiento WHERE id = @id 
                 
                 IF NOT(EXISTS(SELECT 1 FROM LigaBA.JugadorXEquipo WHERE jugador = @id AND equipo = @equipo)) 
                 BEGIN
-					INSERT INTO LigaBA.JugadorXEquipo(jugador,equipo) VALUES (@id,@equipo)
+                    INSERT INTO LigaBA.JugadorXEquipo(jugador,equipo) VALUES (@id,@equipo)
                 END                                             
         END 
         ELSE
         BEGIN
-			DECLARE @jugador int
-			INSERT INTO LigaBA.Jugador(dni,nombre,apellido,fecha_de_nacimiento ) VALUES (@dni,@nombre,@apellido,@fecha_de_nacimiento)
-	        
-			SELECT @jugador = SCOPE_IDENTITY()
-	        
-			INSERT INTO LigaBA.JugadorXEquipo(jugador,equipo) VALUES (@jugador,@equipo)
-		END
+            DECLARE @jugador int
+            INSERT INTO LigaBA.Jugador(dni,nombre,apellido,fecha_de_nacimiento ) VALUES (@dni,@nombre,@apellido,@fecha_de_nacimiento)
+            
+            SELECT @jugador = SCOPE_IDENTITY()
+            
+            INSERT INTO LigaBA.JugadorXEquipo(jugador,equipo) VALUES (@jugador,@equipo)
+        END
 COMMIT
 
 GO
@@ -408,64 +410,64 @@ BEGIN transaction
         DECLARE @instruccion nvarchar(1024)
         DECLARE @consulta nvarchar(500)        
         DECLARE @from nvarchar(500)
-		DECLARE @where nvarchar(100)
-		DECLARE @condiciones nvarchar(500)
-		
-		SET @consulta = 'SELECT Jugador.id as Id, Jugador.dni as Dni,Jugador.nombre as Nombre, Jugador.apellido as Apellido,Jugador.fecha_de_nacimiento as Fecha_de_Nacimiento, Equipo.nombre as Equipo, Jugador.amarillas as Tarjetas_Amarillas, Jugador.rojas as Tarjetas_Rojas'
-		SET @from = ' FROM LigaBA.Jugador as Jugador INNER JOIN LigaBA.JugadorXEquipo as JugadorXEquipo ON Jugador.id = JugadorXEquipo.jugador INNER JOIN LigaBA.Equipo ON JugadorXEquipo.equipo = Equipo.id'
-		SET @where = ' WHERE '
-		SET @condiciones = ''
-		
-		IF(@dni != '')
-		BEGIN
-			SET @condiciones = @condiciones + ' Jugador.dni = ' + @dni
-		END				
-		
-		IF(@nombre != '')
-		BEGIN
-			IF(@condiciones != '')
-			BEGIN
-				SET @condiciones = @condiciones + ' AND '
-			END
-			SET @condiciones = @condiciones + ' Jugador.nombre LIKE ''' + @nombre + ''''
-		END				
-		
-		IF(@apellido != '')
-		BEGIN
-			IF(@condiciones != '')
-			BEGIN
-				SET @condiciones = @condiciones + ' AND '
-			END
-			SET @condiciones = @condiciones + ' Jugador.apellido LIKE ''' + @apellido + ''''
-		END	
-		
-		IF(@fecha_de_nacimiento != '')
-		BEGIN
-			IF(@condiciones != '')
-			BEGIN
-				SET @condiciones = @condiciones + ' AND '
-			END
-			SET @condiciones = @condiciones + ' Jugador.fecha_de_nacimiento = ''' + @fecha_de_nacimiento + ''''
-		END	
-		
-		IF(@equipo != '')
-		BEGIN
-			IF(@condiciones != '')
-			BEGIN
-				SET @condiciones = @condiciones + ' AND '
-			END
-			SET @condiciones = @condiciones + ' Equipo.id = ' + @equipo
-		END
-		
-		IF(@condiciones = '')
-			BEGIN
-				SET @instruccion = @consulta + @from
-			END
-		ELSE
-			BEGIN
-				SET @instruccion = @consulta + @from + @where + @condiciones
-			END
-		exec(@instruccion)
+        DECLARE @where nvarchar(100)
+        DECLARE @condiciones nvarchar(500)
+        
+        SET @consulta = 'SELECT Jugador.id as Id, Jugador.dni as Dni,Jugador.nombre as Nombre, Jugador.apellido as Apellido,Jugador.fecha_de_nacimiento as Fecha_de_Nacimiento, Equipo.nombre as Equipo, Jugador.amarillas as Tarjetas_Amarillas, Jugador.rojas as Tarjetas_Rojas'
+        SET @from = ' FROM LigaBA.Jugador as Jugador INNER JOIN LigaBA.JugadorXEquipo as JugadorXEquipo ON Jugador.id = JugadorXEquipo.jugador INNER JOIN LigaBA.Equipo ON JugadorXEquipo.equipo = Equipo.id'
+        SET @where = ' WHERE '
+        SET @condiciones = ''
+        
+        IF(@dni != '')
+        BEGIN
+            SET @condiciones = @condiciones + ' Jugador.dni = ' + @dni
+        END             
+        
+        IF(@nombre != '')
+        BEGIN
+            IF(@condiciones != '')
+            BEGIN
+                SET @condiciones = @condiciones + ' AND '
+            END
+            SET @condiciones = @condiciones + ' Jugador.nombre LIKE ''' + @nombre + ''''
+        END             
+        
+        IF(@apellido != '')
+        BEGIN
+            IF(@condiciones != '')
+            BEGIN
+                SET @condiciones = @condiciones + ' AND '
+            END
+            SET @condiciones = @condiciones + ' Jugador.apellido LIKE ''' + @apellido + ''''
+        END 
+        
+        IF(@fecha_de_nacimiento != '')
+        BEGIN
+            IF(@condiciones != '')
+            BEGIN
+                SET @condiciones = @condiciones + ' AND '
+            END
+            SET @condiciones = @condiciones + ' Jugador.fecha_de_nacimiento = ''' + @fecha_de_nacimiento + ''''
+        END 
+        
+        IF(@equipo != '')
+        BEGIN
+            IF(@condiciones != '')
+            BEGIN
+                SET @condiciones = @condiciones + ' AND '
+            END
+            SET @condiciones = @condiciones + ' Equipo.id = ' + @equipo
+        END
+        
+        IF(@condiciones = '')
+            BEGIN
+                SET @instruccion = @consulta + @from
+            END
+        ELSE
+            BEGIN
+                SET @instruccion = @consulta + @from + @where + @condiciones
+            END
+        exec(@instruccion)
 COMMIT
 
 GO
@@ -602,8 +604,10 @@ BEGIN transaction
                 ROLLBACK
                 RETURN          
         END
-
-        IF EXISTS(SELECT @id=id FROM LigaBA.Equipo WHERE nombre = @nombre AND borrado=1)
+        
+        DECLARE @id int
+        
+        IF EXISTS(SELECT id=@id FROM LigaBA.Equipo WHERE nombre = @nombre AND borrado=1)
         BEGIN   
                 
                 UPDATE LigaBA.Equipo SET borrado=0,nombre=@nombre,institucion=@institucion,
@@ -693,7 +697,7 @@ BEGIN transaction
         
         declare @id int
 
-        IF EXISTS(SELECT @id=id FROM LigaBA.Institucion WHERE nombre = @nombre AND borrado=1)
+        IF EXISTS(SELECT id=@id FROM LigaBA.Institucion WHERE nombre = @nombre AND borrado=1)
         BEGIN   
                 
                 UPDATE LigaBA.Institucion SET borrado=0,nombre=@nombre,direccion=@direccion,
@@ -829,10 +833,10 @@ BEGIN transaction
                 RETURN          
         END                
                         
-		INSERT INTO LigaBA.Torneo(nombre,tipodetorneo,tablageneral) VALUES (@nombre,@tipo,@tabla_general)
+        INSERT INTO LigaBA.Torneo(nombre,tipodetorneo,tablageneral) VALUES (@nombre,@tipo,@tabla_general)
         
-		SELECT @result = SCOPE_IDENTITY()        		
-	
+        SELECT @result = SCOPE_IDENTITY()               
+    
 COMMIT
 
 GO

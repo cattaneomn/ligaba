@@ -31,6 +31,13 @@ namespace LigaBA.Abm_Torneo
 
         private void GuardarButton_Click(object sender, EventArgs e)
         {
+            CargarEquiposForm abrir = new CargarEquiposForm(this.InstitucionesCheckedListBox,this.CategoriasCheckedListBox);
+            abrir.ShowDialog();
+            
+            
+            
+            
+            
             int result = -1;
 
             if (Validaciones() == -1) return;

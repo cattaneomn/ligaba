@@ -42,7 +42,27 @@ namespace LigaBA
                 {
                     DataGridViewButtonCell button = (row.Cells[NombreBoton] as DataGridViewButtonCell);
                 }
+            }
+        }
 
+        public static void agregarCheckbox(DataGridView dg, string NombreColumna)
+        {
+            if (!ModDataGridView.tieneLaColumna(dg, NombreColumna))
+            {
+                var buttonCol = new DataGridViewCheckBoxColumn();
+                buttonCol.Name = NombreColumna;
+                buttonCol.HeaderText = NombreColumna;
+
+                buttonCol.TrueValue = true;
+                buttonCol.ReadOnly = false;
+
+                dg.Columns.Add(buttonCol);
+
+                foreach (DataGridViewRow row in dg.Rows)
+                {
+                    DataGridViewButtonCell button = (row.Cells[NombreColumna] as DataGridViewButtonCell);
+                    row.Cells[NombreColumna].Value = true;
+                }
             }
         }
         
