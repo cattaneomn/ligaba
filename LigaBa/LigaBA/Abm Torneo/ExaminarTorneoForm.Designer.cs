@@ -32,6 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ExaminarTorneoForm));
             this.Equipo_DataGridView = new System.Windows.Forms.DataGridView();
             this.CancelarButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Equipo_DataGridView)).BeginInit();
@@ -98,6 +99,7 @@
             this.ClientSize = new System.Drawing.Size(584, 362);
             this.Controls.Add(this.CancelarButton);
             this.Controls.Add(this.Equipo_DataGridView);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ExaminarTorneoForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Examinar Torneo";
