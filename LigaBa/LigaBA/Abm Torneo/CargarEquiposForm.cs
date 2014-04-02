@@ -17,8 +17,12 @@ namespace LigaBA.Abm_Torneo
 
         List<string> CategoriasLista = new List<string>();
         List<string> InstitucionesLista = new List<string>();
+        string nombre;
+        string tipodetorneo;
+        string tablageneral;
+        string tipodetablageneral;
 
-        public CargarEquiposForm(CheckedListBox Instituciones, CheckedListBox Categorias)
+        public CargarEquiposForm(CheckedListBox Instituciones, CheckedListBox Categorias,string nombre,string tipodetorneo,string tablageneral,string tipodetablageneral)
         {
             InitializeComponent();
 
@@ -32,6 +36,12 @@ namespace LigaBA.Abm_Torneo
                 var row = (itemChecked as DataRowView).Row;
                 InstitucionesLista.Add(row["id"].ToString());
             }
+
+            this.nombre = nombre;
+            this.tipodetorneo = tipodetorneo;
+            this.tablageneral = tablageneral;
+            this.tipodetablageneral = tipodetablageneral;
+
         }
 
          
@@ -51,7 +61,7 @@ namespace LigaBA.Abm_Torneo
             string institucionesConsulta = ConsultarInstituciones();
             string categoriasConsulta = ConsultarCategorias();
 
-            string consulta = "SELECT E.id as id,E.nombre as Equipo,I.nombre as Institucion,C.nombre as Categoria FROM LigaBA.Equipo as E ";
+            string consulta = "SELECT E.id as id,C.id as idCat,E.nombre as Equipo,I.nombre as Institucion,C.nombre as Categoria FROM LigaBA.Equipo as E ";
 
             consulta += "INNER JOIN LigaBA.Categoria as C ON E.categoria = C.id ";
             consulta += "INNER JOIN LigaBA.Institucion as I ON E.institucion=I.id ";
@@ -64,6 +74,7 @@ namespace LigaBA.Abm_Torneo
             dt = BaseDeDatos.GetInstance.ExecuteCustomQuery(consulta, param, this.Text);
             Equipos_DataGridView.DataSource = dt;
             this.Equipos_DataGridView.Columns["id"].Visible = false;
+            this.Equipos_DataGridView.Columns["idCat"].Visible = false;
             this.Equipos_DataGridView.Focus();
         }
 
@@ -173,9 +184,108 @@ namespace LigaBA.Abm_Torneo
 
         private void GuardarButton_Click(object sender, EventArgs e)
         {
+            if (Validaciones() == -1) return;
 
-        }
+            List<SqlParameter> param = new List<SqlParameter>();
+            param.Add(new SqlParameter("@nombre", nombre));
+            param.Add(new SqlParameter("@tipodetorneo", tipodetorneo));
+            param.Add(new SqlParameter("@tablageneral", tablageneral));
+            param.Add(new SqlParameter("@tipodetablageneral", tipodetablageneral));
+            SqlParameter respuestaParametro = new SqlParameter("@respuesta", -1);
+            respuestaParametro.Direction = ParameterDirection.Output;
+            param.Add(respuestaParametro);
+
+            bool TerminoBien = BaseDeDatos.GetInstance.ejecutarProcedimiento("p_AltaTorneo", param, this.Text);
+
+            object respuestaSP = respuestaParametro.Value;
+            int respuesta = Convert.ToInt32(respuestaSP);
       
+            if (TerminoBien == true)
+            {
+               // MessageBox.Show("Se ha creado el torneo '" + nombre + "' correctamente.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                TerminoBien = InsertarTorneoXCategoria(respuesta);
+                DialogResult = DialogResult.OK;
+            } 
+        }
+
+        private bool InsertarTorneoXCategoria(int respuesta)
+        {
+
+            bool TerminoBien = true;
+
+            foreach (string categoria in CategoriasLista)
+            {
+                List<SqlParameter> param = new List<SqlParameter>();
+                param.Add(new SqlParameter("@torneogeneral", respuesta));
+                param.Add(new SqlParameter("@categoria", categoria));
+                SqlParameter respuestaParametro = new SqlParameter("@respuesta", -1);
+                respuestaParametro.Direction = ParameterDirection.Output;
+                param.Add(respuestaParametro);
+
+                TerminoBien &= BaseDeDatos.GetInstance.ejecutarProcedimiento("p_AltaTorneoXCategoria", param, this.Text);
+
+                object respuestaSP = respuestaParametro.Value;
+                respuesta = Convert.ToInt32(respuestaSP);
+
+
+                if (TerminoBien == true)
+                {
+                    
+                    TerminoBien &= InsertarTorneoXCategoriaXEquipo(respuesta);
+                }
+            }
+            return TerminoBien;
+        }
+
+        private bool InsertarTorneoXCategoriaXEquipo(int respuesta)
+        {
+
+            bool TerminoBien = true;
+
+            foreach (DataGridViewRow row in Equipos_DataGridView.Rows)
+            {
+                if (row.Cells["Seleccionado"].Value.ToString() == "True")
+                {
+                    string equipo = row.Cells["id"].Value.ToString();
+                    List<SqlParameter> param = new List<SqlParameter>();
+                    param.Add(new SqlParameter("@torneoxcategoria", respuesta));
+                    param.Add(new SqlParameter("@equipo", equipo));
+                    
+                    TerminoBien &= BaseDeDatos.GetInstance.ejecutarProcedimiento("p_AltaTorneoXCategoriaXEquipo", param, this.Text);
+
+                    if (TerminoBien == true)
+                    {
+                        MessageBox.Show("Se ha creado el torneo '" + nombre + "' correctamente.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        DialogResult = DialogResult.OK;
+                    }
+                }
+            }
+            return TerminoBien;
+        }
+
+        private int Validaciones()
+        {
+            foreach (string categoria in CategoriasLista)
+            {
+                int cantEquipos=0;
+                foreach (DataGridViewRow row in Equipos_DataGridView.Rows)
+                {
+                    if (row.Cells["Seleccionado"].Value.ToString() == "True" && row.Cells["idCat"].Value.ToString() == categoria)
+                    {
+                        cantEquipos++;
+                        MessageBox.Show("entre");
+                    }
+                    MessageBox.Show(row.Cells["Seleccionado"].Value.ToString());
+                }
+                if (cantEquipos <= 1)
+                {
+                    MessageBox.Show("Error: debe seleccionar al menos 2(dos) equipos de cada categoria elegida.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return -1;
+                }
+            }
+            
+            return 1;
+        }
 
     }
 }

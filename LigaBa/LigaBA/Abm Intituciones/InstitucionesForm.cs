@@ -127,7 +127,7 @@ namespace LigaBA.AbmIntituciones
 
         private string ArmarConsulta()
         {
-            string Consulta = "SELECT id,nombre as Nombre,direccion as Direccion,localidad as Localidad,telefono as Telefono,email as Email,delegado as Delegado,coordinador as Coordinador FROM LigaBA.Institucion WHERE 1=1";
+            string Consulta = "SELECT id,nombre as Nombre,direccion as Direccion,localidad as Localidad,telefono as Telefono,email as Email,delegado as Delegado,coordinador as Coordinador FROM LigaBA.Institucion WHERE borrado = 0";
 
             if (NombreTextBox.TextLength > 0)
             {

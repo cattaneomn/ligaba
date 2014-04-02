@@ -20,6 +20,11 @@ namespace LigaBA.Abm_Jugador
         private string institucion;
         private string categoria;
 
+        string nombre;
+        string dni;
+        string institucionNombre;
+        string fecha_de_nacimiento;
+
         public JugadorForm()
         {
             InitializeComponent();
@@ -32,6 +37,10 @@ namespace LigaBA.Abm_Jugador
                 if (objeto is TextBox)
                 {
                     ((TextBox)objeto).Clear();
+                }
+                if (objeto is ComboBox)
+                {
+                    ((ComboBox)objeto).SelectedItem = null;
                 }
             }
 
@@ -75,6 +84,8 @@ namespace LigaBA.Abm_Jugador
                 }
                 
                 Jugador_DataGridView.DataSource = ds.Tables["Jugadores"];
+                this.Jugador_DataGridView.Columns["id"].Visible = false;
+                this.Jugador_DataGridView.Columns["Institucion"].Visible = false;
                 this.Jugador_DataGridView.Focus();
             }
 
@@ -177,7 +188,10 @@ namespace LigaBA.Abm_Jugador
 
         private void CargarEquiposComboBox()
         {
-            CargadorDeDatos.CargarEquipoComboBox(InstitucionComboBox, this.Text,institucion,categoria);
+            if (institucion != "" && categoria != "")
+            {
+                CargadorDeDatos.CargarEquipoComboBox(EquipoComboBox, this.Text, institucion, categoria);
+            }
         }
 
         private void CargarInstitucionesComboBox()
@@ -197,6 +211,21 @@ namespace LigaBA.Abm_Jugador
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if(this.Jugador_DataGridView.Rows.Count == 0)
+            {
+                return;
+            }
+            if (this.Jugador_DataGridView.CurrentCell == null)
+            {
+                MessageBox.Show("Debe seleccionar una fila.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            this.nombre = Jugador_DataGridView.CurrentRow.Cells["Nombre"].Value.ToString() + " " + Jugador_DataGridView.CurrentRow.Cells["Apellido"].Value.ToString();
+            this.dni = Jugador_DataGridView.CurrentRow.Cells["Dni"].Value.ToString();
+            this.institucionNombre = Jugador_DataGridView.CurrentRow.Cells["Institucion"].Value.ToString();
+            this.fecha_de_nacimiento = Convert.ToDateTime(Jugador_DataGridView.CurrentRow.Cells["Fecha_de_Nacimiento"].Value.ToString()).Date.ToShortDateString();
+                                                                   
             Thread hilo = new Thread(AbrirFormReporte);
             hilo.SetApartmentState(System.Threading.ApartmentState.STA);
             hilo.Start(); 
@@ -204,7 +233,8 @@ namespace LigaBA.Abm_Jugador
 
         private void AbrirFormReporte()
         {
-            ReporteForm abrir = new ReporteForm();
+
+            ReporteForm abrir = new ReporteForm(nombre,dni,institucionNombre,fecha_de_nacimiento);
             abrir.ShowDialog();
         }
 

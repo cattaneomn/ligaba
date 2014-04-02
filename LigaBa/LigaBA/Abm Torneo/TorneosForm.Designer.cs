@@ -46,6 +46,7 @@
             this.BuscarButton = new System.Windows.Forms.Button();
             this.Torneos_DataGridView = new System.Windows.Forms.DataGridView();
             this.AgregarButton = new System.Windows.Forms.Button();
+            this.ExaminarButton = new System.Windows.Forms.Button();
             this.GroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Torneos_DataGridView)).BeginInit();
             this.SuspendLayout();
@@ -237,6 +238,20 @@
             this.AgregarButton.UseVisualStyleBackColor = true;
             this.AgregarButton.Click += new System.EventHandler(this.AgregarButton_Click_1);
             // 
+            // ExaminarButton
+            // 
+            this.ExaminarButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ExaminarButton.Image = ((System.Drawing.Image)(resources.GetObject("ExaminarButton.Image")));
+            this.ExaminarButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ExaminarButton.Location = new System.Drawing.Point(234, 155);
+            this.ExaminarButton.Name = "ExaminarButton";
+            this.ExaminarButton.Size = new System.Drawing.Size(105, 35);
+            this.ExaminarButton.TabIndex = 39;
+            this.ExaminarButton.Text = "Examinar";
+            this.ExaminarButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.ExaminarButton.UseVisualStyleBackColor = true;
+            this.ExaminarButton.Click += new System.EventHandler(this.ModificarButton_Click);
+            // 
             // TorneosForm
             // 
             this.AcceptButton = this.BuscarButton;
@@ -244,6 +259,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.CancelarButton;
             this.ClientSize = new System.Drawing.Size(784, 562);
+            this.Controls.Add(this.ExaminarButton);
             this.Controls.Add(this.AgregarButton);
             this.Controls.Add(this.GroupBox);
             this.Controls.Add(this.EliminarButton);
@@ -279,5 +295,6 @@
         private System.Windows.Forms.TextBox NombreTextBox;
         private System.Windows.Forms.Label NombreUsuarioLabel;
         private System.Windows.Forms.Button AgregarButton;
+        private System.Windows.Forms.Button ExaminarButton;
     }
 }

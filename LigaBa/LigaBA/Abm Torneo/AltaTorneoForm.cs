@@ -31,49 +31,24 @@ namespace LigaBA.Abm_Torneo
 
         private void GuardarButton_Click(object sender, EventArgs e)
         {
-            CargarEquiposForm abrir = new CargarEquiposForm(this.InstitucionesCheckedListBox,this.CategoriasCheckedListBox);
-            abrir.ShowDialog();
-            
-            
-            
-            
-            
-            int result = -1;
-
             if (Validaciones() == -1) return;
 
-            List<SqlParameter> param = new List<SqlParameter>();
-            param.Add(new SqlParameter("@nombre", this.NombreTextBox.Text));
-            param.Add(new SqlParameter("@tipo", this.TipoTorneoComboBox.ValueMember.ToString()));
-            param.Add(new SqlParameter("@tabla_general", this.TablaGeneralComboBox.ValueMember.ToString()));
-            SqlParameter result_param = new SqlParameter("@result", "-1");
-            //TODO: configurar retorno en result
-
-
-            bool TerminoBien = BaseDeDatos.GetInstance.ejecutarProcedimiento("p_AltaTorneo", param, this.Text);
-
-            if (result > 0)
+            CargarEquiposForm abrir = new CargarEquiposForm(
+              this.InstitucionesCheckedListBox,
+              this.CategoriasCheckedListBox,
+              this.NombreTextBox.Text,
+              this.TipoTorneoComboBox.SelectedValue.ToString(),
+              this.TablaGeneralComboBox.SelectedItem.ToString(),
+              this.TipoTablaComboBox.SelectedItem.ToString());
+            
+            
+            
+            
+            DialogResult Resultado = abrir.ShowDialog();
+            if (Resultado == DialogResult.OK)
             {
-                for(int i=0;i < CategoriasCheckedListBox.CheckedItems.Count;i++)
-                {
-                    string id_categoria = CategoriasCheckedListBox.CheckedItems[i].ToString();
-                    
-                    List<SqlParameter> param_txc = new List<SqlParameter>();
-                    param_txc.Add(new SqlParameter("@torneo_gral", result));
-                    param_txc.Add(new SqlParameter("@categoria", id_categoria));
-
-                    bool TerminoBien_TXC = BaseDeDatos.GetInstance.ejecutarProcedimiento("p_AltaTorneoXCategoria", param_txc, this.Text);
-
-                    TerminoBien = TerminoBien_TXC && TerminoBien;
-                }
-
-                if (TerminoBien)
-                {
-                    MessageBox.Show("Se ha dado de alta al torneo '" + NombreTextBox.Text + "' correctamente.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.LimpiarButton.PerformClick();
-                    this.NombreTextBox.Focus();
-                }
-            } 
+                this.Close();
+            }
 
         }
 
@@ -126,6 +101,19 @@ namespace LigaBA.Abm_Torneo
                     return -1;
                 }
             }
+
+            if(CategoriasCheckedListBox.CheckedItems.Count<=0)
+            {
+                MessageBox.Show("Debe seleccionar al menos una categoria.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return -1;
+            }
+
+            if (InstitucionesCheckedListBox.CheckedItems.Count <= 1)
+            {
+                MessageBox.Show("Debe seleccionar al menos dos instituciones.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return -1;
+            }
+
             return 1;
         }
 

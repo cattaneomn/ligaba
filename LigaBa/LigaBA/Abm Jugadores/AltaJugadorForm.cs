@@ -117,7 +117,9 @@ namespace LigaBA.Abm_Jugador
 
         private void CargarEquiposComboBox()
         {
-            CargadorDeDatos.CargarEquipoComboBox(InstitucionComboBox, this.Text, institucion, categoria);
+
+                CargadorDeDatos.CargarEquipoComboBox(EquipoComboBox, this.Text, institucion, categoria);
+            
         }
 
         private void CargarInstitucionesComboBox()

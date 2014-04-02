@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using LigaBA.Clases;
+using System.Data.SqlClient;
 
 namespace LigaBA.Abm_Torneo
 {
@@ -26,7 +27,46 @@ namespace LigaBA.Abm_Torneo
 
         private void BuscarButton_Click(object sender, EventArgs e)
         {
+            string Consulta = ArmarConsulta();
 
+            List<SqlParameter> param = new List<SqlParameter>();
+
+            Torneos_DataGridView.DataSource = BaseDeDatos.GetInstance.ExecuteCustomQuery(Consulta, param, this.Text);
+
+
+            if (Torneos_DataGridView.DataSource == null)
+            {
+                MessageBox.Show("No se encontraron resultados que coincidan con la busqueda.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            this.Torneos_DataGridView.Columns["TipoDeTablaGeneral"].Width = 250;
+            this.Torneos_DataGridView.Columns["id"].Visible = false;
+            this.Torneos_DataGridView.Columns["idTC"].Visible = false;
+            this.Torneos_DataGridView.Focus();
+        }
+
+        private string ArmarConsulta()
+        {
+            string Consulta = "SELECT T.id as id,TC.id as idTC,T.nombre as Nombre,TT.nombre as TipoDeTorneo,T.tablageneral as TablaGeneral,T.tipodetablageneral as TipoDeTablaGeneral,C.nombre as Categoria FROM LigaBA.Torneo as T ";
+            Consulta += "INNER JOIN LigaBA.TipoDeTorneo as TT ON T.tipodetorneo = TT.id ";
+            Consulta += "INNER JOIN LigaBA.TorneoXCategoria as TC ON T.id = TC.torneogeneral  ";
+            Consulta += "INNER JOIN LigaBA.Categoria as C ON c.id = TC.categoria WHERE 1=1 "; 
+
+            if (NombreTextBox.TextLength > 0)
+            {
+                Consulta += "AND T.nombre LIKE '%" + NombreTextBox.Text + "%' ";
+            }
+            if (CategoriasComboBox.SelectedValue != null)
+            {
+                Consulta += "AND  TC.categoria =" + CategoriasComboBox.SelectedValue.ToString();
+            }
+
+            if (TipoTorneoComboBox.SelectedValue != null)
+            {
+                Consulta += "AND  TT.id =" + TipoTorneoComboBox.SelectedValue.ToString();
+            }
+
+            return Consulta;
         }
 
         private void LimpiarButton_Click(object sender, EventArgs e)
@@ -61,6 +101,25 @@ namespace LigaBA.Abm_Torneo
         private void AgregarButton_Click_1(object sender, EventArgs e)
         {
             AltaTorneoForm abrir = new AltaTorneoForm();
+            abrir.ShowDialog();
+        }
+
+        private void ModificarButton_Click(object sender, EventArgs e)
+        {
+            if (this.Torneos_DataGridView.Rows.Count == 0)
+            {
+                return;
+            }
+
+            if (this.Torneos_DataGridView.CurrentCell == null)
+            {
+                MessageBox.Show("Debe seleccionar una fila.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            string id = Torneos_DataGridView.CurrentRow.Cells["idTC"].Value.ToString();
+
+            ExaminarTorneoForm abrir = new ExaminarTorneoForm(id);
             abrir.ShowDialog();
         }
     }

@@ -17,9 +17,19 @@ namespace LigaBA.Abm_Jugador
 {
     public partial class ReporteForm : Form
     {
-        public ReporteForm()
+
+        string nombre;
+        string dni;
+        string institucion;
+        string fechaNac;
+
+        public ReporteForm(string nombre,string dni,string institucion,string fechaNac)
         {
             InitializeComponent();
+            this.nombre = nombre;
+            this.dni = dni;
+            this.institucion = institucion;
+            this.fechaNac = fechaNac;
         }
 
        
@@ -33,19 +43,19 @@ namespace LigaBA.Abm_Jugador
             //Variables
             TextObject InstitucionRepo;
             InstitucionRepo = (TextObject)Repo.ReportDefinition.ReportObjects["Institucion"];
-            InstitucionRepo.Text = "River Plate";
+            InstitucionRepo.Text = institucion;
 
             TextObject NombreRepo;
             NombreRepo = (TextObject)Repo.ReportDefinition.ReportObjects["Nombre"];
-            NombreRepo.Text = "Luciano Ariel Colucci";
+            NombreRepo.Text = nombre;
 
             TextObject DniRepo;
             DniRepo = (TextObject)Repo.ReportDefinition.ReportObjects["Dni"];
-            DniRepo.Text = "34998295";
+            DniRepo.Text = dni;
 
             TextObject FechaNacRepo;
             FechaNacRepo = (TextObject)Repo.ReportDefinition.ReportObjects["FechaNacimiento"];
-            FechaNacRepo.Text = "21/04/1990";
+            FechaNacRepo.Text = fechaNac;
 
             Repo.ExportToDisk(ExportFormatType.PortableDocFormat, "Carnet");
 

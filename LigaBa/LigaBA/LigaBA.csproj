@@ -143,6 +143,18 @@
     <Compile Include="Abm Torneo\AltaTorneoForm.Designer.cs">
       <DependentUpon>AltaTorneoForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Abm Torneo\CargarEquiposForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Torneo\CargarEquiposForm.Designer.cs">
+      <DependentUpon>CargarEquiposForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Torneo\ExaminarTorneoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Torneo\ExaminarTorneoForm.Designer.cs">
+      <DependentUpon>ExaminarTorneoForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Abm Torneo\TorneosForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -263,6 +275,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Abm Torneo\AltaTorneoForm.resx">
       <DependentUpon>AltaTorneoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Torneo\CargarEquiposForm.resx">
+      <DependentUpon>CargarEquiposForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Torneo\ExaminarTorneoForm.resx">
+      <DependentUpon>ExaminarTorneoForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Abm Torneo\TorneosForm.resx">
       <DependentUpon>TorneosForm.cs</DependentUpon>
