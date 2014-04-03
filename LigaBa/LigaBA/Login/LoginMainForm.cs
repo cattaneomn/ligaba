@@ -11,7 +11,7 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Security.Cryptography;
 using System.Threading;
-
+using LigaBA.Clases;
 
 namespace LigaBA
 {
@@ -146,6 +146,7 @@ namespace LigaBA
 
         private void LoginForm1_Load(object sender, EventArgs e)
         {
+            Cifrar.CifrarConnection();
             this.MaximizeBox = false;
             this.MinimizeBox = false; 
         }
