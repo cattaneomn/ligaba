@@ -136,6 +136,7 @@ namespace LigaBA.Abm_Jugador
                     
                     Jugador_DataGridView.Rows.Remove(Jugador_DataGridView.CurrentRow);
                     MessageBox.Show("Se ha dado de baja al jugador '" + JugadorBorrado + "' correctamente.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Jugador_DataGridView.DataSource = null;
                 }
             }
         }

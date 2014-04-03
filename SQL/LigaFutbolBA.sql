@@ -395,9 +395,10 @@ BEGIN transaction
 COMMIT
 
 GO
-
+USE LigabaDB
+GO
 --BUSCAR JUGADOR
-CREATE PROCEDURE [LigaBA].[p_BuscarJugador]
+ALTER PROCEDURE [LigaBA].[p_BuscarJugador]
 (
         @dni nvarchar(50),
         @nombre nvarchar(50),
@@ -417,10 +418,14 @@ BEGIN transaction
         SET @consulta = 'SELECT Jugador.id as Id,I.nombre as Institucion, Jugador.dni as Dni,Jugador.nombre as Nombre, Jugador.apellido as Apellido,Jugador.fecha_de_nacimiento as '''+'Fecha de Nacimiento'+''', Equipo.nombre as Equipo, Jugador.amarillas as '''+'Tarjetas Amarillas'+''', Jugador.rojas as '''+'Tarjetas Rojas'''
         SET @from = ' FROM LigaBA.Jugador as Jugador INNER JOIN LigaBA.JugadorXEquipo as JugadorXEquipo ON Jugador.id = JugadorXEquipo.jugador INNER JOIN LigaBA.Equipo ON JugadorXEquipo.equipo = Equipo.id INNER JOIN LigaBA.Institucion as I ON I.id = Equipo.institucion'
         SET @where = ' WHERE '
-        SET @condiciones = ''
+        SET @condiciones = 'Jugador.borrado = 0'
         
         IF(@dni != '')
         BEGIN
+            IF(@condiciones != '')
+            BEGIN
+                SET @condiciones = @condiciones + ' AND '
+            END
             SET @condiciones = @condiciones + ' Jugador.dni = ' + @dni
         END             
         
