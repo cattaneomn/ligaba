@@ -884,3 +884,32 @@ BEGIN transaction
 
 COMMIT
 
+--BAJA TORNEO
+CREATE PROCEDURE [LigaBA].[p_BajaTorneo]
+(
+        @id int,
+        @idTC int
+)       
+AS
+BEGIN transaction
+                      
+        
+        --BORRAR TORNEOXCATEGORIAXEQUIPO
+        DELETE FROM LigaBA.TorneoXCategoriaXEquipo WHERE torneoxcategoria=@idTC
+        --BORRAR TORNEOXCATEGORIA  
+        DELETE FROM LigaBA.TorneoXCategoria WHERE id=@idTC   
+        --BORRAR PARTIDOSX JUGADOR
+        DELETE FROM LigaBA.PartidoXJugador WHERE partido IN (SELECT id FROM LigaBA.Partido WHERE torneoxcategoria=@idTC)
+        --BORRAR PARTIDOS
+        DELETE FROM LigaBA.Partido WHERE torneoxcategoria=@idTC
+
+        --SINO HAY MAS TORNEOSXCATEGORIA DE ESE TORNEO BORRA TORNEOGENERAL
+        IF( (SELECT COUNT(*) FROM LigaBA.TorneoXCategoria WHERE torneogeneral=@id) = 0)
+        BEGIN 
+            DELETE FROM LigaBA.Torneo WHERE id=@id
+        END
+
+
+COMMIT
+
+GO

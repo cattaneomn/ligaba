@@ -22,7 +22,37 @@ namespace LigaBA.Abm_Torneo
 
         private void EliminarButton_Click(object sender, EventArgs e)
         {
+            if (this.Torneos_DataGridView.Rows.Count == 0)
+            {
+                return;
+            }
+            if (this.Torneos_DataGridView.CurrentCell == null)
+            {
+                MessageBox.Show("Debe seleccionar una fila.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
 
+
+            string TorneoBorrado = Torneos_DataGridView.CurrentRow.Cells["Nombre"].Value.ToString();
+            string Categoria = Torneos_DataGridView.CurrentRow.Cells["Categoria"].Value.ToString();
+
+            DialogResult Resultado = MessageBox.Show("¿Esta seguro que desea eliminar el torneo '" + TorneoBorrado + "' categoria '" + Categoria + "'?, con el se borrara su fixture,partidos,tabla de posiciones y tabla de goleadores.", this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (Resultado == DialogResult.Yes)
+            {
+                List<SqlParameter> param = new List<SqlParameter>();
+                param.Add(new SqlParameter("@id", Convert.ToString(Torneos_DataGridView.CurrentRow.Cells["id"].Value)));
+                param.Add(new SqlParameter("@idTC", Convert.ToString(Torneos_DataGridView.CurrentRow.Cells["idTC"].Value)));
+                
+                
+                bool TerminoBien = BaseDeDatos.GetInstance.ejecutarProcedimiento("p_BajaTorneo", param, this.Text);
+
+                if (TerminoBien == true)
+                {
+
+                    Torneos_DataGridView.Rows.Remove(Torneos_DataGridView.CurrentRow);
+                    MessageBox.Show("Se ha dado de baja el torneo '" + TorneoBorrado + "' categoria '" + Categoria + "' correctamente.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
         }
 
         private void BuscarButton_Click(object sender, EventArgs e)
