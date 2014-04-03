@@ -414,7 +414,7 @@ BEGIN transaction
         DECLARE @where nvarchar(100)
         DECLARE @condiciones nvarchar(500)
         
-        SET @consulta = 'SELECT Jugador.id as Id,I.nombre as Institucion, Jugador.dni as Dni,Jugador.nombre as Nombre, Jugador.apellido as Apellido,Jugador.fecha_de_nacimiento as Fecha_de_Nacimiento, Equipo.nombre as Equipo, Jugador.amarillas as Tarjetas_Amarillas, Jugador.rojas as Tarjetas_Rojas'
+        SET @consulta = 'SELECT Jugador.id as Id,I.nombre as Institucion, Jugador.dni as Dni,Jugador.nombre as Nombre, Jugador.apellido as Apellido,Jugador.fecha_de_nacimiento as '''+'Fecha de Nacimiento'+''', Equipo.nombre as Equipo, Jugador.amarillas as '''+'Tarjetas Amarillas'+''', Jugador.rojas as '''+'Tarjetas Rojas'''
         SET @from = ' FROM LigaBA.Jugador as Jugador INNER JOIN LigaBA.JugadorXEquipo as JugadorXEquipo ON Jugador.id = JugadorXEquipo.jugador INNER JOIN LigaBA.Equipo ON JugadorXEquipo.equipo = Equipo.id INNER JOIN LigaBA.Institucion as I ON I.id = Equipo.institucion'
         SET @where = ' WHERE '
         SET @condiciones = ''
