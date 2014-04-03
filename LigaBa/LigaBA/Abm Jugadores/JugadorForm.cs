@@ -44,6 +44,9 @@ namespace LigaBA.Abm_Jugador
                 }
             }
 
+            this.EquipoComboBox.DataSource = null;
+            this.EquipoComboBox.Enabled = false;
+
             ModDataGridView.limpiarDataGridView(Jugador_DataGridView, "");
             this.FechaNacimientoDateTimePicker.Format = DateTimePickerFormat.Custom;
             this.FechaNacimientoDateTimePicker.CustomFormat = " ";
@@ -168,29 +171,17 @@ namespace LigaBA.Abm_Jugador
             this.FechaNacimientoDateTimePicker.CustomFormat = " ";
         }
 
-        private void InstitucionComboBox_SelectedValueChanged(object sender, EventArgs e)
-        {
-            if (InstitucionComboBox.SelectedValue != null)
-            {
-                this.institucion = InstitucionComboBox.SelectedValue.ToString();
-                CargarEquiposComboBox();
-            }            
-        }
-
-        private void CategoriasComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (CategoriasComboBox.SelectedValue != null)
-            {
-                this.categoria = CategoriasComboBox.SelectedValue.ToString();
-                CargarEquiposComboBox();
-            } 
-        }
 
         private void CargarEquiposComboBox()
         {
-            if (institucion != "" && categoria != "")
+            if (institucion != null && categoria != null)
             {
                 CargadorDeDatos.CargarEquipoComboBox(EquipoComboBox, this.Text, institucion, categoria);
+                this.EquipoComboBox.Enabled = true;
+            }
+            else
+            {
+                this.EquipoComboBox.Enabled = false;
             }
         }
 
@@ -236,6 +227,39 @@ namespace LigaBA.Abm_Jugador
 
             ReporteForm abrir = new ReporteForm(nombre,dni,institucionNombre,fecha_de_nacimiento);
             abrir.ShowDialog();
+        }
+
+        private void InstitucionComboBox_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            ControlarComboBoxNull();
+            CargarEquiposComboBox();
+        }
+
+        private void CategoriasComboBox_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            ControlarComboBoxNull();
+            CargarEquiposComboBox();
+        }
+
+        private void ControlarComboBoxNull()
+        {
+            if (InstitucionComboBox.SelectedItem != null)
+            {
+                this.institucion = InstitucionComboBox.SelectedValue.ToString();
+            }
+            else
+            {
+                this.institucion = null;
+            }
+
+            if (CategoriasComboBox.SelectedItem != null)
+            {
+                this.categoria = CategoriasComboBox.SelectedValue.ToString();
+            }
+            else
+            {
+                this.categoria = null;
+            }
         }
 
     }

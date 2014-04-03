@@ -94,7 +94,7 @@
             this.CategoriasComboBox.Name = "CategoriasComboBox";
             this.CategoriasComboBox.Size = new System.Drawing.Size(172, 23);
             this.CategoriasComboBox.TabIndex = 4;
-            this.CategoriasComboBox.SelectedIndexChanged += new System.EventHandler(this.CategoriasComboBox_SelectedIndexChanged);
+            this.CategoriasComboBox.SelectionChangeCommitted += new System.EventHandler(this.CategoriasComboBox_SelectionChangeCommitted);
             // 
             // label6
             // 
@@ -148,6 +148,7 @@
             // EquipoComboBox
             // 
             this.EquipoComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.EquipoComboBox.Enabled = false;
             this.EquipoComboBox.FormattingEnabled = true;
             this.EquipoComboBox.Location = new System.Drawing.Point(517, 99);
             this.EquipoComboBox.Name = "EquipoComboBox";
@@ -175,7 +176,7 @@
             this.InstitucionComboBox.Name = "InstitucionComboBox";
             this.InstitucionComboBox.Size = new System.Drawing.Size(172, 23);
             this.InstitucionComboBox.TabIndex = 5;
-            this.InstitucionComboBox.SelectedValueChanged += new System.EventHandler(this.InstitucionComboBox_SelectedValueChanged);
+            this.InstitucionComboBox.SelectionChangeCommitted += new System.EventHandler(this.InstitucionComboBox_SelectionChangeCommitted);
             // 
             // ApellidoTextBox
             // 

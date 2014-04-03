@@ -31,6 +31,7 @@ namespace LigaBA.Abm_Jugador
             CargarInstitucionesComboBox();
             CargarCategoriaComboBox();
 
+
         }
 
         private void CancelarButton_Click(object sender, EventArgs e)
@@ -51,6 +52,9 @@ namespace LigaBA.Abm_Jugador
                     ((ComboBox)objeto).SelectedItem = null;
                 }
             }
+
+            this.EquipoComboBox.DataSource = null;
+            this.EquipoComboBox.Enabled = false;
 
             this.FechaNacimeintiDateTimePicker.Format = DateTimePickerFormat.Custom;
             this.FechaNacimeintiDateTimePicker.CustomFormat = " ";
@@ -97,29 +101,18 @@ namespace LigaBA.Abm_Jugador
             return 1;
         }
 
-        private void InstitucionComboBox_SelectedValueChanged(object sender, EventArgs e)
-        {
-            if (InstitucionComboBox.SelectedValue != null)
-            {
-                this.institucion = InstitucionComboBox.SelectedValue.ToString();
-                CargarInstitucionesComboBox();
-            }
-        }
-
-        private void CategoriasComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (CategoriasComboBox.SelectedValue != null)
-            {
-                this.categoria = CategoriasComboBox.SelectedValue.ToString();
-                CargarEquiposComboBox();
-            }
-        }
 
         private void CargarEquiposComboBox()
         {
-
+            if (institucion != null && categoria != null)
+            {
                 CargadorDeDatos.CargarEquipoComboBox(EquipoComboBox, this.Text, institucion, categoria);
-            
+                this.EquipoComboBox.Enabled = true;
+            }
+            else
+            {
+                this.EquipoComboBox.Enabled = false;
+            }
         }
 
         private void CargarInstitucionesComboBox()
@@ -130,7 +123,40 @@ namespace LigaBA.Abm_Jugador
         private void CargarCategoriaComboBox()
         {
             CargadorDeDatos.CargarCategoriaComboBox(CategoriasComboBox, this.Text);
-        }      
+        }
 
+        private void InstitucionComboBox_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            ControlarComboBoxNull();
+            CargarEquiposComboBox();
+        }
+
+        private void CategoriasComboBox_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            ControlarComboBoxNull();
+            CargarEquiposComboBox();
+        }
+
+
+        private void ControlarComboBoxNull()
+        {
+            if (InstitucionComboBox.SelectedItem != null)
+            {
+                this.institucion = InstitucionComboBox.SelectedValue.ToString();
+            }
+            else
+            {
+                this.institucion = null;
+            }
+
+            if (CategoriasComboBox.SelectedItem != null)
+            {
+                this.categoria = CategoriasComboBox.SelectedValue.ToString();
+            }
+            else
+            {
+                this.categoria = null;
+            }
+        }
     }
 }
