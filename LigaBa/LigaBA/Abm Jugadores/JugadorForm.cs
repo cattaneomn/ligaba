@@ -87,6 +87,9 @@ namespace LigaBA.Abm_Jugador
                 }
                 
                 Jugador_DataGridView.DataSource = ds.Tables["Jugadores"];
+                this.Jugador_DataGridView.Columns["Fecha_de_Nacimiento"].Width = 155;
+                this.Jugador_DataGridView.Columns["Tarjetas_Amarillas"].Width = 150;
+                this.Jugador_DataGridView.Columns["Tarjetas_Rojas"].Width = 150;
                 this.Jugador_DataGridView.Columns["id"].Visible = false;
                 this.Jugador_DataGridView.Columns["Institucion"].Visible = false;
                 this.Jugador_DataGridView.Focus();
