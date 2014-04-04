@@ -17,11 +17,16 @@ namespace LigaBA
         private static BaseDeDatos instance;
         private static SqlConnection connection;
         private string esquema;
+        private List<string> listaDeCaracteresInvalidos = new List<string>();
 
         private BaseDeDatos(string connectionString)
         {
             connection = new SqlConnection(connectionString);
             this.esquema = "LigaBA.";
+            //Todo agregar caracteres invalidos
+            this.listaDeCaracteresInvalidos.Add("'");
+            this.listaDeCaracteresInvalidos.Add("--");
+            this.listaDeCaracteresInvalidos.Add("#");
         }
 
         public static BaseDeDatos GetInstance
@@ -36,90 +41,123 @@ namespace LigaBA
         
         public bool ejecutarProcedimiento(string spName, List<SqlParameter> parameters,string NombreForm)
         {
-            SqlCommand cmd = null;
-            bool Termine;
-            try
+            if (ValidarParametros(parameters))
             {
-                connection.Open();
-                cmd = new SqlCommand(this.esquema+spName, connection);
-                cmd.Parameters.AddRange(parameters.ToArray());
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.ExecuteNonQuery();
-                
-                Termine = true;
-                return Termine;
+                SqlCommand cmd = null;
+                bool Termine;
+                try
+                {
+                    connection.Open();
+                    cmd = new SqlCommand(this.esquema + spName, connection);
+                    cmd.Parameters.AddRange(parameters.ToArray());
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.ExecuteNonQuery();
+
+                    Termine = true;
+                    return Termine;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Logs.GetInstance.LogError(ex.Message, NombreForm);
+
+                    Termine = false;
+                    return Termine;
+
+                }
+                finally
+                {
+                    if (cmd != null) cmd.Connection.Close();
+                }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Logs.GetInstance.LogError(ex.Message,NombreForm);
-               
-                Termine = false;
-                return Termine;
-    
-            }
-            finally
-            {
-                if (cmd != null) cmd.Connection.Close();
+                return false;
             }
         }
 
         public DataSet ejecutarConsulta(string spName, List<SqlParameter> parameters,string nombre,string NombreForm)
         {
-            SqlDataAdapter da = null;
-            DataSet ds = new DataSet();
-            try
+            if (ValidarParametros(parameters))
             {
-                connection.Open();
-                da = new SqlDataAdapter(this.esquema + spName, connection);
-                da.SelectCommand.Parameters.AddRange(parameters.ToArray());
-                da.SelectCommand.CommandType = CommandType.StoredProcedure;
-                
-                da.Fill(ds,nombre);
-                
+                SqlDataAdapter da = null;
+                DataSet ds = new DataSet();
+                try
+                {
+                    connection.Open();
+                    da = new SqlDataAdapter(this.esquema + spName, connection);
+                    da.SelectCommand.Parameters.AddRange(parameters.ToArray());
+                    da.SelectCommand.CommandType = CommandType.StoredProcedure;
+
+                    da.Fill(ds, nombre);
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Logs.GetInstance.LogError(ex.Message, NombreForm);
+                }
+                finally
+                {
+                    if (da != null) da.SelectCommand.Connection.Close();
+                }
+                return ds;
+            }else{
+                return null;
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Logs.GetInstance.LogError(ex.Message,NombreForm);
-            }
-            finally
-            {
-                if (da != null) da.SelectCommand.Connection.Close();
-            }
-            return ds;
         }
 
         public DataTable ExecuteCustomQuery(string strQuery, List<SqlParameter> parameters,string NombreForm)
         {
-            SqlDataAdapter da = null;
-            try
+            if (ValidarParametros(parameters))
             {
-                connection.Open();
-                da = new SqlDataAdapter(strQuery, connection);
-                da.SelectCommand.Parameters.AddRange(parameters.ToArray());
-                da.SelectCommand.CommandType = CommandType.Text;
+                SqlDataAdapter da = null;
+                try
+                {
+                    connection.Open();
+                    da = new SqlDataAdapter(strQuery, connection);
+                    da.SelectCommand.Parameters.AddRange(parameters.ToArray());
+                    da.SelectCommand.CommandType = CommandType.Text;
 
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                if (dt.Rows.Count > 0)
-                    return dt;
-                else
-                    return null;
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    if (dt.Rows.Count > 0)
+                        return dt;
+                    else
+                        return null;
+                }
+                catch (Exception ex)
+                {
+                    Logs.GetInstance.LogError(ex.Message, NombreForm);
+                    throw new Exception("Hubo inconvenientes al querer ejecutar la query: '" + strQuery + "'", ex);
+                    // MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                finally
+                {
+                    if (da != null) da.SelectCommand.Connection.Close();
+                }
             }
-            catch (Exception ex)
+            else
             {
-                Logs.GetInstance.LogError(ex.Message,NombreForm);
-                throw new Exception("Hubo inconvenientes al querer ejecutar la query: '" + strQuery + "'", ex);
-               // MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                
+                return null;
             }
-            finally
+        }       
+
+        private bool ValidarParametros(List<SqlParameter> parametros)
+        {
+            foreach (SqlParameter param in parametros)
             {
-                if (da != null) da.SelectCommand.Connection.Close();
+                foreach (string caracterInvalido in listaDeCaracteresInvalidos)
+                {
+                    if (param.Value.ToString().Contains(caracterInvalido))
+                    {
+                        MessageBox.Show("Error la consulta contiene caracteres extraños.");
+                        return false;
+                    }
+                }
             }
+            return true;
         }
-    
-
     }
 }
