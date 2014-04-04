@@ -273,9 +273,7 @@ namespace LigaBA.Abm_Torneo
                     if (row.Cells["Seleccionado"].Value.ToString() == "True" && row.Cells["idCat"].Value.ToString() == categoria)
                     {
                         cantEquipos++;
-                        MessageBox.Show("entre");
                     }
-                    MessageBox.Show(row.Cells["Seleccionado"].Value.ToString());
                 }
                 if (cantEquipos <= 1)
                 {

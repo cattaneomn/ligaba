@@ -33,13 +33,24 @@ namespace LigaBA.Abm_Torneo
         {
             if (Validaciones() == -1) return;
 
+            string TipoTablaGeneral;
+
+            if (this.TipoTablaComboBox.Enabled == false)
+            {
+                TipoTablaGeneral = "";
+            }
+            else
+            {
+                TipoTablaGeneral = this.TipoTablaComboBox.SelectedItem.ToString();
+            }
+
             CargarEquiposForm abrir = new CargarEquiposForm(
               this.InstitucionesCheckedListBox,
               this.CategoriasCheckedListBox,
               this.NombreTextBox.Text,
               this.TipoTorneoComboBox.SelectedValue.ToString(),
               this.TablaGeneralComboBox.SelectedItem.ToString(),
-              this.TipoTablaComboBox.SelectedItem.ToString());
+              TipoTablaGeneral);
             
             
             

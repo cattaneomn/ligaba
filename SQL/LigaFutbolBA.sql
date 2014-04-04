@@ -395,10 +395,11 @@ BEGIN transaction
 COMMIT
 
 GO
-USE LigabaDB
+
+
 GO
 --BUSCAR JUGADOR
-ALTER PROCEDURE [LigaBA].[p_BuscarJugador]
+CREATE PROCEDURE [LigaBA].[p_BuscarJugador]
 (
         @dni nvarchar(50),
         @nombre nvarchar(50),
@@ -604,7 +605,7 @@ CREATE PROCEDURE [LigaBA].[p_AltaEquipo]
 AS
 BEGIN transaction
         
-        IF EXISTS(SELECT 1 FROM LigaBA.Equipo WHERE nombre = @nombre AND categoria = @categoria)
+        IF EXISTS(SELECT 1 FROM LigaBA.Equipo WHERE nombre = @nombre AND categoria = @categoria WHERE borrado=0)
         BEGIN
                 RAISERROR ('No se puede guardar el equipo porque ya existe un equipo con ese nombre y categoria.',16,1)
                 ROLLBACK
@@ -705,7 +706,6 @@ BEGIN transaction
 
         IF EXISTS(SELECT id=@id FROM LigaBA.Institucion WHERE nombre = @nombre AND borrado=1)
         BEGIN   
-                
                 UPDATE LigaBA.Institucion SET borrado=0,nombre=@nombre,direccion=@direccion,
                 localidad=@localidad,telefono=@telefono,email=@email,delegado=@delegado,
                 coordinador=@coordinador WHERE id = @id  
@@ -888,6 +888,7 @@ BEGIN transaction
         VALUES (@torneoxcategoria,@equipo)
 
 COMMIT
+GO
 
 --BAJA TORNEO
 CREATE PROCEDURE [LigaBA].[p_BajaTorneo]
