@@ -374,9 +374,12 @@ BEGIN transaction
         
         declare @id int
         
-        IF EXISTS(SELECT id=@id FROM LigaBA.Jugador WHERE dni = @dni AND borrado=1)
+        IF EXISTS(SELECT 1 FROM LigaBA.Jugador WHERE dni = @dni AND borrado=1)
         BEGIN   
-                UPDATE LigaBA.Jugador SET borrado=0,dni=@dni, nombre=@nombre, apellido=@apellido, fecha_de_nacimiento=@fecha_de_nacimiento WHERE id = @id 
+                SELECT @id=id FROM LigaBA.Jugador WHERE dni = @dni AND borrado=1
+
+                UPDATE LigaBA.Jugador SET borrado=0,dni=@dni, nombre=@nombre, apellido=@apellido, fecha_de_nacimiento=@fecha_de_nacimiento 
+                WHERE id = @id 
                 
                 IF NOT(EXISTS(SELECT 1 FROM LigaBA.JugadorXEquipo WHERE jugador = @id AND equipo = @equipo)) 
                 BEGIN
@@ -612,13 +615,12 @@ BEGIN transaction
                 RETURN          
         END
         
-        DECLARE @id int
         
-        IF EXISTS(SELECT id=@id FROM LigaBA.Equipo WHERE nombre = @nombre AND borrado=1)
+        IF EXISTS(SELECT 1 FROM LigaBA.Equipo WHERE nombre = @nombre AND borrado=1)
         BEGIN   
                 
                 UPDATE LigaBA.Equipo SET borrado=0,nombre=@nombre,institucion=@institucion,
-                categoria=@categoria WHERE id = @id  
+                categoria=@categoria WHERE id = (SELECT TOP 1 id FROM LigaBA.Equipo WHERE nombre = @nombre AND borrado=1)  
 
         END
         ELSE
@@ -702,13 +704,13 @@ BEGIN transaction
                 RETURN          
         END
         
-        declare @id int
+     
 
-        IF EXISTS(SELECT id=@id FROM LigaBA.Institucion WHERE nombre = @nombre AND borrado=1)
+        IF EXISTS(SELECT 1 FROM LigaBA.Institucion WHERE nombre = @nombre AND borrado=1)
         BEGIN   
                 UPDATE LigaBA.Institucion SET borrado=0,nombre=@nombre,direccion=@direccion,
                 localidad=@localidad,telefono=@telefono,email=@email,delegado=@delegado,
-                coordinador=@coordinador WHERE id = @id  
+                coordinador=@coordinador WHERE id = (SELECT TOP 1 id FROM LigaBA.Institucion WHERE nombre = @nombre AND borrado=1)  
 
         END 
         ELSE
