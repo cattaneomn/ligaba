@@ -281,11 +281,11 @@ namespace LigaBA.Abm_Torneo
 
             bool TerminoBien = true;
 
-            foreach (DataGridViewRow row in Equipos_DataGridView.Rows)
+            foreach (DataRow row in this.tablaDeEquipos.Rows)
             {
-                if (row.Cells["Seleccionado"].Value.ToString() == "True")
+                if (row["elegido"].ToString() == "1")
                 {
-                    string equipo = row.Cells["id"].Value.ToString();
+                    string equipo = row["id"].ToString();
                     List<SqlParameter> param = new List<SqlParameter>();
                     param.Add(new SqlParameter("@torneoxcategoria", respuesta));
                     param.Add(new SqlParameter("@equipo", equipo));
