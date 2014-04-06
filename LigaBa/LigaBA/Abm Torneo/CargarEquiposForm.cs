@@ -22,6 +22,8 @@ namespace LigaBA.Abm_Torneo
         string tablageneral;
         string tipodetablageneral;
 
+        DataTable tablaDeEquipos;
+
         public CargarEquiposForm(CheckedListBox Instituciones, CheckedListBox Categorias,string nombre,string tipodetorneo,string tablageneral,string tipodetablageneral)
         {
             InitializeComponent();
@@ -44,24 +46,18 @@ namespace LigaBA.Abm_Torneo
 
         }
 
-         
-
-
         private void CargarEquiposForm_Load(object sender, EventArgs e)
         {
             ConsultarEquipos();
             ModDataGridView.agregarCheckbox(Equipos_DataGridView, "Seleccionado");
-
-        }
-
-        DataTable dt;
+        }        
 
         private void ConsultarEquipos()
         {
             string institucionesConsulta = ConsultarInstituciones();
             string categoriasConsulta = ConsultarCategorias();
 
-            string consulta = "SELECT E.id as id,C.id as idCat,E.nombre as Equipo,I.nombre as Institucion,C.nombre as Categoria FROM LigaBA.Equipo as E ";
+            string consulta = "SELECT E.id as id,C.id as idCat,E.nombre as Equipo,I.nombre as Institucion,C.nombre as Categoria,1 as elegido FROM LigaBA.Equipo as E ";
 
             consulta += "INNER JOIN LigaBA.Categoria as C ON E.categoria = C.id ";
             consulta += "INNER JOIN LigaBA.Institucion as I ON E.institucion=I.id ";
@@ -71,10 +67,11 @@ namespace LigaBA.Abm_Torneo
 
             List<SqlParameter> param = new List<SqlParameter>();
 
-            dt = BaseDeDatos.GetInstance.ExecuteCustomQuery(consulta, param, this.Text);
-            Equipos_DataGridView.DataSource = dt;
+            this.tablaDeEquipos = BaseDeDatos.GetInstance.ExecuteCustomQuery(consulta, param, this.Text);
+            Equipos_DataGridView.DataSource = tablaDeEquipos;
             this.Equipos_DataGridView.Columns["id"].Visible = false;
             this.Equipos_DataGridView.Columns["idCat"].Visible = false;
+            this.Equipos_DataGridView.Columns["elegido"].Visible = false;
             this.Equipos_DataGridView.Focus();
         }
 
@@ -115,31 +112,33 @@ namespace LigaBA.Abm_Torneo
             return consulta;
         }
 
-        private void FiltroTextBox_TextChanged(object sender, EventArgs e)
+        private void EquipoTextBox_TextChanged(object sender, EventArgs e)
         {
-                dt.DefaultView.RowFilter = FiltroCambios();
-                this.Equipos_DataGridView.DataSource = dt;
+            Filtrar();
         }
 
         private void InstitucionTextBox_TextChanged(object sender, EventArgs e)
         {
-                dt.DefaultView.RowFilter = FiltroCambios();
-                this.Equipos_DataGridView.DataSource = dt;    
+            Filtrar();
         }
 
         private void CategoriasTextBox_TextChanged(object sender, EventArgs e)
-        {  
-                dt.DefaultView.RowFilter = FiltroCambios();
-                this.Equipos_DataGridView.DataSource = dt; 
+        {
+            Filtrar();
         }
 
+        private void Filtrar()
+        {
+            ((DataTable)Equipos_DataGridView.DataSource).DefaultView.RowFilter = FiltroCambios();
+            actualizarCheckBoxsDeDataGrid();
+        }
         private string FiltroCambios()
         {
             string consulta = "";
 
-            if (this.FiltroTextBox.Text != "")
+            if (this.EquipoTextBox.Text != "")
             {
-                 consulta += "Equipo LIKE '%" + this.FiltroTextBox.Text + "%'";
+                 consulta += "Equipo LIKE '%" + this.EquipoTextBox.Text + "%'";
             }
             
             if (this.CategoriasTextBox.Text != "")
@@ -168,13 +167,53 @@ namespace LigaBA.Abm_Torneo
                 switch (ch1.Value.ToString())
                 {
                     case "True":
-                        ch1.Value = false;
+                        ch1.Value = false;                        
+                        cambiarEstadoEnTablaDeEquipos(Equipos_DataGridView.CurrentRow.Cells["id"].Value.ToString(),"0");
                         break;
                     case "False":
                         ch1.Value = true;
+                        cambiarEstadoEnTablaDeEquipos(Equipos_DataGridView.CurrentRow.Cells["id"].Value.ToString(), "1");
                         break;
                 }
            }
+        }
+
+        private void cambiarEstadoEnTablaDeEquipos(string id_equipo, string estado)//estado 0 o 1
+        {
+            foreach (DataRow row in this.tablaDeEquipos.Rows)
+            {
+                if (row["id"].ToString() == id_equipo)
+                {
+                    row["elegido"] = estado;
+                }
+            }
+        }
+
+        private void actualizarCheckBoxsDeDataGrid()
+        {
+            Equipos_DataGridView.Columns.Remove(Equipos_DataGridView.Columns["Seleccionado"]);
+            ModDataGridView.agregarCheckbox(Equipos_DataGridView, "Seleccionado");
+            foreach (DataGridViewRow row in Equipos_DataGridView.Rows)
+            {
+                DataGridViewCheckBoxCell checkBox = (DataGridViewCheckBoxCell)row.Cells[6];
+                string valor = obtenerValorDeCheckBox(row.Cells["id"].Value.ToString());
+                if(valor != "")
+                {
+                    checkBox.Value = (valor=="0" ? false : true);
+                }
+            }
+        }
+
+        private string obtenerValorDeCheckBox(string id)
+        {
+            foreach (DataRow row in this.tablaDeEquipos.Rows)
+            {
+                if (row["id"].ToString() == id)
+                {
+                    return row["elegido"].ToString();
+                }
+            }
+            return "";
         }
 
         private void CancelarButton_Click(object sender, EventArgs e)

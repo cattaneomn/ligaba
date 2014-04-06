@@ -39,7 +39,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.InstitucionTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.FiltroTextBox = new System.Windows.Forms.TextBox();
+            this.EquipoTextBox = new System.Windows.Forms.TextBox();
             this.Equipos_DataGridView = new System.Windows.Forms.DataGridView();
             this.GuardarButton = new System.Windows.Forms.Button();
             this.CancelarButton = new System.Windows.Forms.Button();
@@ -49,14 +49,14 @@
             // 
             // FiltroGroupBox
             // 
-            this.FiltroGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.FiltroGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.FiltroGroupBox.Controls.Add(this.label3);
             this.FiltroGroupBox.Controls.Add(this.CategoriasTextBox);
             this.FiltroGroupBox.Controls.Add(this.label2);
             this.FiltroGroupBox.Controls.Add(this.InstitucionTextBox);
             this.FiltroGroupBox.Controls.Add(this.label1);
-            this.FiltroGroupBox.Controls.Add(this.FiltroTextBox);
+            this.FiltroGroupBox.Controls.Add(this.EquipoTextBox);
             this.FiltroGroupBox.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FiltroGroupBox.Location = new System.Drawing.Point(12, 12);
             this.FiltroGroupBox.Name = "FiltroGroupBox";
@@ -113,21 +113,21 @@
             this.label1.TabIndex = 14;
             this.label1.Text = "Equipo";
             // 
-            // FiltroTextBox
+            // EquipoTextBox
             // 
-            this.FiltroTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FiltroTextBox.Location = new System.Drawing.Point(116, 31);
-            this.FiltroTextBox.Name = "FiltroTextBox";
-            this.FiltroTextBox.Size = new System.Drawing.Size(170, 22);
-            this.FiltroTextBox.TabIndex = 0;
-            this.FiltroTextBox.TextChanged += new System.EventHandler(this.FiltroTextBox_TextChanged);
+            this.EquipoTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EquipoTextBox.Location = new System.Drawing.Point(116, 31);
+            this.EquipoTextBox.Name = "EquipoTextBox";
+            this.EquipoTextBox.Size = new System.Drawing.Size(170, 22);
+            this.EquipoTextBox.TabIndex = 0;
+            this.EquipoTextBox.TextChanged += new System.EventHandler(this.EquipoTextBox_TextChanged);
             // 
             // Equipos_DataGridView
             // 
             this.Equipos_DataGridView.AllowUserToAddRows = false;
-            this.Equipos_DataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Equipos_DataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -217,7 +217,7 @@
 
         private System.Windows.Forms.GroupBox FiltroGroupBox;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox FiltroTextBox;
+        private System.Windows.Forms.TextBox EquipoTextBox;
         private System.Windows.Forms.DataGridView Equipos_DataGridView;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox CategoriasTextBox;
