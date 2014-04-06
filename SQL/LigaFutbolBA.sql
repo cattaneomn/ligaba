@@ -838,7 +838,8 @@ BEGIN transaction
         BEGIN
                 RAISERROR ('No se pudo crear el torneo por que ya existe un torneo con ese nombre.',16,1)
                 ROLLBACK
-                RETURN          
+                SET @respuesta = -1
+                RETURN @respuesta         
         END
         
         --Torneo        

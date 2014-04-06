@@ -238,6 +238,11 @@ namespace LigaBA.Abm_Torneo
 
             object respuestaSP = respuestaParametro.Value;
             int respuesta = Convert.ToInt32(respuestaSP);
+
+            if (respuesta == -1)
+            {
+                return;
+            }
       
             if (TerminoBien == true)
             {
