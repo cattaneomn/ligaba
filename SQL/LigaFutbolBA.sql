@@ -922,3 +922,20 @@ BEGIN transaction
 COMMIT
 
 GO
+
+--BACK UP
+CREATE PROCEDURE [LigaBA].[p_BackUp]
+(
+        @directorio nvarchar(1000)
+)       
+AS
+BEGIN transaction
+
+BACKUP DATABASE [LigabaDB] TO  
+DISK = N'c:\Program Files (x86)\Microsoft SQL Server\MSSQL10_50.SQLSERVER2008\MSSQL\Backup\LigabaDB.bak' 
+WITH NOFORMAT, NOINIT,  NAME = N'LigabaDB-Back Up', 
+SKIP, NOREWIND, NOUNLOAD,  STATS = 10
+
+COMMIT
+
+GO

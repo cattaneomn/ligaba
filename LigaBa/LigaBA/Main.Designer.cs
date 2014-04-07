@@ -47,6 +47,7 @@
             this.EquiposButton = new System.Windows.Forms.Button();
             this.InstitucionesButton = new System.Windows.Forms.Button();
             this.JugadoresButton = new System.Windows.Forms.Button();
+            this.backUpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -107,7 +108,8 @@
             // 
             this.configuracionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.categoriasToolStripMenuItem,
-            this.tipoDeTorneoToolStripMenuItem});
+            this.tipoDeTorneoToolStripMenuItem,
+            this.backUpToolStripMenuItem});
             this.configuracionToolStripMenuItem.Name = "configuracionToolStripMenuItem";
             this.configuracionToolStripMenuItem.Size = new System.Drawing.Size(109, 20);
             this.configuracionToolStripMenuItem.Text = "Configuracion";
@@ -252,6 +254,13 @@
             this.JugadoresButton.UseVisualStyleBackColor = true;
             this.JugadoresButton.Click += new System.EventHandler(this.JugadoresButton_Click);
             // 
+            // backUpToolStripMenuItem
+            // 
+            this.backUpToolStripMenuItem.Name = "backUpToolStripMenuItem";
+            this.backUpToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.backUpToolStripMenuItem.Text = "Back Up";
+            this.backUpToolStripMenuItem.Click += new System.EventHandler(this.backUpToolStripMenuItem_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -293,6 +302,7 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ToolStripMenuItem backUpToolStripMenuItem;
 
     }
 }

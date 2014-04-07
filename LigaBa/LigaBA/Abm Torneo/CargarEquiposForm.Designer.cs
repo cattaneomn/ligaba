@@ -49,8 +49,8 @@
             // 
             // FiltroGroupBox
             // 
-            this.FiltroGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.FiltroGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.FiltroGroupBox.Controls.Add(this.label3);
             this.FiltroGroupBox.Controls.Add(this.CategoriasTextBox);
             this.FiltroGroupBox.Controls.Add(this.label2);
@@ -125,9 +125,9 @@
             // Equipos_DataGridView
             // 
             this.Equipos_DataGridView.AllowUserToAddRows = false;
-            this.Equipos_DataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.Equipos_DataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -204,6 +204,7 @@
             this.Name = "CargarEquiposForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Equipos";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CargarEquiposForm_FormClosed);
             this.Load += new System.EventHandler(this.CargarEquiposForm_Load);
             this.FiltroGroupBox.ResumeLayout(false);
             this.FiltroGroupBox.PerformLayout();

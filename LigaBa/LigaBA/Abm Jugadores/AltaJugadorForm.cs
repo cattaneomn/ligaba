@@ -74,15 +74,17 @@ namespace LigaBA.Abm_Jugador
 
             bool TerminoBien = BaseDeDatos.GetInstance.ejecutarProcedimiento("p_AltaJugador", param,this.Text);
 
+            string Nombre = NombreTextBox.Text + " " + ApellidoTextBox.Text;
+
             if (TerminoBien == true)
             {
-                MessageBox.Show("Se ha dado de alta el jugador '" + NombreTextBox.Text + "' correctamente.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Se ha dado de alta el jugador '" + Nombre + "' correctamente.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.LimpiarButton.PerformClick();
-                this.NombreTextBox.Focus();
+                this.InstitucionComboBox.Focus();
             }
             else
             {
-                MessageBox.Show("Ha ocurrido un error al dar de alta el jugador '" + NombreTextBox.Text + "'.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Ha ocurrido un error al dar de alta el jugador '" + Nombre + "'.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
         }

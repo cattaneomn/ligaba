@@ -246,8 +246,9 @@ namespace LigaBA.Abm_Torneo
       
             if (TerminoBien == true)
             {
-               // MessageBox.Show("Se ha creado el torneo '" + nombre + "' correctamente.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information)
+              
                 TerminoBien = InsertarTorneoXCategoria(respuesta);
+                MessageBox.Show("Se ha creado el torneo '" + nombre + "' correctamente.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 DialogResult = DialogResult.OK;
             } 
         }
@@ -269,26 +270,28 @@ namespace LigaBA.Abm_Torneo
                 TerminoBien &= BaseDeDatos.GetInstance.ejecutarProcedimiento("p_AltaTorneoXCategoria", param, this.Text);
 
                 object respuestaSP = respuestaParametro.Value;
-                respuesta = Convert.ToInt32(respuestaSP);
+                int respuestaTorneoXCategoria = Convert.ToInt32(respuestaSP);
 
 
                 if (TerminoBien == true)
                 {
-                    
-                    TerminoBien &= InsertarTorneoXCategoriaXEquipo(respuesta);
+                    MessageBox.Show("Envio Categoria" + categoria);
+                    TerminoBien &= InsertarTorneoXCategoriaXEquipo(respuestaTorneoXCategoria, categoria);
                 }
             }
             return TerminoBien;
         }
 
-        private bool InsertarTorneoXCategoriaXEquipo(int respuesta)
+        private bool InsertarTorneoXCategoriaXEquipo(int respuesta, string categoria)
         {
 
             bool TerminoBien = true;
 
             foreach (DataRow row in this.tablaDeEquipos.Rows)
             {
-                if (row["elegido"].ToString() == "1")
+
+                MessageBox.Show("Resivo Categoria" + categoria + "es igual a catgoria" + row["idCat"].ToString());
+                if (row["elegido"].ToString() == "1" && row["idCat"].ToString() == categoria)
                 {
                     string equipo = row["id"].ToString();
                     List<SqlParameter> param = new List<SqlParameter>();
@@ -299,8 +302,8 @@ namespace LigaBA.Abm_Torneo
 
                     if (TerminoBien == true)
                     {
-                        MessageBox.Show("Se ha creado el torneo '" + nombre + "' correctamente.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        DialogResult = DialogResult.OK;
+                       // MessageBox.Show("Se ha creado el torneo '" + nombre + "' correctamente.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //DialogResult = DialogResult.OK;
                     }
                 }
             }
@@ -327,6 +330,12 @@ namespace LigaBA.Abm_Torneo
             }
             
             return 1;
+        }
+
+        private void CargarEquiposForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            CategoriasLista.Clear();
+            InstitucionesLista.Clear();
         }
 
     }
