@@ -275,7 +275,7 @@ namespace LigaBA.Abm_Torneo
 
                 if (TerminoBien == true)
                 {
-                    MessageBox.Show("Envio Categoria" + categoria);
+                    
                     TerminoBien &= InsertarTorneoXCategoriaXEquipo(respuestaTorneoXCategoria, categoria);
                 }
             }
@@ -290,7 +290,7 @@ namespace LigaBA.Abm_Torneo
             foreach (DataRow row in this.tablaDeEquipos.Rows)
             {
 
-                MessageBox.Show("Resivo Categoria" + categoria + "es igual a catgoria" + row["idCat"].ToString());
+               
                 if (row["elegido"].ToString() == "1" && row["idCat"].ToString() == categoria)
                 {
                     string equipo = row["id"].ToString();

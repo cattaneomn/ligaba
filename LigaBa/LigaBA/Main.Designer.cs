@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.intitucionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -38,6 +39,7 @@
             this.configuracionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.categoriasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tipoDeTorneoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.backUpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -47,7 +49,7 @@
             this.EquiposButton = new System.Windows.Forms.Button();
             this.InstitucionesButton = new System.Windows.Forms.Button();
             this.JugadoresButton = new System.Windows.Forms.Button();
-            this.backUpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -127,6 +129,13 @@
             this.tipoDeTorneoToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.tipoDeTorneoToolStripMenuItem.Text = "Tipo de torneo";
             this.tipoDeTorneoToolStripMenuItem.Click += new System.EventHandler(this.tipoDeTorneoToolStripMenuItem_Click);
+            // 
+            // backUpToolStripMenuItem
+            // 
+            this.backUpToolStripMenuItem.Name = "backUpToolStripMenuItem";
+            this.backUpToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.backUpToolStripMenuItem.Text = "Back Up";
+            this.backUpToolStripMenuItem.Click += new System.EventHandler(this.backUpToolStripMenuItem_Click);
             // 
             // panel1
             // 
@@ -254,12 +263,10 @@
             this.JugadoresButton.UseVisualStyleBackColor = true;
             this.JugadoresButton.Click += new System.EventHandler(this.JugadoresButton_Click);
             // 
-            // backUpToolStripMenuItem
+            // notifyIcon1
             // 
-            this.backUpToolStripMenuItem.Name = "backUpToolStripMenuItem";
-            this.backUpToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
-            this.backUpToolStripMenuItem.Text = "Back Up";
-            this.backUpToolStripMenuItem.Click += new System.EventHandler(this.backUpToolStripMenuItem_Click);
+            this.notifyIcon1.Text = "notifyIcon1";
+            this.notifyIcon1.Visible = true;
             // 
             // Main
             // 
@@ -303,6 +310,7 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ToolStripMenuItem backUpToolStripMenuItem;
+        private System.Windows.Forms.NotifyIcon notifyIcon1;
 
     }
 }
