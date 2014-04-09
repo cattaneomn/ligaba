@@ -47,6 +47,7 @@
             this.CancelarButton = new System.Windows.Forms.Button();
             this.BuscarButton = new System.Windows.Forms.Button();
             this.Equipos_DataGridView = new System.Windows.Forms.DataGridView();
+            this.ImprimirJugadoresButton = new System.Windows.Forms.Button();
             this.GroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Equipos_DataGridView)).BeginInit();
             this.SuspendLayout();
@@ -252,6 +253,20 @@
             this.Equipos_DataGridView.Size = new System.Drawing.Size(760, 325);
             this.Equipos_DataGridView.TabIndex = 7;
             // 
+            // ImprimirJugadoresButton
+            // 
+            this.ImprimirJugadoresButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ImprimirJugadoresButton.Image = ((System.Drawing.Image)(resources.GetObject("ImprimirJugadoresButton.Image")));
+            this.ImprimirJugadoresButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ImprimirJugadoresButton.Location = new System.Drawing.Point(596, 155);
+            this.ImprimirJugadoresButton.Name = "ImprimirJugadoresButton";
+            this.ImprimirJugadoresButton.Size = new System.Drawing.Size(176, 35);
+            this.ImprimirJugadoresButton.TabIndex = 41;
+            this.ImprimirJugadoresButton.Text = " Imprimir Jugadores";
+            this.ImprimirJugadoresButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.ImprimirJugadoresButton.UseVisualStyleBackColor = true;
+            this.ImprimirJugadoresButton.Click += new System.EventHandler(this.ImprimirInstitucionesButton_Click);
+            // 
             // EquiposForm
             // 
             this.AcceptButton = this.BuscarButton;
@@ -259,6 +274,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.CancelarButton;
             this.ClientSize = new System.Drawing.Size(784, 562);
+            this.Controls.Add(this.ImprimirJugadoresButton);
             this.Controls.Add(this.GroupBox);
             this.Controls.Add(this.ModificarButton);
             this.Controls.Add(this.EliminarButton);
@@ -296,5 +312,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox InstitucionComboBox;
+        private System.Windows.Forms.Button ImprimirJugadoresButton;
     }
 }
