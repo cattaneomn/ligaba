@@ -191,29 +191,7 @@ namespace LigaBA.Abm_Torneo
 
         private void actualizarCheckBoxsDeDataGrid()
         {
-            Equipos_DataGridView.Columns.Remove(Equipos_DataGridView.Columns["Seleccionado"]);
-            ModDataGridView.agregarCheckbox(Equipos_DataGridView, "Seleccionado");
-            foreach (DataGridViewRow row in Equipos_DataGridView.Rows)
-            {
-                DataGridViewCheckBoxCell checkBox = (DataGridViewCheckBoxCell)row.Cells[6];
-                string valor = obtenerValorDeCheckBox(row.Cells["id"].Value.ToString());
-                if(valor != "")
-                {
-                    checkBox.Value = (valor=="0" ? false : true);
-                }
-            }
-        }
-
-        private string obtenerValorDeCheckBox(string id)
-        {
-            foreach (DataRow row in this.tablaDeEquipos.Rows)
-            {
-                if (row["id"].ToString() == id)
-                {
-                    return row["elegido"].ToString();
-                }
-            }
-            return "";
+            ModDataGridView.actualizarCheckbox(Equipos_DataGridView, "Seleccionado", "id", this.tablaDeEquipos, "elegido");
         }
 
         private void CancelarButton_Click(object sender, EventArgs e)

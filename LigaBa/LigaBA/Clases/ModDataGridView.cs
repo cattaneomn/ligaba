@@ -4,13 +4,40 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using System.Data;
 using System.Windows.Forms;
 
 namespace LigaBA
 {
     class ModDataGridView
     {
-        
+        //Actualizar columna
+        public static void actualizarCheckbox(DataGridView dg, string columna, string key, DataTable tablaActualizada, string columnaEnTablaActualizada)
+        {
+            dg.Columns.Remove(dg.Columns[columna]);
+            ModDataGridView.agregarCheckbox(dg, columna);
+            foreach (DataGridViewRow row in dg.Rows)
+            {
+                DataGridViewCheckBoxCell checkBox = (DataGridViewCheckBoxCell)row.Cells[columna];
+                string valor = buscarValorCheckbox(tablaActualizada, key, row.Cells[key].Value.ToString(), columnaEnTablaActualizada);
+                if (valor != "")//Si no lo encuentra no lo actualiza
+                {
+                    checkBox.Value = (valor == "0" ? false : true);
+                }
+            }
+        }
+
+        private static string buscarValorCheckbox(DataTable dt, string key, string valor, string columna)
+        {
+            foreach (DataRow row in dt.Rows)
+            {
+                if (row[key].ToString() == valor)
+                {
+                    return row[columna].ToString();
+                }
+            }
+            return "";
+        }
         //Ocultado de columnas
         public static void ocultarColumna(DataGridView dg, string nombre)
         {
