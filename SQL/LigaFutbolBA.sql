@@ -403,7 +403,7 @@ GO
 
 GO
 --BUSCAR JUGADOR
-alter PROCEDURE [LigaBA].[p_BuscarJugador]
+CREATE PROCEDURE [LigaBA].[p_BuscarJugador]
 (
         @dni nvarchar(50),
         @nombre nvarchar(50),
@@ -968,7 +968,7 @@ CREATE PROCEDURE [LigaBA].[p_ReporteJugadores]
 )       
 AS
 BEGIN transaction        
-        SELECT nombre as Nombre,apellido as Apellido,dni as Dni,fecha_de_nacimiento as 'Fecha de Nacimiento' 
+        SELECT nombre as Nombre,apellido as Apellido,dni as Dni,fecha_de_nacimiento as Fecha_De_Nacimiento
         FROM LigaBA.Jugador
         WHERE id IN (SELECT jugador FROM LigaBA.JugadorXEquipo WHERE equipo=@Equipo)
         
