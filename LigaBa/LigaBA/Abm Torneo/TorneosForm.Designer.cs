@@ -47,6 +47,7 @@
             this.Torneos_DataGridView = new System.Windows.Forms.DataGridView();
             this.AgregarButton = new System.Windows.Forms.Button();
             this.ExaminarButton = new System.Windows.Forms.Button();
+            this.ImprimirInstitucionesButton = new System.Windows.Forms.Button();
             this.GroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Torneos_DataGridView)).BeginInit();
             this.SuspendLayout();
@@ -252,6 +253,20 @@
             this.ExaminarButton.UseVisualStyleBackColor = true;
             this.ExaminarButton.Click += new System.EventHandler(this.ModificarButton_Click);
             // 
+            // ImprimirInstitucionesButton
+            // 
+            this.ImprimirInstitucionesButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ImprimirInstitucionesButton.Image = ((System.Drawing.Image)(resources.GetObject("ImprimirInstitucionesButton.Image")));
+            this.ImprimirInstitucionesButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ImprimirInstitucionesButton.Location = new System.Drawing.Point(583, 155);
+            this.ImprimirInstitucionesButton.Name = "ImprimirInstitucionesButton";
+            this.ImprimirInstitucionesButton.Size = new System.Drawing.Size(189, 35);
+            this.ImprimirInstitucionesButton.TabIndex = 40;
+            this.ImprimirInstitucionesButton.Text = " Imprimir Instituciones";
+            this.ImprimirInstitucionesButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.ImprimirInstitucionesButton.UseVisualStyleBackColor = true;
+            this.ImprimirInstitucionesButton.Click += new System.EventHandler(this.ImprimirCarnetButton_Click);
+            // 
             // TorneosForm
             // 
             this.AcceptButton = this.BuscarButton;
@@ -259,6 +274,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.CancelarButton;
             this.ClientSize = new System.Drawing.Size(784, 562);
+            this.Controls.Add(this.ImprimirInstitucionesButton);
             this.Controls.Add(this.ExaminarButton);
             this.Controls.Add(this.AgregarButton);
             this.Controls.Add(this.GroupBox);
@@ -296,5 +312,6 @@
         private System.Windows.Forms.Label NombreUsuarioLabel;
         private System.Windows.Forms.Button AgregarButton;
         private System.Windows.Forms.Button ExaminarButton;
+        private System.Windows.Forms.Button ImprimirInstitucionesButton;
     }
 }

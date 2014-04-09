@@ -213,7 +213,8 @@ BEGIN transaction
         IF NOT EXISTS( SELECT * FROM LigaBA.Usuarios WHERE username = @user_name)
         BEGIN
                 Set @respuesta = 1
-                return
+                ROLLBACK
+                RETURN
         END
 
         

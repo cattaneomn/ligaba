@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using LigaBA.Clases;
 using System.Data.SqlClient;
+using System.Threading;
 
 namespace LigaBA.Abm_Torneo
 {
@@ -154,5 +155,38 @@ namespace LigaBA.Abm_Torneo
             ExaminarTorneoForm abrir = new ExaminarTorneoForm(id);
             abrir.ShowDialog();
         }
+
+        private void ImprimirCarnetButton_Click(object sender, EventArgs e)
+        {
+            if (this.Torneos_DataGridView.Rows.Count == 0)
+            {
+                return;
+            }
+            if (this.Torneos_DataGridView.CurrentCell == null)
+            {
+                MessageBox.Show("Debe seleccionar una fila.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+           // this.nombre = Jugador_DataGridView.CurrentRow.Cells["Nombre"].Value.ToString() + " " + Jugador_DataGridView.CurrentRow.Cells["Apellido"].Value.ToString();
+
+            Thread hilo = new Thread(AbrirFormReporte);
+            hilo.SetApartmentState(System.Threading.ApartmentState.STA);
+            hilo.Start();
+        }
+
+        private void AbrirFormReporte()
+        {
+            InstitucionesReporteForm abrir = new InstitucionesReporteForm();
+            abrir.ShowDialog();
+        }
+
+
+
+
+
+
+
+
     }
 }
