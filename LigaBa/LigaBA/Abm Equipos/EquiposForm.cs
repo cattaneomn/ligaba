@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using LigaBA.Clases;
 using System.Data.SqlClient;
+using System.Threading;
 
 namespace LigaBA.Abm_Equipos
 {
@@ -156,6 +157,35 @@ namespace LigaBA.Abm_Equipos
             AltaEquipoForm abrir = new AltaEquipoForm();
             abrir.ShowDialog();
         }
+
+        private void ImprimirInstitucionesButton_Click(object sender, EventArgs e)
+        {
+            if (this.Equipos_DataGridView.Rows.Count == 0)
+            {
+                return;
+            }
+            if (this.Equipos_DataGridView.CurrentCell == null)
+            {
+                MessageBox.Show("Debe seleccionar una fila.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            Thread hilo = new Thread(AbrirFormReporte);
+            hilo.SetApartmentState(System.Threading.ApartmentState.STA);
+            hilo.Start();
+        }
+
+        private void AbrirFormReporte()
+        {
+            string id = Equipos_DataGridView.CurrentRow.Cells["id"].Value.ToString();
+            string Institucion = Equipos_DataGridView.CurrentRow.Cells["Institucion"].Value.ToString();
+            string Equipo = Equipos_DataGridView.CurrentRow.Cells["Equipo"].Value.ToString();
+            string Categoria = Equipos_DataGridView.CurrentRow.Cells["Categoria"].Value.ToString();
+
+            JugadoresResporteForm abrir = new JugadoresResporteForm(id, Institucion, Equipo, Categoria);
+            abrir.ShowDialog();
+        }
+
 
 
     }

@@ -941,6 +941,21 @@ COMMIT
 
 GO
 
+--REPORTE JUGADORES
+CREATE PROCEDURE [LigaBA].[p_ReporteJugadores]
+(
+        @Equipo int
+)       
+AS
+BEGIN transaction
+        
+        SELECT nombre as Nombre,apellido as Apellido,dni as Dni,fecha_de_nacimiento as Fecha_de_Nacimiento 
+        FROM LigaBA.Jugador
+        WHERE id IN (SELECT jugador FROM LigaBA.JugadorXEquipo WHERE equipo=@Equipo)
+        
+COMMIT
+GO
+
 
 
 --BACK UP
