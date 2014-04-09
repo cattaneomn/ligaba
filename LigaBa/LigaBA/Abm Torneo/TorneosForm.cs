@@ -168,7 +168,8 @@ namespace LigaBA.Abm_Torneo
                 return;
             }
 
-           // this.nombre = Jugador_DataGridView.CurrentRow.Cells["Nombre"].Value.ToString() + " " + Jugador_DataGridView.CurrentRow.Cells["Apellido"].Value.ToString();
+
+           
 
             Thread hilo = new Thread(AbrirFormReporte);
             hilo.SetApartmentState(System.Threading.ApartmentState.STA);
@@ -177,7 +178,9 @@ namespace LigaBA.Abm_Torneo
 
         private void AbrirFormReporte()
         {
-            InstitucionesReporteForm abrir = new InstitucionesReporteForm();
+            string idTC = Torneos_DataGridView.CurrentRow.Cells["idTC"].Value.ToString();
+
+            InstitucionesReporteForm abrir = new InstitucionesReporteForm(idTC);
             abrir.ShowDialog();
         }
 

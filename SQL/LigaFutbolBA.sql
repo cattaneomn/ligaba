@@ -924,6 +924,25 @@ COMMIT
 
 GO
 
+--REPORTE INSTITUCIONES
+
+CREATE PROCEDURE [LigaBA].[p_ReporteInstituciones]
+(
+        @TorneoXCategoria int
+)       
+AS
+BEGIN transaction
+        
+         SELECT nombre as Nombre,direccion as Direccion,localidad as Localidad,telefono as Telefono,email as Email,delegado as Delegado,coordinador as Coordinador 
+         FROM LigaBA.Institucion 
+         WHERE id IN (SELECT (SELECT institucion from LigaBA.Equipo as E where E.id=TCE.equipo) FROM LigaBA.TorneoXCategoriaXEquipo as TCE WHERE torneoxcategoria=@TorneoXCategoria)
+
+COMMIT
+
+GO
+
+
+
 --BACK UP
 CREATE PROCEDURE [LigaBA].[p_BackUp]
 (

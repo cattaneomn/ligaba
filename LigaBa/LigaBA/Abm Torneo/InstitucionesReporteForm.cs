@@ -17,10 +17,14 @@ namespace LigaBA.Abm_Torneo
 {
     public partial class InstitucionesReporteForm : Form
     {
-        public InstitucionesReporteForm()
+        public InstitucionesReporteForm(string idTC)
         {
             InitializeComponent();
+
+            this.idTC = idTC;
         }
+
+        string idTC;
 
         private void crystalReportViewer1_Load(object sender, EventArgs e)
         {
@@ -28,7 +32,7 @@ namespace LigaBA.Abm_Torneo
             //DataSet
 
             List<SqlParameter> param = new List<SqlParameter>();
-            param.Add(new SqlParameter("@TorneoXCategoria", 1));
+            param.Add(new SqlParameter("@TorneoXCategoria", idTC));
 
             DataSet ds = BaseDeDatos.GetInstance.ejecutarConsulta("p_ReporteInstituciones", param, "Instituciones", this.Text);
             
