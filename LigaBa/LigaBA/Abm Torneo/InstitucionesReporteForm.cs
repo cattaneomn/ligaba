@@ -17,14 +17,18 @@ namespace LigaBA.Abm_Torneo
 {
     public partial class InstitucionesReporteForm : Form
     {
-        public InstitucionesReporteForm(string idTC)
+        public InstitucionesReporteForm(string idTC,string torneoNombre,string categoria)
         {
             InitializeComponent();
 
             this.idTC = idTC;
+            this.torneoNombre = torneoNombre;
+            this.categoria = categoria;
         }
 
         string idTC;
+        string torneoNombre;
+        string categoria;
 
         private void crystalReportViewer1_Load(object sender, EventArgs e)
         {
@@ -35,11 +39,23 @@ namespace LigaBA.Abm_Torneo
             param.Add(new SqlParameter("@TorneoXCategoria", idTC));
 
             DataSet ds = BaseDeDatos.GetInstance.ejecutarConsulta("p_ReporteInstituciones", param, "Instituciones", this.Text);
+
             
+
+
             //Reporte Instituciones
             Instituciones Repo = new Instituciones();
 
-          //  Repo.ExportToDisk(ExportFormatType.PortableDocFormat, "Instituciones");
+            //Repo.ExportToDisk(ExportFormatType.PortableDocFormat, "Instituciones");
+
+            //Variables
+            TextObject TorneoNombreRepo;
+            TorneoNombreRepo = (TextObject)Repo.ReportDefinition.ReportObjects["torneoNombre"];
+            TorneoNombreRepo.Text = torneoNombre;
+
+            TextObject CategoriaRepo;
+            CategoriaRepo = (TextObject)Repo.ReportDefinition.ReportObjects["categoria"];
+            CategoriaRepo.Text = categoria;
           
             Repo.SetDataSource(ds.Tables[0]);
 

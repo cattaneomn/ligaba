@@ -168,9 +168,6 @@ namespace LigaBA.Abm_Torneo
                 return;
             }
 
-
-           
-
             Thread hilo = new Thread(AbrirFormReporte);
             hilo.SetApartmentState(System.Threading.ApartmentState.STA);
             hilo.Start();
@@ -179,8 +176,11 @@ namespace LigaBA.Abm_Torneo
         private void AbrirFormReporte()
         {
             string idTC = Torneos_DataGridView.CurrentRow.Cells["idTC"].Value.ToString();
+            string torneoNombre = Torneos_DataGridView.CurrentRow.Cells["Nombre"].Value.ToString();
+            string categoria = Torneos_DataGridView.CurrentRow.Cells["Categoria"].Value.ToString();
 
-            InstitucionesReporteForm abrir = new InstitucionesReporteForm(idTC);
+
+            InstitucionesReporteForm abrir = new InstitucionesReporteForm(idTC,torneoNombre,categoria);
             abrir.ShowDialog();
         }
 
