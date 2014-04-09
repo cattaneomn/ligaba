@@ -65,10 +65,20 @@ namespace LigaBA.Abm_Jugador
             if (Validaciones())
             {
                 string equipo = "";
+                string institucion = "";
+                string categoria = "";
 
-                if (this.EquipoComboBox.SelectedValue != null)
+                if (EquipoComboBox.SelectedValue != null)
                 {
                     equipo = this.EquipoComboBox.SelectedValue.ToString();
+                }
+                if(InstitucionComboBox.SelectedValue != null)
+                {
+                    institucion = InstitucionComboBox.SelectedValue.ToString();
+                }
+                if(CategoriasComboBox.SelectedValue != null)
+                {
+                    categoria = CategoriasComboBox.SelectedValue.ToString();
                 }
 
                 List<SqlParameter> param = new List<SqlParameter>();
@@ -76,6 +86,8 @@ namespace LigaBA.Abm_Jugador
                 param.Add(new SqlParameter("@nombre", NombreTextBox.Text));
                 param.Add(new SqlParameter("@apellido", ApellidoTextBox.Text));
                 param.Add(new SqlParameter("@fecha_de_nacimiento", FechaNacimientoDateTimePicker.Text));
+                param.Add(new SqlParameter("@institucion", institucion ));
+                param.Add(new SqlParameter("@categoria", categoria));
                 param.Add(new SqlParameter("@equipo", equipo));
 
                 DataSet ds = BaseDeDatos.GetInstance.ejecutarConsulta("p_BuscarJugador", param, "Jugadores", this.Text);
@@ -88,8 +100,8 @@ namespace LigaBA.Abm_Jugador
                 
                 Jugador_DataGridView.DataSource = ds.Tables["Jugadores"];
                 this.Jugador_DataGridView.Columns["Fecha de Nacimiento"].Width = 170;
-                this.Jugador_DataGridView.Columns["Tarjetas Amarillas"].Width = 150;
-                this.Jugador_DataGridView.Columns["Tarjetas Rojas"].Width = 125;
+                //this.Jugador_DataGridView.Columns["Tarjetas Amarillas"].Width = 150;
+                //this.Jugador_DataGridView.Columns["Tarjetas Rojas"].Width = 125;
                 this.Jugador_DataGridView.Columns["id"].Visible = false;
                 this.Jugador_DataGridView.Columns["Institucion"].Visible = false;
                 this.Jugador_DataGridView.Focus();
@@ -158,9 +170,9 @@ namespace LigaBA.Abm_Jugador
                                                                    Jugador_DataGridView.CurrentRow.Cells["DNI"].Value.ToString(),
                                                                    Jugador_DataGridView.CurrentRow.Cells["Nombre"].Value.ToString(),
                                                                    Jugador_DataGridView.CurrentRow.Cells["Apellido"].Value.ToString(),
-                                                                   Jugador_DataGridView.CurrentRow.Cells["Fecha de Nacimiento"].Value.ToString(),                                                                 
-                                                                   Jugador_DataGridView.CurrentRow.Cells["Tarjetas Amarillas"].Value.ToString(),
-                                                                   Jugador_DataGridView.CurrentRow.Cells["Tarjetas Rojas"].Value.ToString()                
+                                                                   Jugador_DataGridView.CurrentRow.Cells["Fecha de Nacimiento"].Value.ToString()                                                                 
+                                                                   //Jugador_DataGridView.CurrentRow.Cells["Tarjetas Amarillas"].Value.ToString(),
+                                                                   //Jugador_DataGridView.CurrentRow.Cells["Tarjetas Rojas"].Value.ToString()                
                                                                   );
             abrir.ShowDialog();
         }

@@ -27,7 +27,7 @@ namespace LigaBA.Abm_Jugador
         string amarillas;
         string rojas;
 
-        public ModificarJugadorForm(string id,string dni,string nombre,string apellido,string fecha_nac,string amarillas,string rojas)
+        public ModificarJugadorForm(string id,string dni,string nombre,string apellido,string fecha_nac)//(string id,string dni,string nombre,string apellido,string fecha_nac,string amarillas,string rojas)
         {
             InitializeComponent();
 
@@ -36,8 +36,8 @@ namespace LigaBA.Abm_Jugador
             this.nombre = nombre;
             this.apellido = apellido;
             this.fecha_nacimiento = fecha_nac;
-            this.amarillas = amarillas;
-            this.rojas = rojas;
+            //this.amarillas = amarillas;
+            //this.rojas = rojas;
 
             consultarEquipo(dni);
 

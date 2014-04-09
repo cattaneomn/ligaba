@@ -403,12 +403,14 @@ GO
 
 GO
 --BUSCAR JUGADOR
-CREATE PROCEDURE [LigaBA].[p_BuscarJugador]
+alter PROCEDURE [LigaBA].[p_BuscarJugador]
 (
         @dni nvarchar(50),
         @nombre nvarchar(50),
         @apellido nvarchar(50),
         @fecha_de_nacimiento nvarchar(50),
+        @institucion nvarchar(50),
+        @categoria nvarchar(50),
         @equipo nvarchar(50)
 )       
 AS
@@ -420,8 +422,8 @@ BEGIN transaction
         DECLARE @where nvarchar(100)
         DECLARE @condiciones nvarchar(500)
         
-        SET @consulta = 'SELECT Jugador.id as Id,I.nombre as Institucion, Jugador.dni as Dni,Jugador.nombre as Nombre, Jugador.apellido as Apellido,Jugador.fecha_de_nacimiento as '''+'Fecha de Nacimiento'+''', Equipo.nombre as Equipo, Jugador.amarillas as '''+'Tarjetas Amarillas'+''', Jugador.rojas as '''+'Tarjetas Rojas'''
-        SET @from = ' FROM LigaBA.Jugador as Jugador INNER JOIN LigaBA.JugadorXEquipo as JugadorXEquipo ON Jugador.id = JugadorXEquipo.jugador INNER JOIN LigaBA.Equipo ON JugadorXEquipo.equipo = Equipo.id INNER JOIN LigaBA.Institucion as I ON I.id = Equipo.institucion'
+        SET @consulta = 'SELECT Jugador.id as Id, Jugador.dni as Dni,Jugador.nombre as Nombre, Jugador.apellido as Apellido,Jugador.fecha_de_nacimiento as '''+'Fecha de Nacimiento'+''',Institucion.nombre as Institucion, Categoria.nombre as Categoria, Equipo.nombre as Equipo '
+        SET @from = ' FROM LigaBA.Jugador as Jugador INNER JOIN LigaBA.JugadorXEquipo as JugadorXEquipo ON Jugador.id = JugadorXEquipo.jugador INNER JOIN LigaBA.Equipo ON JugadorXEquipo.equipo = Equipo.id INNER JOIN LigaBA.Institucion as Institucion ON Institucion.id = Equipo.institucion INNER JOIN LigaBA.Categoria as Categoria ON Categoria.id = Equipo.categoria'
         SET @where = ' WHERE '
         SET @condiciones = 'Jugador.borrado = 0'
         
@@ -461,6 +463,24 @@ BEGIN transaction
             SET @condiciones = @condiciones + ' Jugador.fecha_de_nacimiento = ''' + @fecha_de_nacimiento + ''''
         END 
         
+        IF(@categoria != '')
+        BEGIN
+            IF(@condiciones != '')
+            BEGIN
+                SET @condiciones = @condiciones + ' AND '
+            END
+            SET @condiciones = @condiciones + ' Categoria.id = ' + @categoria
+        END
+        
+        IF(@institucion != '')
+        BEGIN
+            IF(@condiciones != '')
+            BEGIN
+                SET @condiciones = @condiciones + ' AND '
+            END
+            SET @condiciones = @condiciones + ' Institucion.id = ' + @institucion
+        END
+        
         IF(@equipo != '')
         BEGIN
             IF(@condiciones != '')
@@ -483,7 +503,7 @@ COMMIT
 
 GO
 
---execute LigaBA.p_BuscarJugador '','','','',''
+--execute LigaBA.p_BuscarJugador '','','','','','',''
 
 --MODIFICAR JUGADOR
 CREATE PROCEDURE [LigaBA].[p_ModificarJugador]
