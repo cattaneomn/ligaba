@@ -97,7 +97,6 @@ namespace LigaBA.Abm_Jugador
                     MessageBox.Show("No se encontraron resultados que coincidan con la busqueda.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
-                
                 Jugador_DataGridView.DataSource = ds.Tables["Jugadores"];
                 this.Jugador_DataGridView.Columns["Fecha de Nacimiento"].Width = 170;
                 //this.Jugador_DataGridView.Columns["Tarjetas Amarillas"].Width = 150;

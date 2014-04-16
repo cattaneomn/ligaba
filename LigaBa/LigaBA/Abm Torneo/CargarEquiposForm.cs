@@ -224,7 +224,6 @@ namespace LigaBA.Abm_Torneo
       
             if (TerminoBien == true)
             {
-              
                 TerminoBien = InsertarTorneoXCategoria(respuesta);
                 MessageBox.Show("Se ha creado el torneo '" + nombre + "' correctamente.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 DialogResult = DialogResult.OK;
