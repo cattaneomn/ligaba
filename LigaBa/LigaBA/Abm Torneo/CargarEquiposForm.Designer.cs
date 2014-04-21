@@ -43,14 +43,16 @@
             this.Equipos_DataGridView = new System.Windows.Forms.DataGridView();
             this.GuardarButton = new System.Windows.Forms.Button();
             this.CancelarButton = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.generarFixtureButton = new System.Windows.Forms.Button();
             this.FiltroGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Equipos_DataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // FiltroGroupBox
             // 
-            this.FiltroGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.FiltroGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.FiltroGroupBox.Controls.Add(this.label3);
             this.FiltroGroupBox.Controls.Add(this.CategoriasTextBox);
             this.FiltroGroupBox.Controls.Add(this.label2);
@@ -125,9 +127,9 @@
             // Equipos_DataGridView
             // 
             this.Equipos_DataGridView.AllowUserToAddRows = false;
-            this.Equipos_DataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Equipos_DataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -190,12 +192,33 @@
             this.CancelarButton.UseVisualStyleBackColor = true;
             this.CancelarButton.Click += new System.EventHandler(this.CancelarButton_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(0, 0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 11;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // generarFixtureButton
+            // 
+            this.generarFixtureButton.Location = new System.Drawing.Point(266, 431);
+            this.generarFixtureButton.Name = "generarFixtureButton";
+            this.generarFixtureButton.Size = new System.Drawing.Size(146, 23);
+            this.generarFixtureButton.TabIndex = 12;
+            this.generarFixtureButton.Text = "Ver / Generar Fixture";
+            this.generarFixtureButton.UseVisualStyleBackColor = true;
+            this.generarFixtureButton.Click += new System.EventHandler(this.button2_Click);
+            // 
             // CargarEquiposForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.CancelarButton;
             this.ClientSize = new System.Drawing.Size(684, 462);
+            this.Controls.Add(this.generarFixtureButton);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.GuardarButton);
             this.Controls.Add(this.CancelarButton);
             this.Controls.Add(this.Equipos_DataGridView);
@@ -226,5 +249,7 @@
         private System.Windows.Forms.TextBox InstitucionTextBox;
         private System.Windows.Forms.Button GuardarButton;
         private System.Windows.Forms.Button CancelarButton;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button generarFixtureButton;
     }
 }

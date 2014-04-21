@@ -89,6 +89,12 @@
     <Compile Include="Abm Equipos\EquiposForm.Designer.cs">
       <DependentUpon>EquiposForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Abm Equipos\JugadoresResporteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Equipos\JugadoresResporteForm.Designer.cs">
+      <DependentUpon>JugadoresResporteForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Abm Equipos\ModificarEquipoForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -155,6 +161,18 @@
     <Compile Include="Abm Torneo\ExaminarTorneoForm.Designer.cs">
       <DependentUpon>ExaminarTorneoForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Abm Torneo\InstitucionesReporteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Torneo\InstitucionesReporteForm.Designer.cs">
+      <DependentUpon>InstitucionesReporteForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Torneo\MostrarFixture.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Torneo\MostrarFixture.Designer.cs">
+      <DependentUpon>MostrarFixture.cs</DependentUpon>
+    </Compile>
     <Compile Include="Abm Torneo\TorneosForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -197,6 +215,15 @@
     <Compile Include="Abm Intituciones\ModificarInstitucionForm.Designer.cs">
       <DependentUpon>ModificarInstitucionForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Back Up\BackUpForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Back Up\BackUpForm.Designer.cs">
+      <DependentUpon>BackUpForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Clases LigaBA\Equipo.cs" />
+    <Compile Include="Clases LigaBA\Fecha.cs" />
+    <Compile Include="Clases LigaBA\Fixture.cs" />
     <Compile Include="Reportes\Carnet.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -222,6 +249,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reportes\Instituciones.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reportes\Jugadores.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="SplashScreen\SplashScreen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -242,6 +275,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Abm Equipos\EquiposForm.resx">
       <DependentUpon>EquiposForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Equipos\JugadoresResporteForm.resx">
+      <DependentUpon>JugadoresResporteForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Abm Equipos\ModificarEquipoForm.resx">
       <DependentUpon>ModificarEquipoForm.cs</DependentUpon>
@@ -282,6 +318,12 @@
     <EmbeddedResource Include="Abm Torneo\ExaminarTorneoForm.resx">
       <DependentUpon>ExaminarTorneoForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Abm Torneo\InstitucionesReporteForm.resx">
+      <DependentUpon>InstitucionesReporteForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Torneo\MostrarFixture.resx">
+      <DependentUpon>MostrarFixture.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Abm Torneo\TorneosForm.resx">
       <DependentUpon>TorneosForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -296,6 +338,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Abm Intituciones\InstitucionesForm.resx">
       <DependentUpon>InstitucionesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Back Up\BackUpForm.resx">
+      <DependentUpon>BackUpForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\Carnet.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

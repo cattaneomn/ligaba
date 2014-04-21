@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using LigaBA.Clases;
 
+using LigaBA.ClasesLigaBA;
 
 namespace LigaBA.Abm_Torneo
 {
@@ -315,5 +316,24 @@ namespace LigaBA.Abm_Torneo
             InstitucionesLista.Clear();
         }
 
+        private void crearFixture()
+        {
+            List<Equipo> equipos = new List<Equipo>();
+            foreach (DataRow row in this.tablaDeEquipos.Rows)
+            {
+                if (row["Seleccionado"].ToString() == "True")
+                {
+                    equipos.Add(new Equipo(Convert.ToInt32(row["id"]), row["Equipo"].ToString()));
+                }
+            }
+
+            MostrarFixture mostrarFixtureForm = new MostrarFixture(equipos);
+            mostrarFixtureForm.ShowDialog();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            crearFixture();
+        }
     }
 }
