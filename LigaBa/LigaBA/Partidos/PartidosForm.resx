@@ -141,15 +141,18 @@
   <data name="JugarButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAH8SURBVEhLtdXLbtNAFAZgL/0A8w4G0tDm1tixHTtxLk7ScBPQfZ4GVjwAC1qktMsuaCXSlA2X
-        BRIgAW3SXNryBt55eYYzw1jKYpRGnXKkT+e3PT5n4yjaKrV91e2hCIHAck88VqvKvqVv/+nGiHJswb8e
-        t058XRy7efn7Jnl+tQWICkmG8MQj4tjNy9szybPLDsg0h7ewoLxXJE8v24AodyEy9sawrL7A7W+SJxct
-        QFRIMtSPXfUFTr9AHs+bIFM7dtQX2P08eTRvAKJCkiEY2KstqAwsvTooEZnO76rxcF4HRLmZyNi3RoEh
-        e4dhM/nw7qzWezCrxQhuWcxm44IgQrQ7DYD3ZXnxepXz0yDSOtMq/E9ae1Kh7SmaVID3ZXnxepXzmLXw
-        pxe1Jj5FIPqyvHh97fnwlxdpwQe7V//qxo1vLkh9dyE8L9NwIpyXIensmfQdxGay2fxLyrxI6ZmXKSLj
-        D02jOXZBpvrRMmTvcDiTD7+u8rtp0hg7gKiQZCgdZdV/ybndNVIb24AoNxIZu3WUUV+Q3UmRYFQCGfNw
-        Q31BZuceqY4sQJQ7Exl78XBdfcHGm7ukcmYCokKSYfPdffUF66/vEP+0CDKFg7T6gvQrQy//KMTeaYEK
-        wDq7l327pv6nz6r0PtezP+Ui50ueOp/zwDK7Jx4vKU37Cy4HmSb0T7nJAAAAAElFTkSuQmCC
+        YQUAAAKUSURBVEhLY4AB/bAOdZsWHQ9FLwFGqBD1gJRBKLtF7dvX9j07/wZu0j/pPlfZCypFHSBmnChk
+        XvfhPwjb92z/G7hZ70fQVs19ztMUraBKKAMgC8xq3/8DWQCi7Xu3/gFZErhF4zsQr7HrlNeAKiUPoFsA
+        wg59m4GW6IItAfrmC5CealYuLQ7VQhpADiJk7NC3EWiJDii4YPiN/wb1St1kMS6oVuIANh/A2A7968CW
+        QH0CC7a7PsvVYpV9BZmgRuAH+CwAYccJa/4EbtEG+wJqARgD+cddZyjZQo3BDXAFETJ2nLASbgka/j5h
+        t8GqzRN0lKHGYQJCPoCxHScuB1qiBfcFyIKuXfo/vx61+ffjmO2PL4dtOieVKPNBjUUAYi0A0U4Tl8It
+        6YQa/h1iwX8QDcQvXuy0TEnyk0DEDykWgGinSYv+dO4y+AEzHM0CMPvbUZt2qPHExQEyLsjc+P91qQXI
+        sP8gw7BhoNx0qPGk+SA/c9O/p/bG/17Y6v97X2aK4moo++uH/datFQmyiLxCrA/yMjf/f2pv8v+lnQEc
+        v68AWwJy9Z9vR2zmzatTl4EaiwDE+CAvawvQ5Sb/QS6HYZAFL+wM/n2oN9u+dYKOLtQ4TEDIgtysrf+f
+        2JtADES2wNHg7AE7DReoMbgBviDKydoGMhwlWF46GNw/76QdE6EgRFzlhMsH2dnb/z2xN4W7/KW9wds7
+        Lrol+eri7FCtxAFsFmRl7wC63BQW1t+fuOr3tOrKCEK1kAbQgygze+f/x/amoOD4+8LZYMksEwUFqFLy
+        ALIPgIb/Axr+76WTwZ4NVqpGUCWUASnDSC6L2nffM3J2/X/sbHbxsL2mB1SKesAltN9mg7V+RIyCMHGV
+        CFGAgQEAO8bdaeM/5ZkAAAAASUVORK5CYII=
 </value>
   </data>
   <data name="ImprimirPartidoButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
