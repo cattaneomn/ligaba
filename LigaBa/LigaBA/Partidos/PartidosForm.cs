@@ -156,5 +156,10 @@ namespace LigaBA.Partidos
 
             
         }
+
+        private void PartidosForm_Load(object sender, EventArgs e)
+        {
+            CargadorDeDatos.CargarCategoriaComboBox(CategoriasComboBox, this.Text);
+        }
     }
 }

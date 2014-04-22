@@ -41,7 +41,10 @@
             this.Partidos_DataGridView = new System.Windows.Forms.DataGridView();
             this.ImprimirPartidoButton = new System.Windows.Forms.Button();
             this.GroupBox = new System.Windows.Forms.GroupBox();
+            this.CategoriasComboBox = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.Partidos_DataGridView)).BeginInit();
+            this.GroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // ModificarButton
@@ -167,6 +170,8 @@
             // 
             this.GroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.GroupBox.Controls.Add(this.CategoriasComboBox);
+            this.GroupBox.Controls.Add(this.label6);
             this.GroupBox.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.GroupBox.Location = new System.Drawing.Point(12, 13);
             this.GroupBox.Name = "GroupBox";
@@ -175,10 +180,34 @@
             this.GroupBox.TabStop = false;
             this.GroupBox.Text = "Búsqueda";
             // 
+            // CategoriasComboBox
+            // 
+            this.CategoriasComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CategoriasComboBox.FormattingEnabled = true;
+            this.CategoriasComboBox.Location = new System.Drawing.Point(495, 55);
+            this.CategoriasComboBox.Name = "CategoriasComboBox";
+            this.CategoriasComboBox.Size = new System.Drawing.Size(172, 23);
+            this.CategoriasComboBox.TabIndex = 24;
+            // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(409, 57);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(67, 16);
+            this.label6.TabIndex = 25;
+            this.label6.Text = "Categoria";
+            // 
             // PartidosForm
             // 
+            this.AcceptButton = this.BuscarButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.CancelarButton;
             this.ClientSize = new System.Drawing.Size(784, 562);
             this.Controls.Add(this.GroupBox);
             this.Controls.Add(this.ImprimirPartidoButton);
@@ -192,7 +221,10 @@
             this.Name = "PartidosForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Partidos";
+            this.Load += new System.EventHandler(this.PartidosForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.Partidos_DataGridView)).EndInit();
+            this.GroupBox.ResumeLayout(false);
+            this.GroupBox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -208,5 +240,7 @@
         private System.Windows.Forms.DataGridView Partidos_DataGridView;
         private System.Windows.Forms.Button ImprimirPartidoButton;
         private System.Windows.Forms.GroupBox GroupBox;
+        private System.Windows.Forms.ComboBox CategoriasComboBox;
+        private System.Windows.Forms.Label label6;
     }
 }

@@ -14,7 +14,7 @@ using LigaBA.Abm_Tipo_Torneo;
 using LigaBA.Abm_Equipos;
 using LigaBA.Abm_Torneo;
 using LigaBA.Back_Up;
-
+using LigaBA.Partidos;
 
 namespace LigaBA
 {
@@ -100,6 +100,12 @@ namespace LigaBA
         private void backUpToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            PartidosForm abrir = new PartidosForm();
+            abrir.ShowDialog();
         }
 
     }

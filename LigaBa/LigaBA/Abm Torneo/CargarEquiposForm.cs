@@ -203,8 +203,26 @@ namespace LigaBA.Abm_Torneo
         {
             if (Validaciones() == -1) return;
 
+            if (!InsertarTorneoApertura())
+            {
+                return;
+            }
+            if (!InsertarTorneoClausura())
+            {
+                return;
+            }
+
+            MessageBox.Show("Se ha creado el torneo '" + nombre + "' correctamente.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            DialogResult = DialogResult.OK;
+
+        }
+
+        private bool InsertarTorneoApertura()
+        {
+            string NombreApertura = nombre + " [Apertura]";
+
             List<SqlParameter> param = new List<SqlParameter>();
-            param.Add(new SqlParameter("@nombre", nombre));
+            param.Add(new SqlParameter("@nombre", NombreApertura));
             param.Add(new SqlParameter("@tipodetorneo", tipodetorneo));
             param.Add(new SqlParameter("@tablageneral", tablageneral));
             param.Add(new SqlParameter("@tipodetablageneral", tipodetablageneral));
@@ -219,15 +237,46 @@ namespace LigaBA.Abm_Torneo
 
             if (respuesta == -1)
             {
-                return;
+                return false;
             }
-      
+
             if (TerminoBien == true)
             {
                 TerminoBien = InsertarTorneoXCategoria(respuesta);
-                MessageBox.Show("Se ha creado el torneo '" + nombre + "' correctamente.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                DialogResult = DialogResult.OK;
-            } 
+            }
+
+            return true;
+        }
+
+        private bool InsertarTorneoClausura()
+        {
+            string NombreClausura = nombre + " [Clausura]";
+
+            List<SqlParameter> param = new List<SqlParameter>();
+            param.Add(new SqlParameter("@nombre", NombreClausura));
+            param.Add(new SqlParameter("@tipodetorneo", tipodetorneo));
+            param.Add(new SqlParameter("@tablageneral", tablageneral));
+            param.Add(new SqlParameter("@tipodetablageneral", tipodetablageneral));
+            SqlParameter respuestaParametro = new SqlParameter("@respuesta", -1);
+            respuestaParametro.Direction = ParameterDirection.Output;
+            param.Add(respuestaParametro);
+
+            bool TerminoBien = BaseDeDatos.GetInstance.ejecutarProcedimiento("p_AltaTorneo", param, this.Text);
+
+            object respuestaSP = respuestaParametro.Value;
+            int respuesta = Convert.ToInt32(respuestaSP);
+
+            if (respuesta == -1)
+            {
+                return false;
+            }
+
+            if (TerminoBien == true)
+            {
+                TerminoBien = InsertarTorneoXCategoria(respuesta);          
+            }
+
+            return true; 
         }
 
         private bool InsertarTorneoXCategoria(int respuesta)
@@ -258,6 +307,8 @@ namespace LigaBA.Abm_Torneo
             }
             return TerminoBien;
         }
+
+
 
         private bool InsertarTorneoXCategoriaXEquipo(int respuesta, string categoria)
         {
