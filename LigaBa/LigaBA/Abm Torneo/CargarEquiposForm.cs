@@ -23,6 +23,8 @@ namespace LigaBA.Abm_Torneo
         string tablageneral;
         string tipodetablageneral;
 
+        List<EquipoInsertado> equiposInsertados = new List<EquipoInsertado>();
+
         DataTable tablaDeEquipos;
 
         public CargarEquiposForm(CheckedListBox Instituciones, CheckedListBox Categorias,string nombre,string tipodetorneo,string tablageneral,string tipodetablageneral)
@@ -58,7 +60,7 @@ namespace LigaBA.Abm_Torneo
             string institucionesConsulta = ConsultarInstituciones();
             string categoriasConsulta = ConsultarCategorias();
 
-            string consulta = "SELECT E.id as id,C.id as idCat,E.nombre as Equipo,I.nombre as Institucion,C.nombre as Categoria,1 as elegido FROM LigaBA.Equipo as E ";
+            string consulta = "SELECT E.id as id,C.id as idCat,I.id as idInt,E.nombre as Equipo,I.nombre as Institucion,C.nombre as Categoria,1 as elegido FROM LigaBA.Equipo as E ";
 
             consulta += "INNER JOIN LigaBA.Categoria as C ON E.categoria = C.id ";
             consulta += "INNER JOIN LigaBA.Institucion as I ON E.institucion=I.id ";
@@ -70,8 +72,9 @@ namespace LigaBA.Abm_Torneo
 
             this.tablaDeEquipos = BaseDeDatos.GetInstance.ExecuteCustomQuery(consulta, param, this.Text);
             Equipos_DataGridView.DataSource = tablaDeEquipos;
-            this.Equipos_DataGridView.Columns["id"].Visible = false;
+            /*this.Equipos_DataGridView.Columns["id"].Visible = false;
             this.Equipos_DataGridView.Columns["idCat"].Visible = false;
+            this.Equipos_DataGridView.Columns["idInt"].Visible = false;*/
             this.Equipos_DataGridView.Columns["elegido"].Visible = false;
             this.Equipos_DataGridView.Focus();
         }
@@ -208,13 +211,71 @@ namespace LigaBA.Abm_Torneo
             {
                 return;
             }
+                                 
             if (!InsertarTorneoClausura())
             {
                 return;
             }
+           
+            //Ya Cree Torneos, TorneosXCategoria
 
             MessageBox.Show("Se ha creado el torneo '" + nombre + "' correctamente.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
             DialogResult = DialogResult.OK;
+
+        }
+
+        private void InsertarPartidos(bool apertura)
+        {
+            foreach (Fecha partido in GenerarFixture.fixtureFinal.GetFechas())
+            {
+                //TO DO VALIDAR
+                EquipoInsertado local;
+                EquipoInsertado visitante;
+
+                if (equiposInsertados.Find(e => e.institucion == partido.get_local().get_id()) == null)
+                {
+                    local = new EquipoInsertado(0, 0, 0);
+                }
+                else
+                {
+                    local = equiposInsertados.Find(e => e.institucion == partido.get_local().get_id());
+                }
+
+                if ((equiposInsertados.Find(e => e.institucion == partido.get_visitante().get_id())) == null)
+                {
+                    visitante = new EquipoInsertado(0, 0, 0);
+                }
+                else
+                {
+                    visitante = equiposInsertados.Find(e => e.institucion == partido.get_visitante().get_id());
+                }
+                
+                if(local.equipo == 0)
+                {
+                    local.torneoxcategoria = visitante.torneoxcategoria;
+                }else{
+                    visitante.torneoxcategoria = local.torneoxcategoria;
+                }
+                
+                if (apertura)
+                {
+                    //Inserto Apertura
+                    InsertarPartido(local.torneoxcategoria, partido.get_fecha(), local.equipo, visitante.equipo);
+                }
+                else
+                {
+                    //Inserto Clausura
+                    InsertarPartido(local.torneoxcategoria, partido.get_fecha(), visitante.equipo, local.equipo);
+                }  
+            }
+            MessageBox.Show(msg);
+        }
+
+        string msg = "";
+        private void InsertarPartido(int torneoxcategoria, int fecha, int local,int visitante)
+        {
+           //TODO:INSERTAR.
+            msg +="TorneoXcat:"+torneoxcategoria+" Fecha:"+fecha+" "+local+"vs"+visitante;
 
         }
 
@@ -243,7 +304,7 @@ namespace LigaBA.Abm_Torneo
 
             if (TerminoBien == true)
             {
-                TerminoBien = InsertarTorneoXCategoria(respuesta);
+                TerminoBien = InsertarTorneoXCategoria(respuesta,true);
             }
 
             return true;
@@ -274,13 +335,15 @@ namespace LigaBA.Abm_Torneo
 
             if (TerminoBien == true)
             {
-                TerminoBien = InsertarTorneoXCategoria(respuesta);          
+                TerminoBien = InsertarTorneoXCategoria(respuesta,false);          
             }
 
             return true; 
         }
 
-        private bool InsertarTorneoXCategoria(int respuesta)
+       
+        
+        private bool InsertarTorneoXCategoria(int respuesta,bool apertura)
         {
 
             bool TerminoBien = true;
@@ -303,8 +366,11 @@ namespace LigaBA.Abm_Torneo
                 if (TerminoBien == true)
                 {
                     
-                    TerminoBien &= InsertarTorneoXCategoriaXEquipo(respuestaTorneoXCategoria, categoria);
+                    TerminoBien &= InsertarTorneoXCategoriaXEquipo(respuestaTorneoXCategoria, categoria);                    
                 }
+
+                InsertarPartidos(apertura);
+                equiposInsertados = new List<EquipoInsertado>();
             }
             return TerminoBien;
         }
@@ -331,8 +397,7 @@ namespace LigaBA.Abm_Torneo
 
                     if (TerminoBien == true)
                     {
-                       // MessageBox.Show("Se ha creado el torneo '" + nombre + "' correctamente.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        //DialogResult = DialogResult.OK;
+                        equiposInsertados.Add(new EquipoInsertado(respuesta, Convert.ToInt32(equipo),Convert.ToInt32(row["idInt"])));
                     }
                 }
             }
@@ -356,6 +421,15 @@ namespace LigaBA.Abm_Torneo
                     MessageBox.Show("Error: debe seleccionar al menos 2(dos) equipos de cada categoria elegida.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return -1;
                 }
+
+                //TO DO : Validacion 1 solo equipo por institucion por categoria.
+
+
+                if (GenerarFixture.mutex)
+                {
+                    MessageBox.Show("Error: No se ha generado el fixture.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return -1;
+                }
             }
             
             return 1;
@@ -367,24 +441,18 @@ namespace LigaBA.Abm_Torneo
             InstitucionesLista.Clear();
         }
 
-        private void crearFixture()
+        private class EquipoInsertado
         {
-            List<Equipo> equipos = new List<Equipo>();
-            foreach (DataRow row in this.tablaDeEquipos.Rows)
+            public int torneoxcategoria;
+            public int equipo;
+            public int institucion;
+
+            public EquipoInsertado(int t, int e, int i)
             {
-                //if (row["Seleccionado"].ToString() == "True")
-                //{
-                    equipos.Add(new Equipo(Convert.ToInt32(row["id"]), row["Equipo"].ToString()));
-                //}
+                torneoxcategoria = t;
+                equipo = e;
+                institucion = i;
             }
-
-            MostrarFixture mostrarFixtureForm = new MostrarFixture(equipos);
-            mostrarFixtureForm.ShowDialog();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            crearFixture();
         }
     }
 }

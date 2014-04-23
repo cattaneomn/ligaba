@@ -8,18 +8,18 @@ namespace LigaBA.ClasesLigaBA
     public class Fecha
     {
         private int fecha;
-        private Equipo local;
-        private Equipo visitante;
+        private Institucion local;
+        private Institucion visitante;
 
 
-        public Fecha(int fecha, Equipo l, Equipo v)
+        public Fecha(int fecha, Institucion l, Institucion v)
         {
             this.fecha = fecha;
             this.local = l;
             this.visitante = v;
         }
 
-        public bool jugaronJuntos(Equipo equipo1, Equipo equipo2)
+        public bool jugaronJuntos(Institucion equipo1, Institucion equipo2)
         {
             if (local.get_id() == equipo1.get_id() && visitante.get_id() == equipo2.get_id())
             {
@@ -32,7 +32,7 @@ namespace LigaBA.ClasesLigaBA
             return false;
         }
 
-        public bool jugo(Equipo equipo1)
+        public bool jugo(Institucion equipo1)
         {
             if (local.get_id() == equipo1.get_id())
             {
@@ -49,20 +49,20 @@ namespace LigaBA.ClasesLigaBA
         {
             return fecha;
         }
-        public Equipo get_local()
+        public Institucion get_local()
         {
             return local;
         }
-        public Equipo get_visitante()
+        public Institucion get_visitante()
         {
             return visitante;
         }
 
-        public void set_local(Equipo e)
+        public void set_local(Institucion e)
         {
             local = e;
         }
-        public void set_visitante(Equipo e)
+        public void set_visitante(Institucion e)
         {
             visitante = e;
         }

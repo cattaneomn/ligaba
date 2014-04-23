@@ -44,6 +44,7 @@
     <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.DirectoryServices" />
     <Reference Include="System.ServiceProcess" />
@@ -167,12 +168,6 @@
     <Compile Include="Abm Torneo\InstitucionesReporteForm.Designer.cs">
       <DependentUpon>InstitucionesReporteForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Abm Torneo\MostrarFixture.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Abm Torneo\MostrarFixture.Designer.cs">
-      <DependentUpon>MostrarFixture.cs</DependentUpon>
-    </Compile>
     <Compile Include="Abm Torneo\TorneosForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -221,9 +216,29 @@
     <Compile Include="Back Up\BackUpForm.Designer.cs">
       <DependentUpon>BackUpForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Clases LigaBA\Equipo.cs" />
+    <Compile Include="Clases LigaBA\Institucion.cs" />
     <Compile Include="Clases LigaBA\Fecha.cs" />
     <Compile Include="Clases LigaBA\Fixture.cs" />
+    <Compile Include="Clases LigaBA\GenerarFixture.cs" />
+    <Compile Include="Clases\Cifrar.cs" />
+    <Compile Include="Partidos\JugarPartidoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Partidos\JugarPartidoForm.Designer.cs">
+      <DependentUpon>JugarPartidoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Partidos\PartidosForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Partidos\PartidosForm.Designer.cs">
+      <DependentUpon>PartidosForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Partidos\ReportePartidoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Partidos\ReportePartidoForm.Designer.cs">
+      <DependentUpon>ReportePartidoForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reportes\Carnet.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -249,10 +264,37 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reportes\DataSet\FichaPartidoDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FichaPartidoDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\DataSet\InstitucionesDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InstitucionesDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\DataSet\JugadoresDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>JugadoresDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\FichaPartido.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FichaPartido.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reportes\Instituciones.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Instituciones.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reportes\Jugadores.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Jugadores.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="SplashScreen\SplashScreen.cs">
@@ -321,9 +363,6 @@
     <EmbeddedResource Include="Abm Torneo\InstitucionesReporteForm.resx">
       <DependentUpon>InstitucionesReporteForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Abm Torneo\MostrarFixture.resx">
-      <DependentUpon>MostrarFixture.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Abm Torneo\TorneosForm.resx">
       <DependentUpon>TorneosForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -341,6 +380,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Back Up\BackUpForm.resx">
       <DependentUpon>BackUpForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Partidos\JugarPartidoForm.resx">
+      <DependentUpon>JugarPartidoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Partidos\PartidosForm.resx">
+      <DependentUpon>PartidosForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Partidos\ReportePartidoForm.resx">
+      <DependentUpon>ReportePartidoForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\Carnet.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -362,6 +410,18 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Reportes\FichaPartido.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>FichaPartido.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Instituciones.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Instituciones.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Jugadores.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Jugadores.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="SplashScreen\SplashScreen.resx">
       <DependentUpon>SplashScreen.cs</DependentUpon>
     </EmbeddedResource>
@@ -375,6 +435,39 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Reportes\DataSet\FichaPartidoDataSet.xsc">
+      <DependentUpon>FichaPartidoDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Reportes\DataSet\FichaPartidoDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>FichaPartidoDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reportes\DataSet\FichaPartidoDataSet.xss">
+      <DependentUpon>FichaPartidoDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Reportes\DataSet\InstitucionesDataSet.xsc">
+      <DependentUpon>InstitucionesDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Reportes\DataSet\InstitucionesDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>InstitucionesDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reportes\DataSet\InstitucionesDataSet.xss">
+      <DependentUpon>InstitucionesDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Reportes\DataSet\JugadoresDataSet.xsc">
+      <DependentUpon>JugadoresDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Reportes\DataSet\JugadoresDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>JugadoresDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reportes\DataSet\JugadoresDataSet.xss">
+      <DependentUpon>JugadoresDataSet.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Icons\add-icon.png" />

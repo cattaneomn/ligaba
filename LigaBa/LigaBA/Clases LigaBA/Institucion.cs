@@ -5,13 +5,13 @@ using System.Text;
 
 namespace LigaBA.ClasesLigaBA
 {
-    public class Equipo
+    public class Institucion
     {
         private int id;
        
         private string nombre;
 
-        public Equipo(int id,string nombre)
+        public Institucion(int id,string nombre)
         {
             this.id = id;
             this.nombre = nombre;

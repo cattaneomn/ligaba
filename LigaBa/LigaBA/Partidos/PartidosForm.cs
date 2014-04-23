@@ -105,13 +105,12 @@ namespace LigaBA.Partidos
 
         private void AbrirFormReporte()
         {
-           /* string id = Equipos_DataGridView.CurrentRow.Cells["id"].Value.ToString();
-            string Institucion = Equipos_DataGridView.CurrentRow.Cells["Institucion"].Value.ToString();
-            string Equipo = Equipos_DataGridView.CurrentRow.Cells["Equipo"].Value.ToString();
-            string Categoria = Equipos_DataGridView.CurrentRow.Cells["Categoria"].Value.ToString();
+            string Visitante = "3";//Partidos_DataGridView.CurrentRow.Cells["Visitante"].Value.ToString();
+            string Local = "1";//Partidos_DataGridView.CurrentRow.Cells["Local"].Value.ToString();
 
-            JugadoresResporteForm abrir = new JugadoresResporteForm(id, Institucion, Equipo, Categoria);
-            abrir.ShowDialog();*/
+
+            ReportePartidoForm abrir = new ReportePartidoForm(Local,Visitante);
+            abrir.ShowDialog();
         }
 
 
@@ -154,12 +153,17 @@ namespace LigaBA.Partidos
                 return;
             }
 
+            JugarPartidoForm abrir = new JugarPartidoForm();
+            abrir.ShowDialog();
             
         }
 
         private void PartidosForm_Load(object sender, EventArgs e)
         {
             CargadorDeDatos.CargarCategoriaComboBox(CategoriasComboBox, this.Text);
+            CargadorDeDatos.CargarTorneoComboBox(TorneosComboBox, this.Text);
+
+            this.BuscarButton.Select();
         }
     }
 }

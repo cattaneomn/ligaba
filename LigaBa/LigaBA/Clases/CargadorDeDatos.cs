@@ -44,10 +44,12 @@ namespace LigaBA.Clases
         {
             CargadorDeDatos.CargarComboBox("select id,nombre from LigaBA.Categoria WHERE borrado=0", new List<SqlParameter>(), comboBox,txt, "id", "nombre");
         }
+
         public static void CargarInstitucionComboBox(ComboBox comboBox, string txt)
         {
             CargadorDeDatos.CargarComboBox("select id,nombre from LigaBA.Institucion WHERE borrado=0", new List<SqlParameter>(), comboBox, txt, "id", "nombre");
         }
+
         public static void CargarEquipoComboBox(ComboBox comboBox, string txt,string institucion ,string categoria)
         {
             int Num;
@@ -56,6 +58,11 @@ namespace LigaBA.Clases
             {
                 CargadorDeDatos.CargarComboBox("select id,nombre from LigaBA.Equipo WHERE borrado = '0' AND institucion = " + institucion + " AND categoria = " + categoria, new List<SqlParameter>(), comboBox, txt, "id", "nombre");
             }
+        }
+
+        public static void CargarTorneoComboBox(ComboBox comboBox, string txt)
+        {
+            CargadorDeDatos.CargarComboBox("select id,nombre from LigaBA.Torneo", new List<SqlParameter>(), comboBox, txt, "id", "nombre");
         }
 
         //Cargas de CHECKED LIST BOX Especificos

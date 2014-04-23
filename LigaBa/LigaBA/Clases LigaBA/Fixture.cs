@@ -9,11 +9,10 @@ namespace LigaBA.ClasesLigaBA
 {
     public class Fixture
     {
-        private List<Equipo> equipos = new List<Equipo>();
+        private List<Institucion> equipos = new List<Institucion>();
         public List<Fecha> fixture;
         private int[] tolerancia;
-        MostrarFixture form;
-
+        
         private int cantidadDePartidos;
         private int cantidadDePartidosSimultaneos;
         private int cantidadDeFechas;
@@ -24,43 +23,14 @@ namespace LigaBA.ClasesLigaBA
         private int estadisticaVueltas = 0;
         public int reinicios = 0;        
 
-        public Fixture(MostrarFixture form, List<Fecha> f)
+        public Fixture(List<Fecha> f)
         {
             this.fixture = f;
-            this.form = form;
         }
 
-        public Fixture(MostrarFixture form)
+        public Fixture(List<Institucion> equipos)
         {
-            this.form = form;
 
-            equipos.Add(new Equipo(1, "boca"));
-            equipos.Add(new Equipo(2, "river"));
-            equipos.Add(new Equipo(3, "san lorenzo"));
-            equipos.Add(new Equipo(4, "tigre"));
-            equipos.Add(new Equipo(5, "estudiantes"));
-            equipos.Add(new Equipo(6, "racing"));
-            equipos.Add(new Equipo(7, "colon"));
-            equipos.Add(new Equipo(8, "belgrano"));
-            equipos.Add(new Equipo(9, "allboys"));
-            equipos.Add(new Equipo(10, "rosario"));
-            /*equipos.Add(new Equipo(11, "pirulo"));
-            equipos.Add(new Equipo(12, "hola"));
-            equipos.Add(new Equipo(13, "xxxx"));
-            equipos.Add(new Equipo(14, "yyyy"));
-            equipos.Add(new Equipo(15, "aaa"));
-            equipos.Add(new Equipo(16, "bbb"));
-            equipos.Add(new Equipo(17, "ccc"));
-            equipos.Add(new Equipo(18, "ddd"));
-            equipos.Add(new Equipo(19, "eee"));
-            equipos.Add(new Equipo(20, "fff"));*/
-
-            inicializar();
-        }
-
-        public Fixture(MostrarFixture form, List<Equipo> equipos)
-        {
-            this.form = form;
             this.equipos.Clear();
             this.equipos = equipos;
             inicializar();
@@ -90,8 +60,8 @@ namespace LigaBA.ClasesLigaBA
                 Random random2 = new Random();
                 int aleatorio1;
                 int aleatorio2;
-                Equipo local;
-                Equipo visitante;
+                Institucion local;
+                Institucion visitante;
                 List<int> noDisponibles = new List<int>();
                 bool ok = true;
 
@@ -103,7 +73,7 @@ namespace LigaBA.ClasesLigaBA
                     {
                         if (noDisponibles.Count == equipos.Count - 2)
                         {
-                            List<Equipo> aux = equipos.FindAll(e => !noDisponibles.Contains(equipos.IndexOf(e)));
+                            List<Institucion> aux = equipos.FindAll(e => !noDisponibles.Contains(equipos.IndexOf(e)));
                             if (ok)
                             {
                                 ok = false;
@@ -151,7 +121,7 @@ namespace LigaBA.ClasesLigaBA
 
                             if (noDisponibles.Count == equipos.Count - 2)
                             {
-                                List<Equipo> aux = equipos.FindAll(e => !noDisponibles.Contains(equipos.IndexOf(e)));
+                                List<Institucion> aux = equipos.FindAll(e => !noDisponibles.Contains(equipos.IndexOf(e)));
                                 if (ok)
                                 {
                                     ok = false;
@@ -183,8 +153,8 @@ namespace LigaBA.ClasesLigaBA
                         noDisponibles.Add(aleatorio2);
                     }
                 }
-                form.ActualizarFixture(fixture);
-                form.ActualizarMutex();
+                GenerarFixture.ActualizarFixture(fixture);
+                GenerarFixture.ActualizarMutex();
                 return true;
             }
             MessageBox.Show("Se necesita mas de un equipo para generar el fixture");
@@ -198,13 +168,14 @@ namespace LigaBA.ClasesLigaBA
             estadisticaVueltas = 0;
         }
 
-        public void imprimirFixture()
-        {
-            //form.richTextBoxUpdate("Reinicios: " + reinicios + " Condiciones de carrera: " + estadisticaCarrera + " Vueltas totales: " + estadisticaVueltas + "\n\n");
+        public string imprimirFixture()
+        {        
+            string msg ="";
             foreach (Fecha fecha in fixture)
             {
-                form.richTextBoxUpdate("Fecha:" + fecha.get_fecha() + " -> " + (fecha.get_local()).get_nombre() + " vs " + (fecha.get_visitante()).get_nombre() + "\n");
+                msg += "Fecha:" + fecha.get_fecha() + " -> " + (fecha.get_local()).get_nombre() + " vs " + (fecha.get_visitante()).get_nombre() + "\n";
             }
+            return msg;
         }
 
         private int condicionDeCarrera(int f, List<int> noDisponibles)
@@ -237,7 +208,7 @@ namespace LigaBA.ClasesLigaBA
             }
         }
 
-        private bool noPuedenJugar(int f, Equipo local, Equipo visitante)
+        private bool noPuedenJugar(int f, Institucion local, Institucion visitante)
         {
             for (int i = 0; i < fixture.Count; i++)
             {
@@ -271,7 +242,7 @@ namespace LigaBA.ClasesLigaBA
             return false;
         }
 
-        private bool toleranciaDeEstado(Equipo equipo)
+        private bool toleranciaDeEstado(Institucion equipo)
         {
             if (tolerancia[equipos.IndexOf(equipo)] < 1)
             {
@@ -284,7 +255,12 @@ namespace LigaBA.ClasesLigaBA
 
             return true;
         }
-
+        
+        public List<Fecha> GetFechas()
+        {
+            return fixture;
+        }
+        
         //Metodos matematicos        
         public long factorial(int num)
         {

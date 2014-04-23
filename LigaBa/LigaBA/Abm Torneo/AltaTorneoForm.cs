@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 
 using LigaBA.Clases;
+using LigaBA.ClasesLigaBA;
 
 namespace LigaBA.Abm_Torneo
 {
@@ -28,9 +29,36 @@ namespace LigaBA.Abm_Torneo
             this.NombreTextBox.Select();
 
         }
+        
+        private List<Institucion> cargarInstituciones()
+        {
+            List<Institucion> instituciones = new List<Institucion>();
+
+            foreach (var itemChecked in InstitucionesCheckedListBox.CheckedItems)
+            {
+                var row = (itemChecked as DataRowView).Row;
+                int id = Convert.ToInt32(row["id"].ToString());
+                string nombre = row["nombre"].ToString();
+                instituciones.Add(new Institucion(id,nombre));
+            }
+
+            if ((instituciones.Count % 2) != 0)
+            {
+                instituciones.Add(new Institucion(0, "Libre"));
+            }
+            return instituciones;
+        }
+
+        private void CrearFixture()
+        {
+            GenerarFixture.Inicializar(this.cargarInstituciones());
+            GenerarFixture.Generar();
+            MessageBox.Show(GenerarFixture.fixtureFinal.imprimirFixture());
+        }
 
         private void GuardarButton_Click(object sender, EventArgs e)
         {
+            CrearFixture();
             if (Validaciones() == -1) return;
 
             string TipoTablaGeneral;
