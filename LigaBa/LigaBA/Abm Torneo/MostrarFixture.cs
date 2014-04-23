@@ -48,6 +48,11 @@ namespace LigaBA.Abm_Torneo
             hiloControl.Start();
         }
 
+        private void insertarFixture()
+        {
+
+        }
+
         //Metodos accedidos desde los hilos
         delegate void RichTextBoxDelegate(string txt);
 
@@ -85,7 +90,8 @@ namespace LigaBA.Abm_Torneo
             }
             fixtureFinal.imprimirFixture();
             m = false;
-            fixtureFinal = null;            
+            //fixtureFinal = null;            
+            //insertarFixture();
         }
 
         private void metodoHilo(Fixture fx)

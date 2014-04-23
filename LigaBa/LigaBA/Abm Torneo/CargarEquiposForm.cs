@@ -372,10 +372,10 @@ namespace LigaBA.Abm_Torneo
             List<Equipo> equipos = new List<Equipo>();
             foreach (DataRow row in this.tablaDeEquipos.Rows)
             {
-                if (row["Seleccionado"].ToString() == "True")
-                {
+                //if (row["Seleccionado"].ToString() == "True")
+                //{
                     equipos.Add(new Equipo(Convert.ToInt32(row["id"]), row["Equipo"].ToString()));
-                }
+                //}
             }
 
             MostrarFixture mostrarFixtureForm = new MostrarFixture(equipos);
