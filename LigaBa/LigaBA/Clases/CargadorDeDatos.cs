@@ -50,6 +50,16 @@ namespace LigaBA.Clases
             CargadorDeDatos.CargarComboBox("select id,nombre from LigaBA.Institucion WHERE borrado=0", new List<SqlParameter>(), comboBox, txt, "id", "nombre");
         }
 
+        public static void CargarFechasComboBox(ComboBox comboBox, string txt, string torneo, string categoria)
+        {
+            int Num;
+
+            if (int.TryParse(torneo, out Num) && int.TryParse(categoria, out Num))
+            {
+                CargadorDeDatos.CargarComboBox("SELECT DISTINCT fecha FROM LigaBA.Partido INNER JOIN LigaBA.TorneoXCategoria as TXC ON torneoxcategoria = TXC.id WHERE categoria = "+ categoria +" AND torneogeneral = "+ torneo , new List<SqlParameter>(), comboBox, txt, "fecha", "fecha");
+            }
+        }
+
         public static void CargarEquipoComboBox(ComboBox comboBox, string txt,string institucion ,string categoria)
         {
             int Num;

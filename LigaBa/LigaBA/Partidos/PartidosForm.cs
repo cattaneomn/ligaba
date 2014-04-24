@@ -14,9 +14,21 @@ namespace LigaBA.Partidos
 {
     public partial class PartidosForm : Form
     {
+
+        private string torneo;
+        private string categoria;
+
         public PartidosForm()
         {
             InitializeComponent();
+        }
+
+        private void PartidosForm_Load(object sender, EventArgs e)
+        {
+            CargadorDeDatos.CargarCategoriaComboBox(CategoriasComboBox, this.Text);
+            CargadorDeDatos.CargarTorneoComboBox(TorneosComboBox, this.Text);            
+
+            this.BuscarButton.Select();
         }
 
         private void BuscarButton_Click(object sender, EventArgs e)
@@ -102,6 +114,52 @@ namespace LigaBA.Partidos
             hilo.SetApartmentState(System.Threading.ApartmentState.STA);
             hilo.Start();
         }
+        
+        private void TorneosComboBox_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            ControlarComboBoxNull();
+            CargarFechasComboBox();
+        }
+
+        private void CategoriasComboBox_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            ControlarComboBoxNull();
+            CargarFechasComboBox();
+        }
+
+        private void CargarFechasComboBox()
+        {
+            if (torneo != null && categoria != null)
+            {
+                CargadorDeDatos.CargarFechasComboBox(FechaComboBox, this.Text, torneo, categoria);
+                FechaComboBox.Enabled = true;
+            }
+            else
+            {
+                FechaComboBox.Enabled = false;
+            }
+        }
+
+        private void ControlarComboBoxNull()
+        {
+            if (TorneosComboBox.SelectedItem != null)
+            {
+                this.torneo = TorneosComboBox.SelectedValue.ToString();
+            }
+            else
+            {
+                this.torneo = null;
+            }
+
+            if (CategoriasComboBox.SelectedItem != null)
+            {
+                this.categoria = CategoriasComboBox.SelectedValue.ToString();
+            }
+            else
+            {
+                this.categoria = null;
+            }
+        }
 
         private void AbrirFormReporte()
         {
@@ -156,14 +214,6 @@ namespace LigaBA.Partidos
             JugarPartidoForm abrir = new JugarPartidoForm();
             abrir.ShowDialog();
             
-        }
-
-        private void PartidosForm_Load(object sender, EventArgs e)
-        {
-            CargadorDeDatos.CargarCategoriaComboBox(CategoriasComboBox, this.Text);
-            CargadorDeDatos.CargarTorneoComboBox(TorneosComboBox, this.Text);
-
-            this.BuscarButton.Select();
-        }
+        }        
     }
 }
