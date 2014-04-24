@@ -46,32 +46,47 @@ namespace LigaBA.Partidos
                 return;
             }
 
-            this.Partidos_DataGridView.Columns["id"].Visible = false;
+            this.Partidos_DataGridView.Columns["idLocal"].Visible = false;
+            this.Partidos_DataGridView.Columns["idVisitante"].Visible = false;
+            this.Partidos_DataGridView.Columns["idTorCat"].Visible = false;
+            this.Partidos_DataGridView.Columns["idCat"].Visible = false;
+
+            this.Partidos_DataGridView.Columns["Torneo"].Width = 150;
+            this.Partidos_DataGridView.Columns["Equipo Local"].Width = 150;
+            this.Partidos_DataGridView.Columns["Equipo Visitante"].Width = 150;
+
             this.Partidos_DataGridView.Focus();
         }
 
 
         private string ArmarConsulta()
         {
-            string Consulta = "SELECT id,nombre as Equipo,LigaBA.f_NombreInstitucion(institucion)Institucion,LigaBA.f_NombreCategoria(categoria)Categoria FROM LigaBA.Equipo WHERE borrado=0";
+            string Consulta = "SELECT equipolocal as idLocal,equipovisitante as idVisitante,torneoxcategoria as idTorCat,TXC.categoria as idCat,";
+            Consulta += "TG.nombre as 'Torneo',fecha as Fecha,EqL.nombre as 'Equipo Local','vs' as 'vs',EqV.nombre as 'Equipo Visitante'";
+            Consulta += "FROM LigaBA.Partido ";
+            Consulta += "INNER JOIN LigaBA.Equipo as EqL ON equipolocal = EqL.id ";
+            Consulta += "INNER JOIN LigaBA.Equipo as EqV ON equipovisitante = EqV.id ";
+            Consulta += "INNER JOIN LigaBA.TorneoXCategoria AS TXC ON torneoxcategoria = TXC.id ";
+            Consulta += "INNER JOIN LigaBA.Torneo AS TG ON TXC.torneogeneral = TG.id ";
+                        
 
-            /*
-            if (NombreTextBox.TextLength > 0)
+            
+            if (TorneosComboBox.SelectedItem != null)
             {
-                Consulta += "AND nombre LIKE '%" + NombreTextBox.Text + "%' ";
+                Consulta += "AND TG.id = " + TorneosComboBox.SelectedValue.ToString();
             }
 
-            if (InstitucionComboBox.SelectedItem != null)
+            if (FechaComboBox.SelectedItem != null)
             {
-                Consulta += "AND institucion= '" + InstitucionComboBox.SelectedValue.ToString() + "' ";
+                Consulta += "AND fecha = '" + FechaComboBox.SelectedValue.ToString() + "' ";
             }
 
             if (CategoriasComboBox.SelectedItem != null)
             {
-                Consulta += "AND categoria='" + CategoriasComboBox.SelectedValue.ToString() + "' ";
+                Consulta += "AND TXC.categoria = " + CategoriasComboBox.SelectedValue.ToString();
             }
 
-            */
+            Consulta += "ORDER BY TG.nombre,idCat,fecha";
            
             return Consulta;
         }
