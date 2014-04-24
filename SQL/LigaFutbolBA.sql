@@ -629,7 +629,7 @@ CREATE PROCEDURE [LigaBA].[p_AltaEquipo]
 AS
 BEGIN transaction
         
-        IF EXISTS(SELECT 1 FROM LigaBA.Equipo WHERE nombre = @nombre AND categoria = @categoria WHERE borrado=0)
+        IF EXISTS(SELECT 1 FROM LigaBA.Equipo WHERE nombre = @nombre AND categoria = @categoria AND borrado=0)
         BEGIN
                 RAISERROR ('No se puede guardar el equipo porque ya existe un equipo con ese nombre y categoria.',16,1)
                 ROLLBACK
