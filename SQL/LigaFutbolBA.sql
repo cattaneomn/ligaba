@@ -975,7 +975,22 @@ BEGIN transaction
 COMMIT
 GO
 
+--INSERTAR PARTIDO
+CREATE PROCEDURE [LigaBA].[p_InsertarPartido]
+(
+        @TorneoXCategoria int,
+        @Fecha int,
+        @Local int,
+        @Visitante int
+)       
+AS
+BEGIN transaction
 
+        INSERT INTO LigaBA.Partido(equipolocal,equipovisitante,fecha,torneoxcategoria) 
+        VALUES (@Local,@Visitante,@Fecha,@TorneoXCategoria)
+
+COMMIT
+GO
 
 --BACK UP
 CREATE PROCEDURE [LigaBA].[p_BackUp]

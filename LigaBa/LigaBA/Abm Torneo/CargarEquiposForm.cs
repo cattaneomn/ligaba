@@ -8,7 +8,6 @@ using System.Text;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using LigaBA.Clases;
-
 using LigaBA.ClasesLigaBA;
 
 namespace LigaBA.Abm_Torneo
@@ -72,9 +71,9 @@ namespace LigaBA.Abm_Torneo
 
             this.tablaDeEquipos = BaseDeDatos.GetInstance.ExecuteCustomQuery(consulta, param, this.Text);
             Equipos_DataGridView.DataSource = tablaDeEquipos;
-            /*this.Equipos_DataGridView.Columns["id"].Visible = false;
+            this.Equipos_DataGridView.Columns["id"].Visible = false;
             this.Equipos_DataGridView.Columns["idCat"].Visible = false;
-            this.Equipos_DataGridView.Columns["idInt"].Visible = false;*/
+            this.Equipos_DataGridView.Columns["idInt"].Visible = false;
             this.Equipos_DataGridView.Columns["elegido"].Visible = false;
             this.Equipos_DataGridView.Focus();
         }
@@ -268,15 +267,23 @@ namespace LigaBA.Abm_Torneo
                     InsertarPartido(local.torneoxcategoria, partido.get_fecha(), visitante.equipo, local.equipo);
                 }  
             }
-            MessageBox.Show(msg);
+            //MessageBox.Show(msg);
         }
 
-        string msg = "";
+        
         private void InsertarPartido(int torneoxcategoria, int fecha, int local,int visitante)
         {
-           //TODO:INSERTAR.
-            msg +="TorneoXcat:"+torneoxcategoria+" Fecha:"+fecha+" "+local+"vs"+visitante;
 
+            //msg +="TorneoXcat:"+torneoxcategoria+" Fecha:"+fecha+" "+local+"vs"+visitante;
+
+            List<SqlParameter> param = new List<SqlParameter>();
+            param.Add(new SqlParameter("@TorneoXCategoria", torneoxcategoria));
+            param.Add(new SqlParameter("@Fecha", fecha));
+            param.Add(new SqlParameter("@Local", local));
+            param.Add(new SqlParameter("@Visitante", visitante));
+
+            bool TerminoBien = BaseDeDatos.GetInstance.ejecutarProcedimiento("p_InsertarPartido", param, this.Text);
+        
         }
 
         private bool InsertarTorneoApertura()

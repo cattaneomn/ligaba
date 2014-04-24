@@ -43,7 +43,6 @@
             this.Equipos_DataGridView = new System.Windows.Forms.DataGridView();
             this.GuardarButton = new System.Windows.Forms.Button();
             this.CancelarButton = new System.Windows.Forms.Button();
-            this.generarFixtureButton = new System.Windows.Forms.Button();
             this.FiltroGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Equipos_DataGridView)).BeginInit();
             this.SuspendLayout();
@@ -191,22 +190,12 @@
             this.CancelarButton.UseVisualStyleBackColor = true;
             this.CancelarButton.Click += new System.EventHandler(this.CancelarButton_Click);
             // 
-            // generarFixtureButton
-            // 
-            this.generarFixtureButton.Location = new System.Drawing.Point(266, 431);
-            this.generarFixtureButton.Name = "generarFixtureButton";
-            this.generarFixtureButton.Size = new System.Drawing.Size(146, 23);
-            this.generarFixtureButton.TabIndex = 12;
-            this.generarFixtureButton.Text = "Ver / Generar Fixture";
-            this.generarFixtureButton.UseVisualStyleBackColor = true;            
-            // 
             // CargarEquiposForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.CancelarButton;
             this.ClientSize = new System.Drawing.Size(684, 462);
-            this.Controls.Add(this.generarFixtureButton);
             this.Controls.Add(this.GuardarButton);
             this.Controls.Add(this.CancelarButton);
             this.Controls.Add(this.Equipos_DataGridView);
@@ -237,6 +226,5 @@
         private System.Windows.Forms.TextBox InstitucionTextBox;
         private System.Windows.Forms.Button GuardarButton;
         private System.Windows.Forms.Button CancelarButton;
-        private System.Windows.Forms.Button generarFixtureButton;
     }
 }
