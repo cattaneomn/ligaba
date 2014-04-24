@@ -70,6 +70,16 @@ namespace LigaBA.Clases
             }
         }
 
+        public static void CargarEquipoXPartidoComboBox(ComboBox comboBox, string txt, string partido)
+        {
+            int Num;
+
+            if (int.TryParse(partido, out Num))
+            {
+                CargadorDeDatos.CargarComboBox("SELECT DISTINCT Equipo.id as idEquipo,Equipo.nombre as nombre FROM LigaBA.Partido INNER JOIN LigaBA.Equipo ON Equipo.id = Partido.equipolocal OR Equipo.id = Partido.equipovisitante WHERE Partido.id = " + partido, new List<SqlParameter>(), comboBox, txt, "idEquipo", "nombre");
+            }
+        }
+
         public static void CargarTorneoComboBox(ComboBox comboBox, string txt)
         {
             CargadorDeDatos.CargarComboBox("select id,nombre from LigaBA.Torneo", new List<SqlParameter>(), comboBox, txt, "id", "nombre");

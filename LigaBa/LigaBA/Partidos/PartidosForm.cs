@@ -49,7 +49,11 @@ namespace LigaBA.Partidos
             this.Partidos_DataGridView.Columns["idLocal"].Visible = false;
             this.Partidos_DataGridView.Columns["idVisitante"].Visible = false;
             this.Partidos_DataGridView.Columns["idTorCat"].Visible = false;
+            this.Partidos_DataGridView.Columns["idT"].Visible = false;
             this.Partidos_DataGridView.Columns["idCat"].Visible = false;
+            this.Partidos_DataGridView.Columns["idP"].Visible = false;
+            this.Partidos_DataGridView.Columns["Goles Local"].Visible = false;
+            this.Partidos_DataGridView.Columns["Goles Visitante"].Visible = false;
 
             this.Partidos_DataGridView.Columns["Torneo"].Width = 150;
             this.Partidos_DataGridView.Columns["Equipo Local"].Width = 150;
@@ -61,32 +65,31 @@ namespace LigaBA.Partidos
 
         private string ArmarConsulta()
         {
-            string Consulta = "SELECT equipolocal as idLocal,equipovisitante as idVisitante,torneoxcategoria as idTorCat,TXC.categoria as idCat,";
-            Consulta += "TG.nombre as 'Torneo',fecha as Fecha,EqL.nombre as 'Equipo Local','vs' as 'vs',EqV.nombre as 'Equipo Visitante'";
-            Consulta += "FROM LigaBA.Partido ";
-            Consulta += "INNER JOIN LigaBA.Equipo as EqL ON equipolocal = EqL.id ";
-            Consulta += "INNER JOIN LigaBA.Equipo as EqV ON equipovisitante = EqV.id ";
-            Consulta += "INNER JOIN LigaBA.TorneoXCategoria AS TXC ON torneoxcategoria = TXC.id ";
-            Consulta += "INNER JOIN LigaBA.Torneo AS TG ON TXC.torneogeneral = TG.id ";
-                        
-
-            
+            string Consulta = "SELECT Partido.id as idP,TXC.torneogeneral as idT,Partido.equipolocal as idLocal,Partido.equipovisitante as idVisitante,torneoxcategoria as idTorCat,TXC.categoria as idCat,";
+            Consulta += "Partido.goleslocal as 'Goles Local',Partido.golesvisiante as 'Goles Visitante',TG.nombre as 'Torneo',C.nombre as Categoria, Partido.fecha as Fecha,EqL.nombre as 'Equipo Local','vs' as 'vs',EqV.nombre as 'Equipo Visitante'";
+            Consulta += " FROM LigaBA.Partido as Partido";
+            Consulta += " INNER JOIN LigaBA.Equipo as EqL ON Partido.equipolocal = EqL.id ";
+            Consulta += " INNER JOIN LigaBA.Equipo as EqV ON Partido.equipovisitante = EqV.id ";
+            Consulta += " INNER JOIN LigaBA.TorneoXCategoria AS TXC ON torneoxcategoria = TXC.id ";
+            Consulta += " INNER JOIN LigaBA.Torneo AS TG ON TXC.torneogeneral = TG.id ";
+            Consulta += " INNER JOIN LigaBA.Categoria AS C ON C.id = TXC.categoria WHERE 1=1 "; 
+                                    
             if (TorneosComboBox.SelectedItem != null)
             {
-                Consulta += "AND TG.id = " + TorneosComboBox.SelectedValue.ToString();
+                Consulta += " AND TG.id = " + TorneosComboBox.SelectedValue.ToString();
             }
 
             if (FechaComboBox.SelectedItem != null)
             {
-                Consulta += "AND fecha = '" + FechaComboBox.SelectedValue.ToString() + "' ";
+                Consulta += " AND fecha = '" + FechaComboBox.SelectedValue.ToString() + "' ";
             }
 
             if (CategoriasComboBox.SelectedItem != null)
             {
-                Consulta += "AND TXC.categoria = " + CategoriasComboBox.SelectedValue.ToString();
+                Consulta += " AND TXC.categoria = " + CategoriasComboBox.SelectedValue.ToString();
             }
 
-            Consulta += "ORDER BY TG.nombre,idCat,fecha";
+            Consulta += " ORDER BY TG.nombre,idCat,fecha";
            
             return Consulta;
         }
@@ -225,8 +228,20 @@ namespace LigaBA.Partidos
                 MessageBox.Show("Debe seleccionar una fila.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
-
-            JugarPartidoForm abrir = new JugarPartidoForm();
+            PartidoAModificar partido = new PartidoAModificar(Partidos_DataGridView.CurrentRow.Cells["idP"].Value.ToString(),
+                                                                Partidos_DataGridView.CurrentRow.Cells["idT"].Value.ToString(),
+                                                                Partidos_DataGridView.CurrentRow.Cells["idCat"].Value.ToString(),
+                                                                Partidos_DataGridView.CurrentRow.Cells["fecha"].Value.ToString(),
+                                                                Partidos_DataGridView.CurrentRow.Cells["idLocal"].Value.ToString(),
+                                                                Partidos_DataGridView.CurrentRow.Cells["idVisitante"].Value.ToString(),
+                                                                Partidos_DataGridView.CurrentRow.Cells["Goles Local"].Value.ToString(),
+                                                                Partidos_DataGridView.CurrentRow.Cells["Goles Visitante"].Value.ToString(),
+                                                                Partidos_DataGridView.CurrentRow.Cells["Torneo"].Value.ToString(),
+                                                                Partidos_DataGridView.CurrentRow.Cells["Categoria"].Value.ToString(),
+                                                                Partidos_DataGridView.CurrentRow.Cells["Equipo Local"].Value.ToString(),
+                                                                Partidos_DataGridView.CurrentRow.Cells["Equipo Visitante"].Value.ToString()
+                                                               );
+            JugarPartidoForm abrir = new JugarPartidoForm(partido);
             abrir.ShowDialog();
             
         }        
