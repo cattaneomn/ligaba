@@ -50,14 +50,9 @@ namespace LigaBA.Clases
             CargadorDeDatos.CargarComboBox("select id,nombre from LigaBA.Institucion WHERE borrado=0", new List<SqlParameter>(), comboBox, txt, "id", "nombre");
         }
 
-        public static void CargarFechasComboBox(ComboBox comboBox, string txt, string torneo, string categoria)
+        public static void CargarFechasComboBox(ComboBox comboBox, string torneo, string txt)
         {
-            int Num;
-
-            if (int.TryParse(torneo, out Num) && int.TryParse(categoria, out Num))
-            {
-                CargadorDeDatos.CargarComboBox("SELECT DISTINCT fecha FROM LigaBA.Partido INNER JOIN LigaBA.TorneoXCategoria as TXC ON torneoxcategoria = TXC.id WHERE categoria = "+ categoria +" AND torneogeneral = "+ torneo , new List<SqlParameter>(), comboBox, txt, "fecha", "fecha");
-            }
+            CargadorDeDatos.CargarComboBox("select distinct fecha as id, fecha from LigaBA.Partido WHERE torneoxcategoria = (select TOP 1 id  from LigaBA.TorneoXCategoria WHERE torneogeneral=" + torneo + ")", new List<SqlParameter>(), comboBox, txt, "id", "fecha");
         }
 
         public static void CargarEquipoComboBox(ComboBox comboBox, string txt,string institucion ,string categoria)
@@ -67,16 +62,6 @@ namespace LigaBA.Clases
             if (int.TryParse(institucion, out Num) && int.TryParse(categoria, out Num))
             {
                 CargadorDeDatos.CargarComboBox("select id,nombre from LigaBA.Equipo WHERE borrado = '0' AND institucion = " + institucion + " AND categoria = " + categoria, new List<SqlParameter>(), comboBox, txt, "id", "nombre");
-            }
-        }
-
-        public static void CargarEquipoXPartidoComboBox(ComboBox comboBox, string txt, string partido)
-        {
-            int Num;
-
-            if (int.TryParse(partido, out Num))
-            {
-                CargadorDeDatos.CargarComboBox("SELECT DISTINCT Equipo.id as idEquipo,Equipo.nombre as nombre FROM LigaBA.Partido INNER JOIN LigaBA.Equipo ON Equipo.id = Partido.equipolocal OR Equipo.id = Partido.equipovisitante WHERE Partido.id = " + partido, new List<SqlParameter>(), comboBox, txt, "idEquipo", "nombre");
             }
         }
 

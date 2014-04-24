@@ -809,6 +809,22 @@ GO
 
 --FUNCIONES
 
+--NOMBRE EQUIPO
+CREATE FUNCTION [LigaBA].[f_NombreEquipo] 
+(
+       @id int
+)
+RETURNS nvarchar(100)
+AS
+BEGIN
+       DECLARE @nombre nvarchar(100)
+       
+       SELECT @nombre=nombre FROM LigaBA.Equipo WHERE id = @id
+       return @nombre
+
+END
+GO
+
 --NOMBRE INSTITUCION
 CREATE FUNCTION [LigaBA].[f_NombreInstitucion] 
 (
@@ -991,6 +1007,42 @@ BEGIN transaction
 
 COMMIT
 GO
+
+--BUSCAR PARTIDOS
+CREATE PROCEDURE [LigaBA].[p_BuscarPartidos]
+(
+   @Torneo int,
+   @Categoria int,
+   @Fecha int
+)       
+AS
+BEGIN transaction
+
+   DECLARE @TorneoXCategoria int
+   DECLARE @consulta nvarchar(1024)  
+   
+   SELECT @TorneoXCategoria=id FROM LigaBA.TorneoXCategoria WHERE torneogeneral=@Torneo AND categoria=@Categoria
+   
+   SET @consulta= ('SELECT P.id,P.fecha as Fecha,LigaBA.f_NombreEquipo(P.equipolocal) as Local,
+   CASE 
+     WHEN P.equipolocal <= -1 THEN (CAST(P.goleslocal as nvarchar(10)) + '' - '' + CAST(P.golesvisiante as nvarchar(10))) 
+     WHEN P.equipolocal  >= 0 THEN '' - ''   
+   END as Resultado,
+   LigaBA.f_NombreEquipo(P.equipovisitante) as Visitante 
+   FROM LigaBA.Partido as P
+   WHERE P.torneoxcategoria=' + CAST(@TorneoXCategoria as nvarchar(100)))
+   
+   IF (@Fecha != -1)
+   BEGIN 
+        SET @consulta = @consulta + ' AND P.fecha =' + CAST(@Fecha as nvarchar(10))
+   END
+   
+   exec(@Consulta)
+
+COMMIT
+
+GO
+
 
 --BACK UP
 CREATE PROCEDURE [LigaBA].[p_BackUp]

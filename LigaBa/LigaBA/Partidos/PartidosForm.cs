@@ -15,9 +15,6 @@ namespace LigaBA.Partidos
     public partial class PartidosForm : Form
     {
 
-        private string torneo;
-        private string categoria;
-
         public PartidosForm()
         {
             InitializeComponent();
@@ -33,65 +30,54 @@ namespace LigaBA.Partidos
 
         private void BuscarButton_Click(object sender, EventArgs e)
         {
-            string Consulta = ArmarConsulta();
+	            
+	        if (Validaciones() == -1) return;
+	            
+	        string Fecha;
 
+	        if (FechaComboBox.SelectedValue == null)
+	        {
+	            Fecha = "-1";
+	        }
+	        else
+	        {
+	            Fecha = FechaComboBox.Text;
+	        }
+ 	
             List<SqlParameter> param = new List<SqlParameter>();
-
-            Partidos_DataGridView.DataSource = BaseDeDatos.GetInstance.ExecuteCustomQuery(Consulta, param, this.Text);
-
-
-            if (Partidos_DataGridView.DataSource == null)
-            {
-                MessageBox.Show("No se encontraron resultados que coincidan con la busqueda.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-
-            this.Partidos_DataGridView.Columns["idLocal"].Visible = false;
-            this.Partidos_DataGridView.Columns["idVisitante"].Visible = false;
-            this.Partidos_DataGridView.Columns["idTorCat"].Visible = false;
-            this.Partidos_DataGridView.Columns["idT"].Visible = false;
-            this.Partidos_DataGridView.Columns["idCat"].Visible = false;
-            this.Partidos_DataGridView.Columns["idP"].Visible = false;
-            this.Partidos_DataGridView.Columns["Goles Local"].Visible = false;
-            this.Partidos_DataGridView.Columns["Goles Visitante"].Visible = false;
-
-            this.Partidos_DataGridView.Columns["Torneo"].Width = 150;
-            this.Partidos_DataGridView.Columns["Equipo Local"].Width = 150;
-            this.Partidos_DataGridView.Columns["Equipo Visitante"].Width = 150;
-
-            this.Partidos_DataGridView.Focus();
+	        param.Add(new SqlParameter("@Torneo", TorneosComboBox.SelectedValue.ToString()));
+	        param.Add(new SqlParameter("@Categoria", CategoriasComboBox.SelectedValue.ToString()));
+	        param.Add(new SqlParameter("@Fecha", Fecha));
+ 	
+	        DataSet ds = BaseDeDatos.GetInstance.ejecutarConsulta("p_BuscarPartidos", param, "Partidos", this.Text);
+	
+	        if (ds.Tables["Partidos"].Rows.Count == 0)
+ 	        {
+	            this.Partidos_DataGridView.DataSource = null;
+ 	            MessageBox.Show("No se encontraron resultados que coincidan con la busqueda.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+ 	            return;
+ 	        }
+ 	
+	        Partidos_DataGridView.DataSource = ds.Tables["Partidos"];
+	        Partidos_DataGridView.Columns["Resultado"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;          
+ 	        this.Partidos_DataGridView.Columns["id"].Visible = false;
+ 	        this.Partidos_DataGridView.Focus();
         }
 
+        private int Validaciones()
+ 	    {
+	            if (TorneosComboBox.SelectedValue == null)
+ 	            {
+	                MessageBox.Show("Debe seleccionar un torneo obligatoriamente.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+	                return -1;
+ 	            }
 
-        private string ArmarConsulta()
-        {
-            string Consulta = "SELECT Partido.id as idP,TXC.torneogeneral as idT,Partido.equipolocal as idLocal,Partido.equipovisitante as idVisitante,torneoxcategoria as idTorCat,TXC.categoria as idCat,";
-            Consulta += "Partido.goleslocal as 'Goles Local',Partido.golesvisiante as 'Goles Visitante',TG.nombre as 'Torneo',C.nombre as Categoria, Partido.fecha as Fecha,EqL.nombre as 'Equipo Local','vs' as 'vs',EqV.nombre as 'Equipo Visitante'";
-            Consulta += " FROM LigaBA.Partido as Partido";
-            Consulta += " INNER JOIN LigaBA.Equipo as EqL ON Partido.equipolocal = EqL.id ";
-            Consulta += " INNER JOIN LigaBA.Equipo as EqV ON Partido.equipovisitante = EqV.id ";
-            Consulta += " INNER JOIN LigaBA.TorneoXCategoria AS TXC ON torneoxcategoria = TXC.id ";
-            Consulta += " INNER JOIN LigaBA.Torneo AS TG ON TXC.torneogeneral = TG.id ";
-            Consulta += " INNER JOIN LigaBA.Categoria AS C ON C.id = TXC.categoria WHERE 1=1 "; 
-                                    
-            if (TorneosComboBox.SelectedItem != null)
-            {
-                Consulta += " AND TG.id = " + TorneosComboBox.SelectedValue.ToString();
-            }
-
-            if (FechaComboBox.SelectedItem != null)
-            {
-                Consulta += " AND fecha = '" + FechaComboBox.SelectedValue.ToString() + "' ";
-            }
-
-            if (CategoriasComboBox.SelectedItem != null)
-            {
-                Consulta += " AND TXC.categoria = " + CategoriasComboBox.SelectedValue.ToString();
-            }
-
-            Consulta += " ORDER BY TG.nombre,idCat,fecha";
-           
-            return Consulta;
+	            if (CategoriasComboBox.SelectedValue == null)
+ 	            {
+	                MessageBox.Show("Debe seleccionar una categoria obligatoriamente..", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+	                return -1;
+ 	            }
+                return 1;
         }
 
         private void LimpiarButton_Click(object sender, EventArgs e)
@@ -108,6 +94,7 @@ namespace LigaBA.Partidos
                 }
             }
 
+            this.FechaComboBox.Enabled = false;
             ModDataGridView.limpiarDataGridView(Partidos_DataGridView, "");
         }
 
@@ -133,52 +120,7 @@ namespace LigaBA.Partidos
             hilo.Start();
         }
         
-        private void TorneosComboBox_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            ControlarComboBoxNull();
-            CargarFechasComboBox();
-        }
-
-        private void CategoriasComboBox_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            ControlarComboBoxNull();
-            CargarFechasComboBox();
-        }
-
-        private void CargarFechasComboBox()
-        {
-            if (torneo != null && categoria != null)
-            {
-                CargadorDeDatos.CargarFechasComboBox(FechaComboBox, this.Text, torneo, categoria);
-                FechaComboBox.Enabled = true;
-            }
-            else
-            {
-                FechaComboBox.Enabled = false;
-            }
-        }
-
-        private void ControlarComboBoxNull()
-        {
-            if (TorneosComboBox.SelectedItem != null)
-            {
-                this.torneo = TorneosComboBox.SelectedValue.ToString();
-            }
-            else
-            {
-                this.torneo = null;
-            }
-
-            if (CategoriasComboBox.SelectedItem != null)
-            {
-                this.categoria = CategoriasComboBox.SelectedValue.ToString();
-            }
-            else
-            {
-                this.categoria = null;
-            }
-        }
-
+      
         private void AbrirFormReporte()
         {
             string Visitante = "3";//Partidos_DataGridView.CurrentRow.Cells["Visitante"].Value.ToString();
@@ -228,22 +170,32 @@ namespace LigaBA.Partidos
                 MessageBox.Show("Debe seleccionar una fila.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
-            PartidoAModificar partido = new PartidoAModificar(Partidos_DataGridView.CurrentRow.Cells["idP"].Value.ToString(),
-                                                                Partidos_DataGridView.CurrentRow.Cells["idT"].Value.ToString(),
-                                                                Partidos_DataGridView.CurrentRow.Cells["idCat"].Value.ToString(),
-                                                                Partidos_DataGridView.CurrentRow.Cells["fecha"].Value.ToString(),
-                                                                Partidos_DataGridView.CurrentRow.Cells["idLocal"].Value.ToString(),
-                                                                Partidos_DataGridView.CurrentRow.Cells["idVisitante"].Value.ToString(),
-                                                                Partidos_DataGridView.CurrentRow.Cells["Goles Local"].Value.ToString(),
-                                                                Partidos_DataGridView.CurrentRow.Cells["Goles Visitante"].Value.ToString(),
-                                                                Partidos_DataGridView.CurrentRow.Cells["Torneo"].Value.ToString(),
-                                                                Partidos_DataGridView.CurrentRow.Cells["Categoria"].Value.ToString(),
-                                                                Partidos_DataGridView.CurrentRow.Cells["Equipo Local"].Value.ToString(),
-                                                                Partidos_DataGridView.CurrentRow.Cells["Equipo Visitante"].Value.ToString()
-                                                               );
-            JugarPartidoForm abrir = new JugarPartidoForm(partido);
+
+            JugarPartidoForm abrir = new JugarPartidoForm();
             abrir.ShowDialog();
             
+        }
+
+        private void TorneosComboBox_SelectionChangeCommitted_1(object sender, EventArgs e)
+        {
+            this.FechaComboBox.Enabled = true;
+            string SeleccionadoAnterior = this.FechaComboBox.Text;
+            FechaComboBox.DataSource = null;
+
+            CargadorDeDatos.CargarFechasComboBox(FechaComboBox, this.TorneosComboBox.SelectedValue.ToString(), this.Text);
+
+            int ultimo = Convert.ToInt32(FechaComboBox.GetItemText(FechaComboBox.Items[FechaComboBox.Items.Count - 1]));
+
+
+            if (SeleccionadoAnterior != "")
+            {
+                if (Convert.ToInt32(SeleccionadoAnterior) <= ultimo)
+                {
+                    int Posicion = FechaComboBox.FindString(SeleccionadoAnterior);
+                    this.FechaComboBox.SelectedIndex = Posicion;
+                }
+            }
+	
         }        
     }
 }
