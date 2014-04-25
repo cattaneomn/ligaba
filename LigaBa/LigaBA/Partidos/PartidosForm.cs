@@ -23,9 +23,9 @@ namespace LigaBA.Partidos
         private void PartidosForm_Load(object sender, EventArgs e)
         {
             CargadorDeDatos.CargarCategoriaComboBox(CategoriasComboBox, this.Text);
-            CargadorDeDatos.CargarTorneoComboBox(TorneosComboBox, this.Text);            
+            CargadorDeDatos.CargarTorneoComboBox(TorneosComboBox, this.Text);
 
-            this.BuscarButton.Select();
+            this.TorneosComboBox.Select();
         }
 
         private void BuscarButton_Click(object sender, EventArgs e)
@@ -48,10 +48,11 @@ namespace LigaBA.Partidos
 	        param.Add(new SqlParameter("@Torneo", TorneosComboBox.SelectedValue.ToString()));
 	        param.Add(new SqlParameter("@Categoria", CategoriasComboBox.SelectedValue.ToString()));
 	        param.Add(new SqlParameter("@Fecha", Fecha));
- 	
-	        DataSet ds = BaseDeDatos.GetInstance.ejecutarConsulta("p_BuscarPartidos", param, "Partidos", this.Text);
-	
-	        if (ds.Tables["Partidos"].Rows.Count == 0)
+
+            DataSet ds = null;
+	        ds = BaseDeDatos.GetInstance.ejecutarConsulta("p_BuscarPartidos", param, "Partidos", this.Text);
+
+            if (ds.Tables["Partidos"].Rows.Count == 0)
  	        {
 	            this.Partidos_DataGridView.DataSource = null;
  	            MessageBox.Show("No se encontraron resultados que coincidan con la busqueda.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -170,8 +171,21 @@ namespace LigaBA.Partidos
                 MessageBox.Show("Debe seleccionar una fila.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
+            
+            if (Partidos_DataGridView.CurrentRow.Cells["Resultado"].Value.ToString() != " - ")
+            {
+                MessageBox.Show("El Partido seleccionado ya fue jugado.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
 
-            JugarPartidoForm abrir = new JugarPartidoForm();
+            string Torneo = this.TorneosComboBox.Text;
+            string Categoria = this.CategoriasComboBox.Text;
+            string Fecha = Partidos_DataGridView.CurrentRow.Cells["Fecha"].Value.ToString();
+            string Local = Partidos_DataGridView.CurrentRow.Cells["Local"].Value.ToString();
+            string Visitante = Partidos_DataGridView.CurrentRow.Cells["Visitante"].Value.ToString();
+
+
+            JugarPartidoForm abrir = new JugarPartidoForm(Torneo,Categoria,Fecha,Local,Visitante);
             abrir.ShowDialog();
             
         }

@@ -255,6 +255,7 @@
             // 
             // ImprimirJugadoresButton
             // 
+            this.ImprimirJugadoresButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ImprimirJugadoresButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ImprimirJugadoresButton.Image = ((System.Drawing.Image)(resources.GetObject("ImprimirJugadoresButton.Image")));
             this.ImprimirJugadoresButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;

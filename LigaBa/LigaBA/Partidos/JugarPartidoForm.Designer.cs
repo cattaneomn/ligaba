@@ -28,48 +28,54 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(JugarPartidoForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
             this.GolesTab = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.Equipos_DataGridView = new System.Windows.Forms.DataGridView();
+            this.Goles_DataGridView = new System.Windows.Forms.DataGridView();
             this.EliminarGolesButton = new System.Windows.Forms.Button();
             this.AgregarGolesButton = new System.Windows.Forms.Button();
             this.AmarillasTab = new System.Windows.Forms.TabPage();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Amarillas_DataGridView = new System.Windows.Forms.DataGridView();
             this.EliminarAmarillasButton = new System.Windows.Forms.Button();
             this.AgregarAmarillasButton = new System.Windows.Forms.Button();
             this.RojasTab = new System.Windows.Forms.TabPage();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.Rojas_DataGridView = new System.Windows.Forms.DataGridView();
             this.EliminarRojasButton = new System.Windows.Forms.Button();
             this.AgregarRojasButton = new System.Windows.Forms.Button();
             this.CancelarButton = new System.Windows.Forms.Button();
             this.GuardarButton = new System.Windows.Forms.Button();
             this.GroupBox = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.LocalLabel = new System.Windows.Forms.Label();
-            this.VisitanteLabel = new System.Windows.Forms.Label();
+            this.FechaLabel = new System.Windows.Forms.Label();
+            this.CategoriaLabel = new System.Windows.Forms.Label();
+            this.TorneoLabel = new System.Windows.Forms.Label();
+            this.VisitanteNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.LocalNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
+            this.VisitanteLabel = new System.Windows.Forms.Label();
+            this.LocalLabel = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.GolesTab.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Equipos_DataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Goles_DataGridView)).BeginInit();
             this.AmarillasTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Amarillas_DataGridView)).BeginInit();
             this.RojasTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Rojas_DataGridView)).BeginInit();
             this.GroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.VisitanteNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LocalNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // GolesTab
             // 
+            this.GolesTab.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.GolesTab.Controls.Add(this.tabPage1);
             this.GolesTab.Controls.Add(this.AmarillasTab);
             this.GolesTab.Controls.Add(this.RojasTab);
@@ -82,7 +88,7 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.Equipos_DataGridView);
+            this.tabPage1.Controls.Add(this.Goles_DataGridView);
             this.tabPage1.Controls.Add(this.EliminarGolesButton);
             this.tabPage1.Controls.Add(this.AgregarGolesButton);
             this.tabPage1.Location = new System.Drawing.Point(4, 24);
@@ -93,20 +99,20 @@
             this.tabPage1.Text = "Goles";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // Equipos_DataGridView
+            // Goles_DataGridView
             // 
-            this.Equipos_DataGridView.AllowUserToAddRows = false;
-            this.Equipos_DataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.Goles_DataGridView.AllowUserToAddRows = false;
+            this.Goles_DataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Equipos_DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Equipos_DataGridView.Location = new System.Drawing.Point(6, 47);
-            this.Equipos_DataGridView.Name = "Equipos_DataGridView";
-            this.Equipos_DataGridView.ReadOnly = true;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Equipos_DataGridView.RowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.Equipos_DataGridView.Size = new System.Drawing.Size(690, 249);
-            this.Equipos_DataGridView.TabIndex = 10;
+            this.Goles_DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Goles_DataGridView.Location = new System.Drawing.Point(6, 47);
+            this.Goles_DataGridView.Name = "Goles_DataGridView";
+            this.Goles_DataGridView.ReadOnly = true;
+            dataGridViewCellStyle25.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Goles_DataGridView.RowsDefaultCellStyle = dataGridViewCellStyle25;
+            this.Goles_DataGridView.Size = new System.Drawing.Size(690, 249);
+            this.Goles_DataGridView.TabIndex = 10;
             // 
             // EliminarGolesButton
             // 
@@ -120,6 +126,7 @@
             this.EliminarGolesButton.Text = "  Eliminar";
             this.EliminarGolesButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.EliminarGolesButton.UseVisualStyleBackColor = true;
+            this.EliminarGolesButton.Click += new System.EventHandler(this.EliminarGolesButton_Click);
             // 
             // AgregarGolesButton
             // 
@@ -133,10 +140,11 @@
             this.AgregarGolesButton.Text = "  Agregar";
             this.AgregarGolesButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.AgregarGolesButton.UseVisualStyleBackColor = true;
+            this.AgregarGolesButton.Click += new System.EventHandler(this.AgregarGolesButton_Click);
             // 
             // AmarillasTab
             // 
-            this.AmarillasTab.Controls.Add(this.dataGridView1);
+            this.AmarillasTab.Controls.Add(this.Amarillas_DataGridView);
             this.AmarillasTab.Controls.Add(this.EliminarAmarillasButton);
             this.AmarillasTab.Controls.Add(this.AgregarAmarillasButton);
             this.AmarillasTab.Location = new System.Drawing.Point(4, 24);
@@ -147,20 +155,20 @@
             this.AmarillasTab.Text = "Tarjetas Amarillas";
             this.AmarillasTab.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
+            // Amarillas_DataGridView
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.Amarillas_DataGridView.AllowUserToAddRows = false;
+            this.Amarillas_DataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(6, 47);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView1.Size = new System.Drawing.Size(690, 249);
-            this.dataGridView1.TabIndex = 14;
+            this.Amarillas_DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Amarillas_DataGridView.Location = new System.Drawing.Point(6, 47);
+            this.Amarillas_DataGridView.Name = "Amarillas_DataGridView";
+            this.Amarillas_DataGridView.ReadOnly = true;
+            dataGridViewCellStyle26.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Amarillas_DataGridView.RowsDefaultCellStyle = dataGridViewCellStyle26;
+            this.Amarillas_DataGridView.Size = new System.Drawing.Size(690, 249);
+            this.Amarillas_DataGridView.TabIndex = 14;
             // 
             // EliminarAmarillasButton
             // 
@@ -174,6 +182,7 @@
             this.EliminarAmarillasButton.Text = "  Eliminar";
             this.EliminarAmarillasButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.EliminarAmarillasButton.UseVisualStyleBackColor = true;
+            this.EliminarAmarillasButton.Click += new System.EventHandler(this.EliminarAmarillasButton_Click);
             // 
             // AgregarAmarillasButton
             // 
@@ -190,7 +199,7 @@
             // 
             // RojasTab
             // 
-            this.RojasTab.Controls.Add(this.dataGridView2);
+            this.RojasTab.Controls.Add(this.Rojas_DataGridView);
             this.RojasTab.Controls.Add(this.EliminarRojasButton);
             this.RojasTab.Controls.Add(this.AgregarRojasButton);
             this.RojasTab.Location = new System.Drawing.Point(4, 24);
@@ -201,20 +210,20 @@
             this.RojasTab.Text = "Tarjetas Rojas";
             this.RojasTab.UseVisualStyleBackColor = true;
             // 
-            // dataGridView2
+            // Rojas_DataGridView
             // 
-            this.dataGridView2.AllowUserToAddRows = false;
-            this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.Rojas_DataGridView.AllowUserToAddRows = false;
+            this.Rojas_DataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(6, 47);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.ReadOnly = true;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dataGridView2.RowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.dataGridView2.Size = new System.Drawing.Size(690, 249);
-            this.dataGridView2.TabIndex = 14;
+            this.Rojas_DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Rojas_DataGridView.Location = new System.Drawing.Point(6, 47);
+            this.Rojas_DataGridView.Name = "Rojas_DataGridView";
+            this.Rojas_DataGridView.ReadOnly = true;
+            dataGridViewCellStyle27.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Rojas_DataGridView.RowsDefaultCellStyle = dataGridViewCellStyle27;
+            this.Rojas_DataGridView.Size = new System.Drawing.Size(690, 249);
+            this.Rojas_DataGridView.TabIndex = 14;
             // 
             // EliminarRojasButton
             // 
@@ -228,6 +237,7 @@
             this.EliminarRojasButton.Text = "  Eliminar";
             this.EliminarRojasButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.EliminarRojasButton.UseVisualStyleBackColor = true;
+            this.EliminarRojasButton.Click += new System.EventHandler(this.EliminarRojasButton_Click);
             // 
             // AgregarRojasButton
             // 
@@ -274,8 +284,11 @@
             // 
             this.GroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.GroupBox.Controls.Add(this.numericUpDown3);
-            this.GroupBox.Controls.Add(this.numericUpDown1);
+            this.GroupBox.Controls.Add(this.FechaLabel);
+            this.GroupBox.Controls.Add(this.CategoriaLabel);
+            this.GroupBox.Controls.Add(this.TorneoLabel);
+            this.GroupBox.Controls.Add(this.VisitanteNumericUpDown);
+            this.GroupBox.Controls.Add(this.LocalNumericUpDown);
             this.GroupBox.Controls.Add(this.label4);
             this.GroupBox.Controls.Add(this.VisitanteLabel);
             this.GroupBox.Controls.Add(this.LocalLabel);
@@ -290,52 +303,43 @@
             this.GroupBox.TabStop = false;
             this.GroupBox.Text = "Partido";
             // 
-            // label1
+            // FechaLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(95, 34);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(49, 15);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Torneo:";
+            this.FechaLabel.AutoSize = true;
+            this.FechaLabel.Location = new System.Drawing.Point(590, 34);
+            this.FechaLabel.Name = "FechaLabel";
+            this.FechaLabel.Size = new System.Drawing.Size(0, 15);
+            this.FechaLabel.TabIndex = 11;
             // 
-            // label2
+            // CategoriaLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(304, 34);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(65, 15);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Categoria:";
+            this.CategoriaLabel.AutoSize = true;
+            this.CategoriaLabel.Location = new System.Drawing.Point(426, 34);
+            this.CategoriaLabel.Name = "CategoriaLabel";
+            this.CategoriaLabel.Size = new System.Drawing.Size(0, 15);
+            this.CategoriaLabel.TabIndex = 10;
             // 
-            // label3
+            // TorneoLabel
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(537, 34);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(47, 15);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Fecha: ";
+            this.TorneoLabel.AutoSize = true;
+            this.TorneoLabel.Location = new System.Drawing.Point(99, 34);
+            this.TorneoLabel.Name = "TorneoLabel";
+            this.TorneoLabel.Size = new System.Drawing.Size(0, 15);
+            this.TorneoLabel.TabIndex = 9;
             // 
-            // LocalLabel
+            // VisitanteNumericUpDown
             // 
-            this.LocalLabel.AutoSize = true;
-            this.LocalLabel.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LocalLabel.Location = new System.Drawing.Point(193, 83);
-            this.LocalLabel.Name = "LocalLabel";
-            this.LocalLabel.Size = new System.Drawing.Size(43, 16);
-            this.LocalLabel.TabIndex = 3;
-            this.LocalLabel.Text = "Local";
+            this.VisitanteNumericUpDown.Location = new System.Drawing.Point(353, 82);
+            this.VisitanteNumericUpDown.Name = "VisitanteNumericUpDown";
+            this.VisitanteNumericUpDown.Size = new System.Drawing.Size(65, 21);
+            this.VisitanteNumericUpDown.TabIndex = 2;
             // 
-            // VisitanteLabel
+            // LocalNumericUpDown
             // 
-            this.VisitanteLabel.AutoSize = true;
-            this.VisitanteLabel.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.VisitanteLabel.Location = new System.Drawing.Point(432, 83);
-            this.VisitanteLabel.Name = "VisitanteLabel";
-            this.VisitanteLabel.Size = new System.Drawing.Size(63, 16);
-            this.VisitanteLabel.TabIndex = 4;
-            this.VisitanteLabel.Text = "Visitante";
+            this.LocalNumericUpDown.Location = new System.Drawing.Point(254, 82);
+            this.LocalNumericUpDown.Name = "LocalNumericUpDown";
+            this.LocalNumericUpDown.Size = new System.Drawing.Size(65, 21);
+            this.LocalNumericUpDown.TabIndex = 1;
             // 
             // label4
             // 
@@ -346,19 +350,56 @@
             this.label4.TabIndex = 5;
             this.label4.Text = "Vs";
             // 
-            // numericUpDown1
+            // VisitanteLabel
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(254, 82);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(65, 21);
-            this.numericUpDown1.TabIndex = 6;
+            this.VisitanteLabel.AutoSize = true;
+            this.VisitanteLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.VisitanteLabel.Location = new System.Drawing.Point(424, 82);
+            this.VisitanteLabel.Name = "VisitanteLabel";
+            this.VisitanteLabel.Size = new System.Drawing.Size(75, 19);
+            this.VisitanteLabel.TabIndex = 4;
+            this.VisitanteLabel.Text = "Visitante";
             // 
-            // numericUpDown3
+            // LocalLabel
             // 
-            this.numericUpDown3.Location = new System.Drawing.Point(353, 82);
-            this.numericUpDown3.Name = "numericUpDown3";
-            this.numericUpDown3.Size = new System.Drawing.Size(65, 21);
-            this.numericUpDown3.TabIndex = 8;
+            this.LocalLabel.AutoSize = true;
+            this.LocalLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LocalLabel.Location = new System.Drawing.Point(197, 83);
+            this.LocalLabel.Name = "LocalLabel";
+            this.LocalLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.LocalLabel.Size = new System.Drawing.Size(51, 19);
+            this.LocalLabel.TabIndex = 3;
+            this.LocalLabel.Text = "Local";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(537, 34);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(47, 15);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Fecha: ";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(356, 34);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(64, 15);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Categoria:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(45, 34);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(48, 15);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Torneo:";
             // 
             // JugarPartidoForm
             // 
@@ -378,15 +419,15 @@
             this.Load += new System.EventHandler(this.JugarPartidoForm_Load);
             this.GolesTab.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.Equipos_DataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Goles_DataGridView)).EndInit();
             this.AmarillasTab.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Amarillas_DataGridView)).EndInit();
             this.RojasTab.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Rojas_DataGridView)).EndInit();
             this.GroupBox.ResumeLayout(false);
             this.GroupBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.VisitanteNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LocalNumericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -406,17 +447,20 @@
         private System.Windows.Forms.Button AgregarAmarillasButton;
         private System.Windows.Forms.Button EliminarRojasButton;
         private System.Windows.Forms.Button AgregarRojasButton;
-        private System.Windows.Forms.DataGridView Equipos_DataGridView;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView Goles_DataGridView;
+        private System.Windows.Forms.DataGridView Amarillas_DataGridView;
+        private System.Windows.Forms.DataGridView Rojas_DataGridView;
         private System.Windows.Forms.GroupBox GroupBox;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown LocalNumericUpDown;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label VisitanteLabel;
         private System.Windows.Forms.Label LocalLabel;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.NumericUpDown numericUpDown3;
+        private System.Windows.Forms.NumericUpDown VisitanteNumericUpDown;
+        private System.Windows.Forms.Label FechaLabel;
+        private System.Windows.Forms.Label CategoriaLabel;
+        private System.Windows.Forms.Label TorneoLabel;
     }
 }

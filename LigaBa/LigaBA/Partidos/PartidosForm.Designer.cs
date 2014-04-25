@@ -59,7 +59,7 @@
             this.ModificarButton.Location = new System.Drawing.Point(123, 156);
             this.ModificarButton.Name = "ModificarButton";
             this.ModificarButton.Size = new System.Drawing.Size(105, 35);
-            this.ModificarButton.TabIndex = 13;
+            this.ModificarButton.TabIndex = 5;
             this.ModificarButton.Text = " Modificar";
             this.ModificarButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.ModificarButton.UseVisualStyleBackColor = true;
@@ -73,7 +73,7 @@
             this.JugarButton.Location = new System.Drawing.Point(12, 156);
             this.JugarButton.Name = "JugarButton";
             this.JugarButton.Size = new System.Drawing.Size(105, 35);
-            this.JugarButton.TabIndex = 11;
+            this.JugarButton.TabIndex = 4;
             this.JugarButton.Text = "  Jugar";
             this.JugarButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.JugarButton.UseVisualStyleBackColor = true;
@@ -86,7 +86,7 @@
             this.LimpiarButton.Location = new System.Drawing.Point(93, 526);
             this.LimpiarButton.Name = "LimpiarButton";
             this.LimpiarButton.Size = new System.Drawing.Size(75, 25);
-            this.LimpiarButton.TabIndex = 16;
+            this.LimpiarButton.TabIndex = 8;
             this.LimpiarButton.Text = "Limpiar";
             this.LimpiarButton.UseVisualStyleBackColor = true;
             this.LimpiarButton.Click += new System.EventHandler(this.LimpiarButton_Click);
@@ -100,7 +100,7 @@
             this.CancelarButton.Location = new System.Drawing.Point(12, 526);
             this.CancelarButton.Name = "CancelarButton";
             this.CancelarButton.Size = new System.Drawing.Size(75, 25);
-            this.CancelarButton.TabIndex = 17;
+            this.CancelarButton.TabIndex = 9;
             this.CancelarButton.Text = "Cancelar";
             this.CancelarButton.UseVisualStyleBackColor = true;
             this.CancelarButton.Click += new System.EventHandler(this.CancelarButton_Click);
@@ -112,7 +112,7 @@
             this.BuscarButton.Location = new System.Drawing.Point(697, 528);
             this.BuscarButton.Name = "BuscarButton";
             this.BuscarButton.Size = new System.Drawing.Size(75, 23);
-            this.BuscarButton.TabIndex = 15;
+            this.BuscarButton.TabIndex = 7;
             this.BuscarButton.Text = "Buscar";
             this.BuscarButton.UseVisualStyleBackColor = true;
             this.BuscarButton.Click += new System.EventHandler(this.BuscarButton_Click);
@@ -158,13 +158,14 @@
             // 
             // ImprimirPartidoButton
             // 
+            this.ImprimirPartidoButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ImprimirPartidoButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ImprimirPartidoButton.Image = ((System.Drawing.Image)(resources.GetObject("ImprimirPartidoButton.Image")));
             this.ImprimirPartidoButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.ImprimirPartidoButton.Location = new System.Drawing.Point(616, 156);
             this.ImprimirPartidoButton.Name = "ImprimirPartidoButton";
             this.ImprimirPartidoButton.Size = new System.Drawing.Size(156, 35);
-            this.ImprimirPartidoButton.TabIndex = 18;
+            this.ImprimirPartidoButton.TabIndex = 6;
             this.ImprimirPartidoButton.Text = " Imprimir Partido";
             this.ImprimirPartidoButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.ImprimirPartidoButton.UseVisualStyleBackColor = true;
@@ -195,7 +196,7 @@
             this.FechaComboBox.Location = new System.Drawing.Point(469, 37);
             this.FechaComboBox.Name = "FechaComboBox";
             this.FechaComboBox.Size = new System.Drawing.Size(172, 23);
-            this.FechaComboBox.TabIndex = 28;
+            this.FechaComboBox.TabIndex = 3;
             // 
             // label2
             // 
@@ -217,7 +218,7 @@
             this.TorneosComboBox.Location = new System.Drawing.Point(128, 37);
             this.TorneosComboBox.Name = "TorneosComboBox";
             this.TorneosComboBox.Size = new System.Drawing.Size(219, 23);
-            this.TorneosComboBox.TabIndex = 26;
+            this.TorneosComboBox.TabIndex = 1;
             this.TorneosComboBox.SelectionChangeCommitted += new System.EventHandler(this.TorneosComboBox_SelectionChangeCommitted_1);
             // 
             // label1
@@ -240,7 +241,7 @@
             this.CategoriasComboBox.Location = new System.Drawing.Point(128, 87);
             this.CategoriasComboBox.Name = "CategoriasComboBox";
             this.CategoriasComboBox.Size = new System.Drawing.Size(219, 23);
-            this.CategoriasComboBox.TabIndex = 24;
+            this.CategoriasComboBox.TabIndex = 2;
             // 
             // label6
             // 
