@@ -53,7 +53,7 @@ namespace LigaBA.Abm_Torneo
         {
             GenerarFixture.Inicializar(this.cargarInstituciones());
             GenerarFixture.Generar();
-            MessageBox.Show(GenerarFixture.fixtureFinal.imprimirFixture());
+            //MessageBox.Show(GenerarFixture.fixtureFinal.imprimirFixture());
         }
 
         private void GuardarButton_Click(object sender, EventArgs e)

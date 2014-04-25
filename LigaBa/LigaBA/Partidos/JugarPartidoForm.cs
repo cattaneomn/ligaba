@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using LigaBA.Clases_LigaBA;
 
 namespace LigaBA.Partidos
 {
@@ -40,9 +41,24 @@ namespace LigaBA.Partidos
             this.LocalLabel.Text = Local;
             this.VisitanteLabel.Text = Visitante;
 
+            CargarColumnasDataGrid(Goles_DataGridView);
+            CargarColumnasDataGrid(Amarillas_DataGridView);
+            CargarColumnasDataGrid(Rojas_DataGridView);
+
             this.LocalNumericUpDown.Select();
         }
 
+        private void CargarColumnasDataGrid(DataGridView DataGrid)
+        {
+            DataGrid.Columns.Add("Equipo", "Equipo");
+            DataGrid.Columns.Add("Nombre", "Nombre");
+            DataGrid.Columns.Add("Apellido", "Apellido");
+            DataGrid.Columns.Add("Dni", "Dni");
+            DataGrid.Columns.Add("Cantidad", "Cantidad");
+            DataGrid.Columns.Add("IdJugador", "IdJugador");
+
+            DataGrid.Columns["idJugador"].Visible = false;
+        }
         private void GuardarButton_Click(object sender, EventArgs e)
         {
 
@@ -101,10 +117,50 @@ namespace LigaBA.Partidos
             Rojas_DataGridView.Rows.Remove(Rojas_DataGridView.CurrentRow);
         }
 
+        
         private void AgregarGolesButton_Click(object sender, EventArgs e)
         {
+
             AgregarJugadorForm abrir = new AgregarJugadorForm(this.LocalId,this.VisitanteId);
-            abrir.ShowDialog();
+            DialogResult Resultado = abrir.ShowDialog();
+            if (Resultado == DialogResult.OK)
+            {
+                this.NombreGolesTextBox.Text = "";//Nombre, Apellido
+                this.CantidadGolesTextBox.Text = "1";
+            }
+        }
+
+        private void AgregarAmarillasButton_Click(object sender, EventArgs e)
+        {
+            AgregarJugadorForm abrir = new AgregarJugadorForm(this.LocalId, this.VisitanteId);
+            DialogResult Resultado = abrir.ShowDialog();
+            if (Resultado == DialogResult.OK)
+            {
+                this.NombreGolesTextBox.Text = "";//Nombre, Apellido
+                this.CantidadGolesTextBox.Text = "1";
+            }
+        }
+
+        private void AgregarRojasButton_Click(object sender, EventArgs e)
+        {
+            AgregarJugadorForm abrir = new AgregarJugadorForm(this.LocalId, this.VisitanteId);
+            DialogResult Resultado = abrir.ShowDialog();
+            if (Resultado == DialogResult.OK)
+            {
+                //Controlar que ya no este
+                //AGREGAR ROW
+            }
+        }
+
+        private void AddGolButton_Click(object sender, EventArgs e)
+        {
+            //AGREGAR ROW
+        }
+
+        private void AddAmarrillaButton_Click(object sender, EventArgs e)
+        {
+            //CONTROLAR QUE NO TENGA MAS DE DOS AMARRILAS
+            //AGREGAR ROW
         }
     }
 }

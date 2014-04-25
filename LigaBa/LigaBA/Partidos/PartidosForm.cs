@@ -51,7 +51,8 @@ namespace LigaBA.Partidos
 
             DataSet ds = null;
 	        ds = BaseDeDatos.GetInstance.ejecutarConsulta("p_BuscarPartidos", param, "Partidos", this.Text);
-
+           
+            //ERROR al BUSCAR ENTRAR ACA
             if (ds.Tables["Partidos"].Rows.Count == 0)
  	        {
 	            this.Partidos_DataGridView.DataSource = null;

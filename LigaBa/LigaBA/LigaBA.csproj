@@ -222,6 +222,7 @@
     <Compile Include="Clases LigaBA\Fecha.cs" />
     <Compile Include="Clases LigaBA\Fixture.cs" />
     <Compile Include="Clases LigaBA\GenerarFixture.cs" />
+    <Compile Include="Clases LigaBA\Jugador.cs" />
     <Compile Include="Clases\Cifrar.cs" />
     <Compile Include="Partidos\AgregarJugadorForm.cs">
       <SubType>Form</SubType>

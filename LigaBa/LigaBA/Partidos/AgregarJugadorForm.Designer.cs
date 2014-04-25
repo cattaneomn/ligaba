@@ -34,11 +34,11 @@
             this.Jugadores_DataGridView = new System.Windows.Forms.DataGridView();
             this.FiltroGroupBox = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.InstitucionTextBox = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.EquipoTextBox = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.DniTextBox = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.ApellidoTextBox = new System.Windows.Forms.TextBox();
             this.CancelarButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Jugadores_DataGridView)).BeginInit();
             this.FiltroGroupBox.SuspendLayout();
@@ -66,17 +66,18 @@
             this.Jugadores_DataGridView.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.Jugadores_DataGridView.Size = new System.Drawing.Size(660, 284);
             this.Jugadores_DataGridView.TabIndex = 11;
+            this.Jugadores_DataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Jugadores_DataGridView_CellContentClick);
             // 
             // FiltroGroupBox
             // 
             this.FiltroGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.FiltroGroupBox.Controls.Add(this.label3);
-            this.FiltroGroupBox.Controls.Add(this.textBox1);
-            this.FiltroGroupBox.Controls.Add(this.label2);
-            this.FiltroGroupBox.Controls.Add(this.InstitucionTextBox);
-            this.FiltroGroupBox.Controls.Add(this.label1);
             this.FiltroGroupBox.Controls.Add(this.EquipoTextBox);
+            this.FiltroGroupBox.Controls.Add(this.label2);
+            this.FiltroGroupBox.Controls.Add(this.DniTextBox);
+            this.FiltroGroupBox.Controls.Add(this.label1);
+            this.FiltroGroupBox.Controls.Add(this.ApellidoTextBox);
             this.FiltroGroupBox.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FiltroGroupBox.Location = new System.Drawing.Point(12, 12);
             this.FiltroGroupBox.Name = "FiltroGroupBox";
@@ -95,13 +96,14 @@
             this.label3.TabIndex = 18;
             this.label3.Text = "Equipo";
             // 
-            // textBox1
+            // EquipoTextBox
             // 
-            this.textBox1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(412, 37);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(188, 22);
-            this.textBox1.TabIndex = 17;
+            this.EquipoTextBox.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EquipoTextBox.Location = new System.Drawing.Point(412, 37);
+            this.EquipoTextBox.Name = "EquipoTextBox";
+            this.EquipoTextBox.Size = new System.Drawing.Size(188, 22);
+            this.EquipoTextBox.TabIndex = 17;
+            this.EquipoTextBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // label2
             // 
@@ -113,13 +115,14 @@
             this.label2.TabIndex = 16;
             this.label2.Text = "Dni";
             // 
-            // InstitucionTextBox
+            // DniTextBox
             // 
-            this.InstitucionTextBox.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.InstitucionTextBox.Location = new System.Drawing.Point(120, 78);
-            this.InstitucionTextBox.Name = "InstitucionTextBox";
-            this.InstitucionTextBox.Size = new System.Drawing.Size(188, 22);
-            this.InstitucionTextBox.TabIndex = 15;
+            this.DniTextBox.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DniTextBox.Location = new System.Drawing.Point(120, 78);
+            this.DniTextBox.Name = "DniTextBox";
+            this.DniTextBox.Size = new System.Drawing.Size(188, 22);
+            this.DniTextBox.TabIndex = 15;
+            this.DniTextBox.TextChanged += new System.EventHandler(this.DniTextBox_TextChanged);
             // 
             // label1
             // 
@@ -131,13 +134,14 @@
             this.label1.TabIndex = 14;
             this.label1.Text = "Apellido";
             // 
-            // EquipoTextBox
+            // ApellidoTextBox
             // 
-            this.EquipoTextBox.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EquipoTextBox.Location = new System.Drawing.Point(120, 37);
-            this.EquipoTextBox.Name = "EquipoTextBox";
-            this.EquipoTextBox.Size = new System.Drawing.Size(188, 22);
-            this.EquipoTextBox.TabIndex = 0;
+            this.ApellidoTextBox.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ApellidoTextBox.Location = new System.Drawing.Point(120, 37);
+            this.ApellidoTextBox.Name = "ApellidoTextBox";
+            this.ApellidoTextBox.Size = new System.Drawing.Size(188, 22);
+            this.ApellidoTextBox.TabIndex = 0;
+            this.ApellidoTextBox.TextChanged += new System.EventHandler(this.ApellidoTextBox_TextChanged);
             // 
             // CancelarButton
             // 
@@ -180,11 +184,11 @@
         private System.Windows.Forms.DataGridView Jugadores_DataGridView;
         private System.Windows.Forms.GroupBox FiltroGroupBox;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox InstitucionTextBox;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox EquipoTextBox;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox DniTextBox;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox ApellidoTextBox;
         private System.Windows.Forms.Button CancelarButton;
     }
 }
