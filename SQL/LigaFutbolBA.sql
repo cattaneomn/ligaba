@@ -1011,35 +1011,36 @@ GO
 --BUSCAR PARTIDOS
 CREATE PROCEDURE [LigaBA].[p_BuscarPartidos]
 (
-   @Torneo int,
-   @Categoria int,
-   @Fecha int
+        @Torneo int,
+        @Categoria int,
+        @Fecha int
 )       
 AS
 BEGIN transaction
 
-   DECLARE @TorneoXCategoria int
-   DECLARE @consulta nvarchar(1024)  
-   
-   SELECT @TorneoXCategoria=id FROM LigaBA.TorneoXCategoria WHERE torneogeneral=@Torneo AND categoria=@Categoria
-   
-   SET @consulta= ('SELECT P.id,P.fecha as Fecha,LigaBA.f_NombreEquipo(P.equipolocal) as Local,
-   CASE 
-     WHEN P.equipolocal <= -1 THEN (CAST(P.goleslocal as nvarchar(10)) + '' - '' + CAST(P.golesvisiante as nvarchar(10))) 
-     WHEN P.equipolocal  >= 0 THEN '' - ''   
-   END as Resultado,
-   LigaBA.f_NombreEquipo(P.equipovisitante) as Visitante 
-   FROM LigaBA.Partido as P
-   WHERE P.torneoxcategoria=' + CAST(@TorneoXCategoria as nvarchar(100)))
-   
-   IF (@Fecha != -1)
-   BEGIN 
-        SET @consulta = @consulta + ' AND P.fecha =' + CAST(@Fecha as nvarchar(10))
-   END
-   
-   exec(@Consulta)
+        DECLARE @TorneoXCategoria int
+        DECLARE @consulta nvarchar(1024)  
+        
+        SELECT @TorneoXCategoria=id FROM LigaBA.TorneoXCategoria WHERE torneogeneral=@Torneo AND categoria=@Categoria
+        
+        SET @consulta= ('SELECT P.equipolocal as LocalId,P.equipovisitante as VisitanteId,P.id,P.fecha as Fecha,LigaBA.f_NombreEquipo(P.equipolocal) as Local,
+        CASE 
+          WHEN P.equipolocal <= -1 THEN (CAST(P.goleslocal as nvarchar(10)) + '' - '' + CAST(P.golesvisiante as nvarchar(10))) 
+          WHEN P.equipolocal  >= 0 THEN '' - ''   
+        END as Resultado,
+        LigaBA.f_NombreEquipo(P.equipovisitante) as Visitante 
+        FROM LigaBA.Partido as P
+        WHERE P.torneoxcategoria=' + CAST(@TorneoXCategoria as nvarchar(100)))
+        
+        IF (@Fecha != -1)
+        BEGIN 
+             SET @consulta = @consulta + ' AND P.fecha =' + CAST(@Fecha as nvarchar(10))
+        END
+        
+        exec(@Consulta)
 
 COMMIT
+
 
 GO
 

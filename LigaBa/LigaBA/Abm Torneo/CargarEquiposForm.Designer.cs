@@ -77,7 +77,7 @@
             // 
             // CategoriasTextBox
             // 
-            this.CategoriasTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CategoriasTextBox.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CategoriasTextBox.Location = new System.Drawing.Point(426, 34);
             this.CategoriasTextBox.Name = "CategoriasTextBox";
             this.CategoriasTextBox.Size = new System.Drawing.Size(170, 22);
@@ -96,7 +96,7 @@
             // 
             // InstitucionTextBox
             // 
-            this.InstitucionTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.InstitucionTextBox.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.InstitucionTextBox.Location = new System.Drawing.Point(116, 79);
             this.InstitucionTextBox.Name = "InstitucionTextBox";
             this.InstitucionTextBox.Size = new System.Drawing.Size(170, 22);
@@ -115,7 +115,7 @@
             // 
             // EquipoTextBox
             // 
-            this.EquipoTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EquipoTextBox.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EquipoTextBox.Location = new System.Drawing.Point(116, 31);
             this.EquipoTextBox.Name = "EquipoTextBox";
             this.EquipoTextBox.Size = new System.Drawing.Size(170, 22);

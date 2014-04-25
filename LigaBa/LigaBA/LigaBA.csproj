@@ -43,6 +43,8 @@
     <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
@@ -221,6 +223,12 @@
     <Compile Include="Clases LigaBA\Fixture.cs" />
     <Compile Include="Clases LigaBA\GenerarFixture.cs" />
     <Compile Include="Clases\Cifrar.cs" />
+    <Compile Include="Partidos\AgregarJugadorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Partidos\AgregarJugadorForm.Designer.cs">
+      <DependentUpon>AgregarJugadorForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Partidos\JugarPartidoForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -380,6 +388,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Back Up\BackUpForm.resx">
       <DependentUpon>BackUpForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Partidos\AgregarJugadorForm.resx">
+      <DependentUpon>AgregarJugadorForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Partidos\JugarPartidoForm.resx">
       <DependentUpon>JugarPartidoForm.cs</DependentUpon>

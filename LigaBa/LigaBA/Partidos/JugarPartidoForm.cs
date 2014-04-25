@@ -11,7 +11,7 @@ namespace LigaBA.Partidos
 {
     public partial class JugarPartidoForm : Form
     {
-        public JugarPartidoForm(string Torneo,string Categoria,string Fecha,string Local,string Visitante)
+        public JugarPartidoForm(string Torneo,string Categoria,string Fecha,string Local,string Visitante,string LocalId, string VisitanteId)
         {
             InitializeComponent();
 
@@ -20,6 +20,8 @@ namespace LigaBA.Partidos
             this.Fecha = Fecha;
             this.Local = Local;
             this.Visitante = Visitante;
+            this.LocalId = LocalId;
+            this.VisitanteId = VisitanteId;
         }
 
         string Torneo;
@@ -27,6 +29,8 @@ namespace LigaBA.Partidos
         string Fecha;
         string Local;
         string Visitante;
+        string LocalId;
+        string VisitanteId;
 
         private void JugarPartidoForm_Load(object sender, EventArgs e)
         {
@@ -99,7 +103,8 @@ namespace LigaBA.Partidos
 
         private void AgregarGolesButton_Click(object sender, EventArgs e)
         {
-
+            AgregarJugadorForm abrir = new AgregarJugadorForm(this.LocalId,this.VisitanteId);
+            abrir.ShowDialog();
         }
     }
 }

@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(JugarPartidoForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
             this.GolesTab = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.Goles_DataGridView = new System.Windows.Forms.DataGridView();
@@ -59,6 +59,12 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.EquipoTextBox = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             this.GolesTab.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Goles_DataGridView)).BeginInit();
@@ -88,6 +94,9 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.button1);
+            this.tabPage1.Controls.Add(this.textBox1);
+            this.tabPage1.Controls.Add(this.EquipoTextBox);
             this.tabPage1.Controls.Add(this.Goles_DataGridView);
             this.tabPage1.Controls.Add(this.EliminarGolesButton);
             this.tabPage1.Controls.Add(this.AgregarGolesButton);
@@ -109,8 +118,8 @@
             this.Goles_DataGridView.Location = new System.Drawing.Point(6, 47);
             this.Goles_DataGridView.Name = "Goles_DataGridView";
             this.Goles_DataGridView.ReadOnly = true;
-            dataGridViewCellStyle25.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Goles_DataGridView.RowsDefaultCellStyle = dataGridViewCellStyle25;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Goles_DataGridView.RowsDefaultCellStyle = dataGridViewCellStyle1;
             this.Goles_DataGridView.Size = new System.Drawing.Size(690, 249);
             this.Goles_DataGridView.TabIndex = 10;
             // 
@@ -144,6 +153,9 @@
             // 
             // AmarillasTab
             // 
+            this.AmarillasTab.Controls.Add(this.button2);
+            this.AmarillasTab.Controls.Add(this.textBox2);
+            this.AmarillasTab.Controls.Add(this.textBox3);
             this.AmarillasTab.Controls.Add(this.Amarillas_DataGridView);
             this.AmarillasTab.Controls.Add(this.EliminarAmarillasButton);
             this.AmarillasTab.Controls.Add(this.AgregarAmarillasButton);
@@ -165,8 +177,8 @@
             this.Amarillas_DataGridView.Location = new System.Drawing.Point(6, 47);
             this.Amarillas_DataGridView.Name = "Amarillas_DataGridView";
             this.Amarillas_DataGridView.ReadOnly = true;
-            dataGridViewCellStyle26.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Amarillas_DataGridView.RowsDefaultCellStyle = dataGridViewCellStyle26;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Amarillas_DataGridView.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.Amarillas_DataGridView.Size = new System.Drawing.Size(690, 249);
             this.Amarillas_DataGridView.TabIndex = 14;
             // 
@@ -220,8 +232,8 @@
             this.Rojas_DataGridView.Location = new System.Drawing.Point(6, 47);
             this.Rojas_DataGridView.Name = "Rojas_DataGridView";
             this.Rojas_DataGridView.ReadOnly = true;
-            dataGridViewCellStyle27.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Rojas_DataGridView.RowsDefaultCellStyle = dataGridViewCellStyle27;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Rojas_DataGridView.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.Rojas_DataGridView.Size = new System.Drawing.Size(690, 249);
             this.Rojas_DataGridView.TabIndex = 14;
             // 
@@ -401,6 +413,68 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Torneo:";
             // 
+            // EquipoTextBox
+            // 
+            this.EquipoTextBox.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EquipoTextBox.Location = new System.Drawing.Point(356, 12);
+            this.EquipoTextBox.Name = "EquipoTextBox";
+            this.EquipoTextBox.ReadOnly = true;
+            this.EquipoTextBox.Size = new System.Drawing.Size(188, 22);
+            this.EquipoTextBox.TabIndex = 12;
+            this.EquipoTextBox.Text = "Nombre, Apellido";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(550, 12);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(108, 22);
+            this.textBox1.TabIndex = 13;
+            this.textBox1.Text = "Cantidad";
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.Location = new System.Drawing.Point(664, 9);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(32, 29);
+            this.button1.TabIndex = 14;
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
+            this.button2.Location = new System.Drawing.Point(663, 9);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(32, 29);
+            this.button2.TabIndex = 17;
+            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.Location = new System.Drawing.Point(549, 12);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(108, 22);
+            this.textBox2.TabIndex = 16;
+            this.textBox2.Text = "Cantidad";
+            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox3.Location = new System.Drawing.Point(355, 12);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.ReadOnly = true;
+            this.textBox3.Size = new System.Drawing.Size(188, 22);
+            this.textBox3.TabIndex = 15;
+            this.textBox3.Text = "Nombre, Apellido";
+            // 
             // JugarPartidoForm
             // 
             this.AcceptButton = this.GuardarButton;
@@ -419,8 +493,10 @@
             this.Load += new System.EventHandler(this.JugarPartidoForm_Load);
             this.GolesTab.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Goles_DataGridView)).EndInit();
             this.AmarillasTab.ResumeLayout(false);
+            this.AmarillasTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Amarillas_DataGridView)).EndInit();
             this.RojasTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Rojas_DataGridView)).EndInit();
@@ -462,5 +538,11 @@
         private System.Windows.Forms.Label FechaLabel;
         private System.Windows.Forms.Label CategoriaLabel;
         private System.Windows.Forms.Label TorneoLabel;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox EquipoTextBox;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox3;
     }
 }

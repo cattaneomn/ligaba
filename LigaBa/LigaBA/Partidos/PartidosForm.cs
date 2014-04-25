@@ -62,6 +62,8 @@ namespace LigaBA.Partidos
 	        Partidos_DataGridView.DataSource = ds.Tables["Partidos"];
 	        Partidos_DataGridView.Columns["Resultado"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;          
  	        this.Partidos_DataGridView.Columns["id"].Visible = false;
+            this.Partidos_DataGridView.Columns["LocalId"].Visible = false;
+            this.Partidos_DataGridView.Columns["VisitanteId"].Visible = false;
  	        this.Partidos_DataGridView.Focus();
         }
 
@@ -183,9 +185,11 @@ namespace LigaBA.Partidos
             string Fecha = Partidos_DataGridView.CurrentRow.Cells["Fecha"].Value.ToString();
             string Local = Partidos_DataGridView.CurrentRow.Cells["Local"].Value.ToString();
             string Visitante = Partidos_DataGridView.CurrentRow.Cells["Visitante"].Value.ToString();
+            string LocalId = Partidos_DataGridView.CurrentRow.Cells["LocalId"].Value.ToString();
+            string VisitanteId = Partidos_DataGridView.CurrentRow.Cells["VisitanteId"].Value.ToString();
 
 
-            JugarPartidoForm abrir = new JugarPartidoForm(Torneo,Categoria,Fecha,Local,Visitante);
+            JugarPartidoForm abrir = new JugarPartidoForm(Torneo,Categoria,Fecha,Local,Visitante,LocalId,VisitanteId);
             abrir.ShowDialog();
             
         }
