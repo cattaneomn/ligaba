@@ -1041,9 +1041,30 @@ BEGIN transaction
 
 COMMIT
 
-
 GO
 
+--BUSCAR FIXTURE
+alter PROCEDURE [LigaBA].[p_BuscarFixture]
+(
+        @Torneo int,
+        @Categoria int
+)       
+AS
+BEGIN transaction
+
+        DECLARE @TorneoXCategoria int
+        DECLARE @consulta nvarchar(1024)  
+        
+        SELECT @TorneoXCategoria=id FROM LigaBA.TorneoXCategoria WHERE torneogeneral=@Torneo AND categoria=@Categoria
+        
+        SET @consulta= ('SELECT P.equipolocal as LocalId,P.equipovisitante as VisitanteId,P.id,P.fecha as Fecha,LigaBA.f_NombreEquipo(P.equipolocal) as Local,'+'''vs'''+' as vs,
+        LigaBA.f_NombreEquipo(P.equipovisitante) as Visitante 
+        FROM LigaBA.Partido as P
+        WHERE P.torneoxcategoria=' + CAST(@TorneoXCategoria as nvarchar(100)))        
+        
+        exec(@Consulta)
+
+COMMIT
 
 --BACK UP
 CREATE PROCEDURE [LigaBA].[p_BackUp]
