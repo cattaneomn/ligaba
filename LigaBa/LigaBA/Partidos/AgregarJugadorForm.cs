@@ -14,20 +14,24 @@ namespace LigaBA.Partidos
 {
     public partial class AgregarJugadorForm : Form
     {
-        public AgregarJugadorForm(string LocalId, string VisitanteId)
+        public AgregarJugadorForm(string LocalId, string VisitanteId,string ButtonType)
         {
             InitializeComponent();
 
             this.LocalId = LocalId;
             this.VisitanteId = VisitanteId;
+            this.ButtonType = ButtonType;
         }
 
         string LocalId;
         string VisitanteId;
+        string ButtonType;
 
         private void AgregarJugadorForm_Load(object sender, EventArgs e)
         {
-           string Consulta = "SELECT J.id,E.nombre as Equipo,J.nombre as Nombre,J.apellido as Apellido,J.dni as Dni FROM ligaBA.JugadorXEquipo as JE ";
+           
+            //TO DO : SOLO JUGADORES HABILITADOS Y QUE NO ESTEN BORRADOS.
+            string Consulta = "SELECT J.id,E.nombre as Equipo,J.nombre as Nombre,J.apellido as Apellido,J.dni as Dni FROM ligaBA.JugadorXEquipo as JE ";
                   Consulta += "JOIN LigaBA.Jugador as J ON J.id = JE.jugador ";
                   Consulta += "JOIN LigaBA.Equipo as E ON E.id = JE.equipo ";
                   Consulta += "WHERE E.id=" + LocalId + " OR E.id=" + VisitanteId;
@@ -40,7 +44,7 @@ namespace LigaBA.Partidos
             {
                 this.Jugadores_DataGridView.Columns["id"].Visible = false;
                 ModDataGridView.agregarBoton(Jugadores_DataGridView, "Seleccionar");
-                this.Jugadores_DataGridView.Focus();
+                this.ApellidoTextBox.Select();
             }
         }
 
@@ -97,17 +101,30 @@ namespace LigaBA.Partidos
         {
             if (e.ColumnIndex == this.Jugadores_DataGridView.Columns["Seleccionar"].Index && e.RowIndex >= 0)
             {
-                
-                string Nombre = Jugadores_DataGridView.CurrentRow.Cells["Nombre"].Value.ToString();
-                string Apellido = Jugadores_DataGridView.CurrentRow.Cells["Apellido"].Value.ToString();
-                string Dni = Jugadores_DataGridView.CurrentRow.Cells["Dni"].Value.ToString();
-                string Equipo = Jugadores_DataGridView.CurrentRow.Cells["Equipo"].Value.ToString();
-                string idJugador = Jugadores_DataGridView.CurrentRow.Cells["id"].Value.ToString();
-
-                //Jugador jugadorSeleccionado = new Jugador(Convert.ToInt32(idJugador),Nombre,Apellido,Dni,Equipo);
-
-                
-
+                if (ButtonType == "Goles")
+                {
+                    JugarPartidoForm.JugadorGoles.set_nombre(Jugadores_DataGridView.CurrentRow.Cells["Nombre"].Value.ToString());
+                    JugarPartidoForm.JugadorGoles.set_apellido(Jugadores_DataGridView.CurrentRow.Cells["Apellido"].Value.ToString());
+                    JugarPartidoForm.JugadorGoles.set_dni(Jugadores_DataGridView.CurrentRow.Cells["Dni"].Value.ToString());
+                    JugarPartidoForm.JugadorGoles.set_equipo(Jugadores_DataGridView.CurrentRow.Cells["Equipo"].Value.ToString());
+                    JugarPartidoForm.JugadorGoles.set_id(Convert.ToInt32(Jugadores_DataGridView.CurrentRow.Cells["id"].Value.ToString()));
+                }
+                if (ButtonType == "Amarillas")
+                {
+                    JugarPartidoForm.JugadorAmarillas.set_nombre(Jugadores_DataGridView.CurrentRow.Cells["Nombre"].Value.ToString());
+                    JugarPartidoForm.JugadorAmarillas.set_apellido(Jugadores_DataGridView.CurrentRow.Cells["Apellido"].Value.ToString());
+                    JugarPartidoForm.JugadorAmarillas.set_dni(Jugadores_DataGridView.CurrentRow.Cells["Dni"].Value.ToString());
+                    JugarPartidoForm.JugadorAmarillas.set_equipo(Jugadores_DataGridView.CurrentRow.Cells["Equipo"].Value.ToString());
+                    JugarPartidoForm.JugadorAmarillas.set_id(Convert.ToInt32(Jugadores_DataGridView.CurrentRow.Cells["id"].Value.ToString()));
+                }
+                if (ButtonType == "Rojas")
+                {
+                    JugarPartidoForm.JugadorRojas.set_nombre(Jugadores_DataGridView.CurrentRow.Cells["Nombre"].Value.ToString());
+                    JugarPartidoForm.JugadorRojas.set_apellido(Jugadores_DataGridView.CurrentRow.Cells["Apellido"].Value.ToString());
+                    JugarPartidoForm.JugadorRojas.set_dni(Jugadores_DataGridView.CurrentRow.Cells["Dni"].Value.ToString());
+                    JugarPartidoForm.JugadorRojas.set_equipo(Jugadores_DataGridView.CurrentRow.Cells["Equipo"].Value.ToString());
+                    JugarPartidoForm.JugadorRojas.set_id(Convert.ToInt32(Jugadores_DataGridView.CurrentRow.Cells["id"].Value.ToString()));
+                }
 
                 DialogResult = DialogResult.OK;
             }

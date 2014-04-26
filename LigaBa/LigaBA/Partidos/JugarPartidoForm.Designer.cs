@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(JugarPartidoForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.GolesTab = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.AddGolButton = new System.Windows.Forms.Button();
@@ -42,7 +42,7 @@
             this.AgregarGolesButton = new System.Windows.Forms.Button();
             this.AmarillasTab = new System.Windows.Forms.TabPage();
             this.AddAmarrillaButton = new System.Windows.Forms.Button();
-            this.CantidadAmarrillaTextBox = new System.Windows.Forms.TextBox();
+            this.CantidadAmarillaTextBox = new System.Windows.Forms.TextBox();
             this.NombreAmarrillaTextBox = new System.Windows.Forms.TextBox();
             this.Amarillas_DataGridView = new System.Windows.Forms.DataGridView();
             this.EliminarAmarillasButton = new System.Windows.Forms.Button();
@@ -150,8 +150,8 @@
             this.Goles_DataGridView.Location = new System.Drawing.Point(6, 47);
             this.Goles_DataGridView.Name = "Goles_DataGridView";
             this.Goles_DataGridView.ReadOnly = true;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Goles_DataGridView.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Goles_DataGridView.RowsDefaultCellStyle = dataGridViewCellStyle1;
             this.Goles_DataGridView.Size = new System.Drawing.Size(690, 249);
             this.Goles_DataGridView.TabIndex = 10;
             // 
@@ -186,7 +186,7 @@
             // AmarillasTab
             // 
             this.AmarillasTab.Controls.Add(this.AddAmarrillaButton);
-            this.AmarillasTab.Controls.Add(this.CantidadAmarrillaTextBox);
+            this.AmarillasTab.Controls.Add(this.CantidadAmarillaTextBox);
             this.AmarillasTab.Controls.Add(this.NombreAmarrillaTextBox);
             this.AmarillasTab.Controls.Add(this.Amarillas_DataGridView);
             this.AmarillasTab.Controls.Add(this.EliminarAmarillasButton);
@@ -211,15 +211,15 @@
             this.AddAmarrillaButton.UseVisualStyleBackColor = true;
             this.AddAmarrillaButton.Click += new System.EventHandler(this.AddAmarrillaButton_Click);
             // 
-            // CantidadAmarrillaTextBox
+            // CantidadAmarillaTextBox
             // 
-            this.CantidadAmarrillaTextBox.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CantidadAmarrillaTextBox.Location = new System.Drawing.Point(549, 12);
-            this.CantidadAmarrillaTextBox.Name = "CantidadAmarrillaTextBox";
-            this.CantidadAmarrillaTextBox.Size = new System.Drawing.Size(108, 22);
-            this.CantidadAmarrillaTextBox.TabIndex = 16;
-            this.CantidadAmarrillaTextBox.Text = "Cantidad";
-            this.CantidadAmarrillaTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.CantidadAmarillaTextBox.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CantidadAmarillaTextBox.Location = new System.Drawing.Point(549, 12);
+            this.CantidadAmarillaTextBox.Name = "CantidadAmarillaTextBox";
+            this.CantidadAmarillaTextBox.Size = new System.Drawing.Size(108, 22);
+            this.CantidadAmarillaTextBox.TabIndex = 16;
+            this.CantidadAmarillaTextBox.Text = "Cantidad";
+            this.CantidadAmarillaTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // NombreAmarrillaTextBox
             // 
@@ -241,8 +241,8 @@
             this.Amarillas_DataGridView.Location = new System.Drawing.Point(6, 47);
             this.Amarillas_DataGridView.Name = "Amarillas_DataGridView";
             this.Amarillas_DataGridView.ReadOnly = true;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Amarillas_DataGridView.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Amarillas_DataGridView.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.Amarillas_DataGridView.Size = new System.Drawing.Size(690, 249);
             this.Amarillas_DataGridView.TabIndex = 14;
             // 
@@ -297,8 +297,8 @@
             this.Rojas_DataGridView.Location = new System.Drawing.Point(6, 47);
             this.Rojas_DataGridView.Name = "Rojas_DataGridView";
             this.Rojas_DataGridView.ReadOnly = true;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Rojas_DataGridView.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Rojas_DataGridView.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.Rojas_DataGridView.Size = new System.Drawing.Size(690, 249);
             this.Rojas_DataGridView.TabIndex = 14;
             // 
@@ -546,7 +546,7 @@
         private System.Windows.Forms.TextBox CantidadGolesTextBox;
         private System.Windows.Forms.TextBox NombreGolesTextBox;
         private System.Windows.Forms.Button AddAmarrillaButton;
-        private System.Windows.Forms.TextBox CantidadAmarrillaTextBox;
+        private System.Windows.Forms.TextBox CantidadAmarillaTextBox;
         private System.Windows.Forms.TextBox NombreAmarrillaTextBox;
     }
 }
