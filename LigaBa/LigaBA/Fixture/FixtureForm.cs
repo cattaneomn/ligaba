@@ -124,8 +124,11 @@ namespace LigaBA.Fixture
             idTorneo = TorneosComboBox.SelectedValue.ToString();
             idCategoria = CategoriasComboBox.SelectedValue.ToString();
 
-            nombreTorneo = TorneosComboBox.SelectedText.ToString();
-            nombreCategoria = CategoriasComboBox.SelectedText.ToString();
+            nombreTorneo = TorneosComboBox.Text;
+            nombreCategoria = CategoriasComboBox.Text;
+
+            fecha = FechaComboBox.Text;
+            equipo = EquipoComboBox.SelectedValue != null? EquipoComboBox.SelectedValue.ToString() : "";
 
             Thread hilo = new Thread(AbrirFormReporte);
             hilo.SetApartmentState(System.Threading.ApartmentState.STA);
@@ -134,6 +137,8 @@ namespace LigaBA.Fixture
 
         public string idTorneo;
         public string idCategoria;
+        public string fecha;
+        public string equipo;
 
         public string nombreTorneo;
         public string nombreCategoria;
@@ -146,8 +151,11 @@ namespace LigaBA.Fixture
             string categoria = this.idCategoria;
             string nombreT = this.nombreTorneo;
             string nombreC = this.nombreCategoria;
+            string e = this.equipo;
+            string f = this.fecha;
+            
 
-            ReporteFixtureForm abrir = new ReporteFixtureForm(torneo,categoria,nombreT,nombreC);
+            ReporteFixtureForm abrir = new ReporteFixtureForm(torneo,categoria,nombreT,nombreC,e,f);
             abrir.ShowDialog();
         }
 
