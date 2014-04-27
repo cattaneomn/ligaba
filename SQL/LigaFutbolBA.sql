@@ -1069,6 +1069,31 @@ COMMIT
 
 GO
 
+--MOSTRAR FIXTURE
+CREATE PROCEDURE [LigaBA].[p_MostrarFixture]
+(
+        @Torneo int,
+        @Categoria int
+)       
+AS
+BEGIN transaction
+
+        DECLARE @TorneoXCategoria int
+        DECLARE @consulta nvarchar(1024)  
+        
+        SELECT @TorneoXCategoria=id FROM LigaBA.TorneoXCategoria WHERE torneogeneral=@Torneo AND categoria=@Categoria
+        
+        SET @consulta= ('SELECT P.fecha as Fecha,LigaBA.f_NombreEquipo(P.equipolocal) as Local,'+'''Vs'''+' as vs,
+        LigaBA.f_NombreEquipo(P.equipovisitante) as Visitante 
+        FROM LigaBA.Partido as P
+        WHERE P.torneoxcategoria=' + CAST(@TorneoXCategoria as nvarchar(100)))        
+        
+        exec(@Consulta)
+
+COMMIT
+
+
+GO
 --MODIFICAR LOCALIA FIXTURE
 CREATE PROCEDURE [LigaBA].[p_ModificarLocalia]
 (
