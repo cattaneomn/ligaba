@@ -1092,7 +1092,6 @@ BEGIN transaction
 
 COMMIT
 
-
 GO
 --MODIFICAR LOCALIA FIXTURE
 CREATE PROCEDURE [LigaBA].[p_ModificarLocalia]

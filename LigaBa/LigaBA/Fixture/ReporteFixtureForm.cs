@@ -18,44 +18,44 @@ namespace LigaBA.Fixture
 {
     public partial class ReporteFixtureForm : Form
     {
-        public ReporteFixtureForm(string Local,string Visitante)
+        public ReporteFixtureForm(string torneo,string categoria,string nombreTorneo,string nombreCategoria)
         {
             InitializeComponent();
             
-            this.Local = Local;
-            this.Visitante = Visitante;
-
+            this.torneo = torneo;
+            this.categoria = categoria;
+            this.nombreTorneo = nombreTorneo;
+            this.nombreCategoria = nombreCategoria;
         }
 
-        string Local;
-        string Visitante;
+        string torneo;
+        string categoria;
+        string nombreTorneo;
+        string nombreCategoria;
 
         private void crystalReportViewer1_Load(object sender, EventArgs e)
         {
             //DataSet
 
             List<SqlParameter> param = new List<SqlParameter>();
-            param.Add(new SqlParameter("@Equipo", Local));
+            param.Add(new SqlParameter("@Torneo", torneo));
+            param.Add(new SqlParameter("@Categoria", categoria));
 
-            DataSet ds = BaseDeDatos.GetInstance.ejecutarConsulta("p_Reportejugadores", param, "p_ReporteJugadores", this.Text);
+            DataSet ds = BaseDeDatos.GetInstance.ejecutarConsulta("p_MostrarFixture", param, "Fixture", this.Text);
 
             //Reporte Jugadores
-            FichaPartido Repo = new FichaPartido();
+            Fixture1 Repo = new Fixture1();
 
             //Repo.ExportToDisk(ExportFormatType.PortableDocFormat, "Instituciones");
 
             //Variables
-           /* TextObject InstitucionRepo;
-            InstitucionRepo = (TextObject)Repo.ReportDefinition.ReportObjects["Institucion"];
-            InstitucionRepo.Text = institucion;
-
-            TextObject EquipoRepo;
-            EquipoRepo = (TextObject)Repo.ReportDefinition.ReportObjects["Equipo"];
-            EquipoRepo.Text = equipo;
+            TextObject TorneoRepo;
+            TorneoRepo = (TextObject)Repo.ReportDefinition.ReportObjects["nombreTorneo"];
+            TorneoRepo.Text = nombreTorneo;
 
             TextObject CategoriaRepo;
-            CategoriaRepo = (TextObject)Repo.ReportDefinition.ReportObjects["Categoria"];
-            CategoriaRepo.Text = categoria;*/
+            CategoriaRepo = (TextObject)Repo.ReportDefinition.ReportObjects["nombreCategoria"];
+            CategoriaRepo.Text = nombreCategoria;     
 
             Repo.SetDataSource(ds.Tables[0]);
 

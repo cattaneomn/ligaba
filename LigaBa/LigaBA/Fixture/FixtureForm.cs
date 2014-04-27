@@ -108,19 +108,33 @@ namespace LigaBA.Fixture
                 return;
             }
 
+            idTorneo = TorneosComboBox.SelectedValue.ToString();
+            idCategoria = CategoriasComboBox.SelectedValue.ToString();
+
+            nombreTorneo = TorneosComboBox.SelectedText.ToString();
+            nombreCategoria = CategoriasComboBox.SelectedText.ToString();
+
             Thread hilo = new Thread(AbrirFormReporte);
             hilo.SetApartmentState(System.Threading.ApartmentState.STA);
             hilo.Start();
         }
-        
-      
+
+        public string idTorneo;
+        public string idCategoria;
+
+        public string nombreTorneo;
+        public string nombreCategoria;
+
+
         private void AbrirFormReporte()
         {
-            string Visitante = "3";//Partidos_DataGridView.CurrentRow.Cells["Visitante"].Value.ToString();
-            string Local = "1";//Partidos_DataGridView.CurrentRow.Cells["Local"].Value.ToString();
+                        
+            string torneo = this.idTorneo;
+            string categoria = this.idCategoria;
+            string nombreT = this.nombreTorneo;
+            string nombreC = this.nombreCategoria;
 
-
-            ReporteFixtureForm abrir = new ReporteFixtureForm(Local,Visitante);
+            ReporteFixtureForm abrir = new ReporteFixtureForm(torneo,categoria,nombreT,nombreC);
             abrir.ShowDialog();
         }
 
