@@ -65,6 +65,16 @@ namespace LigaBA.Clases
             }
         }
 
+        public static void CargarEquipoDeCategoriaComboBox(ComboBox comboBox, string txt, string categoria)
+        {
+            int Num;
+
+            if (int.TryParse(categoria, out Num))
+            {
+                CargadorDeDatos.CargarComboBox("select id,nombre from LigaBA.Equipo WHERE borrado = '0' AND categoria = " + categoria, new List<SqlParameter>(), comboBox, txt, "id", "nombre");
+            }
+        }
+
         public static void CargarEquipoPartidoComboBox(ComboBox comboBox, string txt, string partido)
         {
             int Num;

@@ -23,7 +23,7 @@ namespace LigaBA.Fixture
         private void PartidosForm_Load(object sender, EventArgs e)
         {
             CargadorDeDatos.CargarCategoriaComboBox(CategoriasComboBox, this.Text);
-            CargadorDeDatos.CargarTorneoComboBox(TorneosComboBox, this.Text);
+            CargadorDeDatos.CargarTorneoComboBox(TorneosComboBox, this.Text);            
 
             this.TorneosComboBox.Select();
         }
@@ -162,6 +162,22 @@ namespace LigaBA.Fixture
             if (Resultado == DialogResult.OK)
             {
                 ModDataGridView.limpiarDataGridView(Fixture_DataGridView, "");
+            }
+        }
+
+        private void TorneosComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (TorneosComboBox.SelectedValue != null)
+            {
+                CargadorDeDatos.CargarFechasComboBox(FechaComboBox, TorneosComboBox.SelectedValue.ToString(), this.Text);
+            }
+        }
+
+        private void CategoriasComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(CategoriasComboBox.SelectedValue != null)
+            {
+                CargadorDeDatos.CargarEquipoDeCategoriaComboBox(EquipoComboBox,this.Text,CategoriasComboBox.SelectedValue.ToString());
             }
         }        
              
