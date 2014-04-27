@@ -1065,24 +1065,25 @@ BEGIN transaction
         FROM LigaBA.Partido as P
         WHERE P.torneoxcategoria=' + CAST(@TorneoXCategoria as nvarchar(100))) 
         
-        IF(@Fecha != null)
+        IF(@Fecha != '')
         BEGIN
 			SET @consulta = @consulta + ' AND P.fecha = ''' + CAST(@Fecha as nvarchar(100)) + ''''
 		END
 		
-		IF(@Equipo != null)
+		IF(@Equipo != '')
         BEGIN
 			SET @consulta = @consulta + ' AND (P.equipolocal = ' + CAST(@Equipo as nvarchar(100))
 			SET @consulta = @consulta + ' OR P.equipovisitante = ' + CAST(@Equipo as nvarchar(100)) +')'
 		END
 		
 		SET @consulta = @consulta + ' ORDER BY P.fecha'
+		print(@consulta)
         
         exec(@Consulta)
 
 COMMIT
 
-execute LigaBA.p_BuscarFixture 1,1,null,null
+--execute LigaBA.p_BuscarFixture 1,1,1,null
 
 GO
 
