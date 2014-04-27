@@ -224,6 +224,24 @@
     <Compile Include="Clases LigaBA\GenerarFixture.cs" />
     <Compile Include="Clases LigaBA\Jugador.cs" />
     <Compile Include="Clases\Cifrar.cs" />
+    <Compile Include="Fixture\FixtureForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Fixture\FixtureForm.Designer.cs">
+      <DependentUpon>FixtureForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Fixture\ModificarLocaliaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Fixture\ModificarLocaliaForm.Designer.cs">
+      <DependentUpon>ModificarLocaliaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Fixture\ReporteFixtureForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Fixture\ReporteFixtureForm.Designer.cs">
+      <DependentUpon>ReporteFixtureForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Partidos\AgregarJugadorForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -278,6 +296,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FichaPartidoDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Reportes\DataSet\FixtureDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FixtureDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Reportes\DataSet\InstitucionesDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -292,6 +315,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>FichaPartido.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reportes\Fixture1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Fixture1.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reportes\Instituciones.cs">
@@ -390,6 +419,15 @@
     <EmbeddedResource Include="Back Up\BackUpForm.resx">
       <DependentUpon>BackUpForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Fixture\FixtureForm.resx">
+      <DependentUpon>FixtureForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fixture\ModificarLocaliaForm.resx">
+      <DependentUpon>ModificarLocaliaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fixture\ReporteFixtureForm.resx">
+      <DependentUpon>ReporteFixtureForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Partidos\AgregarJugadorForm.resx">
       <DependentUpon>AgregarJugadorForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -426,6 +464,10 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>FichaPartido.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Fixture1.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Fixture1.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\Instituciones.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>Instituciones.cs</LastGenOutput>
@@ -457,6 +499,17 @@
     </None>
     <None Include="Reportes\DataSet\FichaPartidoDataSet.xss">
       <DependentUpon>FichaPartidoDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Reportes\DataSet\FixtureDataSet.xsc">
+      <DependentUpon>FixtureDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Reportes\DataSet\FixtureDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>FixtureDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Reportes\DataSet\FixtureDataSet.xss">
+      <DependentUpon>FixtureDataSet.xsd</DependentUpon>
     </None>
     <None Include="Reportes\DataSet\InstitucionesDataSet.xsc">
       <DependentUpon>InstitucionesDataSet.xsd</DependentUpon>

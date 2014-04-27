@@ -62,8 +62,16 @@ namespace LigaBA.Partidos
 
             DataGrid.Columns["idJugador"].Visible = false;
         }
+
         private void GuardarButton_Click(object sender, EventArgs e)
         {
+
+            
+
+
+
+
+
 
         }
 
@@ -158,7 +166,7 @@ namespace LigaBA.Partidos
             DialogResult Resultado = abrir.ShowDialog();
             if (Resultado == DialogResult.OK)
             {
-               
+                if (!ValidacionesRojas()) { return; }
 
                 Rojas_DataGridView.Rows.Add(JugadorRojas.get_equipo(),JugadorRojas.get_nombre(),JugadorRojas.get_apellido(),JugadorRojas.get_dni(),"1",JugadorRojas.get_id().ToString());
             }
@@ -269,7 +277,7 @@ namespace LigaBA.Partidos
                 }
             }
 
-            false true;
+           return true;
         }
 
 
