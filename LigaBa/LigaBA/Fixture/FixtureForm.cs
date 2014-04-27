@@ -32,25 +32,38 @@ namespace LigaBA.Fixture
         {
 	            
 	        if (Validaciones() == -1) return;
-	            
-	        string Fecha;
- 	
+
+            string Fecha = "";
+            string Equipo = "";
+
+            if (FechaComboBox.SelectedValue != null)
+            {
+                Fecha = FechaComboBox.SelectedValue.ToString();
+            }
+
+            if (EquipoComboBox.SelectedValue != null)
+            {
+                Equipo = EquipoComboBox.SelectedValue.ToString();
+            }
+
             List<SqlParameter> param = new List<SqlParameter>();
 	        param.Add(new SqlParameter("@Torneo", TorneosComboBox.SelectedValue.ToString()));
-	        param.Add(new SqlParameter("@Categoria", CategoriasComboBox.SelectedValue.ToString()));            
+	        param.Add(new SqlParameter("@Categoria", CategoriasComboBox.SelectedValue.ToString()));
+            param.Add(new SqlParameter("@Fecha", Fecha));
+            param.Add(new SqlParameter("@Equipo", Equipo));   
 
             DataSet ds = null;
-	        ds = BaseDeDatos.GetInstance.ejecutarConsulta("p_BuscarFixture", param, "Partidos", this.Text);
+            ds = BaseDeDatos.GetInstance.ejecutarConsulta("p_BuscarFixture", param, "Fixture", this.Text);
            
             //ERROR al BUSCAR ENTRAR ACA
-            if (ds.Tables["Partidos"].Rows.Count == 0)
+            if (ds.Tables["Fixture"] != null && ds.Tables["Fixture"].Rows.Count == 0)
  	        {
 	            this.Fixture_DataGridView.DataSource = null;
  	            MessageBox.Show("No se encontraron resultados que coincidan con la busqueda.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
  	            return;
  	        }
  	
-	        Fixture_DataGridView.DataSource = ds.Tables["Partidos"];
+	        Fixture_DataGridView.DataSource = ds.Tables["Fixture"];
 	        Fixture_DataGridView.Columns["vs"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;          
  	        this.Fixture_DataGridView.Columns["id"].Visible = false;
             this.Fixture_DataGridView.Columns["LocalId"].Visible = false;
@@ -163,9 +176,9 @@ namespace LigaBA.Fixture
             {
                 ModDataGridView.limpiarDataGridView(Fixture_DataGridView, "");
             }
-        }
-
-        private void TorneosComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        }        
+    
+        private void TorneosComboBox_SelectionChangeCommitted(object sender, EventArgs e)
         {
             if (TorneosComboBox.SelectedValue != null)
             {
@@ -173,11 +186,11 @@ namespace LigaBA.Fixture
             }
         }
 
-        private void CategoriasComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void CategoriasComboBox_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            if(CategoriasComboBox.SelectedValue != null)
+            if (CategoriasComboBox.SelectedValue != null)
             {
-                CargadorDeDatos.CargarEquipoDeCategoriaComboBox(EquipoComboBox,this.Text,CategoriasComboBox.SelectedValue.ToString());
+                CargadorDeDatos.CargarEquipoDeCategoriaComboBox(EquipoComboBox, this.Text, CategoriasComboBox.SelectedValue.ToString());
             }
         }        
              

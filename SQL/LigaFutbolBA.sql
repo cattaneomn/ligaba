@@ -1043,11 +1043,14 @@ COMMIT
 
 GO
 
+
 --BUSCAR FIXTURE
 CREATE PROCEDURE [LigaBA].[p_BuscarFixture]
 (
         @Torneo int,
-        @Categoria int
+        @Categoria int,
+        @Fecha int,
+        @Equipo int
 )       
 AS
 BEGIN transaction
@@ -1060,12 +1063,26 @@ BEGIN transaction
         SET @consulta= ('SELECT P.equipolocal as LocalId,P.equipovisitante as VisitanteId,P.id,P.fecha as Fecha,LigaBA.f_NombreEquipo(P.equipolocal) as Local,'+'''vs'''+' as vs,
         LigaBA.f_NombreEquipo(P.equipovisitante) as Visitante 
         FROM LigaBA.Partido as P
-        WHERE P.torneoxcategoria=' + CAST(@TorneoXCategoria as nvarchar(100)))        
+        WHERE P.torneoxcategoria=' + CAST(@TorneoXCategoria as nvarchar(100))) 
+        
+        IF(@Fecha != null)
+        BEGIN
+			SET @consulta = @consulta + ' AND P.fecha = ''' + CAST(@Fecha as nvarchar(100)) + ''''
+		END
+		
+		IF(@Equipo != null)
+        BEGIN
+			SET @consulta = @consulta + ' AND (P.equipolocal = ' + CAST(@Equipo as nvarchar(100))
+			SET @consulta = @consulta + ' OR P.equipovisitante = ' + CAST(@Equipo as nvarchar(100)) +')'
+		END
+		
+		SET @consulta = @consulta + ' ORDER BY P.fecha'
         
         exec(@Consulta)
 
 COMMIT
 
+execute LigaBA.p_BuscarFixture 1,1,null,null
 
 GO
 
@@ -1073,7 +1090,7 @@ GO
 CREATE PROCEDURE [LigaBA].[p_MostrarFixture]
 (
         @Torneo int,
-        @Categoria int
+        @Categoria int        
 )       
 AS
 BEGIN transaction
