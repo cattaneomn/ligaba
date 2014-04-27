@@ -1044,7 +1044,7 @@ COMMIT
 GO
 
 --BUSCAR FIXTURE
-alter PROCEDURE [LigaBA].[p_BuscarFixture]
+CREATE PROCEDURE [LigaBA].[p_BuscarFixture]
 (
         @Torneo int,
         @Categoria int
@@ -1065,6 +1065,25 @@ BEGIN transaction
         exec(@Consulta)
 
 COMMIT
+
+
+GO
+
+--MODIFICAR LOCALIA FIXTURE
+CREATE PROCEDURE [LigaBA].[p_ModificarLocalia]
+(
+        @partido nvarchar(50),
+        @equipolocal nvarchar(50),
+        @equipovisitante nvarchar(50)            
+)       
+AS
+BEGIN transaction
+                                             
+        UPDATE LigaBA.Partido SET equipolocal=@equipolocal, equipovisitante=@equipovisitante WHERE id = @partido                                     
+
+COMMIT
+
+GO
 
 --BACK UP
 CREATE PROCEDURE [LigaBA].[p_BackUp]

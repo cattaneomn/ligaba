@@ -31,12 +31,12 @@
             this.GuardarButton = new System.Windows.Forms.Button();
             this.CancelarButton = new System.Windows.Forms.Button();
             this.UsuariosGroupBox = new System.Windows.Forms.GroupBox();
+            this.FechaTextBox = new System.Windows.Forms.TextBox();
             this.VisitanteComboBox = new System.Windows.Forms.ComboBox();
             this.LocalComboBox = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.FechaTextBox = new System.Windows.Forms.TextBox();
             this.UsuariosGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,6 +52,7 @@
             this.GuardarButton.TabIndex = 10;
             this.GuardarButton.Text = "Guardar";
             this.GuardarButton.UseVisualStyleBackColor = true;
+            this.GuardarButton.Click += new System.EventHandler(this.GuardarButton_Click);
             // 
             // CancelarButton
             // 
@@ -85,8 +86,17 @@
             this.UsuariosGroupBox.TabStop = false;
             this.UsuariosGroupBox.Text = "Datos del Partido";
             // 
+            // FechaTextBox
+            // 
+            this.FechaTextBox.Enabled = false;
+            this.FechaTextBox.Location = new System.Drawing.Point(140, 52);
+            this.FechaTextBox.Name = "FechaTextBox";
+            this.FechaTextBox.Size = new System.Drawing.Size(121, 21);
+            this.FechaTextBox.TabIndex = 48;
+            // 
             // VisitanteComboBox
             // 
+            this.VisitanteComboBox.Enabled = false;
             this.VisitanteComboBox.FormattingEnabled = true;
             this.VisitanteComboBox.Location = new System.Drawing.Point(140, 129);
             this.VisitanteComboBox.Name = "VisitanteComboBox";
@@ -141,14 +151,6 @@
             this.label8.Size = new System.Drawing.Size(49, 16);
             this.label8.TabIndex = 42;
             this.label8.Text = "Fecha:";
-            // 
-            // FechaTextBox
-            // 
-            this.FechaTextBox.Enabled = false;
-            this.FechaTextBox.Location = new System.Drawing.Point(140, 52);
-            this.FechaTextBox.Name = "FechaTextBox";
-            this.FechaTextBox.Size = new System.Drawing.Size(121, 21);
-            this.FechaTextBox.TabIndex = 48;
             // 
             // ModificarLocaliaForm
             // 
