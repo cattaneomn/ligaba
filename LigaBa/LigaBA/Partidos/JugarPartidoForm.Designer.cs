@@ -43,7 +43,7 @@
             this.AmarillasTab = new System.Windows.Forms.TabPage();
             this.AddAmarrillaButton = new System.Windows.Forms.Button();
             this.CantidadAmarillaTextBox = new System.Windows.Forms.TextBox();
-            this.NombreAmarrillaTextBox = new System.Windows.Forms.TextBox();
+            this.NombreAmarillaTextBox = new System.Windows.Forms.TextBox();
             this.Amarillas_DataGridView = new System.Windows.Forms.DataGridView();
             this.EliminarAmarillasButton = new System.Windows.Forms.Button();
             this.AgregarAmarillasButton = new System.Windows.Forms.Button();
@@ -125,6 +125,7 @@
             this.CantidadGolesTextBox.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CantidadGolesTextBox.Location = new System.Drawing.Point(550, 12);
             this.CantidadGolesTextBox.Name = "CantidadGolesTextBox";
+            this.CantidadGolesTextBox.ReadOnly = true;
             this.CantidadGolesTextBox.Size = new System.Drawing.Size(108, 22);
             this.CantidadGolesTextBox.TabIndex = 13;
             this.CantidadGolesTextBox.Text = "Cantidad";
@@ -187,7 +188,7 @@
             // 
             this.AmarillasTab.Controls.Add(this.AddAmarrillaButton);
             this.AmarillasTab.Controls.Add(this.CantidadAmarillaTextBox);
-            this.AmarillasTab.Controls.Add(this.NombreAmarrillaTextBox);
+            this.AmarillasTab.Controls.Add(this.NombreAmarillaTextBox);
             this.AmarillasTab.Controls.Add(this.Amarillas_DataGridView);
             this.AmarillasTab.Controls.Add(this.EliminarAmarillasButton);
             this.AmarillasTab.Controls.Add(this.AgregarAmarillasButton);
@@ -216,20 +217,21 @@
             this.CantidadAmarillaTextBox.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CantidadAmarillaTextBox.Location = new System.Drawing.Point(549, 12);
             this.CantidadAmarillaTextBox.Name = "CantidadAmarillaTextBox";
+            this.CantidadAmarillaTextBox.ReadOnly = true;
             this.CantidadAmarillaTextBox.Size = new System.Drawing.Size(108, 22);
             this.CantidadAmarillaTextBox.TabIndex = 16;
             this.CantidadAmarillaTextBox.Text = "Cantidad";
             this.CantidadAmarillaTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // NombreAmarrillaTextBox
+            // NombreAmarillaTextBox
             // 
-            this.NombreAmarrillaTextBox.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NombreAmarrillaTextBox.Location = new System.Drawing.Point(355, 12);
-            this.NombreAmarrillaTextBox.Name = "NombreAmarrillaTextBox";
-            this.NombreAmarrillaTextBox.ReadOnly = true;
-            this.NombreAmarrillaTextBox.Size = new System.Drawing.Size(188, 22);
-            this.NombreAmarrillaTextBox.TabIndex = 15;
-            this.NombreAmarrillaTextBox.Text = "Nombre, Apellido";
+            this.NombreAmarillaTextBox.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NombreAmarillaTextBox.Location = new System.Drawing.Point(355, 12);
+            this.NombreAmarillaTextBox.Name = "NombreAmarillaTextBox";
+            this.NombreAmarillaTextBox.ReadOnly = true;
+            this.NombreAmarillaTextBox.Size = new System.Drawing.Size(188, 22);
+            this.NombreAmarillaTextBox.TabIndex = 15;
+            this.NombreAmarillaTextBox.Text = "Nombre, Apellido";
             // 
             // Amarillas_DataGridView
             // 
@@ -547,6 +549,6 @@
         private System.Windows.Forms.TextBox NombreGolesTextBox;
         private System.Windows.Forms.Button AddAmarrillaButton;
         private System.Windows.Forms.TextBox CantidadAmarillaTextBox;
-        private System.Windows.Forms.TextBox NombreAmarrillaTextBox;
+        private System.Windows.Forms.TextBox NombreAmarillaTextBox;
     }
 }
