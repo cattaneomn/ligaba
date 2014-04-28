@@ -184,7 +184,7 @@ namespace LigaBA.Partidos
         private void AgregarGolesButton_Click(object sender, EventArgs e)
         {
             JugadorGoles = new Jugador(0, "", "", "", "");
-            AgregarJugadorForm abrir = new AgregarJugadorForm(this.LocalId,this.VisitanteId,"Goles");
+            AgregarJugadorForm abrir = new AgregarJugadorForm(this.LocalId,this.VisitanteId,"Goles",this.Name);
             DialogResult Resultado = abrir.ShowDialog();
             if (Resultado == DialogResult.OK)
             {
@@ -200,7 +200,7 @@ namespace LigaBA.Partidos
         private void AgregarAmarillasButton_Click(object sender, EventArgs e)
         {
             JugadorAmarillas = new Jugador(0, "", "", "", "");
-            AgregarJugadorForm abrir = new AgregarJugadorForm(this.LocalId, this.VisitanteId,"Amarillas");
+            AgregarJugadorForm abrir = new AgregarJugadorForm(this.LocalId, this.VisitanteId,"Amarillas",this.Name);
             DialogResult Resultado = abrir.ShowDialog();
             if (Resultado == DialogResult.OK)
             {
@@ -214,7 +214,7 @@ namespace LigaBA.Partidos
         private void AgregarRojasButton_Click(object sender, EventArgs e)
         {
             JugadorRojas = new Jugador(0, "", "", "", "");
-            AgregarJugadorForm abrir = new AgregarJugadorForm(this.LocalId, this.VisitanteId,"Rojas");
+            AgregarJugadorForm abrir = new AgregarJugadorForm(this.LocalId, this.VisitanteId,"Rojas",this.Name);
             DialogResult Resultado = abrir.ShowDialog();
             if (Resultado == DialogResult.OK)
             {
