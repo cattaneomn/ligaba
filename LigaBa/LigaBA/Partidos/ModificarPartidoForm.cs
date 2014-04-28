@@ -11,9 +11,9 @@ using System.Data.SqlClient;
 
 namespace LigaBA.Partidos
 {
-    public partial class JugarPartidoForm : Form
+    public partial class ModificarPartidoForm : Form
     {
-        public JugarPartidoForm(string Torneo,string Categoria,string Fecha,string Local,string Visitante,string LocalId, string VisitanteId,string PartidoId)
+        public ModificarPartidoForm(string Torneo,string Categoria,string Fecha,string Local,string Visitante,string LocalId, string VisitanteId,string PartidoId)
         {
             InitializeComponent();
 
@@ -50,12 +50,112 @@ namespace LigaBA.Partidos
             this.LocalLabel.Text = Local;
             this.VisitanteLabel.Text = Visitante;
 
-            CargarColumnasDataGrid(Goles_DataGridView);
-            CargarColumnasDataGrid(Amarillas_DataGridView);
-            CargarColumnasDataGrid(Rojas_DataGridView);
+            CargarResultados();
+            
+            if (!CargarGoles())
+            {
+                CargarColumnasDataGrid(Goles_DataGridView);
+            }
+            if (!CargarAmarillas())
+            {
+                CargarColumnasDataGrid(Amarillas_DataGridView);
+            }
+            if (!CargarRojas())
+            {
+                CargarColumnasDataGrid(Rojas_DataGridView);
+            }
 
             this.LocalNumericUpDown.Select();
         }
+
+        private bool CargarGoles()
+        {
+            string Consulta =  "SELECT E.nombre as Equipo,J.nombre as Nombre,J.apellido as Apellido,J.dni as Dni,PJ.goles as Cantidad,PJ.jugador as IdJugador FROM LigaBA.PartidoXJugador as PJ ";
+            Consulta += "JOIN LigaBA.Jugador as J ON J.id=PJ.jugador ";
+            Consulta += "JOIN LigaBA.JugadorXEquipo as JE ON J.id=JE.jugador ";
+            Consulta += "JOIN LigaBA.Equipo as E ON E.id=JE.equipo ";
+            Consulta += "WHERE PJ.goles > 0 AND PJ.partido=" + PartidoId;
+
+            List<SqlParameter> param = new List<SqlParameter>();
+
+            this.Goles_DataGridView.DataSource = BaseDeDatos.GetInstance.ExecuteCustomQuery(Consulta, param, this.Text);
+
+            if (this.Goles_DataGridView.DataSource == null)
+            {
+                return false;
+            }
+            else
+            {
+                this.Goles_DataGridView.Columns["IdJugador"].Visible = false;
+                return true;
+            }
+
+        }
+
+        private bool CargarAmarillas()
+        {
+            string Consulta = "SELECT E.nombre as Equipo,J.nombre as Nombre,J.apellido as Apellido,J.dni as Dni,PJ.amarillas as Cantidad,PJ.jugador as IdJugador FROM LigaBA.PartidoXJugador as PJ ";
+            Consulta += "JOIN LigaBA.Jugador as J ON J.id=PJ.jugador ";
+            Consulta += "JOIN LigaBA.JugadorXEquipo as JE ON J.id=JE.jugador ";
+            Consulta += "JOIN LigaBA.Equipo as E ON E.id=JE.equipo ";
+            Consulta += "WHERE PJ.amarillas > 0 AND PJ.partido=" + PartidoId;
+
+            List<SqlParameter> param = new List<SqlParameter>();
+
+            this.Amarillas_DataGridView.DataSource = BaseDeDatos.GetInstance.ExecuteCustomQuery(Consulta, param, this.Text);
+
+            if (this.Amarillas_DataGridView.DataSource == null)
+            {
+                return false;
+            }
+            else
+            {
+                this.Amarillas_DataGridView.Columns["IdJugador"].Visible = false;
+                return true;
+            }
+
+        }
+
+        private bool CargarRojas()
+        {
+            string Consulta = "SELECT E.nombre as Equipo,J.nombre as Nombre,J.apellido as Apellido,J.dni as Dni,PJ.rojas as Cantidad,PJ.jugador as IdJugador FROM LigaBA.PartidoXJugador as PJ ";
+            Consulta += "JOIN LigaBA.Jugador as J ON J.id=PJ.jugador ";
+            Consulta += "JOIN LigaBA.JugadorXEquipo as JE ON J.id=JE.jugador ";
+            Consulta += "JOIN LigaBA.Equipo as E ON E.id=JE.equipo ";
+            Consulta += "WHERE PJ.rojas > 0 AND PJ.partido=" + PartidoId;
+
+            List<SqlParameter> param = new List<SqlParameter>();
+
+            this.Rojas_DataGridView.DataSource = BaseDeDatos.GetInstance.ExecuteCustomQuery(Consulta, param, this.Text);
+
+            if (this.Rojas_DataGridView.DataSource == null)
+            {
+                return false;
+            }
+            else
+            {
+                this.Rojas_DataGridView.Columns["IdJugador"].Visible = false;
+                return true;
+            }
+
+        }
+
+        private void CargarResultados()
+        {
+            string Consulta = "SELECT goleslocal as GolesLocal,golesvisiante as GolesVisitante FROM LigaBA.Partido WHERE id=" + PartidoId;
+
+            List<SqlParameter> param = new List<SqlParameter>();
+
+            DataTable Dt = BaseDeDatos.GetInstance.ExecuteCustomQuery(Consulta, param, this.Text);
+
+            foreach (DataRow row in Dt.Rows)
+            {
+                this.LocalNumericUpDown.Value = Convert.ToInt32(row["GolesLocal"]);
+                this.VisitanteNumericUpDown.Value = Convert.ToInt32(row["GolesVisitante"]);
+            }
+
+        }
+
 
         private void CargarColumnasDataGrid(DataGridView DataGrid)
         {
@@ -97,17 +197,16 @@ namespace LigaBA.Partidos
             {
                // MessageBox.Show("jugador:" + jugador.get_id().ToString() + "cantGoles:" + jugador.get_cantGoles().ToString() + "cantAmarillas:" + jugador.get_cantAmarillas().ToString() + " CantRojas:" + jugador.get_cantRojas().ToString());
                
-               if (!(jugador.get_cantGoles() == 0 && jugador.get_cantAmarillas() == 0 && jugador.get_cantRojas() == 0))
+               if (jugador.get_cantGoles() != 0 && jugador.get_cantAmarillas() != 0 && jugador.get_cantRojas() != 0)
                {
+                List<SqlParameter> param = new List<SqlParameter>();
+                param.Add(new SqlParameter("@idPartido", PartidoId));
+                param.Add(new SqlParameter("@idJugador", jugador.get_id()));
+                param.Add(new SqlParameter("@cantGoles", jugador.get_cantGoles()));
+                param.Add(new SqlParameter("@cantAmarillas", jugador.get_cantAmarillas()));
+                param.Add(new SqlParameter("@cantRojas", jugador.get_cantRojas()));
 
-                    List<SqlParameter> param = new List<SqlParameter>();
-                    param.Add(new SqlParameter("@idPartido", PartidoId));
-                    param.Add(new SqlParameter("@idJugador", jugador.get_id()));
-                    param.Add(new SqlParameter("@cantGoles", jugador.get_cantGoles()));
-                    param.Add(new SqlParameter("@cantAmarillas", jugador.get_cantAmarillas()));
-                    param.Add(new SqlParameter("@cantRojas", jugador.get_cantRojas()));
-
-                    bool TerminoBien = BaseDeDatos.GetInstance.ejecutarProcedimiento("p_AltaPartidoXJugador", param, this.Text);            
+                bool TerminoBien = BaseDeDatos.GetInstance.ejecutarProcedimiento("p_AltaPartidoXJugador", param, this.Text);            
                }
             }
         }

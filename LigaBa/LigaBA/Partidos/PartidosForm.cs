@@ -148,18 +148,30 @@ namespace LigaBA.Partidos
                 MessageBox.Show("Debe seleccionar una fila.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
+            
+            if (Partidos_DataGridView.CurrentRow.Cells["Resultado"].Value.ToString() == " - ")
+            {
+                MessageBox.Show("El Partido seleccionado no fue jugado todavia, no puede modificarlo.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
 
-           /* string Id = Equipos_DataGridView.CurrentRow.Cells["id"].Value.ToString();
-            string Equipo = Equipos_DataGridView.CurrentRow.Cells["Equipo"].Value.ToString();
-            string Institucion = Equipos_DataGridView.CurrentRow.Cells["Institucion"].Value.ToString();
-            string Categoria = Equipos_DataGridView.CurrentRow.Cells["Categoria"].Value.ToString();
+            string Torneo = this.TorneosComboBox.Text;
+            string Categoria = this.CategoriasComboBox.Text;
+            string Fecha = Partidos_DataGridView.CurrentRow.Cells["Fecha"].Value.ToString();
+            string Local = Partidos_DataGridView.CurrentRow.Cells["Local"].Value.ToString();
+            string Visitante = Partidos_DataGridView.CurrentRow.Cells["Visitante"].Value.ToString();
+            string LocalId = Partidos_DataGridView.CurrentRow.Cells["LocalId"].Value.ToString();
+            string VisitanteId = Partidos_DataGridView.CurrentRow.Cells["VisitanteId"].Value.ToString();
+            string PartidoId = Partidos_DataGridView.CurrentRow.Cells["id"].Value.ToString();
 
-            ModificarEquipoForm abrir = new ModificarEquipoForm(Id, Institucion, Categoria, Equipo);
+
+            ModificarPartidoForm abrir = new ModificarPartidoForm(Torneo, Categoria, Fecha, Local, Visitante, LocalId, VisitanteId, PartidoId);
             DialogResult Resultado = abrir.ShowDialog();
             if (Resultado == DialogResult.OK)
             {
-                ModDataGridView.limpiarDataGridView(Equipos_DataGridView, "");
-            }*/
+                this.BuscarButton.PerformClick();
+            }
+            
         }
 
         private void JugarButton_Click(object sender, EventArgs e)
@@ -192,7 +204,11 @@ namespace LigaBA.Partidos
 
 
             JugarPartidoForm abrir = new JugarPartidoForm(Torneo,Categoria,Fecha,Local,Visitante,LocalId,VisitanteId,PartidoId);
-            abrir.ShowDialog();
+             DialogResult Resultado = abrir.ShowDialog();
+            if (Resultado == DialogResult.OK)
+            {
+                this.BuscarButton.PerformClick();
+            }
             
         }
 

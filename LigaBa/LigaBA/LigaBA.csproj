@@ -249,6 +249,12 @@
     <Compile Include="Partidos\AgregarJugadorForm.Designer.cs">
       <DependentUpon>AgregarJugadorForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Partidos\ModificarPartidoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Partidos\ModificarPartidoForm.Designer.cs">
+      <DependentUpon>ModificarPartidoForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Partidos\JugarPartidoForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -431,6 +437,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Partidos\AgregarJugadorForm.resx">
       <DependentUpon>AgregarJugadorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Partidos\ModificarPartidoForm.resx">
+      <DependentUpon>ModificarPartidoForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Partidos\JugarPartidoForm.resx">
       <DependentUpon>JugarPartidoForm.cs</DependentUpon>
