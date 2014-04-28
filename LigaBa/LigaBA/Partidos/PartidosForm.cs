@@ -188,9 +188,10 @@ namespace LigaBA.Partidos
             string Visitante = Partidos_DataGridView.CurrentRow.Cells["Visitante"].Value.ToString();
             string LocalId = Partidos_DataGridView.CurrentRow.Cells["LocalId"].Value.ToString();
             string VisitanteId = Partidos_DataGridView.CurrentRow.Cells["VisitanteId"].Value.ToString();
+            string PartidoId = Partidos_DataGridView.CurrentRow.Cells["id"].Value.ToString();
 
 
-            JugarPartidoForm abrir = new JugarPartidoForm(Torneo,Categoria,Fecha,Local,Visitante,LocalId,VisitanteId);
+            JugarPartidoForm abrir = new JugarPartidoForm(Torneo,Categoria,Fecha,Local,Visitante,LocalId,VisitanteId,PartidoId);
             abrir.ShowDialog();
             
         }

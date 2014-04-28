@@ -7,12 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using LigaBA.Clases_LigaBA;
+using System.Data.SqlClient;
 
 namespace LigaBA.Partidos
 {
     public partial class JugarPartidoForm : Form
     {
-        public JugarPartidoForm(string Torneo,string Categoria,string Fecha,string Local,string Visitante,string LocalId, string VisitanteId)
+        public JugarPartidoForm(string Torneo,string Categoria,string Fecha,string Local,string Visitante,string LocalId, string VisitanteId,string PartidoId)
         {
             InitializeComponent();
 
@@ -23,6 +24,7 @@ namespace LigaBA.Partidos
             this.Visitante = Visitante;
             this.LocalId = LocalId;
             this.VisitanteId = VisitanteId;
+            this.PartidoId = PartidoId;
         }
        
         public static Jugador JugadorGoles;
@@ -35,6 +37,10 @@ namespace LigaBA.Partidos
         string Visitante;
         string LocalId;
         string VisitanteId;
+        string PartidoId;
+        
+        List<JugadorXPartido> jugadorXPartido = new List<JugadorXPartido>();
+
 
         private void JugarPartidoForm_Load(object sender, EventArgs e)
         {
@@ -66,13 +72,38 @@ namespace LigaBA.Partidos
         private void GuardarButton_Click(object sender, EventArgs e)
         {
 
-            
+            List<SqlParameter> param = new List<SqlParameter>();
+            param.Add(new SqlParameter("@idPartido", PartidoId));
+            param.Add(new SqlParameter("@golesLocal", this.LocalNumericUpDown.Value));
+            param.Add(new SqlParameter("@golesVisitante", this.VisitanteNumericUpDown.Value));
+            param.Add(new SqlParameter("@localId", LocalId));
+            param.Add(new SqlParameter("@visitanteId", VisitanteId));
 
+            bool TerminoBien = BaseDeDatos.GetInstance.ejecutarProcedimiento("p_JugarPartido", param, this.Text);
 
+            InsertarPartidoXJugador();
 
+            if (TerminoBien == true)
+            {
+                MessageBox.Show("Se ha jugado el partido '" + Local + "' Vs '" + Visitante + "' correctamente.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                DialogResult = DialogResult.OK;
+            }
 
+        }
 
+        private void InsertarPartidoXJugador()
+        {
+            foreach (JugadorXPartido jugador in jugadorXPartido)
+            {
+               // MessageBox.Show("jugador:" + jugador.get_id().ToString() + "cantGoles:" + jugador.get_cantGoles().ToString() + "cantAmarillas:" + jugador.get_cantAmarillas().ToString() + " CantRojas:" + jugador.get_cantRojas().ToString());
+                List<SqlParameter> param = new List<SqlParameter>();
+                param.Add(new SqlParameter("@idJugador", jugador.get_id()));
+                param.Add(new SqlParameter("@cantGoles", jugador.get_cantGoles()));
+                param.Add(new SqlParameter("@cantAmarillas", jugador.get_cantAmarillas()));
+                param.Add(new SqlParameter("@cantRojas", jugador.get_cantRojas()));
 
+                bool TerminoBien = BaseDeDatos.GetInstance.ejecutarProcedimiento("p_AltaJugadorXPartido", param, this.Text);            
+            }
         }
 
         private void CancelarButton_Click(object sender, EventArgs e)
@@ -93,6 +124,11 @@ namespace LigaBA.Partidos
                 return;
             }
 
+            //modifico Coleccion
+            int index = jugadorXPartido.FindIndex(r => r.get_id().Equals(Convert.ToInt32(Goles_DataGridView.CurrentRow.Cells["idJugador"].Value)));
+            //modificar
+            jugadorXPartido[index].restar_cantGoles(Convert.ToInt32(Goles_DataGridView.CurrentRow.Cells["Cantidad"].Value));
+
             Goles_DataGridView.Rows.Remove(Goles_DataGridView.CurrentRow);
         }
 
@@ -109,6 +145,11 @@ namespace LigaBA.Partidos
                 return;
             }
 
+            //modifico Coleccion
+            int index = jugadorXPartido.FindIndex(r => r.get_id().Equals(Convert.ToInt32(Amarillas_DataGridView.CurrentRow.Cells["idJugador"].Value)));
+            //modificar
+            jugadorXPartido[index].restar_cantAmarillas(Convert.ToInt32(Amarillas_DataGridView.CurrentRow.Cells["Cantidad"].Value));
+
             Amarillas_DataGridView.Rows.Remove(Amarillas_DataGridView.CurrentRow);
         }
 
@@ -124,6 +165,11 @@ namespace LigaBA.Partidos
                 MessageBox.Show("Debe seleccionar una fila.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
+
+            //modifico Coleccion
+            int index = jugadorXPartido.FindIndex(r => r.get_id().Equals(Convert.ToInt32(Rojas_DataGridView.CurrentRow.Cells["idJugador"].Value)));
+            //modificar
+            jugadorXPartido[index].restar_cantRojas(1);
 
             Rojas_DataGridView.Rows.Remove(Rojas_DataGridView.CurrentRow);
         }
@@ -168,6 +214,19 @@ namespace LigaBA.Partidos
             {
                 if (!ValidacionesRojas()) { return; }
 
+                //Agrego A coleccion o modifico
+                int index = jugadorXPartido.FindIndex(r => r.get_id().Equals(JugadorRojas.get_id()));
+                if (index == -1)
+                {
+                    jugadorXPartido.Add(new JugadorXPartido(JugadorRojas.get_id(), 0, 0, 1));
+                }
+                else
+                {
+                    //modificar
+                    jugadorXPartido[index].sumar_cantRojas(1);
+                }
+
+               
                 Rojas_DataGridView.Rows.Add(JugadorRojas.get_equipo(),JugadorRojas.get_nombre(),JugadorRojas.get_apellido(),JugadorRojas.get_dni(),"1",JugadorRojas.get_id().ToString());
             }
         }
@@ -175,6 +234,19 @@ namespace LigaBA.Partidos
         private void AddGolButton_Click(object sender, EventArgs e)
         {
             if (!ValidacionesGoles()) { return; }
+
+            //Agrego A coleccion o modifico
+            int index = jugadorXPartido.FindIndex(r => r.get_id().Equals(JugadorGoles.get_id()));
+            if (index == -1)
+            {
+                jugadorXPartido.Add(new JugadorXPartido(JugadorGoles.get_id(), Convert.ToInt32(this.CantidadGolesTextBox.Text), 0, 0));
+            }
+            else
+            {
+                //modificar
+                jugadorXPartido[index].sumar_cantGoles(Convert.ToInt32(this.CantidadGolesTextBox.Text));
+            }
+
 
             Goles_DataGridView.Rows.Add(JugadorGoles.get_equipo(), JugadorGoles.get_nombre(), JugadorGoles.get_apellido(), JugadorGoles.get_dni(), this.CantidadGolesTextBox.Text, JugadorGoles.get_id().ToString());
             
@@ -186,6 +258,18 @@ namespace LigaBA.Partidos
         private void AddAmarrillaButton_Click(object sender, EventArgs e)
         {
             if (!ValidacionesAmarrillas()) { return; }
+
+            //Agrego A coleccion o modifico
+            int index = jugadorXPartido.FindIndex(r => r.get_id().Equals(JugadorAmarillas.get_id()));
+            if (index == -1)
+            {
+                jugadorXPartido.Add(new JugadorXPartido(JugadorAmarillas.get_id(),0,Convert.ToInt32(this.CantidadAmarillaTextBox.Text), 0));
+            }
+            else
+            {
+                //modificar
+                jugadorXPartido[index].sumar_cantAmarillas(Convert.ToInt32(this.CantidadAmarillaTextBox.Text));
+            }
 
             Amarillas_DataGridView.Rows.Add(JugadorAmarillas.get_equipo(), JugadorAmarillas.get_nombre(), JugadorAmarillas.get_apellido(), JugadorAmarillas.get_dni(), this.CantidadAmarillaTextBox.Text, JugadorAmarillas.get_id().ToString());
             this.CantidadAmarillaTextBox.ReadOnly = true;
