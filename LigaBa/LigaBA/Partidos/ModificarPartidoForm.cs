@@ -199,10 +199,9 @@ namespace LigaBA.Partidos
 
             bool TerminoBien = BaseDeDatos.GetInstance.ejecutarProcedimiento("p_JugarPartido", param, this.Text);
 
-            InsertarPartidoXJugador();
-
             if (TerminoBien == true)
             {
+                InsertarPartidoXJugador();
                 MessageBox.Show("Se ha jugado el partido '" + Local + "' Vs '" + Visitante + "' correctamente.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 DialogResult = DialogResult.OK;
             }
