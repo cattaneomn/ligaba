@@ -57,11 +57,11 @@
             this.ModificarButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ModificarButton.Image = ((System.Drawing.Image)(resources.GetObject("ModificarButton.Image")));
             this.ModificarButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ModificarButton.Location = new System.Drawing.Point(12, 148);
+            this.ModificarButton.Location = new System.Drawing.Point(12, 157);
             this.ModificarButton.Name = "ModificarButton";
             this.ModificarButton.Size = new System.Drawing.Size(156, 35);
             this.ModificarButton.TabIndex = 5;
-            this.ModificarButton.Text = " Modificar localia";
+            this.ModificarButton.Text = " Modificar Localia";
             this.ModificarButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.ModificarButton.UseVisualStyleBackColor = true;
             this.ModificarButton.Click += new System.EventHandler(this.ModificarButton_Click);
@@ -107,9 +107,9 @@
             // Fixture_DataGridView
             // 
             this.Fixture_DataGridView.AllowUserToAddRows = false;
-            this.Fixture_DataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.Fixture_DataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -127,7 +127,7 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.Fixture_DataGridView.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Fixture_DataGridView.Location = new System.Drawing.Point(12, 189);
+            this.Fixture_DataGridView.Location = new System.Drawing.Point(12, 198);
             this.Fixture_DataGridView.Name = "Fixture_DataGridView";
             this.Fixture_DataGridView.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -140,7 +140,7 @@
             this.Fixture_DataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Fixture_DataGridView.RowsDefaultCellStyle = dataGridViewCellStyle4;
-            this.Fixture_DataGridView.Size = new System.Drawing.Size(760, 333);
+            this.Fixture_DataGridView.Size = new System.Drawing.Size(760, 324);
             this.Fixture_DataGridView.TabIndex = 14;
             // 
             // ImprimirPartidoButton
@@ -149,7 +149,7 @@
             this.ImprimirPartidoButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ImprimirPartidoButton.Image = ((System.Drawing.Image)(resources.GetObject("ImprimirPartidoButton.Image")));
             this.ImprimirPartidoButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ImprimirPartidoButton.Location = new System.Drawing.Point(616, 148);
+            this.ImprimirPartidoButton.Location = new System.Drawing.Point(616, 157);
             this.ImprimirPartidoButton.Name = "ImprimirPartidoButton";
             this.ImprimirPartidoButton.Size = new System.Drawing.Size(156, 35);
             this.ImprimirPartidoButton.TabIndex = 6;
@@ -160,8 +160,8 @@
             // 
             // GroupBox
             // 
-            this.GroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.GroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.GroupBox.Controls.Add(this.EquipoComboBox);
             this.GroupBox.Controls.Add(this.label4);
             this.GroupBox.Controls.Add(this.FechaComboBox);
@@ -173,7 +173,7 @@
             this.GroupBox.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.GroupBox.Location = new System.Drawing.Point(12, 13);
             this.GroupBox.Name = "GroupBox";
-            this.GroupBox.Size = new System.Drawing.Size(760, 129);
+            this.GroupBox.Size = new System.Drawing.Size(760, 138);
             this.GroupBox.TabIndex = 23;
             this.GroupBox.TabStop = false;
             this.GroupBox.Text = "Filtros";
@@ -182,54 +182,54 @@
             // 
             this.EquipoComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.EquipoComboBox.FormattingEnabled = true;
-            this.EquipoComboBox.Location = new System.Drawing.Point(472, 76);
+            this.EquipoComboBox.Location = new System.Drawing.Point(471, 85);
             this.EquipoComboBox.Name = "EquipoComboBox";
             this.EquipoComboBox.Size = new System.Drawing.Size(172, 23);
             this.EquipoComboBox.TabIndex = 32;
             // 
             // label4
             // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(408, 78);
+            this.label4.Location = new System.Drawing.Point(407, 87);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(54, 16);
+            this.label4.Size = new System.Drawing.Size(51, 16);
             this.label4.TabIndex = 33;
-            this.label4.Text = "Equipo:";
+            this.label4.Text = "Equipo";
             // 
             // FechaComboBox
             // 
             this.FechaComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.FechaComboBox.FormattingEnabled = true;
-            this.FechaComboBox.Location = new System.Drawing.Point(472, 37);
+            this.FechaComboBox.Location = new System.Drawing.Point(471, 34);
             this.FechaComboBox.Name = "FechaComboBox";
             this.FechaComboBox.Size = new System.Drawing.Size(172, 23);
             this.FechaComboBox.TabIndex = 30;
             // 
             // label3
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(408, 39);
+            this.label3.Location = new System.Drawing.Point(407, 36);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(49, 16);
+            this.label3.Size = new System.Drawing.Size(46, 16);
             this.label3.TabIndex = 31;
-            this.label3.Text = "Fecha:";
+            this.label3.Text = "Fecha";
             // 
             // label2
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(65, 78);
+            this.label2.Location = new System.Drawing.Point(64, 87);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(72, 16);
             this.label2.TabIndex = 28;
@@ -239,7 +239,7 @@
             // 
             this.TorneosComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.TorneosComboBox.FormattingEnabled = true;
-            this.TorneosComboBox.Location = new System.Drawing.Point(143, 37);
+            this.TorneosComboBox.Location = new System.Drawing.Point(142, 34);
             this.TorneosComboBox.Name = "TorneosComboBox";
             this.TorneosComboBox.Size = new System.Drawing.Size(219, 23);
             this.TorneosComboBox.TabIndex = 1;
@@ -247,12 +247,12 @@
             // 
             // label1
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(65, 39);
+            this.label1.Location = new System.Drawing.Point(64, 36);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(57, 16);
             this.label1.TabIndex = 27;
@@ -262,7 +262,7 @@
             // 
             this.CategoriasComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CategoriasComboBox.FormattingEnabled = true;
-            this.CategoriasComboBox.Location = new System.Drawing.Point(143, 76);
+            this.CategoriasComboBox.Location = new System.Drawing.Point(142, 85);
             this.CategoriasComboBox.Name = "CategoriasComboBox";
             this.CategoriasComboBox.Size = new System.Drawing.Size(219, 23);
             this.CategoriasComboBox.TabIndex = 2;

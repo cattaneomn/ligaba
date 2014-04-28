@@ -64,7 +64,7 @@ namespace LigaBA.Fixture
  	        }
  	
 	        Fixture_DataGridView.DataSource = ds.Tables["Fixture"];
-	        Fixture_DataGridView.Columns["vs"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;          
+	        Fixture_DataGridView.Columns["vs"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
  	        this.Fixture_DataGridView.Columns["id"].Visible = false;
             this.Fixture_DataGridView.Columns["LocalId"].Visible = false;
             this.Fixture_DataGridView.Columns["VisitanteId"].Visible = false;
