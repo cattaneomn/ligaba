@@ -1146,6 +1146,21 @@ BEGIN transaction
 COMMIT
 GO
 
+--MODIFICAR PARTIDOXJUGADOR
+CREATE PROCEDURE [LigaBA].[p_ModificarPartidoXJugador]
+(
+        @idPartido int
+)
+AS
+BEGIN transaction
+
+DELETE FROM LigaBA.PartidoXJugador WHERE partido=@idPartido
+
+--RESTAR AMARILLAS Y ROJAS 
+
+COMMIT
+GO
+
 --JUGAR PARTIDO
 CREATE PROCEDURE [LigaBA].[p_JugarPartido]
 (
@@ -1214,6 +1229,76 @@ BEGIN transaction
             partidosjugados=partidosjugados+1,partidosempatados=partidosempatados+1,
             golesafavor=golesafavor+@golesVisitante, golesencontra=golesencontra+@golesLocal,
             puntos=puntos+1
+            WHERE torneoxcategoria=@torneoXCategoria AND equipo=@visitanteId
+        END
+
+COMMIT
+GO
+
+--MODIFICAR PARTIDO
+CREATE PROCEDURE [LigaBA].[p_ModificarPartido]
+(
+        @idPartido int,
+        @golesLocal int,
+        @golesVisitante int,
+        @localId int,
+        @visitanteId int
+)       
+AS
+BEGIN transaction
+
+        DECLARE @torneoXCategoria int
+        
+        --TORNEOXCATEGORIA QUE PERTECENE EL PARTIDO
+        SET @torneoXCategoria = (SELECT TOP 1 torneoxcategoria FROM LigaBA.Partido WHERE id=@idPartido)
+        
+        
+        --ACTUALIZO TABLA DE POSICIONES
+        IF (@golesLocal > @golesVisitante)
+        BEGIN
+            --GANADOR LOCAL
+            UPDATE LigaBA.TorneoXCategoriaXEquipo SET 
+            partidosjugados=partidosjugados-1, partidosganados=partidosganados-1,
+            golesafavor=golesafavor-@golesLocal, golesencontra=golesencontra-@golesVisitante,
+            puntos=puntos-3
+            WHERE torneoxcategoria=@torneoXCategoria AND equipo=@localId
+            
+            --PERDEDOR VISITANTE
+            UPDATE LigaBA.TorneoXCategoriaXEquipo SET 
+            partidosjugados=partidosjugados-1,partidosperdidos=partidosperdidos-1,
+            golesafavor=golesafavor-@golesVisitante, golesencontra=golesencontra-@golesLocal
+            WHERE torneoxcategoria=@torneoXCategoria AND equipo=@visitanteId
+        END
+
+        IF (@golesVisitante > @golesLocal)
+        BEGIN 
+            --GANADOR VISITANTE
+            UPDATE LigaBA.TorneoXCategoriaXEquipo SET 
+            partidosjugados=partidosjugados-1, partidosganados=partidosganados-1,
+            golesafavor=golesafavor-@golesVisitante, golesencontra=golesencontra-@golesLocal,
+            puntos=puntos-3
+            WHERE torneoxcategoria=@torneoXCategoria AND equipo=@visitanteId
+            
+            --PERDEDOR LOCAL
+            UPDATE LigaBA.TorneoXCategoriaXEquipo SET 
+            partidosjugados=partidosjugados-1,partidosperdidos=partidosperdidos-1,
+            golesafavor=golesafavor-@golesLocal, golesencontra=golesencontra-@golesVisitante
+            WHERE torneoxcategoria=@torneoXCategoria AND equipo=@localId
+        END
+        
+        IF (@golesVisitante = @golesLocal)
+        BEGIN
+            --EMPATE
+            UPDATE LigaBA.TorneoXCategoriaXEquipo SET 
+            partidosjugados=partidosjugados-1,partidosempatados=partidosempatados-1,
+            golesafavor=golesafavor-@golesLocal, golesencontra=golesencontra-@golesVisitante,
+            puntos=puntos-1
+            WHERE torneoxcategoria=@torneoXCategoria AND equipo=@localId
+            
+            UPDATE LigaBA.TorneoXCategoriaXEquipo SET 
+            partidosjugados=partidosjugados-1,partidosempatados=partidosempatados-1,
+            golesafavor=golesafavor-@golesVisitante, golesencontra=golesencontra-@golesLocal,
+            puntos=puntos-1
             WHERE torneoxcategoria=@torneoXCategoria AND equipo=@visitanteId
         END
 

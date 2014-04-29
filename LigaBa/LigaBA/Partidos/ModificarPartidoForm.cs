@@ -38,6 +38,8 @@ namespace LigaBA.Partidos
         string LocalId;
         string VisitanteId;
         string PartidoId;
+        int GolesLocalAnterior;
+        int GolesVisitanteAnterior;
         
         List<JugadorXPartido> jugadorXPartido = new List<JugadorXPartido>();
 
@@ -172,6 +174,9 @@ namespace LigaBA.Partidos
                 this.VisitanteNumericUpDown.Value = Convert.ToInt32(row["GolesVisitante"]);
             }
 
+            GolesLocalAnterior = Convert.ToInt32(this.LocalNumericUpDown.Value);
+            GolesVisitanteAnterior = Convert.ToInt32(this.VisitanteNumericUpDown.Value);
+
         }
 
 
@@ -190,6 +195,8 @@ namespace LigaBA.Partidos
         private void GuardarButton_Click(object sender, EventArgs e)
         {
 
+            ModificarPartido();
+            
             List<SqlParameter> param = new List<SqlParameter>();
             param.Add(new SqlParameter("@idPartido", PartidoId));
             param.Add(new SqlParameter("@golesLocal", this.LocalNumericUpDown.Value));
@@ -202,10 +209,36 @@ namespace LigaBA.Partidos
             if (TerminoBien == true)
             {
                 InsertarPartidoXJugador();
-                MessageBox.Show("Se ha jugado el partido '" + Local + "' Vs '" + Visitante + "' correctamente.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Se ha modificado el partido '" + Local + "' Vs '" + Visitante + "' correctamente.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 DialogResult = DialogResult.OK;
             }
 
+        }
+
+        private void ModificarPartido()
+        {
+            List<SqlParameter> param = new List<SqlParameter>();
+            param.Add(new SqlParameter("@idPartido", PartidoId));
+            param.Add(new SqlParameter("@golesLocal", GolesLocalAnterior));
+            param.Add(new SqlParameter("@golesVisitante", GolesVisitanteAnterior));
+            param.Add(new SqlParameter("@localId", LocalId));
+            param.Add(new SqlParameter("@visitanteId", VisitanteId));
+
+            bool TerminoBien = BaseDeDatos.GetInstance.ejecutarProcedimiento("p_ModificarPartido", param, this.Text);
+
+            if (TerminoBien == true)
+            {
+                ModificarPartidoXJugador();
+            }
+
+        }
+
+        private void ModificarPartidoXJugador()
+        {
+            List<SqlParameter> param = new List<SqlParameter>();
+            param.Add(new SqlParameter("@idPartido", PartidoId));
+
+            bool TerminoBien = BaseDeDatos.GetInstance.ejecutarProcedimiento("p_ModificarPartidoXJugador", param, this.Text);     
         }
 
         private void InsertarPartidoXJugador()
