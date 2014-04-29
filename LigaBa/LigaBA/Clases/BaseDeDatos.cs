@@ -78,8 +78,8 @@ namespace LigaBA
 
         public DataSet ejecutarConsulta(string spName, List<SqlParameter> parameters,string nombre,string NombreForm)
         {
-            if (ValidarParametros(parameters))
-            {
+              if (ValidarParametros(parameters))
+              {
                 SqlDataAdapter da = null;
                 DataSet ds = new DataSet();
                 try
@@ -179,18 +179,19 @@ namespace LigaBA
 
         private bool ValidarParametros(List<SqlParameter> parametros)
         {
-            foreach (SqlParameter param in parametros)
-            {
-                foreach (string caracterInvalido in listaDeCaracteresInvalidos)
+                foreach (SqlParameter param in parametros)
                 {
-                    if (param.Value.ToString().Contains(caracterInvalido))
+                    foreach (string caracterInvalido in listaDeCaracteresInvalidos)
                     {
-                        MessageBox.Show("Error la consulta contiene caracteres extraños.");
-                        return false;
+                        if (param.Value.ToString().Contains(caracterInvalido))
+                        {
+                            MessageBox.Show("Error la consulta contiene caracteres extraños.");
+                            return false;
+                        }
                     }
                 }
-            }
-            return true;
+                return true;
+            
         }
     }
 }

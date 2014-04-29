@@ -20,6 +20,9 @@ namespace LigaBA.Partidos
             InitializeComponent();
         }
 
+        string nombreTorneo;
+        string nombreCategoria;
+
         private void PartidosForm_Load(object sender, EventArgs e)
         {
             CargadorDeDatos.CargarCategoriaComboBox(CategoriasComboBox, this.Text);
@@ -119,6 +122,9 @@ namespace LigaBA.Partidos
                 return;
             }
 
+            nombreTorneo = TorneosComboBox.Text;
+            nombreCategoria = CategoriasComboBox.Text;
+
             Thread hilo = new Thread(AbrirFormReporte);
             hilo.SetApartmentState(System.Threading.ApartmentState.STA);
             hilo.Start();
@@ -127,11 +133,13 @@ namespace LigaBA.Partidos
       
         private void AbrirFormReporte()
         {
-            string Visitante = Partidos_DataGridView.CurrentRow.Cells["VisitanteId"].Value.ToString();
-            string Local = Partidos_DataGridView.CurrentRow.Cells["LocalId"].Value.ToString();
+            string VisitanteId = Partidos_DataGridView.CurrentRow.Cells["VisitanteId"].Value.ToString();
+            string LocalId = Partidos_DataGridView.CurrentRow.Cells["LocalId"].Value.ToString();
+            string Visitante = Partidos_DataGridView.CurrentRow.Cells["Visitante"].Value.ToString();
+            string Local = Partidos_DataGridView.CurrentRow.Cells["Local"].Value.ToString();
+            string Fecha = Partidos_DataGridView.CurrentRow.Cells["Fecha"].Value.ToString();
 
-
-            ReportePartidoForm abrir = new ReportePartidoForm(Local,Visitante);
+            ReportePartidoForm abrir = new ReportePartidoForm(LocalId,VisitanteId,Local,Visitante,nombreTorneo,nombreCategoria,Fecha);
             abrir.ShowDialog();
         }
 

@@ -18,17 +18,26 @@ namespace LigaBA.Partidos
 {
     public partial class ReportePartidoForm : Form
     {
-        public ReportePartidoForm(string Local,string Visitante)
+        public ReportePartidoForm(string LocalId,string VisitanteId,string Local,string Visitante,string Torneo,string Categoria,string Fecha)
         {
             InitializeComponent();
             
+            this.LocalId = LocalId;
+            this.VisitanteId = VisitanteId;
             this.Local = Local;
             this.Visitante = Visitante;
-
+            this.Torneo = Torneo;
+            this.Categoria = Categoria;
+            this.Fecha = Fecha;
         }
 
+        string LocalId;
+        string VisitanteId;
         string Local;
         string Visitante;
+        string Torneo;
+        string Categoria;
+        string Fecha;
 
         private void crystalReportViewer1_Load(object sender, EventArgs e)
         {
@@ -36,12 +45,12 @@ namespace LigaBA.Partidos
             
             // 1 Consulta
             List<SqlParameter> param = new List<SqlParameter>();
-            param.Add(new SqlParameter("@Equipo", Local));
+            param.Add(new SqlParameter("@Equipo", LocalId));
             DataSet ds = BaseDeDatos.GetInstance.ejecutarConsulta("p_Reportejugadores", param, "p_ReporteJugadores", this.Text);
 
             //2 Consulta
             List<SqlParameter> param2 = new List<SqlParameter>();
-            param2.Add(new SqlParameter("@Equipo", Visitante));
+            param2.Add(new SqlParameter("@Equipo", VisitanteId));
             ds = BaseDeDatos.GetInstance.ejecutarConsultaCargarDosTablas("p_ReportejugadoresVisitante", param2, "p_ReporteJugadoresVisitante", this.Text, ds);
             
             //Reporte Jugadores
@@ -50,17 +59,25 @@ namespace LigaBA.Partidos
             //Repo.ExportToDisk(ExportFormatType.PortableDocFormat, "Instituciones");
 
             //Variables
-           /* TextObject InstitucionRepo;
-            InstitucionRepo = (TextObject)Repo.ReportDefinition.ReportObjects["Institucion"];
-            InstitucionRepo.Text = institucion;
+            TextObject TorneoRepo;
+            TorneoRepo = (TextObject)Repo.ReportDefinition.ReportObjects["TorneoText"];
+            TorneoRepo.Text = Torneo;
 
-            TextObject EquipoRepo;
-            EquipoRepo = (TextObject)Repo.ReportDefinition.ReportObjects["Equipo"];
-            EquipoRepo.Text = equipo;
+            TextObject FechaRepo;
+            FechaRepo = (TextObject)Repo.ReportDefinition.ReportObjects["FechaText"];
+            FechaRepo.Text = Fecha;
 
             TextObject CategoriaRepo;
-            CategoriaRepo = (TextObject)Repo.ReportDefinition.ReportObjects["Categoria"];
-            CategoriaRepo.Text = categoria;*/
+            CategoriaRepo = (TextObject)Repo.ReportDefinition.ReportObjects["CategoriaText"];
+            CategoriaRepo.Text = Categoria;
+
+            TextObject LocalRepo;
+            LocalRepo = (TextObject)Repo.ReportDefinition.ReportObjects["LocalText"];
+            LocalRepo.Text = Local;
+
+            TextObject VisitanteRepo;
+            VisitanteRepo = (TextObject)Repo.ReportDefinition.ReportObjects["VisitanteText"];
+            VisitanteRepo.Text = Visitante;
 
             Repo.SetDataSource(ds);
 
