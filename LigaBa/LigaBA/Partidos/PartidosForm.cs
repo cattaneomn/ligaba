@@ -127,8 +127,8 @@ namespace LigaBA.Partidos
       
         private void AbrirFormReporte()
         {
-            string Visitante = "3";//Partidos_DataGridView.CurrentRow.Cells["Visitante"].Value.ToString();
-            string Local = "1";//Partidos_DataGridView.CurrentRow.Cells["Local"].Value.ToString();
+            string Visitante = Partidos_DataGridView.CurrentRow.Cells["VisitanteId"].Value.ToString();
+            string Local = Partidos_DataGridView.CurrentRow.Cells["LocalId"].Value.ToString();
 
 
             ReportePartidoForm abrir = new ReportePartidoForm(Local,Visitante);

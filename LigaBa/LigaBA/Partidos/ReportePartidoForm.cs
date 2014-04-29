@@ -33,12 +33,17 @@ namespace LigaBA.Partidos
         private void crystalReportViewer1_Load(object sender, EventArgs e)
         {
             //DataSet
-
+            
+            // 1 Consulta
             List<SqlParameter> param = new List<SqlParameter>();
             param.Add(new SqlParameter("@Equipo", Local));
-
             DataSet ds = BaseDeDatos.GetInstance.ejecutarConsulta("p_Reportejugadores", param, "p_ReporteJugadores", this.Text);
 
+            //2 Consulta
+            List<SqlParameter> param2 = new List<SqlParameter>();
+            param2.Add(new SqlParameter("@Equipo", Visitante));
+            ds = BaseDeDatos.GetInstance.ejecutarConsultaCargarDosTablas("p_ReportejugadoresVisitante", param2, "p_ReporteJugadoresVisitante", this.Text, ds);
+            
             //Reporte Jugadores
             FichaPartido Repo = new FichaPartido();
 
@@ -57,7 +62,7 @@ namespace LigaBA.Partidos
             CategoriaRepo = (TextObject)Repo.ReportDefinition.ReportObjects["Categoria"];
             CategoriaRepo.Text = categoria;*/
 
-            Repo.SetDataSource(ds.Tables[0]);
+            Repo.SetDataSource(ds);
 
             //doy Resporte al form
             crystalReportViewer1.ReportSource = Repo;

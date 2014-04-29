@@ -107,6 +107,39 @@ namespace LigaBA
             }
         }
 
+
+        public DataSet ejecutarConsultaCargarDosTablas(string spName, List<SqlParameter> parameters, string nombre, string NombreForm,DataSet ds)
+        {
+            if (ValidarParametros(parameters))
+            {
+                SqlDataAdapter da = null;
+                try
+                {
+                    connection.Open();
+                    da = new SqlDataAdapter(this.esquema + spName, connection);
+                    da.SelectCommand.Parameters.AddRange(parameters.ToArray());
+                    da.SelectCommand.CommandType = CommandType.StoredProcedure;
+
+                    da.Fill(ds, nombre);
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Logs.GetInstance.LogError(ex.Message, NombreForm);
+                }
+                finally
+                {
+                    if (da != null) da.SelectCommand.Connection.Close();
+                }
+                return ds;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public DataTable ExecuteCustomQuery(string strQuery, List<SqlParameter> parameters,string NombreForm)
         {
             if (ValidarParametros(parameters))
