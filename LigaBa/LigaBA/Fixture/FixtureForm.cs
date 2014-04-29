@@ -182,7 +182,7 @@ namespace LigaBA.Fixture
             DialogResult Resultado = abrir.ShowDialog();
             if (Resultado == DialogResult.OK)
             {
-                ModDataGridView.limpiarDataGridView(Fixture_DataGridView, "");
+                this.BuscarButton.PerformClick();
             }
         }        
     
