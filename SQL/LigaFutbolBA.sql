@@ -1142,6 +1142,7 @@ BEGIN transaction
  INSERT INTO LigaBA.PartidoXJugador (partido,jugador,goles,amarillas,rojas) VALUES
  (@idPartido,@idJugador,@cantGoles,@cantAmarillas,@cantRojas)
 
+--SUMAR TARJETAS A JUGADOR
 
 COMMIT
 GO
