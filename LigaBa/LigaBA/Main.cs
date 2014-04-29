@@ -15,6 +15,7 @@ using LigaBA.Abm_Equipos;
 using LigaBA.Abm_Torneo;
 using LigaBA.Back_Up;
 using LigaBA.Partidos;
+using LigaBA.Fixture;
 
 namespace LigaBA
 {
@@ -105,6 +106,12 @@ namespace LigaBA
         private void button2_Click(object sender, EventArgs e)
         {
             PartidosForm abrir = new PartidosForm();
+            abrir.ShowDialog();
+        }
+
+        private void button1_Click_4(object sender, EventArgs e)
+        {
+            FixtureForm abrir = new FixtureForm();
             abrir.ShowDialog();
         }
 

@@ -54,9 +54,8 @@ namespace LigaBA.Fixture
 
             DataSet ds = null;
             ds = BaseDeDatos.GetInstance.ejecutarConsulta("p_BuscarFixture", param, "Fixture", this.Text);
-           
-            //ERROR al BUSCAR ENTRAR ACA
-            if (ds.Tables["Fixture"] != null && ds.Tables["Fixture"].Rows.Count == 0)
+                       
+            if ( ds.Tables["Fixture"].Rows.Count == 0)
  	        {
 	            this.Fixture_DataGridView.DataSource = null;
  	            MessageBox.Show("No se encontraron resultados que coincidan con la busqueda.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);

@@ -9,6 +9,80 @@ namespace LigaBA.ClasesLigaBA
 {
     public class Fixture
     {
+        /**************************************************************************************
+         * Documentacion clase Fixture
+         * **************************************************************************************/
+
+        /*
+         * CONSTRUCTORES
+         * 
+         *         
+         * Fixture(List<Institucion> equipos) -> Cuando se va a crear el fixture
+         * 
+         * Fixture(List<Fecha> f) -> Cuando el fixture ya esta creado y solo se necesitan los metodos de manejo del fixture
+         * 
+         * */
+
+        /*
+         * ATRIBUTOS
+         * +IMP:Atributos importantes
+         * 
+         *  List<Institucion> equipos ->Conjunto de Instituciones que participan del torneo, siempre son par, ej:Institucion Comodin(id->0,nombre->"Libre")
+         *  
+         * List<Fecha> fixture ->Conjunto de Partidos que forman el fixture. Fecha(fecha,local,visitante)
+         * 
+         * int[] tolerancia -> Array de tolerancia tolerancia[indice_equipo] = {n -> numero de tolerancias de localia repetida}
+         * 
+         * int estadisticaCarrera -> cantidad de veces que se produjo una condicion de carrega(borrar toda una fecha)(90 vueltas)
+         * 
+         * int estadisticaVueltas -> cantidad de vueltas totales por reinicio, vuelta -> cantidad de veces que se trato de calcular una fecha sin borrarla.
+         * 
+         * int reinicios -> cantidad de veces que se borro todo el fixture para calcularlo desde 0 (condicionesDeCarrera = 1000)        
+         * 
+         * METODOS
+         * +IMP:Metodos importantes
+         * 
+         * 
+         * void inicializar() -> Inicializa los atributos y realiza los calculos previos (cantidad de fechas, cantidad de partidos, etc...)
+         * 
+         * IMP: bool armarFixture() -> Crea el fixture y lo guarda en una lista de objetos Fecha
+         *      return True -> El fixture se creo correctamente.
+         *      return False -> Si intento mas de 1000 veces crear el fixture desde 0, no tiene solucion.
+         * 
+         * void limpiar() -> reinicia las listas principales para volver a generar el fixture.
+         * 
+         * string imprimirFixture() -> devuelve un string con todo el fixture para mostrar.
+         * 
+         * IMP: int condicionDeCarrera(int f, List<int> noDisponibles) -> se produce una condicion de carrera cuando ha intentado reacer una fecha del fixture mas de 90 veces (ej: equipos{1,2,3,4,5,6} fecha_1{1-vs-2,3-vs-4,5-vs-6} fecha_2{1-vs-3,2-vs-4,5-vs-6} 5-vs-6 YA JUGO y los demas ya estan asignados
+         *                                                              ->Este metodo borra toda una fecha del fixture para recalcularla completamente.
+         *        param: int f -> fecha a borrar y recalcular
+         *        param: List<int> noDisponibles -> equipos que ya estan jugando (se reinicia)
+         *        
+         *        return int -> Cantidad de partidos que hay que volver a recalcular.
+         *        
+         * void reiniciarTolerancia(int[] tolerancia) -> Reinicia la matriz de tolerancia asiganndo aleatoreamente la tolerancia a los equipos.
+         *        param: int[] tolerancia -> Matris de tolerancia,matriz[indice_equipo]=> 0 sin tolerancia, 1 con tolerancia
+         *        
+         * bool noPuedenJugar(int f, Institucion local, Institucion visitante) -> Controla si:
+         *                                                                             +Jugo el Local O el Vistante en esta fecha (f)
+         *                                                                              +Local fue local en la fecha anterior (f-1) y no tiene tolerancia
+         *                                                                              +Visitante fue visitante en la fecha anterior (f-1) y no tiene tolerancia
+         *                                                                              +Jugo Local vs Visitante O Visitante vs Local en alguna fecha
+         * 
+         *      param: int f ->Fecha actual.
+         *      return True -> alguno no puede jugar.
+         *      return False -> pueden jugar.
+         * 
+         * bool toleranciaDeEstado(Institucion equipo) -> Se fija si el equipo tiene tolerancia para repetir la localia, SI: se la decrementa
+         *      return True -> Tiene tolerancia
+         *      return False -> No tiene tolerancia
+         *      
+         * List<Fecha> GetFechas() 
+         *      return List<Fecha> -> Fixture 
+         *
+         * 
+         **/
+
         private List<Institucion> equipos = new List<Institucion>();
         public List<Fecha> fixture;
         private int[] tolerancia;
