@@ -49,11 +49,11 @@ namespace LigaBA.Partidos
 	        param.Add(new SqlParameter("@Categoria", CategoriasComboBox.SelectedValue.ToString()));
 	        param.Add(new SqlParameter("@Fecha", Fecha));
 
-            DataSet ds = null;
-	        ds = BaseDeDatos.GetInstance.ejecutarConsulta("p_BuscarPartidos", param, "Partidos", this.Text);
-           
+            DataSet ds = BaseDeDatos.GetInstance.ejecutarConsulta("p_BuscarPartidos", param, "Partidos", this.Text);
+
+
             //ERROR al BUSCAR ENTRAR ACA
-            if (ds.Tables["Partidos"].Rows.Count == 0)
+            if (ds.Tables.Count == 0)
  	        {
 	            this.Partidos_DataGridView.DataSource = null;
  	            MessageBox.Show("No se encontraron resultados que coincidan con la busqueda.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);

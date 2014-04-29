@@ -52,10 +52,9 @@ namespace LigaBA.Fixture
             param.Add(new SqlParameter("@Fecha", Fecha));
             param.Add(new SqlParameter("@Equipo", Equipo));   
 
-            DataSet ds = null;
-            ds = BaseDeDatos.GetInstance.ejecutarConsulta("p_BuscarFixture", param, "Fixture", this.Text);
-                       
-            if ( ds.Tables["Fixture"].Rows.Count == 0)
+            DataSet ds = BaseDeDatos.GetInstance.ejecutarConsulta("p_BuscarFixture", param, "Fixture", this.Text);
+
+            if (ds.Tables.Count == 0)
  	        {
 	            this.Fixture_DataGridView.DataSource = null;
  	            MessageBox.Show("No se encontraron resultados que coincidan con la busqueda.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
