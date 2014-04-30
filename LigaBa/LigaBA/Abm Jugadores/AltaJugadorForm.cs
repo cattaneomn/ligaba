@@ -55,9 +55,6 @@ namespace LigaBA.Abm_Jugador
 
             this.EquipoComboBox.DataSource = null;
             this.EquipoComboBox.Enabled = false;
-
-            this.FechaNacimeintiDateTimePicker.Format = DateTimePickerFormat.Custom;
-            this.FechaNacimeintiDateTimePicker.CustomFormat = " ";
         }
 
         private void GuardarButton_Click(object sender, EventArgs e)
@@ -98,7 +95,15 @@ namespace LigaBA.Abm_Jugador
                     MessageBox.Show("Debe completar los campos vacios.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return -1;
                 }
-            }           
+            }
+
+            //Solo numeros
+            int v;
+            if (!Int32.TryParse(this.DniTextBox.Text.Trim(), out v))
+            {
+                MessageBox.Show("Error: El Dni solo acepta datos numericos.");
+                return -1;
+            }
 
             return 1;
         }
