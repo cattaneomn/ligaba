@@ -24,9 +24,7 @@ namespace LigaBA.Reportes.DataSet {
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
     public partial class FichaPartidoDataSet : global::System.Data.DataSet {
         
-        private p_ReporteJugadoresVisitanteDataTable tablep_ReporteJugadoresVisitante;
-        
-        private p_ReporteJugadoresDataTable tablep_ReporteJugadores;
+        private p_ReporteFichaPartidoDataTable tablep_ReporteFichaPartido;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -56,11 +54,8 @@ namespace LigaBA.Reportes.DataSet {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["p_ReporteJugadoresVisitante"] != null)) {
-                    base.Tables.Add(new p_ReporteJugadoresVisitanteDataTable(ds.Tables["p_ReporteJugadoresVisitante"]));
-                }
-                if ((ds.Tables["p_ReporteJugadores"] != null)) {
-                    base.Tables.Add(new p_ReporteJugadoresDataTable(ds.Tables["p_ReporteJugadores"]));
+                if ((ds.Tables["p_ReporteFichaPartido"] != null)) {
+                    base.Tables.Add(new p_ReporteFichaPartidoDataTable(ds.Tables["p_ReporteFichaPartido"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -84,19 +79,9 @@ namespace LigaBA.Reportes.DataSet {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public p_ReporteJugadoresVisitanteDataTable p_ReporteJugadoresVisitante {
+        public p_ReporteFichaPartidoDataTable p_ReporteFichaPartido {
             get {
-                return this.tablep_ReporteJugadoresVisitante;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public p_ReporteJugadoresDataTable p_ReporteJugadores {
-            get {
-                return this.tablep_ReporteJugadores;
+                return this.tablep_ReporteFichaPartido;
             }
         }
         
@@ -167,11 +152,8 @@ namespace LigaBA.Reportes.DataSet {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["p_ReporteJugadoresVisitante"] != null)) {
-                    base.Tables.Add(new p_ReporteJugadoresVisitanteDataTable(ds.Tables["p_ReporteJugadoresVisitante"]));
-                }
-                if ((ds.Tables["p_ReporteJugadores"] != null)) {
-                    base.Tables.Add(new p_ReporteJugadoresDataTable(ds.Tables["p_ReporteJugadores"]));
+                if ((ds.Tables["p_ReporteFichaPartido"] != null)) {
+                    base.Tables.Add(new p_ReporteFichaPartidoDataTable(ds.Tables["p_ReporteFichaPartido"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -206,16 +188,10 @@ namespace LigaBA.Reportes.DataSet {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         internal void InitVars(bool initTable) {
-            this.tablep_ReporteJugadoresVisitante = ((p_ReporteJugadoresVisitanteDataTable)(base.Tables["p_ReporteJugadoresVisitante"]));
+            this.tablep_ReporteFichaPartido = ((p_ReporteFichaPartidoDataTable)(base.Tables["p_ReporteFichaPartido"]));
             if ((initTable == true)) {
-                if ((this.tablep_ReporteJugadoresVisitante != null)) {
-                    this.tablep_ReporteJugadoresVisitante.InitVars();
-                }
-            }
-            this.tablep_ReporteJugadores = ((p_ReporteJugadoresDataTable)(base.Tables["p_ReporteJugadores"]));
-            if ((initTable == true)) {
-                if ((this.tablep_ReporteJugadores != null)) {
-                    this.tablep_ReporteJugadores.InitVars();
+                if ((this.tablep_ReporteFichaPartido != null)) {
+                    this.tablep_ReporteFichaPartido.InitVars();
                 }
             }
         }
@@ -228,21 +204,13 @@ namespace LigaBA.Reportes.DataSet {
             this.Namespace = "http://tempuri.org/FichaPartidoDataSet.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tablep_ReporteJugadoresVisitante = new p_ReporteJugadoresVisitanteDataTable();
-            base.Tables.Add(this.tablep_ReporteJugadoresVisitante);
-            this.tablep_ReporteJugadores = new p_ReporteJugadoresDataTable();
-            base.Tables.Add(this.tablep_ReporteJugadores);
+            this.tablep_ReporteFichaPartido = new p_ReporteFichaPartidoDataTable();
+            base.Tables.Add(this.tablep_ReporteFichaPartido);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializep_ReporteJugadoresVisitante() {
-            return false;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializep_ReporteJugadores() {
+        private bool ShouldSerializep_ReporteFichaPartido() {
             return false;
         }
         
@@ -302,312 +270,14 @@ namespace LigaBA.Reportes.DataSet {
         }
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void p_ReporteJugadoresVisitanteRowChangeEventHandler(object sender, p_ReporteJugadoresVisitanteRowChangeEvent e);
-        
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void p_ReporteJugadoresRowChangeEventHandler(object sender, p_ReporteJugadoresRowChangeEvent e);
+        public delegate void p_ReporteFichaPartidoRowChangeEventHandler(object sender, p_ReporteFichaPartidoRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class p_ReporteJugadoresVisitanteDataTable : global::System.Data.TypedTableBase<p_ReporteJugadoresVisitanteRow> {
-            
-            private global::System.Data.DataColumn columnNombreV;
-            
-            private global::System.Data.DataColumn columnApellidoV;
-            
-            private global::System.Data.DataColumn columnDniV;
-            
-            private global::System.Data.DataColumn columnFecha_De_NacimientoV;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public p_ReporteJugadoresVisitanteDataTable() {
-                this.TableName = "p_ReporteJugadoresVisitante";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal p_ReporteJugadoresVisitanteDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
-                }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
-                }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
-                }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected p_ReporteJugadoresVisitanteDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn NombreVColumn {
-                get {
-                    return this.columnNombreV;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn ApellidoVColumn {
-                get {
-                    return this.columnApellidoV;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn DniVColumn {
-                get {
-                    return this.columnDniV;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn Fecha_De_NacimientoVColumn {
-                get {
-                    return this.columnFecha_De_NacimientoV;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public p_ReporteJugadoresVisitanteRow this[int index] {
-                get {
-                    return ((p_ReporteJugadoresVisitanteRow)(this.Rows[index]));
-                }
-            }
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event p_ReporteJugadoresVisitanteRowChangeEventHandler p_ReporteJugadoresVisitanteRowChanging;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event p_ReporteJugadoresVisitanteRowChangeEventHandler p_ReporteJugadoresVisitanteRowChanged;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event p_ReporteJugadoresVisitanteRowChangeEventHandler p_ReporteJugadoresVisitanteRowDeleting;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event p_ReporteJugadoresVisitanteRowChangeEventHandler p_ReporteJugadoresVisitanteRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void Addp_ReporteJugadoresVisitanteRow(p_ReporteJugadoresVisitanteRow row) {
-                this.Rows.Add(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public p_ReporteJugadoresVisitanteRow Addp_ReporteJugadoresVisitanteRow(string NombreV, string ApellidoV, int DniV, System.DateTime Fecha_De_NacimientoV) {
-                p_ReporteJugadoresVisitanteRow rowp_ReporteJugadoresVisitanteRow = ((p_ReporteJugadoresVisitanteRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        NombreV,
-                        ApellidoV,
-                        DniV,
-                        Fecha_De_NacimientoV};
-                rowp_ReporteJugadoresVisitanteRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowp_ReporteJugadoresVisitanteRow);
-                return rowp_ReporteJugadoresVisitanteRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public override global::System.Data.DataTable Clone() {
-                p_ReporteJugadoresVisitanteDataTable cln = ((p_ReporteJugadoresVisitanteDataTable)(base.Clone()));
-                cln.InitVars();
-                return cln;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Data.DataTable CreateInstance() {
-                return new p_ReporteJugadoresVisitanteDataTable();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal void InitVars() {
-                this.columnNombreV = base.Columns["NombreV"];
-                this.columnApellidoV = base.Columns["ApellidoV"];
-                this.columnDniV = base.Columns["DniV"];
-                this.columnFecha_De_NacimientoV = base.Columns["Fecha_De_NacimientoV"];
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            private void InitClass() {
-                this.columnNombreV = new global::System.Data.DataColumn("NombreV", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnNombreV);
-                this.columnApellidoV = new global::System.Data.DataColumn("ApellidoV", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnApellidoV);
-                this.columnDniV = new global::System.Data.DataColumn("DniV", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDniV);
-                this.columnFecha_De_NacimientoV = new global::System.Data.DataColumn("Fecha_De_NacimientoV", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnFecha_De_NacimientoV);
-                this.columnNombreV.AllowDBNull = false;
-                this.columnNombreV.MaxLength = 50;
-                this.columnApellidoV.AllowDBNull = false;
-                this.columnApellidoV.MaxLength = 50;
-                this.columnDniV.AllowDBNull = false;
-                this.columnFecha_De_NacimientoV.AllowDBNull = false;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public p_ReporteJugadoresVisitanteRow Newp_ReporteJugadoresVisitanteRow() {
-                return ((p_ReporteJugadoresVisitanteRow)(this.NewRow()));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new p_ReporteJugadoresVisitanteRow(builder);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Type GetRowType() {
-                return typeof(p_ReporteJugadoresVisitanteRow);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanged(e);
-                if ((this.p_ReporteJugadoresVisitanteRowChanged != null)) {
-                    this.p_ReporteJugadoresVisitanteRowChanged(this, new p_ReporteJugadoresVisitanteRowChangeEvent(((p_ReporteJugadoresVisitanteRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanging(e);
-                if ((this.p_ReporteJugadoresVisitanteRowChanging != null)) {
-                    this.p_ReporteJugadoresVisitanteRowChanging(this, new p_ReporteJugadoresVisitanteRowChangeEvent(((p_ReporteJugadoresVisitanteRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleted(e);
-                if ((this.p_ReporteJugadoresVisitanteRowDeleted != null)) {
-                    this.p_ReporteJugadoresVisitanteRowDeleted(this, new p_ReporteJugadoresVisitanteRowChangeEvent(((p_ReporteJugadoresVisitanteRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleting(e);
-                if ((this.p_ReporteJugadoresVisitanteRowDeleting != null)) {
-                    this.p_ReporteJugadoresVisitanteRowDeleting(this, new p_ReporteJugadoresVisitanteRowChangeEvent(((p_ReporteJugadoresVisitanteRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void Removep_ReporteJugadoresVisitanteRow(p_ReporteJugadoresVisitanteRow row) {
-                this.Rows.Remove(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                FichaPartidoDataSet ds = new FichaPartidoDataSet();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
-                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
-                any1.MinOccurs = new decimal(0);
-                any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
-                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
-                any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute1.Name = "namespace";
-                attribute1.FixedValue = ds.Namespace;
-                type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "p_ReporteJugadoresVisitanteDataTable";
-                type.Attributes.Add(attribute2);
-                type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
-                        dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
-                            s2.SetLength(0);
-                            schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
-                                s1.Position = 0;
-                                s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
-                                    ;
-                                }
-                                if ((s1.Position == s1.Length)) {
-                                    return type;
-                                }
-                            }
-                        }
-                    }
-                    finally {
-                        if ((s1 != null)) {
-                            s1.Close();
-                        }
-                        if ((s2 != null)) {
-                            s2.Close();
-                        }
-                    }
-                }
-                xs.Add(dsSchema);
-                return type;
-            }
-        }
-        
-        /// <summary>
-        ///Represents the strongly named DataTable class.
-        ///</summary>
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class p_ReporteJugadoresDataTable : global::System.Data.TypedTableBase<p_ReporteJugadoresRow> {
+        public partial class p_ReporteFichaPartidoDataTable : global::System.Data.TypedTableBase<p_ReporteFichaPartidoRow> {
             
             private global::System.Data.DataColumn columnNombre;
             
@@ -615,12 +285,10 @@ namespace LigaBA.Reportes.DataSet {
             
             private global::System.Data.DataColumn columnDni;
             
-            private global::System.Data.DataColumn columnFecha_De_Nacimiento;
-            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public p_ReporteJugadoresDataTable() {
-                this.TableName = "p_ReporteJugadores";
+            public p_ReporteFichaPartidoDataTable() {
+                this.TableName = "p_ReporteFichaPartido";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -628,7 +296,7 @@ namespace LigaBA.Reportes.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal p_ReporteJugadoresDataTable(global::System.Data.DataTable table) {
+            internal p_ReporteFichaPartidoDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -645,7 +313,7 @@ namespace LigaBA.Reportes.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected p_ReporteJugadoresDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected p_ReporteFichaPartidoDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
@@ -676,14 +344,6 @@ namespace LigaBA.Reportes.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn Fecha_De_NacimientoColumn {
-                get {
-                    return this.columnFecha_De_Nacimiento;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -693,48 +353,47 @@ namespace LigaBA.Reportes.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public p_ReporteJugadoresRow this[int index] {
+            public p_ReporteFichaPartidoRow this[int index] {
                 get {
-                    return ((p_ReporteJugadoresRow)(this.Rows[index]));
+                    return ((p_ReporteFichaPartidoRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event p_ReporteJugadoresRowChangeEventHandler p_ReporteJugadoresRowChanging;
+            public event p_ReporteFichaPartidoRowChangeEventHandler p_ReporteFichaPartidoRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event p_ReporteJugadoresRowChangeEventHandler p_ReporteJugadoresRowChanged;
+            public event p_ReporteFichaPartidoRowChangeEventHandler p_ReporteFichaPartidoRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event p_ReporteJugadoresRowChangeEventHandler p_ReporteJugadoresRowDeleting;
+            public event p_ReporteFichaPartidoRowChangeEventHandler p_ReporteFichaPartidoRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event p_ReporteJugadoresRowChangeEventHandler p_ReporteJugadoresRowDeleted;
+            public event p_ReporteFichaPartidoRowChangeEventHandler p_ReporteFichaPartidoRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void Addp_ReporteJugadoresRow(p_ReporteJugadoresRow row) {
+            public void Addp_ReporteFichaPartidoRow(p_ReporteFichaPartidoRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public p_ReporteJugadoresRow Addp_ReporteJugadoresRow(string Nombre, string Apellido, int Dni, System.DateTime Fecha_De_Nacimiento) {
-                p_ReporteJugadoresRow rowp_ReporteJugadoresRow = ((p_ReporteJugadoresRow)(this.NewRow()));
+            public p_ReporteFichaPartidoRow Addp_ReporteFichaPartidoRow(string Nombre, string Apellido, int Dni) {
+                p_ReporteFichaPartidoRow rowp_ReporteFichaPartidoRow = ((p_ReporteFichaPartidoRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Nombre,
                         Apellido,
-                        Dni,
-                        Fecha_De_Nacimiento};
-                rowp_ReporteJugadoresRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowp_ReporteJugadoresRow);
-                return rowp_ReporteJugadoresRow;
+                        Dni};
+                rowp_ReporteFichaPartidoRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowp_ReporteFichaPartidoRow);
+                return rowp_ReporteFichaPartidoRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                p_ReporteJugadoresDataTable cln = ((p_ReporteJugadoresDataTable)(base.Clone()));
+                p_ReporteFichaPartidoDataTable cln = ((p_ReporteFichaPartidoDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -742,7 +401,7 @@ namespace LigaBA.Reportes.DataSet {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new p_ReporteJugadoresDataTable();
+                return new p_ReporteFichaPartidoDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -751,7 +410,6 @@ namespace LigaBA.Reportes.DataSet {
                 this.columnNombre = base.Columns["Nombre"];
                 this.columnApellido = base.Columns["Apellido"];
                 this.columnDni = base.Columns["Dni"];
-                this.columnFecha_De_Nacimiento = base.Columns["Fecha_De_Nacimiento"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -763,40 +421,37 @@ namespace LigaBA.Reportes.DataSet {
                 base.Columns.Add(this.columnApellido);
                 this.columnDni = new global::System.Data.DataColumn("Dni", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDni);
-                this.columnFecha_De_Nacimiento = new global::System.Data.DataColumn("Fecha_De_Nacimiento", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnFecha_De_Nacimiento);
                 this.columnNombre.AllowDBNull = false;
                 this.columnNombre.MaxLength = 50;
                 this.columnApellido.AllowDBNull = false;
                 this.columnApellido.MaxLength = 50;
                 this.columnDni.AllowDBNull = false;
-                this.columnFecha_De_Nacimiento.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public p_ReporteJugadoresRow Newp_ReporteJugadoresRow() {
-                return ((p_ReporteJugadoresRow)(this.NewRow()));
+            public p_ReporteFichaPartidoRow Newp_ReporteFichaPartidoRow() {
+                return ((p_ReporteFichaPartidoRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new p_ReporteJugadoresRow(builder);
+                return new p_ReporteFichaPartidoRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(p_ReporteJugadoresRow);
+                return typeof(p_ReporteFichaPartidoRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.p_ReporteJugadoresRowChanged != null)) {
-                    this.p_ReporteJugadoresRowChanged(this, new p_ReporteJugadoresRowChangeEvent(((p_ReporteJugadoresRow)(e.Row)), e.Action));
+                if ((this.p_ReporteFichaPartidoRowChanged != null)) {
+                    this.p_ReporteFichaPartidoRowChanged(this, new p_ReporteFichaPartidoRowChangeEvent(((p_ReporteFichaPartidoRow)(e.Row)), e.Action));
                 }
             }
             
@@ -804,8 +459,8 @@ namespace LigaBA.Reportes.DataSet {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.p_ReporteJugadoresRowChanging != null)) {
-                    this.p_ReporteJugadoresRowChanging(this, new p_ReporteJugadoresRowChangeEvent(((p_ReporteJugadoresRow)(e.Row)), e.Action));
+                if ((this.p_ReporteFichaPartidoRowChanging != null)) {
+                    this.p_ReporteFichaPartidoRowChanging(this, new p_ReporteFichaPartidoRowChangeEvent(((p_ReporteFichaPartidoRow)(e.Row)), e.Action));
                 }
             }
             
@@ -813,8 +468,8 @@ namespace LigaBA.Reportes.DataSet {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.p_ReporteJugadoresRowDeleted != null)) {
-                    this.p_ReporteJugadoresRowDeleted(this, new p_ReporteJugadoresRowChangeEvent(((p_ReporteJugadoresRow)(e.Row)), e.Action));
+                if ((this.p_ReporteFichaPartidoRowDeleted != null)) {
+                    this.p_ReporteFichaPartidoRowDeleted(this, new p_ReporteFichaPartidoRowChangeEvent(((p_ReporteFichaPartidoRow)(e.Row)), e.Action));
                 }
             }
             
@@ -822,14 +477,14 @@ namespace LigaBA.Reportes.DataSet {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.p_ReporteJugadoresRowDeleting != null)) {
-                    this.p_ReporteJugadoresRowDeleting(this, new p_ReporteJugadoresRowChangeEvent(((p_ReporteJugadoresRow)(e.Row)), e.Action));
+                if ((this.p_ReporteFichaPartidoRowDeleting != null)) {
+                    this.p_ReporteFichaPartidoRowDeleting(this, new p_ReporteFichaPartidoRowChangeEvent(((p_ReporteFichaPartidoRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void Removep_ReporteJugadoresRow(p_ReporteJugadoresRow row) {
+            public void Removep_ReporteFichaPartidoRow(p_ReporteFichaPartidoRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -856,7 +511,7 @@ namespace LigaBA.Reportes.DataSet {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "p_ReporteJugadoresDataTable";
+                attribute2.FixedValue = "p_ReporteFichaPartidoDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -900,84 +555,25 @@ namespace LigaBA.Reportes.DataSet {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class p_ReporteJugadoresVisitanteRow : global::System.Data.DataRow {
+        public partial class p_ReporteFichaPartidoRow : global::System.Data.DataRow {
             
-            private p_ReporteJugadoresVisitanteDataTable tablep_ReporteJugadoresVisitante;
+            private p_ReporteFichaPartidoDataTable tablep_ReporteFichaPartido;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal p_ReporteJugadoresVisitanteRow(global::System.Data.DataRowBuilder rb) : 
+            internal p_ReporteFichaPartidoRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tablep_ReporteJugadoresVisitante = ((p_ReporteJugadoresVisitanteDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string NombreV {
-                get {
-                    return ((string)(this[this.tablep_ReporteJugadoresVisitante.NombreVColumn]));
-                }
-                set {
-                    this[this.tablep_ReporteJugadoresVisitante.NombreVColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string ApellidoV {
-                get {
-                    return ((string)(this[this.tablep_ReporteJugadoresVisitante.ApellidoVColumn]));
-                }
-                set {
-                    this[this.tablep_ReporteJugadoresVisitante.ApellidoVColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int DniV {
-                get {
-                    return ((int)(this[this.tablep_ReporteJugadoresVisitante.DniVColumn]));
-                }
-                set {
-                    this[this.tablep_ReporteJugadoresVisitante.DniVColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public System.DateTime Fecha_De_NacimientoV {
-                get {
-                    return ((global::System.DateTime)(this[this.tablep_ReporteJugadoresVisitante.Fecha_De_NacimientoVColumn]));
-                }
-                set {
-                    this[this.tablep_ReporteJugadoresVisitante.Fecha_De_NacimientoVColumn] = value;
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
-        public partial class p_ReporteJugadoresRow : global::System.Data.DataRow {
-            
-            private p_ReporteJugadoresDataTable tablep_ReporteJugadores;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal p_ReporteJugadoresRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tablep_ReporteJugadores = ((p_ReporteJugadoresDataTable)(this.Table));
+                this.tablep_ReporteFichaPartido = ((p_ReporteFichaPartidoDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string Nombre {
                 get {
-                    return ((string)(this[this.tablep_ReporteJugadores.NombreColumn]));
+                    return ((string)(this[this.tablep_ReporteFichaPartido.NombreColumn]));
                 }
                 set {
-                    this[this.tablep_ReporteJugadores.NombreColumn] = value;
+                    this[this.tablep_ReporteFichaPartido.NombreColumn] = value;
                 }
             }
             
@@ -985,10 +581,10 @@ namespace LigaBA.Reportes.DataSet {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string Apellido {
                 get {
-                    return ((string)(this[this.tablep_ReporteJugadores.ApellidoColumn]));
+                    return ((string)(this[this.tablep_ReporteFichaPartido.ApellidoColumn]));
                 }
                 set {
-                    this[this.tablep_ReporteJugadores.ApellidoColumn] = value;
+                    this[this.tablep_ReporteFichaPartido.ApellidoColumn] = value;
                 }
             }
             
@@ -996,21 +592,10 @@ namespace LigaBA.Reportes.DataSet {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public int Dni {
                 get {
-                    return ((int)(this[this.tablep_ReporteJugadores.DniColumn]));
+                    return ((int)(this[this.tablep_ReporteFichaPartido.DniColumn]));
                 }
                 set {
-                    this[this.tablep_ReporteJugadores.DniColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public System.DateTime Fecha_De_Nacimiento {
-                get {
-                    return ((global::System.DateTime)(this[this.tablep_ReporteJugadores.Fecha_De_NacimientoColumn]));
-                }
-                set {
-                    this[this.tablep_ReporteJugadores.Fecha_De_NacimientoColumn] = value;
+                    this[this.tablep_ReporteFichaPartido.DniColumn] = value;
                 }
             }
         }
@@ -1019,56 +604,22 @@ namespace LigaBA.Reportes.DataSet {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class p_ReporteJugadoresVisitanteRowChangeEvent : global::System.EventArgs {
+        public class p_ReporteFichaPartidoRowChangeEvent : global::System.EventArgs {
             
-            private p_ReporteJugadoresVisitanteRow eventRow;
+            private p_ReporteFichaPartidoRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public p_ReporteJugadoresVisitanteRowChangeEvent(p_ReporteJugadoresVisitanteRow row, global::System.Data.DataRowAction action) {
+            public p_ReporteFichaPartidoRowChangeEvent(p_ReporteFichaPartidoRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public p_ReporteJugadoresVisitanteRow Row {
-                get {
-                    return this.eventRow;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Row event argument class
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class p_ReporteJugadoresRowChangeEvent : global::System.EventArgs {
-            
-            private p_ReporteJugadoresRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public p_ReporteJugadoresRowChangeEvent(p_ReporteJugadoresRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public p_ReporteJugadoresRow Row {
+            public p_ReporteFichaPartidoRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -1096,7 +647,7 @@ namespace LigaBA.Reportes.DataSet.FichaPartidoDataSetTableAdapters {
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class p_ReporteJugadoresVisitanteTableAdapter : global::System.ComponentModel.Component {
+    public partial class p_ReporteFichaPartidoTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
         
@@ -1110,7 +661,7 @@ namespace LigaBA.Reportes.DataSet.FichaPartidoDataSetTableAdapters {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public p_ReporteJugadoresVisitanteTableAdapter() {
+        public p_ReporteFichaPartidoTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -1207,195 +758,10 @@ namespace LigaBA.Reportes.DataSet.FichaPartidoDataSetTableAdapters {
             this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "p_ReporteJugadoresVisitante";
-            tableMapping.ColumnMappings.Add("NombreV", "NombreV");
-            tableMapping.ColumnMappings.Add("ApellidoV", "ApellidoV");
-            tableMapping.ColumnMappings.Add("DniV", "DniV");
-            tableMapping.ColumnMappings.Add("Fecha_De_NacimientoV", "Fecha_De_NacimientoV");
-            this._adapter.TableMappings.Add(tableMapping);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private void InitConnection() {
-            this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::LigaBA.Properties.Settings.Default.ConnectionString;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
-            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
-            this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "LigaBA.p_ReporteJugadoresVisitante";
-            this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Equipo", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(FichaPartidoDataSet.p_ReporteJugadoresVisitanteDataTable dataTable, global::System.Nullable<int> Equipo) {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((Equipo.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(Equipo.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            if ((this.ClearBeforeFill == true)) {
-                dataTable.Clear();
-            }
-            int returnValue = this.Adapter.Fill(dataTable);
-            return returnValue;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual FichaPartidoDataSet.p_ReporteJugadoresVisitanteDataTable GetData(global::System.Nullable<int> Equipo) {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((Equipo.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(Equipo.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            FichaPartidoDataSet.p_ReporteJugadoresVisitanteDataTable dataTable = new FichaPartidoDataSet.p_ReporteJugadoresVisitanteDataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-    }
-    
-    /// <summary>
-    ///Represents the connection and commands used to retrieve and save data.
-    ///</summary>
-    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
-    [global::System.ComponentModel.ToolboxItem(true)]
-    [global::System.ComponentModel.DataObjectAttribute(true)]
-    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
-        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
-    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class p_ReporteJugadoresTableAdapter : global::System.ComponentModel.Component {
-        
-        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
-        
-        private global::System.Data.SqlClient.SqlConnection _connection;
-        
-        private global::System.Data.SqlClient.SqlTransaction _transaction;
-        
-        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
-        
-        private bool _clearBeforeFill;
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public p_ReporteJugadoresTableAdapter() {
-            this.ClearBeforeFill = true;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
-            get {
-                if ((this._adapter == null)) {
-                    this.InitAdapter();
-                }
-                return this._adapter;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        internal global::System.Data.SqlClient.SqlConnection Connection {
-            get {
-                if ((this._connection == null)) {
-                    this.InitConnection();
-                }
-                return this._connection;
-            }
-            set {
-                this._connection = value;
-                if ((this.Adapter.InsertCommand != null)) {
-                    this.Adapter.InsertCommand.Connection = value;
-                }
-                if ((this.Adapter.DeleteCommand != null)) {
-                    this.Adapter.DeleteCommand.Connection = value;
-                }
-                if ((this.Adapter.UpdateCommand != null)) {
-                    this.Adapter.UpdateCommand.Connection = value;
-                }
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    if ((this.CommandCollection[i] != null)) {
-                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
-                    }
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        internal global::System.Data.SqlClient.SqlTransaction Transaction {
-            get {
-                return this._transaction;
-            }
-            set {
-                this._transaction = value;
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    this.CommandCollection[i].Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.DeleteCommand != null))) {
-                    this.Adapter.DeleteCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.InsertCommand != null))) {
-                    this.Adapter.InsertCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.UpdateCommand != null))) {
-                    this.Adapter.UpdateCommand.Transaction = this._transaction;
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
-            get {
-                if ((this._commandCollection == null)) {
-                    this.InitCommandCollection();
-                }
-                return this._commandCollection;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public bool ClearBeforeFill {
-            get {
-                return this._clearBeforeFill;
-            }
-            set {
-                this._clearBeforeFill = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private void InitAdapter() {
-            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
-            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
-            tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "p_ReporteJugadores";
+            tableMapping.DataSetTable = "p_ReporteFichaPartido";
             tableMapping.ColumnMappings.Add("Nombre", "Nombre");
             tableMapping.ColumnMappings.Add("Apellido", "Apellido");
             tableMapping.ColumnMappings.Add("Dni", "Dni");
-            tableMapping.ColumnMappings.Add("Fecha_De_Nacimiento", "Fecha_De_Nacimiento");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -1412,7 +778,7 @@ namespace LigaBA.Reportes.DataSet.FichaPartidoDataSetTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "LigaBA.p_ReporteJugadores";
+            this._commandCollection[0].CommandText = "LigaBA.p_ReporteFichaPartido";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Equipo", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -1422,7 +788,7 @@ namespace LigaBA.Reportes.DataSet.FichaPartidoDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(FichaPartidoDataSet.p_ReporteJugadoresDataTable dataTable, global::System.Nullable<int> Equipo) {
+        public virtual int Fill(FichaPartidoDataSet.p_ReporteFichaPartidoDataTable dataTable, global::System.Nullable<int> Equipo) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((Equipo.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((int)(Equipo.Value));
@@ -1441,7 +807,7 @@ namespace LigaBA.Reportes.DataSet.FichaPartidoDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual FichaPartidoDataSet.p_ReporteJugadoresDataTable GetData(global::System.Nullable<int> Equipo) {
+        public virtual FichaPartidoDataSet.p_ReporteFichaPartidoDataTable GetData(global::System.Nullable<int> Equipo) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((Equipo.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((int)(Equipo.Value));
@@ -1449,7 +815,7 @@ namespace LigaBA.Reportes.DataSet.FichaPartidoDataSetTableAdapters {
             else {
                 this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
-            FichaPartidoDataSet.p_ReporteJugadoresDataTable dataTable = new FichaPartidoDataSet.p_ReporteJugadoresDataTable();
+            FichaPartidoDataSet.p_ReporteFichaPartidoDataTable dataTable = new FichaPartidoDataSet.p_ReporteFichaPartidoDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }

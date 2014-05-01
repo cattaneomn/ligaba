@@ -1306,21 +1306,20 @@ BEGIN transaction
 COMMIT
 GO
 
---REPORTE JUGADORES VISITANTE
-CREATE PROCEDURE [LigaBA].[p_ReporteJugadoresVisitante]
+--REPORTE FICHA PARTIDO
+CREATE PROCEDURE [LigaBA].[p_ReporteFichaPartido]
 (
         @Equipo int
 )       
 AS
-BEGIN transaction
-        
-        SELECT nombre as NombreV,apellido as ApellidoV,dni as DniV,fecha_de_nacimiento as Fecha_De_NacimientoV
+BEGIN transaction        
+        SELECT nombre as Nombre,apellido as Apellido,dni as Dni
         FROM LigaBA.Jugador
         WHERE id IN (SELECT jugador FROM LigaBA.JugadorXEquipo WHERE equipo=@Equipo)
         
-        
 COMMIT
 GO
+
 --BACK UP
 CREATE PROCEDURE [LigaBA].[p_BackUp]
 (

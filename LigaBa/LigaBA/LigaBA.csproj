@@ -318,6 +318,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>JugadoresDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Reportes\SubreporteFichaPartido.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SubreporteFichaPartido.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reportes\FichaPartido.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -470,6 +476,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Reportes\SubreporteFichaPartido.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SubreporteFichaPartido.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\FichaPartido.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>FichaPartido.cs</LastGenOutput>
