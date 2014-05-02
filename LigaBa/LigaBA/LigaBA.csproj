@@ -243,6 +243,12 @@
     <Compile Include="Fixture\ReporteFixtureForm.Designer.cs">
       <DependentUpon>ReporteFixtureForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Goleadores\GoleadoresForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Goleadores\GoleadoresForm.Designer.cs">
+      <DependentUpon>GoleadoresForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Partidos\AgregarJugadorForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -440,6 +446,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Fixture\ReporteFixtureForm.resx">
       <DependentUpon>ReporteFixtureForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Goleadores\GoleadoresForm.resx">
+      <DependentUpon>GoleadoresForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Partidos\AgregarJugadorForm.resx">
       <DependentUpon>AgregarJugadorForm.cs</DependentUpon>

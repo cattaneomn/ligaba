@@ -16,6 +16,7 @@ using LigaBA.Abm_Torneo;
 using LigaBA.Back_Up;
 using LigaBA.Partidos;
 using LigaBA.Fixture;
+using LigaBA.Goleadores;
 
 namespace LigaBA
 {
@@ -112,6 +113,12 @@ namespace LigaBA
         private void button1_Click_4(object sender, EventArgs e)
         {
             FixtureForm abrir = new FixtureForm();
+            abrir.ShowDialog();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            GoleadoresForm abrir = new GoleadoresForm();
             abrir.ShowDialog();
         }
 

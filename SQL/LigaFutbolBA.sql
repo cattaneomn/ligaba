@@ -1366,6 +1366,31 @@ BEGIN transaction
 COMMIT
 GO
 
+--BUSCAR GOLEADORES
+CREATE PROCEDURE [LigaBA].[p_BuscarGoleadores]
+(
+        @Torneo int,
+        @Categoria int
+)       
+AS
+BEGIN transaction
+
+        DECLARE @TorneoXCategoria int 
+        
+        SELECT @TorneoXCategoria=id FROM LigaBA.TorneoXCategoria WHERE torneogeneral=@Torneo AND categoria=@Categoria
+        
+        SELECT E.nombre as Equipo,J.nombre as Nombre,J.apellido as Apellido,SUM(PJ.goles) AS Goles 
+        FROM LigaBA.PartidoXJugador as PJ
+        JOIN LigaBA.Jugador as J ON J.id=PJ.jugador
+        JOIN LigaBA.JugadorXEquipo as JE ON JE.jugador=PJ.jugador
+        JOIN LigaBA.Equipo as E ON E.id=JE.equipo
+        WHERE PJ.partido IN (SELECT id FROM LigaBA.Partido WHERE torneoxcategoria=@TorneoXCategoria)
+        GROUP BY E.nombre,J.nombre,J.apellido,PJ.jugador
+        ORDER BY SUM(PJ.goles) DESC
+
+COMMIT
+GO
+
 --BACK UP
 CREATE PROCEDURE [LigaBA].[p_BackUp]
 (
