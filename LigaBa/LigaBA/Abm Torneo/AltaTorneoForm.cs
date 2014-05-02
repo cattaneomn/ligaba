@@ -58,8 +58,9 @@ namespace LigaBA.Abm_Torneo
 
         private void GuardarButton_Click(object sender, EventArgs e)
         {
-            CrearFixture();
             if (Validaciones() == -1) return;
+
+            CrearFixture();
 
             string TipoTablaGeneral;
 
@@ -79,11 +80,9 @@ namespace LigaBA.Abm_Torneo
               this.TipoTorneoComboBox.SelectedValue.ToString(),
               this.TablaGeneralComboBox.SelectedItem.ToString(),
               TipoTablaGeneral);
-            
-            
-            
-            
             DialogResult Resultado = abrir.ShowDialog();
+
+
             if (Resultado == DialogResult.OK)
             {
                 this.Close();
@@ -136,7 +135,12 @@ namespace LigaBA.Abm_Torneo
             {
                 if (objeto is TextBox && ((TextBox)objeto).Text == "")
                 {
-                    MessageBox.Show("Debe completar el campo vacio.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("Debe completar los campos vacios.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return -1;
+                }
+                if (objeto is ComboBox && ((ComboBox)objeto).SelectedItem == null && ((ComboBox)objeto).Name != "TipoTablaComboBox")
+                {
+                    MessageBox.Show("Debe completar los campos vacios.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return -1;
                 }
             }

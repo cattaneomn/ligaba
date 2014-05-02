@@ -434,18 +434,37 @@ namespace LigaBA.Abm_Torneo
                 }
                 if (cantEquipos <= 1)
                 {
-                    MessageBox.Show("Error: debe seleccionar al menos 2(dos) equipos de cada categoria elegida.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Error: Debe seleccionar al menos 2(dos) equipos de cada categoria elegida.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return -1;
                 }
-
-                //TO DO : Validacion 1 solo equipo por institucion por categoria.
-
 
                 if (GenerarFixture.mutex)
                 {
                     MessageBox.Show("Error: No se ha generado el fixture.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return -1;
                 }
+            }
+
+            //Validacion 1 solo equipo por institucion por categoria.
+            foreach (string institucion in InstitucionesLista)
+            {
+                foreach (string cat in CategoriasLista)
+                {
+                    int cantidadEquipos=0;
+                    foreach (DataGridViewRow row in Equipos_DataGridView.Rows)
+                    {
+                        if (row.Cells["Seleccionado"].Value.ToString() == "True" && row.Cells["idCat"].Value.ToString() == cat && row.Cells["idInt"].Value.ToString() == institucion)
+                        {
+                            cantidadEquipos++;
+                        }
+                        if (cantidadEquipos > 1)
+                        {
+                            MessageBox.Show("Error: Hay instituciones con mas de un equipo en un categoria.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return -1;
+                        }
+                    }
+                }
+
             }
             
             return 1;
