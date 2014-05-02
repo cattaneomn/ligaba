@@ -70,6 +70,7 @@ namespace LigaBA.Abm_Torneo
                 MessageBox.Show("No se encontraron resultados que coincidan con la busqueda.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
+            this.Torneos_DataGridView.Columns["Nombre"].Width = 220;
             this.Torneos_DataGridView.Columns["Tipo de Tabla General"].Width = 250;
             this.Torneos_DataGridView.Columns["Tipo de Torneo"].Width = 140;
             this.Torneos_DataGridView.Columns["Tabla General"].Width = 130;
@@ -80,7 +81,7 @@ namespace LigaBA.Abm_Torneo
 
         private string ArmarConsulta()
         {
-            string Consulta = "SELECT T.id as id,TC.id as idTC,T.nombre as Nombre,TT.nombre as 'Tipo de Torneo',T.tablageneral as 'Tabla General',T.tipodetablageneral as 'Tipo de Tabla General',C.nombre as Categoria FROM LigaBA.Torneo as T ";
+            string Consulta = "SELECT T.id as id,TC.id as idTC,T.nombre as Nombre,C.nombre as Categoria,TT.nombre as 'Tipo de Torneo',T.tablageneral as 'Tabla General',T.tipodetablageneral as 'Tipo de Tabla General' FROM LigaBA.Torneo as T ";
             Consulta += "INNER JOIN LigaBA.TipoDeTorneo as TT ON T.tipodetorneo = TT.id ";
             Consulta += "INNER JOIN LigaBA.TorneoXCategoria as TC ON T.id = TC.torneogeneral  ";
             Consulta += "INNER JOIN LigaBA.Categoria as C ON c.id = TC.categoria WHERE 1=1 "; 

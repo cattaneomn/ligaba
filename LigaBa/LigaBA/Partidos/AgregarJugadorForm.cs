@@ -14,7 +14,7 @@ namespace LigaBA.Partidos
 {
     public partial class AgregarJugadorForm : Form
     {
-        public AgregarJugadorForm(string LocalId, string VisitanteId,string ButtonType,string NombreForm)
+        public AgregarJugadorForm(string LocalId, string VisitanteId,string ButtonType,string NombreForm,string idPartido)
         {
             InitializeComponent();
 
@@ -22,21 +22,23 @@ namespace LigaBA.Partidos
             this.VisitanteId = VisitanteId;
             this.ButtonType = ButtonType;
             this.NombreForm = NombreForm;
+            this.idPartido = idPartido;
         }
 
         string LocalId;
         string VisitanteId;
         string ButtonType;
         string NombreForm;
+        string idPartido;
 
         private void AgregarJugadorForm_Load(object sender, EventArgs e)
         {
-           
-            //TO DO : SOLO JUGADORES HABILITADOS Y QUE NO ESTEN BORRADOS.
-            string Consulta = "SELECT J.id,E.nombre as Equipo,J.nombre as Nombre,J.apellido as Apellido,J.dni as Dni FROM ligaBA.JugadorXEquipo as JE ";
+            //SOLO JUGADORES HABILITADOS Y QUE NO ESTEN BORRADOS.
+            string Consulta = "SELECT J.id,E.nombre as Equipo,J.nombre as Nombre,J.apellido as Apellido,J.dni as Dni,TCJ.habilitado as Habilitado FROM ligaBA.JugadorXEquipo as JE ";
                   Consulta += "JOIN LigaBA.Jugador as J ON J.id = JE.jugador ";
                   Consulta += "JOIN LigaBA.Equipo as E ON E.id = JE.equipo ";
-                  Consulta += "WHERE E.id=" + LocalId + " OR E.id=" + VisitanteId;
+                  Consulta += "JOIN LigaBA.TorneoXCategoriaXJugador as TCJ ON TCJ.jugador = JE.jugador "; 
+                  Consulta += "WHERE (E.id=" + LocalId + " OR E.id=" + VisitanteId + ") AND J.borrado=0 AND J.habilitado=1 AND TCJ.torneoxcategoria=(SELECT torneoxcategoria FROM ligaBA.Partido WHERE id=" + idPartido + ")";
 
             List<SqlParameter> param = new List<SqlParameter>();
 
@@ -103,6 +105,12 @@ namespace LigaBA.Partidos
         {
             if (e.ColumnIndex == this.Jugadores_DataGridView.Columns["Seleccionar"].Index && e.RowIndex >= 0)
             {
+                if (Jugadores_DataGridView.CurrentRow.Cells["Habilitado"].Value.ToString() == "0")
+                {
+                    MessageBox.Show("El Jugador no se puede seleccionar por que no esta habilitado para jugar por acumulacion de tarjetas amarillas o expulsión.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                
                 if (NombreForm == "JugarPartidoForm")
                 {
                     JugarPartido();

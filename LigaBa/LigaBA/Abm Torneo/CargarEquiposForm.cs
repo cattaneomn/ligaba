@@ -396,11 +396,20 @@ namespace LigaBA.Abm_Torneo
                 if (row["elegido"].ToString() == "1" && row["idCat"].ToString() == categoria)
                 {
                     string equipo = row["id"].ToString();
+
+                    //ALTA TORNEOXCATEGORIAXEQUIPO
                     List<SqlParameter> param = new List<SqlParameter>();
                     param.Add(new SqlParameter("@torneoxcategoria", respuesta));
                     param.Add(new SqlParameter("@equipo", equipo));
                     
                     TerminoBien &= BaseDeDatos.GetInstance.ejecutarProcedimiento("p_AltaTorneoXCategoriaXEquipo", param, this.Text);
+                    
+                    //ALTA TORNEOXCATEGORIAXJUGADOR
+                    List<SqlParameter> param2 = new List<SqlParameter>();
+                    param2.Add(new SqlParameter("@torneoxcategoria", respuesta));
+                    param2.Add(new SqlParameter("@equipo", equipo));
+                    
+                    TerminoBien &= BaseDeDatos.GetInstance.ejecutarProcedimiento("p_AltaTorneoXCategoriaXJugador", param2, this.Text);
 
                     if (TerminoBien == true)
                     {

@@ -162,6 +162,25 @@ CREATE TABLE LigaBA.TorneoXCategoriaXEquipo(
 
 GO
 
+--TORNEOXCATEGORIAXJUGADOR
+CREATE TABLE LigaBA.TorneoXCategoriaXJugador(
+        id int NOT NULL IDENTITY,
+        torneoxcategoria int NOT NULL,
+        jugador int NOT NULL,
+        amarillas int NOT NULL DEFAULT 0,
+        rojas int NOT NULL DEFAULT 0,
+        amarillasacumuladas int NOT NULL DEFAULT 0,
+        rojasacumuladas int NOT NULL DEFAULT 0,
+        habilitado bit NOT NULL DEFAULT 1
+ CONSTRAINT PK_TorneoXCategoriaXJugador PRIMARY KEY(id),
+ CONSTRAINT Unique_TorneoXCategoriaXJugador UNIQUE(torneoxcategoria,jugador),
+ CONSTRAINT FK_TorneoXCategoriaXJugador_TorneoXCategoria FOREIGN KEY (torneoxcategoria) REFERENCES LigaBA.TorneoXCategoria(id),
+ CONSTRAINT FK_TorneoXCategoriaXJugador_Jugador FOREIGN KEY (jugador) REFERENCES LigaBA.Jugador(id),
+ );
+
+ GO
+
+
 --PARTIDOS
 CREATE TABLE LigaBA.Partido(
         id int NOT NULL IDENTITY,
@@ -930,6 +949,25 @@ BEGIN transaction
 COMMIT
 GO
 
+--ALTA TORNEOXCATEGORIAXJUGADOR
+CREATE PROCEDURE [LigaBA].[p_AltaTorneoXCategoriaXJugador]
+(
+        @torneoxcategoria int,
+        @equipo int
+)       
+AS
+BEGIN transaction
+
+        --TorneoXCategoriaXJugador
+        INSERT INTO LigaBA.TorneoXCategoriaXJugador (torneoxcategoria,jugador)
+        SELECT @torneoxcategoria,J.id FROM LigaBA.JugadorXEquipo as JXE
+        JOIN LigaBA.Jugador as J ON J.id=JXE.jugador
+        WHERE JXE.equipo=@equipo AND J.habilitado=1 AND J.borrado=0
+COMMIT
+
+GO
+
+
 --BAJA TORNEO
 CREATE PROCEDURE [LigaBA].[p_BajaTorneo]
 (
@@ -939,16 +977,18 @@ CREATE PROCEDURE [LigaBA].[p_BajaTorneo]
 AS
 BEGIN transaction
                       
-        
+               --BORRAR TORNEOXCATEGORIAXJUGADOR
+        DELETE FROM LigaBA.TorneoXCategoriaXJugador WHERE torneoxcategoria=@idTC
         --BORRAR TORNEOXCATEGORIAXEQUIPO
         DELETE FROM LigaBA.TorneoXCategoriaXEquipo WHERE torneoxcategoria=@idTC
-        --BORRAR TORNEOXCATEGORIA  
-        DELETE FROM LigaBA.TorneoXCategoria WHERE id=@idTC   
-        --BORRAR PARTIDOSX JUGADOR
-        DELETE FROM LigaBA.PartidoXJugador WHERE partido IN (SELECT id FROM LigaBA.Partido WHERE torneoxcategoria=@idTC)
         --BORRAR PARTIDOS
         DELETE FROM LigaBA.Partido WHERE torneoxcategoria=@idTC
+        --BORRAR PARTIDOSXJUGADOR
+        DELETE FROM LigaBA.PartidoXJugador WHERE partido IN (SELECT id FROM LigaBA.Partido WHERE torneoxcategoria=@idTC)
+        --BORRAR TORNEOXCATEGORIA  
+        DELETE FROM LigaBA.TorneoXCategoria WHERE id=@idTC   
 
+        
         --SINO HAY MAS TORNEOSXCATEGORIA DE ESE TORNEO BORRA TORNEOGENERAL
         IF( (SELECT COUNT(*) FROM LigaBA.TorneoXCategoria WHERE torneogeneral=@id) = 0)
         BEGIN 
@@ -1143,6 +1183,12 @@ BEGIN transaction
  (@idPartido,@idJugador,@cantGoles,@cantAmarillas,@cantRojas)
 
 --SUMAR TARJETAS A JUGADOR
+--MODIFICAR TORNEOXCATEGORIAXJUGADOR
+UPDATE LigaBA.TorneoXCategoriaXJugadaor SET 
+amarillas=@cantAmarillas,rojas=@cantRojas,
+amarillasacumuladas=amarillasacumuladas + @cantAmarillas,rojasacumuladas=rojasacumuladas + @cantRojas
+WHERE Jugador=@idJugador AND TorneoXCategoria=(SELECT TorneoXCategoria FROM LigaBA.Partido WHERE id=@idPartido)
+
 
 COMMIT
 GO
