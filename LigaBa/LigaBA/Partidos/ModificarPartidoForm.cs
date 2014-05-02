@@ -243,11 +243,12 @@ namespace LigaBA.Partidos
 
         private void InsertarPartidoXJugador()
         {
+            
             foreach (JugadorXPartido jugador in jugadorXPartido)
             {
-               // MessageBox.Show("jugador:" + jugador.get_id().ToString() + "cantGoles:" + jugador.get_cantGoles().ToString() + "cantAmarillas:" + jugador.get_cantAmarillas().ToString() + " CantRojas:" + jugador.get_cantRojas().ToString());
+               //MessageBox.Show("jugador:" + jugador.get_id().ToString() + "cantGoles:" + jugador.get_cantGoles().ToString() + "cantAmarillas:" + jugador.get_cantAmarillas().ToString() + " CantRojas:" + jugador.get_cantRojas().ToString());
                
-               if (jugador.get_cantGoles() != 0 && jugador.get_cantAmarillas() != 0 && jugador.get_cantRojas() != 0)
+               if (!(jugador.get_cantGoles() != 0 && jugador.get_cantAmarillas() != 0 && jugador.get_cantRojas() != 0))
                {
                 List<SqlParameter> param = new List<SqlParameter>();
                 param.Add(new SqlParameter("@idPartido", PartidoId));
@@ -256,7 +257,8 @@ namespace LigaBA.Partidos
                 param.Add(new SqlParameter("@cantAmarillas", jugador.get_cantAmarillas()));
                 param.Add(new SqlParameter("@cantRojas", jugador.get_cantRojas()));
 
-                bool TerminoBien = BaseDeDatos.GetInstance.ejecutarProcedimiento("p_AltaPartidoXJugador", param, this.Text);            
+                bool TerminoBien = BaseDeDatos.GetInstance.ejecutarProcedimiento("p_AltaPartidoXJugador", param, this.Text);
+
                }
             }
         }

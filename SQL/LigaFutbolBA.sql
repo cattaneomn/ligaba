@@ -977,7 +977,7 @@ CREATE PROCEDURE [LigaBA].[p_BajaTorneo]
 AS
 BEGIN transaction
                       
-               --BORRAR TORNEOXCATEGORIAXJUGADOR
+        --BORRAR TORNEOXCATEGORIAXJUGADOR
         DELETE FROM LigaBA.TorneoXCategoriaXJugador WHERE torneoxcategoria=@idTC
         --BORRAR TORNEOXCATEGORIAXEQUIPO
         DELETE FROM LigaBA.TorneoXCategoriaXEquipo WHERE torneoxcategoria=@idTC
@@ -1179,15 +1179,15 @@ CREATE PROCEDURE [LigaBA].[p_AltaPartidoXJugador]
 AS
 BEGIN transaction
 
- INSERT INTO LigaBA.PartidoXJugador (partido,jugador,goles,amarillas,rojas) VALUES
- (@idPartido,@idJugador,@cantGoles,@cantAmarillas,@cantRojas)
+     INSERT INTO LigaBA.PartidoXJugador (partido,jugador,goles,amarillas,rojas) VALUES
+     (@idPartido,@idJugador,@cantGoles,@cantAmarillas,@cantRojas)
 
---SUMAR TARJETAS A JUGADOR
---MODIFICAR TORNEOXCATEGORIAXJUGADOR
-UPDATE LigaBA.TorneoXCategoriaXJugadaor SET 
-amarillas=@cantAmarillas,rojas=@cantRojas,
-amarillasacumuladas=amarillasacumuladas + @cantAmarillas,rojasacumuladas=rojasacumuladas + @cantRojas
-WHERE Jugador=@idJugador AND TorneoXCategoria=(SELECT TorneoXCategoria FROM LigaBA.Partido WHERE id=@idPartido)
+    --SUMAR TARJETAS A JUGADOR
+    --MODIFICAR TORNEOXCATEGORIAXJUGADOR
+    UPDATE LigaBA.TorneoXCategoriaXJugador SET 
+    amarillas=@cantAmarillas,rojas=@cantRojas,
+    amarillasacumuladas= amarillasacumuladas + @cantAmarillas,rojasacumuladas= rojasacumuladas + @cantRojas
+    WHERE Jugador=@idJugador AND TorneoXCategoria=(SELECT TorneoXCategoria FROM LigaBA.Partido WHERE id=@idPartido)
 
 
 COMMIT
