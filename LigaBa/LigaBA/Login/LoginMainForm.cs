@@ -98,7 +98,7 @@ namespace LigaBA
                 switch (respuesta)
                 {
                     case 1:
-                        MessageBox.Show("Usuario o contraseña inválidos","Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("Usuario o contraseña inválidos.",this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                 }
 
@@ -121,7 +121,7 @@ namespace LigaBA
             }
             else
             {
-                MessageBox.Show("Usuario o contraseña inválidos");
+                MessageBox.Show("Usuario o contraseña inválidos.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             
@@ -133,12 +133,12 @@ namespace LigaBA
         {
             if (usuarioTextBox.Text == "")
             {
-                MessageBox.Show("Debe completar el campo usuario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Debe completar el campo usuario.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return -1;
             }
             if (passwordTextBox.Text == "")
             {
-                MessageBox.Show("Debe completar el campo contraseña.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Debe completar el campo contraseña.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return -1;
             }
             return 0;
