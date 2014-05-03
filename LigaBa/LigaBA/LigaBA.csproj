@@ -249,6 +249,12 @@
     <Compile Include="Goleadores\GoleadoresForm.Designer.cs">
       <DependentUpon>GoleadoresForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Goleadores\ReporteGoleadoresForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Goleadores\ReporteGoleadoresForm.Designer.cs">
+      <DependentUpon>ReporteGoleadoresForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Partidos\AgregarJugadorForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -304,6 +310,17 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reportes\DataSet\GoleadoresDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GoleadoresDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\GoleadoresReporte.cs">
+      <DependentUpon>GoleadoresReporte.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reportes\DataSet\FichaPartidoDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -450,6 +467,9 @@
     <EmbeddedResource Include="Goleadores\GoleadoresForm.resx">
       <DependentUpon>GoleadoresForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Goleadores\ReporteGoleadoresForm.resx">
+      <DependentUpon>ReporteGoleadoresForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Partidos\AgregarJugadorForm.resx">
       <DependentUpon>AgregarJugadorForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -485,6 +505,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Reportes\GoleadoresReporte.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>GoleadoresReporte.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\SubreporteFichaPartido.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>SubreporteFichaPartido.cs</LastGenOutput>
@@ -539,6 +563,17 @@
     </None>
     <None Include="Reportes\DataSet\FixtureDataSet.xss">
       <DependentUpon>FixtureDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Reportes\DataSet\GoleadoresDataSet.xsc">
+      <DependentUpon>GoleadoresDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Reportes\DataSet\GoleadoresDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GoleadoresDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reportes\DataSet\GoleadoresDataSet.xss">
+      <DependentUpon>GoleadoresDataSet.xsd</DependentUpon>
     </None>
     <None Include="Reportes\DataSet\InstitucionesDataSet.xsc">
       <DependentUpon>InstitucionesDataSet.xsd</DependentUpon>

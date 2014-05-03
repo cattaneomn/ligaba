@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using LigaBA.Clases;
+using System.Threading;
 
 namespace LigaBA.Goleadores
 {
@@ -17,6 +18,11 @@ namespace LigaBA.Goleadores
         {
             InitializeComponent();
         }
+
+        string idTorneo;
+        string idCategoria;
+        string nombreTorneo;
+        string nombreCategoria;
 
         private void GoleadoresForm_Load(object sender, EventArgs e)
         {
@@ -84,6 +90,30 @@ namespace LigaBA.Goleadores
             }
 
             ModDataGridView.limpiarDataGridView(Goleadores_DataGridView, "");
+        }
+
+        private void ImprimirGoleadoresButton_Click(object sender, EventArgs e)
+        {
+            if (this.Goleadores_DataGridView.Rows.Count == 0)
+            {
+                return;
+            }
+
+            idTorneo = TorneosComboBox.SelectedValue.ToString();
+            idCategoria = CategoriasComboBox.SelectedValue.ToString();
+
+            nombreTorneo = TorneosComboBox.Text;
+            nombreCategoria = CategoriasComboBox.Text;
+
+            Thread hilo = new Thread(AbrirFormReporte);
+            hilo.SetApartmentState(System.Threading.ApartmentState.STA);
+            hilo.Start();
+        }
+
+        private void AbrirFormReporte()
+        {
+            ReporteGoleadoresForm abrir = new ReporteGoleadoresForm(idTorneo,idCategoria,nombreTorneo,nombreCategoria);
+            abrir.ShowDialog();
         }
 
 

@@ -42,6 +42,7 @@
             this.BuscarButton = new System.Windows.Forms.Button();
             this.LimpiarButton = new System.Windows.Forms.Button();
             this.CancelarButton = new System.Windows.Forms.Button();
+            this.ImprimirGoleadoresButton = new System.Windows.Forms.Button();
             this.GroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Goleadores_DataGridView)).BeginInit();
             this.SuspendLayout();
@@ -129,7 +130,7 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.Goleadores_DataGridView.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Goleadores_DataGridView.Location = new System.Drawing.Point(12, 148);
+            this.Goleadores_DataGridView.Location = new System.Drawing.Point(12, 189);
             this.Goleadores_DataGridView.Name = "Goleadores_DataGridView";
             this.Goleadores_DataGridView.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -142,7 +143,7 @@
             this.Goleadores_DataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Goleadores_DataGridView.RowsDefaultCellStyle = dataGridViewCellStyle4;
-            this.Goleadores_DataGridView.Size = new System.Drawing.Size(760, 373);
+            this.Goleadores_DataGridView.Size = new System.Drawing.Size(760, 332);
             this.Goleadores_DataGridView.TabIndex = 25;
             // 
             // BuscarButton
@@ -183,6 +184,21 @@
             this.CancelarButton.UseVisualStyleBackColor = true;
             this.CancelarButton.Click += new System.EventHandler(this.CancelarButton_Click);
             // 
+            // ImprimirGoleadoresButton
+            // 
+            this.ImprimirGoleadoresButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ImprimirGoleadoresButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ImprimirGoleadoresButton.Image = ((System.Drawing.Image)(resources.GetObject("ImprimirGoleadoresButton.Image")));
+            this.ImprimirGoleadoresButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ImprimirGoleadoresButton.Location = new System.Drawing.Point(588, 148);
+            this.ImprimirGoleadoresButton.Name = "ImprimirGoleadoresButton";
+            this.ImprimirGoleadoresButton.Size = new System.Drawing.Size(184, 35);
+            this.ImprimirGoleadoresButton.TabIndex = 29;
+            this.ImprimirGoleadoresButton.Text = " Imprimir Goleadores";
+            this.ImprimirGoleadoresButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.ImprimirGoleadoresButton.UseVisualStyleBackColor = true;
+            this.ImprimirGoleadoresButton.Click += new System.EventHandler(this.ImprimirGoleadoresButton_Click);
+            // 
             // GoleadoresForm
             // 
             this.AcceptButton = this.BuscarButton;
@@ -190,6 +206,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.CancelarButton;
             this.ClientSize = new System.Drawing.Size(784, 562);
+            this.Controls.Add(this.ImprimirGoleadoresButton);
             this.Controls.Add(this.LimpiarButton);
             this.Controls.Add(this.CancelarButton);
             this.Controls.Add(this.BuscarButton);
@@ -219,5 +236,6 @@
         private System.Windows.Forms.Button BuscarButton;
         private System.Windows.Forms.Button LimpiarButton;
         private System.Windows.Forms.Button CancelarButton;
+        private System.Windows.Forms.Button ImprimirGoleadoresButton;
     }
 }
