@@ -29,29 +29,15 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BackUpForm));
-            this.SeleccionarButton = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.DirTextBox = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.LimpiarButton = new System.Windows.Forms.Button();
             this.CancelarButton = new System.Windows.Forms.Button();
             this.GenerarButton = new System.Windows.Forms.Button();
+            this.SelButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // SeleccionarButton
-            // 
-            this.SeleccionarButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.SeleccionarButton.AutoSize = true;
-            this.SeleccionarButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.SeleccionarButton.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SeleccionarButton.Location = new System.Drawing.Point(446, 113);
-            this.SeleccionarButton.Name = "SeleccionarButton";
-            this.SeleccionarButton.Size = new System.Drawing.Size(85, 25);
-            this.SeleccionarButton.TabIndex = 14;
-            this.SeleccionarButton.Text = "Seleccionar";
-            this.SeleccionarButton.UseVisualStyleBackColor = true;
-            this.SeleccionarButton.Click += new System.EventHandler(this.SeleccionarButton_Click);
             // 
             // label4
             // 
@@ -73,8 +59,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.SelButton);
             this.groupBox1.Controls.Add(this.DirTextBox);
-            this.groupBox1.Controls.Add(this.SeleccionarButton);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(15, 12);
@@ -122,6 +108,16 @@
             this.GenerarButton.UseVisualStyleBackColor = true;
             this.GenerarButton.Click += new System.EventHandler(this.GenerarButton_Click);
             // 
+            // SelButton
+            // 
+            this.SelButton.Location = new System.Drawing.Point(446, 114);
+            this.SelButton.Name = "SelButton";
+            this.SelButton.Size = new System.Drawing.Size(87, 23);
+            this.SelButton.TabIndex = 17;
+            this.SelButton.Text = "Seleccionar";
+            this.SelButton.UseVisualStyleBackColor = true;
+            this.SelButton.Click += new System.EventHandler(this.button1_Click);
+            // 
             // BackUpForm
             // 
             this.AcceptButton = this.GenerarButton;
@@ -146,12 +142,12 @@
 
         #endregion
 
-        private System.Windows.Forms.Button SeleccionarButton;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox DirTextBox;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button LimpiarButton;
         private System.Windows.Forms.Button CancelarButton;
         private System.Windows.Forms.Button GenerarButton;
+        private System.Windows.Forms.Button SelButton;
     }
 }

@@ -18,6 +18,8 @@ using LigaBA.Partidos;
 using LigaBA.Fixture;
 using LigaBA.Goleadores;
 
+using System.Threading;
+
 namespace LigaBA
 {
     public partial class Main : Form
@@ -101,7 +103,8 @@ namespace LigaBA
 
         private void backUpToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            BackUpForm abrir = new BackUpForm();
+            abrir.ShowDialog();
         }
 
         private void button2_Click(object sender, EventArgs e)

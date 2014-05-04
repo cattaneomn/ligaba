@@ -20,18 +20,26 @@ namespace LigaBA.Back_Up
 
         private void GenerarButton_Click(object sender, EventArgs e)
         {
-            //if (Validaciones() == -1) return;
+            if (Validaciones() == -1) return;
+
+            Thread hilo = new Thread(CrearBackUp);
+            hilo.SetApartmentState(System.Threading.ApartmentState.STA);
+            hilo.Start();
+            //TO DO esperar.REloj
+        }
+
+        private void CrearBackUp()
+        {
+            string Consulta = "BACKUP DATABASE [LigabaDB] TO ";
+            Consulta += "DISK = N'" + this.DirTextBox.Text + "\\LigabaDB.bak' ";
+            Consulta += "WITH NOFORMAT, NOINIT,  NAME = N'LigabaDB-Back Up',";
+            Consulta += "SKIP, NOREWIND, NOUNLOAD,  STATS = 10";
 
             List<SqlParameter> param = new List<SqlParameter>();
-            param.Add(new SqlParameter("@directorio", "hola"));
 
+            BaseDeDatos.GetInstance.ExecuteCustomQuery(Consulta, param, this.Text);
 
-            bool TerminoBien = BaseDeDatos.GetInstance.ejecutarProcedimiento("p_BackUp", param, this.Text);
-
-            if (TerminoBien == true)
-            {
-                MessageBox.Show("Se ha generado el back up correctamente.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            MessageBox.Show("Se ha generado el back up correctamente.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private int Validaciones()
@@ -46,23 +54,6 @@ namespace LigaBA.Back_Up
             return 1;
         }
 
-        private void SeleccionarButton_Click(object sender, EventArgs e)
-        {
-            Thread hilo = new Thread(AbrirDialog);
-            hilo.SetApartmentState(System.Threading.ApartmentState.STA);
-            hilo.Start();
-        }
-
-        private void AbrirDialog()
-        {
-            OpenFileDialog abrir = new OpenFileDialog();
-            abrir.InitialDirectory = "C:/Users/";
-
-            if (abrir.ShowDialog() == DialogResult.OK)
-            {
-                this.DirTextBox.Text = abrir.FileName;
-            }
-        }
 
         private void CancelarButton_Click(object sender, EventArgs e)
         {
@@ -72,6 +63,16 @@ namespace LigaBA.Back_Up
         private void LimpiarButton_Click(object sender, EventArgs e)
         {
             this.DirTextBox.Clear();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog abrir = new FolderBrowserDialog();
+
+            if (abrir.ShowDialog() == DialogResult.OK)
+            {
+                this.DirTextBox.Text = abrir.SelectedPath;
+            }
         }
 
     }
