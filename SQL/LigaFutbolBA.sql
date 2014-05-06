@@ -345,7 +345,7 @@ BEGIN transaction
                 RETURN          
         END
         
-        UPDATE LigaBA.Categoria SET borrado=0
+        UPDATE LigaBA.Categoria SET borrado=1 WHERE id=@Id
 
 COMMIT
 

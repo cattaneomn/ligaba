@@ -35,7 +35,7 @@ namespace LigaBA.Abm_Tipo_Torneo
                 return;
             }
 
-            string CategoriaBorrada = TipoTorneo_DataGridView.CurrentRow.Cells["Id"].Value.ToString();
+            string CategoriaBorrada = TipoTorneo_DataGridView.CurrentRow.Cells["Nombre"].Value.ToString();
 
             DialogResult Resultado = MessageBox.Show("¿Esta seguro que desea eliminar el tipo de torneo '" + CategoriaBorrada + "'?", this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (Resultado == DialogResult.Yes)

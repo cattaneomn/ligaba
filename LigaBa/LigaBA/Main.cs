@@ -103,8 +103,8 @@ namespace LigaBA
 
         private void backUpToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            BackUpForm abrir = new BackUpForm();
-            abrir.ShowDialog();
+            /*BackUpForm abrir = new BackUpForm();
+            abrir.ShowDialog();*/
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -121,7 +121,19 @@ namespace LigaBA
 
         private void button4_Click(object sender, EventArgs e)
         {
-            GoleadoresForm abrir = new GoleadoresForm();
+          /*  GoleadoresForm abrir = new GoleadoresForm();
+            abrir.ShowDialog();*/
+        }
+
+        private void fixtureToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FixtureForm abrir = new FixtureForm();
+            abrir.ShowDialog();
+        }
+
+        private void partidosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PartidosForm abrir = new PartidosForm();
             abrir.ShowDialog();
         }
 

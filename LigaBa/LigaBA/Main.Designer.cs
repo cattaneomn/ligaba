@@ -50,6 +50,8 @@
             this.InstitucionesButton = new System.Windows.Forms.Button();
             this.JugadoresButton = new System.Windows.Forms.Button();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.fixtureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.partidosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -62,6 +64,8 @@
             this.equiposToolStripMenuItem,
             this.jugadoresToolStripMenuItem,
             this.torneoToolStripMenuItem,
+            this.fixtureToolStripMenuItem,
+            this.partidosToolStripMenuItem,
             this.Usuarios,
             this.configuracionToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -271,6 +275,20 @@
             this.notifyIcon1.Text = "notifyIcon1";
             this.notifyIcon1.Visible = true;
             // 
+            // fixtureToolStripMenuItem
+            // 
+            this.fixtureToolStripMenuItem.Name = "fixtureToolStripMenuItem";
+            this.fixtureToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
+            this.fixtureToolStripMenuItem.Text = "Fixture";
+            this.fixtureToolStripMenuItem.Click += new System.EventHandler(this.fixtureToolStripMenuItem_Click);
+            // 
+            // partidosToolStripMenuItem
+            // 
+            this.partidosToolStripMenuItem.Name = "partidosToolStripMenuItem";
+            this.partidosToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
+            this.partidosToolStripMenuItem.Text = "Partidos";
+            this.partidosToolStripMenuItem.Click += new System.EventHandler(this.partidosToolStripMenuItem_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -314,6 +332,8 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ToolStripMenuItem backUpToolStripMenuItem;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
+        private System.Windows.Forms.ToolStripMenuItem fixtureToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem partidosToolStripMenuItem;
 
     }
 }
