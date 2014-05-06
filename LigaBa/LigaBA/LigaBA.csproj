@@ -285,6 +285,12 @@
     <Compile Include="Partidos\ReportePartidoForm.Designer.cs">
       <DependentUpon>ReportePartidoForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Posiciones\PosicionesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Posiciones\PosicionesForm.Designer.cs">
+      <DependentUpon>PosicionesForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reportes\Carnet.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -485,6 +491,9 @@
     <EmbeddedResource Include="Partidos\ReportePartidoForm.resx">
       <DependentUpon>ReportePartidoForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Posiciones\PosicionesForm.resx">
+      <DependentUpon>PosicionesForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\Carnet.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>Carnet.cs</LastGenOutput>
@@ -612,6 +621,7 @@
   <ItemGroup>
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

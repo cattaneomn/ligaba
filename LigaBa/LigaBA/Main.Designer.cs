@@ -35,6 +35,8 @@
             this.equiposToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.jugadoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.torneoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fixtureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.partidosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Usuarios = new System.Windows.Forms.ToolStripMenuItem();
             this.configuracionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.categoriasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,8 +52,6 @@
             this.InstitucionesButton = new System.Windows.Forms.Button();
             this.JugadoresButton = new System.Windows.Forms.Button();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
-            this.fixtureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.partidosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -101,6 +101,20 @@
             this.torneoToolStripMenuItem.Size = new System.Drawing.Size(70, 20);
             this.torneoToolStripMenuItem.Text = "Torneos";
             this.torneoToolStripMenuItem.Click += new System.EventHandler(this.torneoToolStripMenuItem_Click);
+            // 
+            // fixtureToolStripMenuItem
+            // 
+            this.fixtureToolStripMenuItem.Name = "fixtureToolStripMenuItem";
+            this.fixtureToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
+            this.fixtureToolStripMenuItem.Text = "Fixture";
+            this.fixtureToolStripMenuItem.Click += new System.EventHandler(this.fixtureToolStripMenuItem_Click);
+            // 
+            // partidosToolStripMenuItem
+            // 
+            this.partidosToolStripMenuItem.Name = "partidosToolStripMenuItem";
+            this.partidosToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
+            this.partidosToolStripMenuItem.Text = "Partidos";
+            this.partidosToolStripMenuItem.Click += new System.EventHandler(this.partidosToolStripMenuItem_Click);
             // 
             // Usuarios
             // 
@@ -185,6 +199,7 @@
             this.button3.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button2
             // 
@@ -274,20 +289,6 @@
             // 
             this.notifyIcon1.Text = "notifyIcon1";
             this.notifyIcon1.Visible = true;
-            // 
-            // fixtureToolStripMenuItem
-            // 
-            this.fixtureToolStripMenuItem.Name = "fixtureToolStripMenuItem";
-            this.fixtureToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
-            this.fixtureToolStripMenuItem.Text = "Fixture";
-            this.fixtureToolStripMenuItem.Click += new System.EventHandler(this.fixtureToolStripMenuItem_Click);
-            // 
-            // partidosToolStripMenuItem
-            // 
-            this.partidosToolStripMenuItem.Name = "partidosToolStripMenuItem";
-            this.partidosToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
-            this.partidosToolStripMenuItem.Text = "Partidos";
-            this.partidosToolStripMenuItem.Click += new System.EventHandler(this.partidosToolStripMenuItem_Click);
             // 
             // Main
             // 
