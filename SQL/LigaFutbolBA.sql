@@ -1379,7 +1379,7 @@ BEGIN transaction
         
         SELECT @TorneoXCategoria=id FROM LigaBA.TorneoXCategoria WHERE torneogeneral=@Torneo AND categoria=@Categoria
         
-        SELECT E.nombre as Equipo,J.nombre as Nombre,J.apellido as Apellido,SUM(PJ.goles) AS Goles 
+        SELECT J.nombre as Nombre,J.apellido as Apellido,E.nombre as Equipo,SUM(PJ.goles) AS Goles 
         FROM LigaBA.PartidoXJugador as PJ
         JOIN LigaBA.Jugador as J ON J.id=PJ.jugador
         JOIN LigaBA.JugadorXEquipo as JE ON JE.jugador=PJ.jugador
