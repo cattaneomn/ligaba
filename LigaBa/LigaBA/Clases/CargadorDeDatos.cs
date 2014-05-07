@@ -90,6 +90,11 @@ namespace LigaBA.Clases
             CargadorDeDatos.CargarComboBox("select id,nombre from LigaBA.Torneo", new List<SqlParameter>(), comboBox, txt, "id", "nombre");
         }
 
+        public static void CargarTorneoGeneralComboBox(ComboBox comboBox, string txt)
+        {
+            CargadorDeDatos.CargarComboBox("select id,nombre from LigaBA.Torneo WHERE tablageneral='Si'", new List<SqlParameter>(), comboBox, txt, "id", "nombre");
+        }
+
         //Cargas de CHECKED LIST BOX Especificos
         public static void CargarCategoriaCheckedListBox(CheckedListBox checkedListBox, string txt)
         {

@@ -29,6 +29,8 @@ namespace LigaBA.Goleadores
             CargadorDeDatos.CargarCategoriaComboBox(CategoriasComboBox, this.Text);
             CargadorDeDatos.CargarTorneoComboBox(TorneosComboBox, this.Text);
 
+            this.PosicionesCategoriaRadioButton.Checked = true;
+
             this.TorneosComboBox.Select();
         }
 
@@ -36,12 +38,16 @@ namespace LigaBA.Goleadores
         {
             if (Validaciones() == -1) return;
 
-            List<SqlParameter> param = new List<SqlParameter>();
-            param.Add(new SqlParameter("@Torneo", TorneosComboBox.SelectedValue.ToString()));
-            param.Add(new SqlParameter("@Categoria", CategoriasComboBox.SelectedValue.ToString()));
+            DataSet ds;
 
-            DataSet ds = BaseDeDatos.GetInstance.ejecutarConsulta("p_BuscarPosicionesXCategoria", param, "Posiciones", this.Text);
-
+            if (this.PosicionesCategoriaRadioButton.Checked)
+            {
+                ds = BuscarPosicionesXCategoria();
+            }
+            else
+            {
+                ds = BuscarPosicionesGeneral();
+            }
 
             if (ds.Tables["Posiciones"].Rows.Count == 0)
             {
@@ -51,6 +57,36 @@ namespace LigaBA.Goleadores
             }
 
             Posiciones_DataGridView.DataSource = ds.Tables["Posiciones"];
+
+            CustomDataGridView();
+
+            this.Posiciones_DataGridView.Focus();
+        }
+
+        private DataSet BuscarPosicionesXCategoria()
+        {
+            List<SqlParameter> param = new List<SqlParameter>();
+            param.Add(new SqlParameter("@Torneo", TorneosComboBox.SelectedValue.ToString()));
+            param.Add(new SqlParameter("@Categoria", CategoriasComboBox.SelectedValue.ToString()));
+
+            DataSet ds = BaseDeDatos.GetInstance.ejecutarConsulta("p_BuscarPosicionesXCategoria", param, "Posiciones", this.Text);
+
+            return ds;
+        }
+
+        private DataSet BuscarPosicionesGeneral()
+        {
+            List<SqlParameter> param = new List<SqlParameter>();
+            param.Add(new SqlParameter("@Torneo", TorneosComboBox.SelectedValue.ToString()));
+
+            DataSet ds = BaseDeDatos.GetInstance.ejecutarConsulta("p_BuscarPosicionesGeneral", param, "Posiciones", this.Text);
+
+            return ds;
+        }
+
+
+        private void CustomDataGridView()
+        {
             this.Posiciones_DataGridView.Columns["Pos"].Width = 50;
             this.Posiciones_DataGridView.Columns["Equipo"].Width = 140;
             this.Posiciones_DataGridView.Columns["PJ"].Width = 50;
@@ -68,8 +104,6 @@ namespace LigaBA.Goleadores
             Posiciones_DataGridView.Columns["GF"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             Posiciones_DataGridView.Columns["GC"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             Posiciones_DataGridView.Columns["Puntos"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter; 
-
-            this.Posiciones_DataGridView.Focus();
         }
 
         private int Validaciones()
@@ -80,7 +114,7 @@ namespace LigaBA.Goleadores
                 return -1;
             }
 
-            if (CategoriasComboBox.SelectedValue == null)
+            if (CategoriasComboBox.SelectedValue == null && CategoriasComboBox.Enabled)
             {
                 MessageBox.Show("Debe seleccionar una categoria obligatoriamente..", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return -1;
@@ -132,6 +166,21 @@ namespace LigaBA.Goleadores
         {
             ReporteGoleadoresForm abrir = new ReporteGoleadoresForm(idTorneo,idCategoria,nombreTorneo,nombreCategoria);
             abrir.ShowDialog();
+        }
+
+        private void PosicionesGeneralRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            this.CategoriasComboBox.Enabled = false;
+            this.CategoriasComboBox.DataSource = null;
+            //cargotorneos que tienen tabla general
+            CargadorDeDatos.CargarTorneoGeneralComboBox(TorneosComboBox, this.Text);
+        }
+
+        private void PosicionesCategoriaRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            this.CategoriasComboBox.Enabled = true;
+            CargadorDeDatos.CargarTorneoComboBox(TorneosComboBox, this.Text);
+            CargadorDeDatos.CargarCategoriaComboBox(CategoriasComboBox, this.Text);
         }
 
 

@@ -34,8 +34,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PosicionesForm));
             this.GroupBox = new System.Windows.Forms.GroupBox();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.PosicionesGeneralRadioButton = new System.Windows.Forms.RadioButton();
+            this.PosicionesCategoriaRadioButton = new System.Windows.Forms.RadioButton();
             this.TorneosComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.CategoriasComboBox = new System.Windows.Forms.ComboBox();
@@ -44,7 +44,7 @@
             this.BuscarButton = new System.Windows.Forms.Button();
             this.LimpiarButton = new System.Windows.Forms.Button();
             this.CancelarButton = new System.Windows.Forms.Button();
-            this.ImprimirGoleadoresButton = new System.Windows.Forms.Button();
+            this.ImprimirPosicionesButton = new System.Windows.Forms.Button();
             this.GroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Posiciones_DataGridView)).BeginInit();
             this.SuspendLayout();
@@ -53,8 +53,8 @@
             // 
             this.GroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.GroupBox.Controls.Add(this.radioButton2);
-            this.GroupBox.Controls.Add(this.radioButton1);
+            this.GroupBox.Controls.Add(this.PosicionesGeneralRadioButton);
+            this.GroupBox.Controls.Add(this.PosicionesCategoriaRadioButton);
             this.GroupBox.Controls.Add(this.TorneosComboBox);
             this.GroupBox.Controls.Add(this.label1);
             this.GroupBox.Controls.Add(this.CategoriasComboBox);
@@ -67,27 +67,29 @@
             this.GroupBox.TabStop = false;
             this.GroupBox.Text = "Filtros";
             // 
-            // radioButton2
+            // PosicionesGeneralRadioButton
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(465, 83);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(185, 19);
-            this.radioButton2.TabIndex = 29;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Tabla de Posiciones General";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.PosicionesGeneralRadioButton.AutoSize = true;
+            this.PosicionesGeneralRadioButton.Location = new System.Drawing.Point(465, 83);
+            this.PosicionesGeneralRadioButton.Name = "PosicionesGeneralRadioButton";
+            this.PosicionesGeneralRadioButton.Size = new System.Drawing.Size(185, 19);
+            this.PosicionesGeneralRadioButton.TabIndex = 29;
+            this.PosicionesGeneralRadioButton.TabStop = true;
+            this.PosicionesGeneralRadioButton.Text = "Tabla de Posiciones General";
+            this.PosicionesGeneralRadioButton.UseVisualStyleBackColor = true;
+            this.PosicionesGeneralRadioButton.CheckedChanged += new System.EventHandler(this.PosicionesGeneralRadioButton_CheckedChanged);
             // 
-            // radioButton1
+            // PosicionesCategoriaRadioButton
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(465, 35);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(218, 19);
-            this.radioButton1.TabIndex = 28;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Tabla de Posiciones por Categoria";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.PosicionesCategoriaRadioButton.AutoSize = true;
+            this.PosicionesCategoriaRadioButton.Location = new System.Drawing.Point(465, 35);
+            this.PosicionesCategoriaRadioButton.Name = "PosicionesCategoriaRadioButton";
+            this.PosicionesCategoriaRadioButton.Size = new System.Drawing.Size(218, 19);
+            this.PosicionesCategoriaRadioButton.TabIndex = 28;
+            this.PosicionesCategoriaRadioButton.TabStop = true;
+            this.PosicionesCategoriaRadioButton.Text = "Tabla de Posiciones por Categoria";
+            this.PosicionesCategoriaRadioButton.UseVisualStyleBackColor = true;
+            this.PosicionesCategoriaRadioButton.CheckedChanged += new System.EventHandler(this.PosicionesCategoriaRadioButton_CheckedChanged);
             // 
             // TorneosComboBox
             // 
@@ -210,20 +212,20 @@
             this.CancelarButton.UseVisualStyleBackColor = true;
             this.CancelarButton.Click += new System.EventHandler(this.CancelarButton_Click);
             // 
-            // ImprimirGoleadoresButton
+            // ImprimirPosicionesButton
             // 
-            this.ImprimirGoleadoresButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ImprimirGoleadoresButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ImprimirGoleadoresButton.Image = ((System.Drawing.Image)(resources.GetObject("ImprimirGoleadoresButton.Image")));
-            this.ImprimirGoleadoresButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ImprimirGoleadoresButton.Location = new System.Drawing.Point(588, 148);
-            this.ImprimirGoleadoresButton.Name = "ImprimirGoleadoresButton";
-            this.ImprimirGoleadoresButton.Size = new System.Drawing.Size(184, 35);
-            this.ImprimirGoleadoresButton.TabIndex = 29;
-            this.ImprimirGoleadoresButton.Text = " Imprimir Goleadores";
-            this.ImprimirGoleadoresButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.ImprimirGoleadoresButton.UseVisualStyleBackColor = true;
-            this.ImprimirGoleadoresButton.Click += new System.EventHandler(this.ImprimirGoleadoresButton_Click);
+            this.ImprimirPosicionesButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ImprimirPosicionesButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ImprimirPosicionesButton.Image = ((System.Drawing.Image)(resources.GetObject("ImprimirPosicionesButton.Image")));
+            this.ImprimirPosicionesButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ImprimirPosicionesButton.Location = new System.Drawing.Point(588, 148);
+            this.ImprimirPosicionesButton.Name = "ImprimirPosicionesButton";
+            this.ImprimirPosicionesButton.Size = new System.Drawing.Size(184, 35);
+            this.ImprimirPosicionesButton.TabIndex = 29;
+            this.ImprimirPosicionesButton.Text = " Imprimir Posiciones";
+            this.ImprimirPosicionesButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.ImprimirPosicionesButton.UseVisualStyleBackColor = true;
+            this.ImprimirPosicionesButton.Click += new System.EventHandler(this.ImprimirGoleadoresButton_Click);
             // 
             // PosicionesForm
             // 
@@ -232,7 +234,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.CancelarButton;
             this.ClientSize = new System.Drawing.Size(784, 562);
-            this.Controls.Add(this.ImprimirGoleadoresButton);
+            this.Controls.Add(this.ImprimirPosicionesButton);
             this.Controls.Add(this.LimpiarButton);
             this.Controls.Add(this.CancelarButton);
             this.Controls.Add(this.BuscarButton);
@@ -262,8 +264,8 @@
         private System.Windows.Forms.Button BuscarButton;
         private System.Windows.Forms.Button LimpiarButton;
         private System.Windows.Forms.Button CancelarButton;
-        private System.Windows.Forms.Button ImprimirGoleadoresButton;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.Button ImprimirPosicionesButton;
+        private System.Windows.Forms.RadioButton PosicionesGeneralRadioButton;
+        private System.Windows.Forms.RadioButton PosicionesCategoriaRadioButton;
     }
 }
