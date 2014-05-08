@@ -279,6 +279,12 @@
     <Compile Include="Partidos\PartidosForm.Designer.cs">
       <DependentUpon>PartidosForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Partidos\PreguntaImprimirForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Partidos\PreguntaImprimirForm.Designer.cs">
+      <DependentUpon>PreguntaImprimirForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Partidos\ReportePartidoForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -316,6 +322,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reportes\FichaPartido.cs">
+      <DependentUpon>FichaPartido.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reportes\DataSet\GoleadoresDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -353,10 +365,10 @@
       <DependentUpon>SubreporteFichaPartido.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reportes\FichaPartido.cs">
+    <Compile Include="Reportes\FichaPartidoBaby.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>FichaPartido.rpt</DependentUpon>
+      <DependentUpon>FichaPartidoBaby.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reportes\Fixture1.cs">
@@ -488,6 +500,9 @@
     <EmbeddedResource Include="Partidos\PartidosForm.resx">
       <DependentUpon>PartidosForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Partidos\PreguntaImprimirForm.resx">
+      <DependentUpon>PreguntaImprimirForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Partidos\ReportePartidoForm.resx">
       <DependentUpon>ReportePartidoForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -514,6 +529,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Reportes\FichaPartido.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>FichaPartido.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\GoleadoresReporte.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>GoleadoresReporte.cs</LastGenOutput>
@@ -522,9 +541,9 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>SubreporteFichaPartido.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reportes\FichaPartido.rpt">
+    <EmbeddedResource Include="Reportes\FichaPartidoBaby.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>FichaPartido.cs</LastGenOutput>
+      <LastGenOutput>FichaPartidoBaby.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\Fixture1.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

@@ -121,15 +121,51 @@ namespace LigaBA.Partidos
                 return;
             }
 
-            nombreTorneo = TorneosComboBox.Text;
-            nombreCategoria = CategoriasComboBox.Text;
+            //Buscar Tipo Torneo
 
-            Thread hilo = new Thread(AbrirFormReporte);
-            hilo.SetApartmentState(System.Threading.ApartmentState.STA);
-            hilo.Start();
+            List<SqlParameter> param = new List<SqlParameter>();
+            param.Add(new SqlParameter("@Torneo", TorneosComboBox.SelectedValue.ToString()));
+            SqlParameter respuestaParametro = new SqlParameter("@respuesta", -1);
+            respuestaParametro.Direction = ParameterDirection.Output;
+            param.Add(respuestaParametro);
+
+            bool TerminoBien = BaseDeDatos.GetInstance.ejecutarProcedimiento("p_BuscarTipoTorneo", param, this.Text);
+
+            object respuestaSP = respuestaParametro.Value;
+            int respuesta = Convert.ToInt32(respuestaSP);
+
+            //respuesta == 1 es que torneo es Baby
+            if (respuesta == 1)
+            {
+                nombreTorneo = TorneosComboBox.Text;
+                nombreCategoria = CategoriasComboBox.Text;
+
+                Thread hilo = new Thread(AbrirFormReporte);
+                hilo.SetApartmentState(System.Threading.ApartmentState.STA);
+                hilo.Start();
+            }
+            else
+            {
+                AbrirFormPreguntaImprimir();
+            }
         }
         
       
+        private void AbrirFormPreguntaImprimir()
+        {
+            string VisitanteId = Partidos_DataGridView.CurrentRow.Cells["VisitanteId"].Value.ToString();
+            string LocalId = Partidos_DataGridView.CurrentRow.Cells["LocalId"].Value.ToString();
+            string Visitante = Partidos_DataGridView.CurrentRow.Cells["Visitante"].Value.ToString();
+            string Local = Partidos_DataGridView.CurrentRow.Cells["Local"].Value.ToString();
+            string Fecha = Partidos_DataGridView.CurrentRow.Cells["Fecha"].Value.ToString();
+
+            nombreTorneo = TorneosComboBox.Text;
+            nombreCategoria = CategoriasComboBox.Text;
+
+            PreguntaImprimirForm abrir = new PreguntaImprimirForm(LocalId, VisitanteId, Local, Visitante, Fecha,nombreTorneo, nombreCategoria);
+            abrir.ShowDialog();
+        }
+
         private void AbrirFormReporte()
         {
             string VisitanteId = Partidos_DataGridView.CurrentRow.Cells["VisitanteId"].Value.ToString();
@@ -138,10 +174,9 @@ namespace LigaBA.Partidos
             string Local = Partidos_DataGridView.CurrentRow.Cells["Local"].Value.ToString();
             string Fecha = Partidos_DataGridView.CurrentRow.Cells["Fecha"].Value.ToString();
 
-            ReportePartidoForm abrir = new ReportePartidoForm(LocalId,VisitanteId,Local,Visitante,nombreTorneo,nombreCategoria,Fecha);
+            ReportePartidoForm abrir = new ReportePartidoForm(LocalId,VisitanteId,Local,Visitante,nombreTorneo,nombreCategoria,Fecha,"Baby");
             abrir.ShowDialog();
         }
-
 
         private void ModificarButton_Click(object sender, EventArgs e)
         {

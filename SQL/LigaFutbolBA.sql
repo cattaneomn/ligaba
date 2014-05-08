@@ -1413,3 +1413,33 @@ BEGIN transaction
         WHERE torneoxcategoria=@TorneoXCategoria
 
 COMMIT
+GO
+
+--BUSCAR TIPO TORNEO
+CREATE PROCEDURE [LigaBA].[p_BuscarTipoTorneo]
+(
+        @Torneo int,
+        @respuesta nvarchar(100) OUTPUT
+)       
+AS
+BEGIN transaction
+
+
+        SELECT @respuesta=TDT.nombre FROM LigaBA.Torneo as T 
+        JOIN LigaBA.TipoDeTorneo as TDT ON TDT.id=T.tipodetorneo
+        WHERE T.id=@Torneo
+        
+        IF (@respuesta = 'Baby')
+        BEGIN 
+            SET @respuesta = 1
+        END
+        ELSE
+        BEGIN 
+            SET @respuesta = 0
+        END
+    
+COMMIT
+
+RETURN @respuesta
+
+GO
