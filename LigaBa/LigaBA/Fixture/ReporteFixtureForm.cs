@@ -59,9 +59,9 @@ namespace LigaBA.Fixture
             TorneoRepo = (TextObject)Repo.ReportDefinition.ReportObjects["nombreTorneo"];
             TorneoRepo.Text = nombreTorneo;
 
-            TextObject CategoriaRepo;            
+           /* TextObject CategoriaRepo;            
             CategoriaRepo = (TextObject)Repo.ReportDefinition.ReportObjects["nombreCategoria"];
-            CategoriaRepo.Text = nombreCategoria;     
+            CategoriaRepo.Text = nombreCategoria;*/
 
             Repo.SetDataSource(ds.Tables[0]);
 
