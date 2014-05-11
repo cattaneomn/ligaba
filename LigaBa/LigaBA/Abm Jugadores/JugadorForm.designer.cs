@@ -34,6 +34,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(JugadorForm));
             this.JugadorGroupBox = new System.Windows.Forms.GroupBox();
+            this.inhabilitadoRadioButton = new System.Windows.Forms.RadioButton();
+            this.habilitadoRadioButton = new System.Windows.Forms.RadioButton();
             this.CategoriasComboBox = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.FechaNacimientoDateTimePicker = new System.Windows.Forms.DateTimePicker();
@@ -57,8 +59,6 @@
             this.ModificarButton = new System.Windows.Forms.Button();
             this.ImprimirCarnetButton = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.habilitadoRadioButton = new System.Windows.Forms.RadioButton();
-            this.inhabilitadoRadioButton = new System.Windows.Forms.RadioButton();
             this.JugadorGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Jugador_DataGridView)).BeginInit();
             this.SuspendLayout();
@@ -90,6 +90,28 @@
             this.JugadorGroupBox.TabIndex = 1;
             this.JugadorGroupBox.TabStop = false;
             this.JugadorGroupBox.Text = "Filtros";
+            // 
+            // inhabilitadoRadioButton
+            // 
+            this.inhabilitadoRadioButton.AutoSize = true;
+            this.inhabilitadoRadioButton.Location = new System.Drawing.Point(182, 139);
+            this.inhabilitadoRadioButton.Name = "inhabilitadoRadioButton";
+            this.inhabilitadoRadioButton.Size = new System.Drawing.Size(145, 19);
+            this.inhabilitadoRadioButton.TabIndex = 14;
+            this.inhabilitadoRadioButton.TabStop = true;
+            this.inhabilitadoRadioButton.Text = "Mostrar Inhabilitados";
+            this.inhabilitadoRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // habilitadoRadioButton
+            // 
+            this.habilitadoRadioButton.AutoSize = true;
+            this.habilitadoRadioButton.Location = new System.Drawing.Point(32, 139);
+            this.habilitadoRadioButton.Name = "habilitadoRadioButton";
+            this.habilitadoRadioButton.Size = new System.Drawing.Size(136, 19);
+            this.habilitadoRadioButton.TabIndex = 13;
+            this.habilitadoRadioButton.TabStop = true;
+            this.habilitadoRadioButton.Text = "Mostrar Habilitados";
+            this.habilitadoRadioButton.UseVisualStyleBackColor = true;
             // 
             // CategoriasComboBox
             // 
@@ -391,28 +413,6 @@
             this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
-            // 
-            // habilitadoRadioButton
-            // 
-            this.habilitadoRadioButton.AutoSize = true;
-            this.habilitadoRadioButton.Location = new System.Drawing.Point(32, 139);
-            this.habilitadoRadioButton.Name = "habilitadoRadioButton";
-            this.habilitadoRadioButton.Size = new System.Drawing.Size(136, 19);
-            this.habilitadoRadioButton.TabIndex = 13;
-            this.habilitadoRadioButton.TabStop = true;
-            this.habilitadoRadioButton.Text = "Mostrar Habilitados";
-            this.habilitadoRadioButton.UseVisualStyleBackColor = true;
-            // 
-            // inhabilitadoRadioButton
-            // 
-            this.inhabilitadoRadioButton.AutoSize = true;
-            this.inhabilitadoRadioButton.Location = new System.Drawing.Point(182, 139);
-            this.inhabilitadoRadioButton.Name = "inhabilitadoRadioButton";
-            this.inhabilitadoRadioButton.Size = new System.Drawing.Size(145, 19);
-            this.inhabilitadoRadioButton.TabIndex = 14;
-            this.inhabilitadoRadioButton.TabStop = true;
-            this.inhabilitadoRadioButton.Text = "Mostrar Inhabilitados";
-            this.inhabilitadoRadioButton.UseVisualStyleBackColor = true;
             // 
             // JugadorForm
             // 

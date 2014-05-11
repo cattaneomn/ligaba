@@ -1252,8 +1252,12 @@ BEGIN transaction
         UPDATE LigaBA.Partido SET goleslocal=@golesLocal, golesvisiante=@golesVisitante
         WHERE id=@idPartido
         
-        --ACTUALIZO TABLA DE POSICIONES
+        --ACTUALIZO SUSPENDIDOS
+        UPDATE LigaBA.TorneoXCategoriaXJugador SET habilitado = 1,amarillas=0,rojas=0 WHERE habilitado = 0 AND (amarillas >= 5 OR rojas >= 1) 
+        AND (jugador IN (SELECT JE.jugador FROM LigaBA.JugadorXEquipo as JE WHERE JE.equipo= @localId) 
+        OR jugador IN (SELECT JXE.jugador FROM LigaBA.JugadorXEquipo as JXE WHERE JXE.equipo= @visitanteId))
         
+        --ACTUALIZO TABLA DE POSICIONES
         IF (@golesLocal > @golesVisitante)
         BEGIN
             --GANADOR LOCAL
