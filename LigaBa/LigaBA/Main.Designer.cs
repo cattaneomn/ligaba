@@ -52,6 +52,8 @@
             this.InstitucionesButton = new System.Windows.Forms.Button();
             this.JugadoresButton = new System.Windows.Forms.Button();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.posicionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.goleadoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -66,6 +68,8 @@
             this.torneoToolStripMenuItem,
             this.fixtureToolStripMenuItem,
             this.partidosToolStripMenuItem,
+            this.posicionesToolStripMenuItem,
+            this.goleadoresToolStripMenuItem,
             this.Usuarios,
             this.configuracionToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -290,6 +294,20 @@
             this.notifyIcon1.Text = "notifyIcon1";
             this.notifyIcon1.Visible = true;
             // 
+            // posicionesToolStripMenuItem
+            // 
+            this.posicionesToolStripMenuItem.Name = "posicionesToolStripMenuItem";
+            this.posicionesToolStripMenuItem.Size = new System.Drawing.Size(88, 20);
+            this.posicionesToolStripMenuItem.Text = "Posiciones";
+            this.posicionesToolStripMenuItem.Click += new System.EventHandler(this.posicionesToolStripMenuItem_Click);
+            // 
+            // goleadoresToolStripMenuItem
+            // 
+            this.goleadoresToolStripMenuItem.Name = "goleadoresToolStripMenuItem";
+            this.goleadoresToolStripMenuItem.Size = new System.Drawing.Size(93, 20);
+            this.goleadoresToolStripMenuItem.Text = "Goleadores";
+            this.goleadoresToolStripMenuItem.Click += new System.EventHandler(this.goleadoresToolStripMenuItem_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -335,6 +353,8 @@
         private System.Windows.Forms.NotifyIcon notifyIcon1;
         private System.Windows.Forms.ToolStripMenuItem fixtureToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem partidosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem posicionesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem goleadoresToolStripMenuItem;
 
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace LigaBA.Goleadores
+﻿namespace LigaBA.Posiciones
 {
     partial class PosicionesForm
     {

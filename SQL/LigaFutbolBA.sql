@@ -48,8 +48,6 @@ CREATE TABLE LigaBA.Jugador(
         nombre nvarchar(50) NOT NULL,
         apellido nvarchar(50) NOT NULL,
         fecha_de_nacimiento date NOT NULL,
-        amarillas int DEFAULT 0,
-        rojas int DEFAULT 0,
         habilitado bit DEFAULT 1,
         borrado bit DEFAULT 0,
  CONSTRAINT PK_jugador PRIMARY KEY(id)
@@ -203,6 +201,7 @@ GO
 CREATE TABLE LigaBA.PartidoXJugador(
         partido int NOT NULL,
         jugador int NOT NULL,
+        equipo int NOT NULL,
         goles int DEFAULT 0,
         amarillas int DEFAULT 0,
         rojas int DEFAULT 0,
@@ -414,6 +413,16 @@ BEGIN transaction
             SELECT @jugador = SCOPE_IDENTITY()
             
             INSERT INTO LigaBA.JugadorXEquipo(jugador,equipo) VALUES (@jugador,@equipo)
+            
+            --Si el equipo esta jugando en algun torneo se agrga el jugador al torneo x categoria
+            IF(exists(SELECT 1 FROM LigaBA.TorneoXCategoria  AS TC INNER JOIN LigaBA.Partido AS P ON P.torneoxcategoria = TC.id WHERE (P.equipolocal = @equipo OR P.equipovisitante = @equipo) AND P.goleslocal = -1 AND P.golesvisiante = -1))
+			BEGIN			
+				INSERT INTO LigaBA.TorneoXCategoriaXJugador
+				SELECT TC.id,@jugador,0,0,0,0,1 FROM LigaBA.TorneoXCategoria  AS TC
+					INNER JOIN LigaBA.Partido AS P ON P.torneoxcategoria = TC.id
+					WHERE (P.equipolocal = @equipo OR P.equipovisitante = @equipo) AND (P.goleslocal = -1 AND P.golesvisiante = -1)
+			END
+            
         END
 COMMIT
 
@@ -430,7 +439,8 @@ CREATE PROCEDURE [LigaBA].[p_BuscarJugador]
         @fecha_de_nacimiento nvarchar(50),
         @institucion nvarchar(50),
         @categoria nvarchar(50),
-        @equipo nvarchar(50)
+        @equipo nvarchar(50),
+        @habilitado nvarchar(50)
 )       
 AS
 BEGIN transaction
@@ -441,10 +451,10 @@ BEGIN transaction
         DECLARE @where nvarchar(100)
         DECLARE @condiciones nvarchar(500)
         
-        SET @consulta = 'SELECT Jugador.id as Id, Jugador.dni as Dni,Jugador.nombre as Nombre, Jugador.apellido as Apellido,Jugador.fecha_de_nacimiento as '''+'Fecha de Nacimiento'+''',Institucion.nombre as Institucion, Categoria.nombre as Categoria, Equipo.nombre as Equipo '
+        SET @consulta = 'SELECT Jugador.id as Id, Jugador.dni as Dni,Jugador.nombre as Nombre, Jugador.apellido as Apellido,Jugador.fecha_de_nacimiento as '''+'Fecha de Nacimiento'+''',Institucion.nombre as Institucion, Categoria.nombre as Categoria, Equipo.nombre as Equipo, Jugador.habilitado as Habilitado '
         SET @from = ' FROM LigaBA.Jugador as Jugador INNER JOIN LigaBA.JugadorXEquipo as JugadorXEquipo ON Jugador.id = JugadorXEquipo.jugador INNER JOIN LigaBA.Equipo ON JugadorXEquipo.equipo = Equipo.id INNER JOIN LigaBA.Institucion as Institucion ON Institucion.id = Equipo.institucion INNER JOIN LigaBA.Categoria as Categoria ON Categoria.id = Equipo.categoria'
         SET @where = ' WHERE '
-        SET @condiciones = 'Jugador.borrado = 0'
+        SET @condiciones = 'Jugador.borrado = 0 AND Jugador.habilitado = ' + @habilitado
         
         IF(@dni != '')
         BEGIN
@@ -507,7 +517,7 @@ BEGIN transaction
                 SET @condiciones = @condiciones + ' AND '
             END
             SET @condiciones = @condiciones + ' Equipo.id = ' + @equipo
-        END
+        END      
         
         IF(@condiciones = '')
             BEGIN
@@ -522,17 +532,19 @@ COMMIT
 
 GO
 
---execute LigaBA.p_BuscarJugador '','','','','','',''
+--execute LigaBA.p_BuscarJugador '','','','','','','','0'
 
 --MODIFICAR JUGADOR
 CREATE PROCEDURE [LigaBA].[p_ModificarJugador]
 (
-        @id nvarchar(50),
+        @id int,
         @dni nvarchar(50),
         @dni_anterior nvarchar(50),
         @nombre nvarchar(50),
         @apellido nvarchar(50),
-        @fecha_de_nacimiento nvarchar(50)        
+        @fecha_de_nacimiento nvarchar(50),
+        @equipo int,
+        @habilitado int 
 )       
 AS
 BEGIN transaction
@@ -544,7 +556,9 @@ BEGIN transaction
                 RETURN          
         END  
                       
-        UPDATE LigaBA.Jugador SET dni=@dni, nombre=@nombre, apellido=@apellido, fecha_de_nacimiento=@fecha_de_nacimiento WHERE id = @id                                      
+        UPDATE LigaBA.Jugador SET dni=@dni, nombre=@nombre, apellido=@apellido, fecha_de_nacimiento=@fecha_de_nacimiento, habilitado = @habilitado WHERE id = @id     
+        
+        UPDATE LigaBA.JugadorXEquipo SET equipo=@equipo WHERE jugador = @id                               
 
 COMMIT
 
@@ -981,10 +995,10 @@ BEGIN transaction
         DELETE FROM LigaBA.TorneoXCategoriaXJugador WHERE torneoxcategoria=@idTC
         --BORRAR TORNEOXCATEGORIAXEQUIPO
         DELETE FROM LigaBA.TorneoXCategoriaXEquipo WHERE torneoxcategoria=@idTC
-        --BORRAR PARTIDOS
-        DELETE FROM LigaBA.Partido WHERE torneoxcategoria=@idTC
         --BORRAR PARTIDOSXJUGADOR
         DELETE FROM LigaBA.PartidoXJugador WHERE partido IN (SELECT id FROM LigaBA.Partido WHERE torneoxcategoria=@idTC)
+        --BORRAR PARTIDOS
+        DELETE FROM LigaBA.Partido WHERE torneoxcategoria=@idTC
         --BORRAR TORNEOXCATEGORIA  
         DELETE FROM LigaBA.TorneoXCategoria WHERE id=@idTC   
 
@@ -1172,6 +1186,7 @@ CREATE PROCEDURE [LigaBA].[p_AltaPartidoXJugador]
 (
         @idPartido int,
         @idJugador int,
+        @idEquipo int,
         @cantGoles int,
         @cantAmarillas int,
         @cantRojas int
@@ -1179,8 +1194,8 @@ CREATE PROCEDURE [LigaBA].[p_AltaPartidoXJugador]
 AS
 BEGIN transaction
 
-     INSERT INTO LigaBA.PartidoXJugador (partido,jugador,goles,amarillas,rojas) VALUES
-     (@idPartido,@idJugador,@cantGoles,@cantAmarillas,@cantRojas)
+     INSERT INTO LigaBA.PartidoXJugador (partido,jugador,equipo,goles,amarillas,rojas) VALUES
+     (@idPartido,@idJugador,@idEquipo,@cantGoles,@cantAmarillas,@cantRojas)
 
     --SUMAR TARJETAS A JUGADOR
     --MODIFICAR TORNEOXCATEGORIAXJUGADOR
@@ -1201,9 +1216,17 @@ CREATE PROCEDURE [LigaBA].[p_ModificarPartidoXJugador]
 AS
 BEGIN transaction
 
+--RESTAR AMARILLAS Y ROJAS
+UPDATE LigaBA.TorneoXCategoriaXJugador 
+	SET 
+	amarillas =  amarillas - (SELECT PJA.amarillas FROM LigaBA.PartidoXJugador AS PJA WHERE PJA.partido = @idPartido AND PJA.jugador = TorneoXCategoriaXJugador.jugador),  
+	amarillasacumuladas =  amarillasacumuladas - (SELECT PJA.amarillas FROM LigaBA.PartidoXJugador AS PJA WHERE PJA.partido = @idPartido AND PJA.jugador = TorneoXCategoriaXJugador.jugador),
+	rojas =  rojas - (SELECT PJA.rojas FROM LigaBA.PartidoXJugador AS PJA WHERE PJA.partido = @idPartido AND PJA.jugador = TorneoXCategoriaXJugador.jugador),
+	rojasacumuladas =  rojasacumuladas - (SELECT PJA.rojas FROM LigaBA.PartidoXJugador AS PJA WHERE PJA.partido = @idPartido AND PJA.jugador = TorneoXCategoriaXJugador.jugador)
+	
+	WHERE torneoxcategoria = (SELECT TOP 1 P.torneoxcategoria FROM LigaBA.Partido AS P WHERE id = @idPartido) AND TorneoXCategoriaXJugador.jugador IN (SELECT PJ.jugador FROM LigaBA.PartidoXJugador PJ WHERE PJ.partido = @idPartido)
+	
 DELETE FROM LigaBA.PartidoXJugador WHERE partido=@idPartido
-
---RESTAR AMARILLAS Y ROJAS 
 
 COMMIT
 GO
@@ -1382,8 +1405,7 @@ BEGIN transaction
         SELECT J.nombre as Nombre,J.apellido as Apellido,E.nombre as Equipo,SUM(PJ.goles) AS Goles 
         FROM LigaBA.PartidoXJugador as PJ
         JOIN LigaBA.Jugador as J ON J.id=PJ.jugador
-        JOIN LigaBA.JugadorXEquipo as JE ON JE.jugador=PJ.jugador
-        JOIN LigaBA.Equipo as E ON E.id=JE.equipo
+        JOIN LigaBA.Equipo as E ON E.id=PJ.equipo
         WHERE PJ.partido IN (SELECT id FROM LigaBA.Partido WHERE torneoxcategoria=@TorneoXCategoria)
         GROUP BY E.nombre,J.nombre,J.apellido,PJ.jugador
         ORDER BY SUM(PJ.goles) DESC
@@ -1441,5 +1463,54 @@ BEGIN transaction
 COMMIT
 
 RETURN @respuesta
+
+GO
+
+--BUSCAR POSICIONES GENERALES
+CREATE PROCEDURE [LigaBA].p_BuscarPosicionesGeneral
+(
+        @Torneo int
+)       
+AS
+BEGIN transaction
+
+DECLARE @tipo nvarchar(150)
+
+		SELECT @tipo=tipodetablageneral FROM LigaBA.Torneo WHERE id = @Torneo
+		
+		IF(@tipo = 'Todas las categorias')
+		BEGIN
+			SELECT ROW_NUMBER() OVER(ORDER BY SUM(TE.puntos) DESC) AS Pos,I.nombre AS Institucion,SUM(TE.puntos) AS Puntos
+			FROM LigaBA.TorneoXCategoriaXEquipo as TE
+			INNER JOIN LigaBA.TorneoXCategoria AS TC ON TC.id = TE.torneoxcategoria AND TC.torneogeneral = @Torneo
+			INNER JOIN LigaBA.Equipo AS E ON E.id = TE.equipo
+			INNER JOIN LigaBA.Institucion AS I ON I.id = E.institucion
+			GROUP BY I.nombre
+		END
+		
+		IF(@tipo = 'Todas las categorias, exepto la menor')
+		BEGIN
+			SELECT ROW_NUMBER() OVER(ORDER BY SUM(TE.puntos) DESC) AS Pos,I.nombre AS Institucion,SUM(TE.puntos) AS Puntos
+			FROM LigaBA.TorneoXCategoriaXEquipo as TE
+			INNER JOIN LigaBA.TorneoXCategoria AS TC ON TC.id = TE.torneoxcategoria AND TC.torneogeneral = @Torneo
+			INNER JOIN LigaBA.Equipo AS E ON E.id = TE.equipo
+			INNER JOIN LigaBA.Institucion AS I ON I.id = E.institucion
+			INNER JOIN LigaBA.Categoria AS C ON C.id = TC.categoria
+			WHERE C.nombre != (SELECT MAX(C_AUX.nombre) FROM LigaBA.TorneoXCategoria as TC_AUX INNER JOIN LigaBA.Categoria AS C_AUX ON C_AUX.id = TC_AUX.categoria WHERE TC_AUX.torneogeneral = @Torneo)
+			GROUP BY I.nombre
+		END
+		
+COMMIT
+
+GO
+
+--CONTROL DE SUSPENCIONES
+CREATE TRIGGER [LigaBA].[t_suspencion]
+	ON [LigaBA].[TorneoXCategoriaXJugador]
+	FOR UPDATE
+AS 
+	UPDATE LigaBA.TorneoXCategoriaXJugador SET habilitado = 1 WHERE habilitado = 0 AND (amarillas < 5 OR rojas = 0)
+	UPDATE LigaBA.TorneoXCategoriaXJugador SET habilitado = 0 WHERE habilitado = 1 AND (amarillas >= 5 OR rojas >= 1)
+;
 
 GO

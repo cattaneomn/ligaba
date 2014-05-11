@@ -10,7 +10,7 @@ using System.Data.SqlClient;
 using LigaBA.Clases;
 using System.Threading;
 
-namespace LigaBA.Goleadores
+namespace LigaBA.Posiciones
 {
     public partial class PosicionesForm : Form
     {
@@ -58,8 +58,14 @@ namespace LigaBA.Goleadores
 
             Posiciones_DataGridView.DataSource = ds.Tables["Posiciones"];
 
-            CustomDataGridView();
-
+            if (this.PosicionesCategoriaRadioButton.Checked)
+            {
+                CustomDataGridView();
+            }
+            else
+            {
+                CustomGeneralDataGridView();
+            }
             this.Posiciones_DataGridView.Focus();
         }
 
@@ -104,6 +110,16 @@ namespace LigaBA.Goleadores
             Posiciones_DataGridView.Columns["GF"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             Posiciones_DataGridView.Columns["GC"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             Posiciones_DataGridView.Columns["Puntos"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter; 
+        }
+
+        private void CustomGeneralDataGridView()
+        {
+            this.Posiciones_DataGridView.Columns["Pos"].Width = 50;
+            this.Posiciones_DataGridView.Columns["Institucion"].Width = 140;           
+            this.Posiciones_DataGridView.Columns["Puntos"].Width = 60;
+
+            Posiciones_DataGridView.Columns["Pos"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;           
+            Posiciones_DataGridView.Columns["Puntos"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
         }
 
         private int Validaciones()
@@ -152,19 +168,38 @@ namespace LigaBA.Goleadores
             }
 
             idTorneo = TorneosComboBox.SelectedValue.ToString();
-            idCategoria = CategoriasComboBox.SelectedValue.ToString();
+           
 
             nombreTorneo = TorneosComboBox.Text;
             nombreCategoria = CategoriasComboBox.Text;
 
-            Thread hilo = new Thread(AbrirFormReporte);
-            hilo.SetApartmentState(System.Threading.ApartmentState.STA);
-            hilo.Start();
+            if (this.PosicionesCategoriaRadioButton.Checked)
+            {
+                idCategoria = CategoriasComboBox.SelectedValue.ToString();
+
+                Thread hilo = new Thread(AbrirFormReporteXCategoria);
+                hilo.SetApartmentState(System.Threading.ApartmentState.STA);
+                hilo.Start();
+            }
+            else
+            {
+                Thread hilo = new Thread(AbrirFormReporteGeneral);
+                hilo.SetApartmentState(System.Threading.ApartmentState.STA);
+                hilo.Start();
+            }
+
+            
         }
 
-        private void AbrirFormReporte()
+        private void AbrirFormReporteXCategoria()
         {
-            ReporteGoleadoresForm abrir = new ReporteGoleadoresForm(idTorneo,idCategoria,nombreTorneo,nombreCategoria);
+            ReportePosicionesForm abrir = new ReportePosicionesForm(idTorneo,idCategoria,nombreTorneo,nombreCategoria,(DataTable)this.Posiciones_DataGridView.DataSource,"");
+            abrir.ShowDialog();
+        }
+
+        private void AbrirFormReporteGeneral()
+        {
+            ReportePosicionesForm abrir = new ReportePosicionesForm(idTorneo, idCategoria, nombreTorneo, nombreCategoria, (DataTable)this.Posiciones_DataGridView.DataSource, "General");
             abrir.ShowDialog();
         }
 

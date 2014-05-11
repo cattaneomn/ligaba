@@ -26,8 +26,9 @@ namespace LigaBA.Abm_Jugador
         string equipo;
         string amarillas;
         string rojas;
+        string habilitado;
 
-        public ModificarJugadorForm(string id,string dni,string nombre,string apellido,string fecha_nac)//(string id,string dni,string nombre,string apellido,string fecha_nac,string amarillas,string rojas)
+        public ModificarJugadorForm(string id,string dni,string nombre,string apellido,string fecha_nac,string habilitado)//(string id,string dni,string nombre,string apellido,string fecha_nac,string amarillas,string rojas)
         {
             InitializeComponent();
 
@@ -36,8 +37,7 @@ namespace LigaBA.Abm_Jugador
             this.nombre = nombre;
             this.apellido = apellido;
             this.fecha_nacimiento = fecha_nac;
-            //this.amarillas = amarillas;
-            //this.rojas = rojas;
+            this.habilitado = habilitado;
 
             consultarEquipo(dni);
 
@@ -50,8 +50,7 @@ namespace LigaBA.Abm_Jugador
             this.NombreTextBox.Text = nombre;
             this.ApellidoTextBox.Text = apellido;
             this.FechaNacimeintiDateTimePicker.Text = this.fecha_nacimiento;
-            this.AmarillasTextBox.Text = amarillas;
-            this.RojasTextBox.Text = rojas;
+            this.habilitadoCheckBox.Checked = Convert.ToBoolean(this.habilitado);
 
             CargarInstitucionesComboBox();
             CargarCategoriaComboBox();
@@ -62,13 +61,21 @@ namespace LigaBA.Abm_Jugador
         {
             if (Validaciones() == -1) return;
 
+            int habilitado = 1;
+            if (!habilitadoCheckBox.Checked)
+            {
+                habilitado = 0;
+            }
+
             List<SqlParameter> param = new List<SqlParameter>();
             param.Add(new SqlParameter("@id", this.id));
             param.Add(new SqlParameter("@dni", this.DniTextBox.Text));
             param.Add(new SqlParameter("@dni_anterior", this.dni));
             param.Add(new SqlParameter("@nombre", this.NombreTextBox.Text));
             param.Add(new SqlParameter("@apellido", this.ApellidoTextBox.Text));
-            param.Add(new SqlParameter("@fecha_de_nacimiento", this.FechaNacimeintiDateTimePicker.Value));              
+            param.Add(new SqlParameter("@fecha_de_nacimiento", this.FechaNacimeintiDateTimePicker.Value));
+            param.Add(new SqlParameter("@equipo", this.EquipoComboBox.SelectedValue.ToString()));
+            param.Add(new SqlParameter("@habilitado", habilitado));       
 
             bool TerminoBien = BaseDeDatos.GetInstance.ejecutarProcedimiento("p_ModificarJugador", param, this.Text);
 
@@ -127,6 +134,7 @@ namespace LigaBA.Abm_Jugador
             this.equipo = ds.Rows[0]["id"].ToString();
             this.institucion = ds.Rows[0]["institucion"].ToString();
             this.categoria = ds.Rows[0]["categoria"].ToString();
+            this.equipo = ds.Rows[0]["id"].ToString();
         }
 
         private void CargarEquiposComboBox()
@@ -134,6 +142,7 @@ namespace LigaBA.Abm_Jugador
             if (institucion != "" && categoria != "")
             {
                 CargadorDeDatos.CargarEquipoComboBox(EquipoComboBox, this.Text, institucion, categoria);
+                EquipoComboBox.SelectedValue = Convert.ToInt32(this.equipo);
             }
         }
         private void CargarInstitucionesComboBox()

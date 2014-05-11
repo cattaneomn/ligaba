@@ -45,7 +45,7 @@ namespace LigaBA.Partidos
 
 
         private void JugarPartidoForm_Load(object sender, EventArgs e)
-        {
+        {         
             this.TorneoLabel.Text = Torneo;
             this.CategoriaLabel.Text = Categoria;
             this.FechaLabel.Text = Fecha;
@@ -53,7 +53,6 @@ namespace LigaBA.Partidos
             this.VisitanteLabel.Text = Visitante;
 
             CargarResultados();
-
             CargarColumnasDataGrid(Goles_DataGridView);
             CargarColumnasDataGrid(Amarillas_DataGridView);
             CargarColumnasDataGrid(Rojas_DataGridView);
@@ -62,12 +61,13 @@ namespace LigaBA.Partidos
             CargarAmarillas();
             CargarRojas();
 
+
             this.LocalNumericUpDown.Select();
         }
 
         private void CargarGoles()
         {
-            string Consulta =  "SELECT E.nombre as Equipo,J.nombre as Nombre,J.apellido as Apellido,J.dni as Dni,PJ.goles as Cantidad,PJ.jugador as IdJugador FROM LigaBA.PartidoXJugador as PJ ";
+            string Consulta =  "SELECT E.nombre as Equipo,E.id as idEquipo,J.nombre as Nombre,J.apellido as Apellido,J.dni as Dni,PJ.goles as Cantidad,PJ.jugador as IdJugador FROM LigaBA.PartidoXJugador as PJ ";
             Consulta += "JOIN LigaBA.Jugador as J ON J.id=PJ.jugador ";
             Consulta += "JOIN LigaBA.JugadorXEquipo as JE ON J.id=JE.jugador ";
             Consulta += "JOIN LigaBA.Equipo as E ON E.id=JE.equipo ";
@@ -77,29 +77,30 @@ namespace LigaBA.Partidos
 
             DataTable Dt = BaseDeDatos.GetInstance.ExecuteCustomQuery(Consulta, param, this.Text);
 
-
-            foreach (DataRow row in Dt.Rows)
+            if (Dt != null)
             {
-                Goles_DataGridView.Rows.Add(row["Equipo"], row["Nombre"],row["Apellido"], row["Dni"], row["Cantidad"], row["IdJugador"]);
-                
-                //Agrego A coleccion o modifico
-                int index = jugadorXPartido.FindIndex(r => r.get_id().Equals(row["IdJugador"]));
-                if (index == -1)
+                foreach (DataRow row in Dt.Rows)
                 {
-                    jugadorXPartido.Add(new JugadorXPartido(Convert.ToInt32(row["IdJugador"]), Convert.ToInt32(row["Cantidad"]), 0, 0));
-                }
-                else
-                {
-                    //modificar
-                    jugadorXPartido[index].sumar_cantGoles(Convert.ToInt32(row["Cantidad"]));
+                    Goles_DataGridView.Rows.Add(row["Equipo"], row["Nombre"], row["Apellido"], row["Dni"], row["Cantidad"], row["IdJugador"], row["idEquipo"]);
+                    //Agrego A coleccion o modifico
+                    int index = jugadorXPartido.FindIndex(r => r.get_id().Equals(row["IdJugador"]));
+                    if (index == -1)
+                    {
+                        jugadorXPartido.Add(new JugadorXPartido(Convert.ToInt32(row["IdJugador"]), Convert.ToInt32(row["IdEquipo"]), Convert.ToInt32(row["Cantidad"]), 0, 0));
+                    }
+                    else
+                    {
+                        //modificar
+                        jugadorXPartido[index].sumar_cantGoles(Convert.ToInt32(row["Cantidad"]));
+                    }
                 }
             }
-
+         
         }
 
         private void CargarAmarillas()
         {
-            string Consulta = "SELECT E.nombre as Equipo,J.nombre as Nombre,J.apellido as Apellido,J.dni as Dni,PJ.amarillas as Cantidad,PJ.jugador as IdJugador FROM LigaBA.PartidoXJugador as PJ ";
+            string Consulta = "SELECT E.nombre as Equipo,E.id as idEquipo,J.nombre as Nombre,J.apellido as Apellido,J.dni as Dni,PJ.amarillas as Cantidad,PJ.jugador as IdJugador FROM LigaBA.PartidoXJugador as PJ ";
             Consulta += "JOIN LigaBA.Jugador as J ON J.id=PJ.jugador ";
             Consulta += "JOIN LigaBA.JugadorXEquipo as JE ON J.id=JE.jugador ";
             Consulta += "JOIN LigaBA.Equipo as E ON E.id=JE.equipo ";
@@ -109,28 +110,30 @@ namespace LigaBA.Partidos
 
             DataTable Dt = BaseDeDatos.GetInstance.ExecuteCustomQuery(Consulta, param, this.Text);
 
-            foreach (DataRow row in Dt.Rows)
+            if (Dt != null)
             {
-                Amarillas_DataGridView.Rows.Add(row["Equipo"], row["Nombre"], row["Apellido"], row["Dni"], row["Cantidad"], row["IdJugador"]);
+                foreach (DataRow row in Dt.Rows)
+                {
+                    Amarillas_DataGridView.Rows.Add(row["Equipo"], row["Nombre"], row["Apellido"], row["Dni"], row["Cantidad"], row["IdJugador"], row["idEquipo"]);
 
-                //Agrego A coleccion o modifico
-                int index = jugadorXPartido.FindIndex(r => r.get_id().Equals(row["IdJugador"]));
-                if (index == -1)
-                {
-                    jugadorXPartido.Add(new JugadorXPartido(Convert.ToInt32(row["IdJugador"]), 0, Convert.ToInt32(row["Cantidad"]), 0));
-                }
-                else
-                {
-                    //modificar
-                    jugadorXPartido[index].sumar_cantAmarillas(Convert.ToInt32(row["Cantidad"]));
+                    //Agrego A coleccion o modifico
+                    int index = jugadorXPartido.FindIndex(r => r.get_id().Equals(row["IdJugador"]));
+                    if (index == -1)
+                    {
+                        jugadorXPartido.Add(new JugadorXPartido(Convert.ToInt32(row["IdJugador"]), Convert.ToInt32(row["IdEquipo"]), 0, Convert.ToInt32(row["Cantidad"]), 0));
+                    }
+                    else
+                    {
+                        //modificar
+                        jugadorXPartido[index].sumar_cantAmarillas(Convert.ToInt32(row["Cantidad"]));
+                    }
                 }
             }
-
         }
 
         private void CargarRojas()
         {
-            string Consulta = "SELECT E.nombre as Equipo,J.nombre as Nombre,J.apellido as Apellido,J.dni as Dni,PJ.rojas as Cantidad,PJ.jugador as IdJugador FROM LigaBA.PartidoXJugador as PJ ";
+            string Consulta = "SELECT E.nombre as Equipo,J.nombre as Nombre,J.apellido as Apellido,J.dni as Dni,PJ.rojas as Cantidad,PJ.jugador as IdJugador,E.id as idEquipo FROM LigaBA.PartidoXJugador as PJ ";
             Consulta += "JOIN LigaBA.Jugador as J ON J.id=PJ.jugador ";
             Consulta += "JOIN LigaBA.JugadorXEquipo as JE ON J.id=JE.jugador ";
             Consulta += "JOIN LigaBA.Equipo as E ON E.id=JE.equipo ";
@@ -140,28 +143,30 @@ namespace LigaBA.Partidos
 
             DataTable Dt = BaseDeDatos.GetInstance.ExecuteCustomQuery(Consulta, param, this.Text);
 
-            foreach (DataRow row in Dt.Rows)
+            if (Dt != null)
             {
-                Rojas_DataGridView.Rows.Add(row["Equipo"], row["Nombre"], row["Apellido"], row["Dni"], row["Cantidad"], row["IdJugador"]);
-
-                //Agrego A coleccion o modifico
-                int index = jugadorXPartido.FindIndex(r => r.get_id().Equals(Convert.ToInt32(row["IdJugador"])));
-                if (index == -1)
+                foreach (DataRow row in Dt.Rows)
                 {
-                    jugadorXPartido.Add(new JugadorXPartido(Convert.ToInt32(row["IdJugador"]), 0, 0, Convert.ToInt32(row["Cantidad"])));
-                }
-                else
-                {
-                    //modificar
-                    jugadorXPartido[index].sumar_cantRojas(Convert.ToInt32(row["Cantidad"]));
-                }
+                    Rojas_DataGridView.Rows.Add(row["Equipo"], row["Nombre"], row["Apellido"], row["Dni"], row["Cantidad"], row["IdJugador"], row["idEquipo"]);
 
+                    //Agrego A coleccion o modifico
+                    int index = jugadorXPartido.FindIndex(r => r.get_id().Equals(Convert.ToInt32(row["IdJugador"])));
+                    if (index == -1)
+                    {
+                        jugadorXPartido.Add(new JugadorXPartido(Convert.ToInt32(row["IdJugador"]), Convert.ToInt32(row["IdEquipo"]), 0, 0, Convert.ToInt32(row["Cantidad"])));
+                    }
+                    else
+                    {
+                        //modificar
+                        jugadorXPartido[index].sumar_cantRojas(Convert.ToInt32(row["Cantidad"]));
+                    }
+
+                }
             }
-
         }
 
         private void CargarResultados()
-        {
+        {           
             string Consulta = "SELECT goleslocal as GolesLocal,golesvisiante as GolesVisitante FROM LigaBA.Partido WHERE id=" + PartidoId;
 
             List<SqlParameter> param = new List<SqlParameter>();
@@ -188,9 +193,12 @@ namespace LigaBA.Partidos
             DataGrid.Columns.Add("Dni", "Dni");
             DataGrid.Columns.Add("Cantidad", "Cantidad");
             DataGrid.Columns.Add("IdJugador", "IdJugador");
+            DataGrid.Columns.Add("IdEquipo", "IdEquipo");
 
             DataGrid.Columns["idJugador"].Visible = false;
+            DataGrid.Columns["idEquipo"].Visible = false;
         }
+
 
         private void GuardarButton_Click(object sender, EventArgs e)
         {
@@ -253,6 +261,7 @@ namespace LigaBA.Partidos
                 List<SqlParameter> param = new List<SqlParameter>();
                 param.Add(new SqlParameter("@idPartido", PartidoId));
                 param.Add(new SqlParameter("@idJugador", jugador.get_id()));
+                param.Add(new SqlParameter("@idEquipo", jugador.get_equipo()));
                 param.Add(new SqlParameter("@cantGoles", jugador.get_cantGoles()));
                 param.Add(new SqlParameter("@cantAmarillas", jugador.get_cantAmarillas()));
                 param.Add(new SqlParameter("@cantRojas", jugador.get_cantRojas()));
@@ -334,7 +343,7 @@ namespace LigaBA.Partidos
         
         private void AgregarGolesButton_Click(object sender, EventArgs e)
         {
-            JugadorGoles = new Jugador(0, "", "", "", "");
+            JugadorGoles = new Jugador(0, "", "", "", "",0);
             AgregarJugadorForm abrir = new AgregarJugadorForm(this.LocalId,this.VisitanteId,"Goles",this.Name,PartidoId);
             DialogResult Resultado = abrir.ShowDialog();
             if (Resultado == DialogResult.OK)
@@ -350,7 +359,7 @@ namespace LigaBA.Partidos
 
         private void AgregarAmarillasButton_Click(object sender, EventArgs e)
         {
-            JugadorAmarillas = new Jugador(0, "", "", "", "");
+            JugadorAmarillas = new Jugador(0, "", "", "", "",0);
             AgregarJugadorForm abrir = new AgregarJugadorForm(this.LocalId, this.VisitanteId,"Amarillas",this.Name,PartidoId);
             DialogResult Resultado = abrir.ShowDialog();
             if (Resultado == DialogResult.OK)
@@ -364,7 +373,7 @@ namespace LigaBA.Partidos
 
         private void AgregarRojasButton_Click(object sender, EventArgs e)
         {
-            JugadorRojas = new Jugador(0, "", "", "", "");
+            JugadorRojas = new Jugador(0, "", "", "", "",0);
             AgregarJugadorForm abrir = new AgregarJugadorForm(this.LocalId, this.VisitanteId,"Rojas",this.Name,PartidoId);
             DialogResult Resultado = abrir.ShowDialog();
             if (Resultado == DialogResult.OK)
@@ -375,7 +384,7 @@ namespace LigaBA.Partidos
                 int index = jugadorXPartido.FindIndex(r => r.get_id().Equals(JugadorRojas.get_id()));
                 if (index == -1)
                 {
-                    jugadorXPartido.Add(new JugadorXPartido(JugadorRojas.get_id(), 0, 0, 1));
+                    jugadorXPartido.Add(new JugadorXPartido(JugadorRojas.get_id(), JugadorRojas.get_id_equipo(), 0, 0, 1));
                 }
                 else
                 {
@@ -396,7 +405,7 @@ namespace LigaBA.Partidos
             int index = jugadorXPartido.FindIndex(r => r.get_id().Equals(JugadorGoles.get_id()));
             if (index == -1)
             {
-                jugadorXPartido.Add(new JugadorXPartido(JugadorGoles.get_id(), Convert.ToInt32(this.CantidadGolesTextBox.Text), 0, 0));
+                jugadorXPartido.Add(new JugadorXPartido(JugadorGoles.get_id(), JugadorGoles.get_id_equipo(), Convert.ToInt32(this.CantidadGolesTextBox.Text), 0, 0));
             }
             else
             {
@@ -420,7 +429,7 @@ namespace LigaBA.Partidos
             int index = jugadorXPartido.FindIndex(r => r.get_id().Equals(JugadorAmarillas.get_id()));
             if (index == -1)
             {
-                jugadorXPartido.Add(new JugadorXPartido(JugadorAmarillas.get_id(),0,Convert.ToInt32(this.CantidadAmarillaTextBox.Text), 0));
+                jugadorXPartido.Add(new JugadorXPartido(JugadorAmarillas.get_id(), JugadorAmarillas.get_id_equipo(), 0, Convert.ToInt32(this.CantidadAmarillaTextBox.Text), 0));
             }
             else
             {

@@ -56,6 +56,9 @@
             this.EliminarButton = new System.Windows.Forms.Button();
             this.ModificarButton = new System.Windows.Forms.Button();
             this.ImprimirCarnetButton = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.habilitadoRadioButton = new System.Windows.Forms.RadioButton();
+            this.inhabilitadoRadioButton = new System.Windows.Forms.RadioButton();
             this.JugadorGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Jugador_DataGridView)).BeginInit();
             this.SuspendLayout();
@@ -64,6 +67,8 @@
             // 
             this.JugadorGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.JugadorGroupBox.Controls.Add(this.inhabilitadoRadioButton);
+            this.JugadorGroupBox.Controls.Add(this.habilitadoRadioButton);
             this.JugadorGroupBox.Controls.Add(this.CategoriasComboBox);
             this.JugadorGroupBox.Controls.Add(this.label6);
             this.JugadorGroupBox.Controls.Add(this.FechaNacimientoDateTimePicker);
@@ -180,7 +185,7 @@
             // 
             // ApellidoTextBox
             // 
-            this.ApellidoTextBox.Location = new System.Drawing.Point(149, 99);
+            this.ApellidoTextBox.Location = new System.Drawing.Point(111, 99);
             this.ApellidoTextBox.Name = "ApellidoTextBox";
             this.ApellidoTextBox.Size = new System.Drawing.Size(172, 21);
             this.ApellidoTextBox.TabIndex = 3;
@@ -192,7 +197,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(67, 101);
+            this.label2.Location = new System.Drawing.Point(29, 101);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(58, 16);
             this.label2.TabIndex = 4;
@@ -200,7 +205,7 @@
             // 
             // NombreTextBox
             // 
-            this.NombreTextBox.Location = new System.Drawing.Point(149, 62);
+            this.NombreTextBox.Location = new System.Drawing.Point(111, 62);
             this.NombreTextBox.Name = "NombreTextBox";
             this.NombreTextBox.Size = new System.Drawing.Size(172, 21);
             this.NombreTextBox.TabIndex = 2;
@@ -212,7 +217,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(67, 64);
+            this.label1.Location = new System.Drawing.Point(29, 64);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(57, 16);
             this.label1.TabIndex = 2;
@@ -220,7 +225,7 @@
             // 
             // DniTextBox
             // 
-            this.DniTextBox.Location = new System.Drawing.Point(149, 26);
+            this.DniTextBox.Location = new System.Drawing.Point(111, 26);
             this.DniTextBox.Name = "DniTextBox";
             this.DniTextBox.Size = new System.Drawing.Size(172, 21);
             this.DniTextBox.TabIndex = 1;
@@ -232,7 +237,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.NombreJugadorLabel.AutoSize = true;
             this.NombreJugadorLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NombreJugadorLabel.Location = new System.Drawing.Point(67, 28);
+            this.NombreJugadorLabel.Location = new System.Drawing.Point(29, 28);
             this.NombreJugadorLabel.Name = "NombreJugadorLabel";
             this.NombreJugadorLabel.Size = new System.Drawing.Size(28, 16);
             this.NombreJugadorLabel.TabIndex = 0;
@@ -373,6 +378,42 @@
             this.ImprimirCarnetButton.UseVisualStyleBackColor = true;
             this.ImprimirCarnetButton.Click += new System.EventHandler(this.button1_Click);
             // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(509, 193);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(105, 35);
+            this.button1.TabIndex = 15;
+            this.button1.Text = " Tarjetas";
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // habilitadoRadioButton
+            // 
+            this.habilitadoRadioButton.AutoSize = true;
+            this.habilitadoRadioButton.Location = new System.Drawing.Point(32, 139);
+            this.habilitadoRadioButton.Name = "habilitadoRadioButton";
+            this.habilitadoRadioButton.Size = new System.Drawing.Size(136, 19);
+            this.habilitadoRadioButton.TabIndex = 13;
+            this.habilitadoRadioButton.TabStop = true;
+            this.habilitadoRadioButton.Text = "Mostrar Habilitados";
+            this.habilitadoRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // inhabilitadoRadioButton
+            // 
+            this.inhabilitadoRadioButton.AutoSize = true;
+            this.inhabilitadoRadioButton.Location = new System.Drawing.Point(182, 139);
+            this.inhabilitadoRadioButton.Name = "inhabilitadoRadioButton";
+            this.inhabilitadoRadioButton.Size = new System.Drawing.Size(145, 19);
+            this.inhabilitadoRadioButton.TabIndex = 14;
+            this.inhabilitadoRadioButton.TabStop = true;
+            this.inhabilitadoRadioButton.Text = "Mostrar Inhabilitados";
+            this.inhabilitadoRadioButton.UseVisualStyleBackColor = true;
+            // 
             // JugadorForm
             // 
             this.AcceptButton = this.BuscarButton;
@@ -380,6 +421,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.CancelarButton;
             this.ClientSize = new System.Drawing.Size(784, 562);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.ImprimirCarnetButton);
             this.Controls.Add(this.ModificarButton);
             this.Controls.Add(this.EliminarButton);
@@ -427,5 +469,8 @@
         private System.Windows.Forms.ComboBox CategoriasComboBox;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button ImprimirCarnetButton;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.RadioButton inhabilitadoRadioButton;
+        private System.Windows.Forms.RadioButton habilitadoRadioButton;
     }
 }

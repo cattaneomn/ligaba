@@ -34,7 +34,7 @@ namespace LigaBA.Partidos
         private void AgregarJugadorForm_Load(object sender, EventArgs e)
         {
             //SOLO JUGADORES HABILITADOS Y QUE NO ESTEN BORRADOS.
-            string Consulta = "SELECT J.id,E.nombre as Equipo,J.nombre as Nombre,J.apellido as Apellido,J.dni as Dni,TCJ.habilitado as Habilitado FROM ligaBA.JugadorXEquipo as JE ";
+            string Consulta = "SELECT J.id,E.id as idEquipo,E.nombre as Equipo,J.nombre as Nombre,J.apellido as Apellido,J.dni as Dni,TCJ.habilitado as Habilitado FROM ligaBA.JugadorXEquipo as JE ";
                   Consulta += "JOIN LigaBA.Jugador as J ON J.id = JE.jugador ";
                   Consulta += "JOIN LigaBA.Equipo as E ON E.id = JE.equipo ";
                   Consulta += "JOIN LigaBA.TorneoXCategoriaXJugador as TCJ ON TCJ.jugador = JE.jugador "; 
@@ -47,6 +47,7 @@ namespace LigaBA.Partidos
             if (Jugadores_DataGridView.DataSource != null)
             {
                 this.Jugadores_DataGridView.Columns["id"].Visible = false;
+                this.Jugadores_DataGridView.Columns["idEquipo"].Visible = false;
                 ModDataGridView.agregarBoton(Jugadores_DataGridView, "Seleccionar");
                 this.ApellidoTextBox.Select();
             }
@@ -105,7 +106,7 @@ namespace LigaBA.Partidos
         {
             if (e.ColumnIndex == this.Jugadores_DataGridView.Columns["Seleccionar"].Index && e.RowIndex >= 0)
             {
-                if (Jugadores_DataGridView.CurrentRow.Cells["Habilitado"].Value.ToString() == "0")
+                if (Jugadores_DataGridView.CurrentRow.Cells["Habilitado"].Value.ToString() == "False")
                 {
                     MessageBox.Show("El Jugador no se puede seleccionar por que no esta habilitado para jugar por acumulacion de tarjetas amarillas o expulsión.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
@@ -134,6 +135,7 @@ namespace LigaBA.Partidos
                 JugarPartidoForm.JugadorGoles.set_dni(Jugadores_DataGridView.CurrentRow.Cells["Dni"].Value.ToString());
                 JugarPartidoForm.JugadorGoles.set_equipo(Jugadores_DataGridView.CurrentRow.Cells["Equipo"].Value.ToString());
                 JugarPartidoForm.JugadorGoles.set_id(Convert.ToInt32(Jugadores_DataGridView.CurrentRow.Cells["id"].Value.ToString()));
+                JugarPartidoForm.JugadorGoles.set_id_equipo(Convert.ToInt32(Jugadores_DataGridView.CurrentRow.Cells["idEquipo"].Value.ToString()));
             }
             if (ButtonType == "Amarillas")
             {
@@ -142,6 +144,7 @@ namespace LigaBA.Partidos
                 JugarPartidoForm.JugadorAmarillas.set_dni(Jugadores_DataGridView.CurrentRow.Cells["Dni"].Value.ToString());
                 JugarPartidoForm.JugadorAmarillas.set_equipo(Jugadores_DataGridView.CurrentRow.Cells["Equipo"].Value.ToString());
                 JugarPartidoForm.JugadorAmarillas.set_id(Convert.ToInt32(Jugadores_DataGridView.CurrentRow.Cells["id"].Value.ToString()));
+                JugarPartidoForm.JugadorAmarillas.set_id_equipo(Convert.ToInt32(Jugadores_DataGridView.CurrentRow.Cells["idEquipo"].Value.ToString()));
             }
             if (ButtonType == "Rojas")
             {
@@ -150,6 +153,7 @@ namespace LigaBA.Partidos
                 JugarPartidoForm.JugadorRojas.set_dni(Jugadores_DataGridView.CurrentRow.Cells["Dni"].Value.ToString());
                 JugarPartidoForm.JugadorRojas.set_equipo(Jugadores_DataGridView.CurrentRow.Cells["Equipo"].Value.ToString());
                 JugarPartidoForm.JugadorRojas.set_id(Convert.ToInt32(Jugadores_DataGridView.CurrentRow.Cells["id"].Value.ToString()));
+                JugarPartidoForm.JugadorRojas.set_id_equipo(Convert.ToInt32(Jugadores_DataGridView.CurrentRow.Cells["idEquipo"].Value.ToString()));
             }
         }
 
@@ -163,6 +167,7 @@ namespace LigaBA.Partidos
                 ModificarPartidoForm.JugadorGoles.set_dni(Jugadores_DataGridView.CurrentRow.Cells["Dni"].Value.ToString());
                 ModificarPartidoForm.JugadorGoles.set_equipo(Jugadores_DataGridView.CurrentRow.Cells["Equipo"].Value.ToString());
                 ModificarPartidoForm.JugadorGoles.set_id(Convert.ToInt32(Jugadores_DataGridView.CurrentRow.Cells["id"].Value.ToString()));
+                ModificarPartidoForm.JugadorGoles.set_id_equipo(Convert.ToInt32(Jugadores_DataGridView.CurrentRow.Cells["idEquipo"].Value.ToString()));
             }
             if (ButtonType == "Amarillas")
             {
@@ -171,6 +176,7 @@ namespace LigaBA.Partidos
                 ModificarPartidoForm.JugadorAmarillas.set_dni(Jugadores_DataGridView.CurrentRow.Cells["Dni"].Value.ToString());
                 ModificarPartidoForm.JugadorAmarillas.set_equipo(Jugadores_DataGridView.CurrentRow.Cells["Equipo"].Value.ToString());
                 ModificarPartidoForm.JugadorAmarillas.set_id(Convert.ToInt32(Jugadores_DataGridView.CurrentRow.Cells["id"].Value.ToString()));
+                ModificarPartidoForm.JugadorAmarillas.set_id_equipo(Convert.ToInt32(Jugadores_DataGridView.CurrentRow.Cells["idEquipo"].Value.ToString()));
             }
             if (ButtonType == "Rojas")
             {
@@ -179,6 +185,7 @@ namespace LigaBA.Partidos
                 ModificarPartidoForm.JugadorRojas.set_dni(Jugadores_DataGridView.CurrentRow.Cells["Dni"].Value.ToString());
                 ModificarPartidoForm.JugadorRojas.set_equipo(Jugadores_DataGridView.CurrentRow.Cells["Equipo"].Value.ToString());
                 ModificarPartidoForm.JugadorRojas.set_id(Convert.ToInt32(Jugadores_DataGridView.CurrentRow.Cells["id"].Value.ToString()));
+                ModificarPartidoForm.JugadorRojas.set_id_equipo(Convert.ToInt32(Jugadores_DataGridView.CurrentRow.Cells["idEquipo"].Value.ToString()));
             }
 
         }

@@ -103,6 +103,7 @@ namespace LigaBA.Partidos
                     List<SqlParameter> param = new List<SqlParameter>();
                     param.Add(new SqlParameter("@idPartido", PartidoId));
                     param.Add(new SqlParameter("@idJugador", jugador.get_id()));
+                    param.Add(new SqlParameter("@idEquipo", jugador.get_equipo()));
                     param.Add(new SqlParameter("@cantGoles", jugador.get_cantGoles()));
                     param.Add(new SqlParameter("@cantAmarillas", jugador.get_cantAmarillas()));
                     param.Add(new SqlParameter("@cantRojas", jugador.get_cantRojas()));
@@ -183,7 +184,7 @@ namespace LigaBA.Partidos
         
         private void AgregarGolesButton_Click(object sender, EventArgs e)
         {
-            JugadorGoles = new Jugador(0, "", "", "", "");
+            JugadorGoles = new Jugador(0, "", "", "", "",0);
             AgregarJugadorForm abrir = new AgregarJugadorForm(this.LocalId,this.VisitanteId,"Goles",this.Name,PartidoId);
             DialogResult Resultado = abrir.ShowDialog();
             if (Resultado == DialogResult.OK)
@@ -199,7 +200,7 @@ namespace LigaBA.Partidos
 
         private void AgregarAmarillasButton_Click(object sender, EventArgs e)
         {
-            JugadorAmarillas = new Jugador(0, "", "", "", "");
+            JugadorAmarillas = new Jugador(0, "", "", "", "",0);
             AgregarJugadorForm abrir = new AgregarJugadorForm(this.LocalId, this.VisitanteId,"Amarillas",this.Name,PartidoId);
             DialogResult Resultado = abrir.ShowDialog();
             if (Resultado == DialogResult.OK)
@@ -213,7 +214,7 @@ namespace LigaBA.Partidos
 
         private void AgregarRojasButton_Click(object sender, EventArgs e)
         {
-            JugadorRojas = new Jugador(0, "", "", "", "");
+            JugadorRojas = new Jugador(0, "", "", "", "",0);
             AgregarJugadorForm abrir = new AgregarJugadorForm(this.LocalId, this.VisitanteId,"Rojas",this.Name,PartidoId);
             DialogResult Resultado = abrir.ShowDialog();
             if (Resultado == DialogResult.OK)
@@ -224,7 +225,7 @@ namespace LigaBA.Partidos
                 int index = jugadorXPartido.FindIndex(r => r.get_id().Equals(JugadorRojas.get_id()));
                 if (index == -1)
                 {
-                    jugadorXPartido.Add(new JugadorXPartido(JugadorRojas.get_id(), 0, 0, 1));
+                    jugadorXPartido.Add(new JugadorXPartido(JugadorRojas.get_id(), JugadorRojas.get_id_equipo(), 0, 0, 1));
                 }
                 else
                 {
@@ -245,7 +246,7 @@ namespace LigaBA.Partidos
             int index = jugadorXPartido.FindIndex(r => r.get_id().Equals(JugadorGoles.get_id()));
             if (index == -1)
             {
-                jugadorXPartido.Add(new JugadorXPartido(JugadorGoles.get_id(), Convert.ToInt32(this.CantidadGolesTextBox.Text), 0, 0));
+                jugadorXPartido.Add(new JugadorXPartido(JugadorGoles.get_id(),JugadorGoles.get_id_equipo(), Convert.ToInt32(this.CantidadGolesTextBox.Text), 0, 0));
             }
             else
             {
@@ -269,7 +270,7 @@ namespace LigaBA.Partidos
             int index = jugadorXPartido.FindIndex(r => r.get_id().Equals(JugadorAmarillas.get_id()));
             if (index == -1)
             {
-                jugadorXPartido.Add(new JugadorXPartido(JugadorAmarillas.get_id(),0,Convert.ToInt32(this.CantidadAmarillaTextBox.Text), 0));
+                jugadorXPartido.Add(new JugadorXPartido(JugadorAmarillas.get_id(), JugadorAmarillas.get_id_equipo(), 0, Convert.ToInt32(this.CantidadAmarillaTextBox.Text), 0));
             }
             else
             {

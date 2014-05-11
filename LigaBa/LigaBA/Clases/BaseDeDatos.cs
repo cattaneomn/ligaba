@@ -21,7 +21,7 @@ namespace LigaBA
 
         private BaseDeDatos(string connectionString)
         {
-            connection = new SqlConnection(connectionString);
+            connection = new SqlConnection(connectionString);           
             this.esquema = "LigaBA.";
             //Todo agregar caracteres invalidos
             this.listaDeCaracteresInvalidos.Add("'");
@@ -38,7 +38,7 @@ namespace LigaBA
                 return instance;
             }
         }
-        
+
         public bool ejecutarProcedimiento(string spName, List<SqlParameter> parameters,string NombreForm)
         {
             if (ValidarParametros(parameters))

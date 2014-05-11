@@ -81,6 +81,12 @@ namespace LigaBA.Abm_Jugador
                     categoria = CategoriasComboBox.SelectedValue.ToString();
                 }
 
+                int habilitado = 1;
+                if (!habilitadoRadioButton.Checked)
+                {
+                    habilitado = 0;
+                }
+
                 List<SqlParameter> param = new List<SqlParameter>();
                 param.Add(new SqlParameter("@dni", DniTextBox.Text));
                 param.Add(new SqlParameter("@nombre", NombreTextBox.Text));
@@ -89,6 +95,7 @@ namespace LigaBA.Abm_Jugador
                 param.Add(new SqlParameter("@institucion", institucion ));
                 param.Add(new SqlParameter("@categoria", categoria));
                 param.Add(new SqlParameter("@equipo", equipo));
+                param.Add(new SqlParameter("@habilitado", habilitado));
 
                 DataSet ds = BaseDeDatos.GetInstance.ejecutarConsulta("p_BuscarJugador", param, "Jugadores", this.Text);
 
@@ -171,15 +178,20 @@ namespace LigaBA.Abm_Jugador
                                                                    Jugador_DataGridView.CurrentRow.Cells["DNI"].Value.ToString(),
                                                                    Jugador_DataGridView.CurrentRow.Cells["Nombre"].Value.ToString(),
                                                                    Jugador_DataGridView.CurrentRow.Cells["Apellido"].Value.ToString(),
-                                                                   Jugador_DataGridView.CurrentRow.Cells["Fecha de Nacimiento"].Value.ToString()                                                                 
-                                                                   //Jugador_DataGridView.CurrentRow.Cells["Tarjetas Amarillas"].Value.ToString(),
-                                                                   //Jugador_DataGridView.CurrentRow.Cells["Tarjetas Rojas"].Value.ToString()                
+                                                                   Jugador_DataGridView.CurrentRow.Cells["Fecha de Nacimiento"].Value.ToString(),
+                                                                   Jugador_DataGridView.CurrentRow.Cells["Habilitado"].Value.ToString()      
                                                                   );
-            abrir.ShowDialog();
+            DialogResult Resultado = abrir.ShowDialog();
+            if (Resultado == DialogResult.OK)
+            {
+                ModDataGridView.limpiarDataGridView(Jugador_DataGridView, "");
+            }
+
         }
 
         private void JugadorForm_Load(object sender, EventArgs e)
         {
+            habilitadoRadioButton.Checked = true;
             this.Jugador_DataGridView.MultiSelect = false;
             CargarInstitucionesComboBox();
             CargarCategoriaComboBox();
@@ -277,6 +289,23 @@ namespace LigaBA.Abm_Jugador
             {
                 this.categoria = null;
             }
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            if (this.Jugador_DataGridView.Rows.Count == 0)
+            {
+                return;
+            }
+            if (this.Jugador_DataGridView.CurrentCell == null)
+            {
+                MessageBox.Show("Debe seleccionar una fila.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            
+            TarjetasForm abrir = new TarjetasForm(Convert.ToInt32(Jugador_DataGridView.CurrentRow.Cells["Id"].Value.ToString()));
+            DialogResult Resultado = abrir.ShowDialog();           
         }
 
     }

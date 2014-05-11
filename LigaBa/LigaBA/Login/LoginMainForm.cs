@@ -74,8 +74,7 @@ namespace LigaBA
         }
 
         private void loginButton_Click(object sender, EventArgs e)
-        {
-            
+        {            
             if (Validaciones() == -1) return;
 
             List<SqlParameter> param = new List<SqlParameter>();
@@ -88,10 +87,9 @@ namespace LigaBA
 
             DataSet ds = BaseDeDatos.GetInstance.ejecutarConsulta("p_login", param,"Usuarios",this.Text);
             
-            
             if (ds.Tables["Usuarios"] == null)
             {
-                    
+
                 object respuestaSP = respuestaParametro.Value;
                 int respuesta = Convert.ToInt32(respuestaSP);
             
@@ -100,7 +98,10 @@ namespace LigaBA
                     case 1:
                         MessageBox.Show("Usuario o contraseña inválidos.",this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
+                    case -1:
+                        return;
                 }
+
 
             }
 
