@@ -1385,14 +1385,26 @@ GO
 --REPORTE FICHA PARTIDO
 CREATE PROCEDURE [LigaBA].[p_ReporteFichaPartido]
 (
-        @Equipo int
+        @Equipo int,
+        @Torneo int,
+        @Categoria int
 )       
 AS
 BEGIN transaction        
-        SELECT nombre as Nombre,apellido as Apellido,dni as Dni
-        FROM LigaBA.Jugador
-        WHERE id IN (SELECT jugador FROM LigaBA.JugadorXEquipo WHERE equipo=@Equipo)
+    
+    DECLARE @TorneoXCategoria int
         
+    SELECT @TorneoXCategoria=id FROM LigaBA.TorneoXCategoria 
+    WHERE torneogeneral=@Torneo AND categoria=@Categoria
+
+    SELECT nombre as Nombre,apellido as Apellido,dni as Dni,
+    CASE TCJ.habilitado WHEN 1 THEN ' ' ELSE 'INHABILITADO' END as Habilitado
+    FROM LigaBA.Jugador as J
+    JOIN LigaBA.TorneoXCategoriaXJugador as TCJ ON TCJ.jugador = J.id
+    WHERE J.id IN (SELECT jugador FROM LigaBA.JugadorXEquipo WHERE equipo=@Equipo) 
+    AND TCJ.torneoxcategoria=@TorneoXCategoria
+    
+    
 COMMIT
 GO
 

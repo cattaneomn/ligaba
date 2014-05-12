@@ -22,6 +22,8 @@ namespace LigaBA.Partidos
 
         string nombreTorneo;
         string nombreCategoria;
+        string TorneoId;
+        string CategoriaId;
 
         private void PartidosForm_Load(object sender, EventArgs e)
         {
@@ -139,6 +141,8 @@ namespace LigaBA.Partidos
             {
                 nombreTorneo = TorneosComboBox.Text;
                 nombreCategoria = CategoriasComboBox.Text;
+                TorneoId = this.TorneosComboBox.SelectedValue.ToString();
+                CategoriaId = this.CategoriasComboBox.SelectedValue.ToString();
 
                 Thread hilo = new Thread(AbrirFormReporte);
                 hilo.SetApartmentState(System.Threading.ApartmentState.STA);
@@ -161,8 +165,10 @@ namespace LigaBA.Partidos
 
             nombreTorneo = TorneosComboBox.Text;
             nombreCategoria = CategoriasComboBox.Text;
+            TorneoId = this.TorneosComboBox.SelectedValue.ToString();
+            CategoriaId = this.CategoriasComboBox.SelectedValue.ToString();
 
-            PreguntaImprimirForm abrir = new PreguntaImprimirForm(LocalId, VisitanteId, Local, Visitante, Fecha,nombreTorneo, nombreCategoria);
+            PreguntaImprimirForm abrir = new PreguntaImprimirForm(LocalId, VisitanteId, Local, Visitante, Fecha,nombreTorneo, nombreCategoria,TorneoId,CategoriaId);
             abrir.ShowDialog();
         }
 
@@ -174,7 +180,8 @@ namespace LigaBA.Partidos
             string Local = Partidos_DataGridView.CurrentRow.Cells["Local"].Value.ToString();
             string Fecha = Partidos_DataGridView.CurrentRow.Cells["Fecha"].Value.ToString();
 
-            ReportePartidoForm abrir = new ReportePartidoForm(LocalId,VisitanteId,Local,Visitante,nombreTorneo,nombreCategoria,Fecha,"Baby");
+
+            ReportePartidoForm abrir = new ReportePartidoForm(LocalId,VisitanteId,Local,Visitante,nombreTorneo,nombreCategoria,Fecha,TorneoId,CategoriaId,"Baby");
             abrir.ShowDialog();
         }
 

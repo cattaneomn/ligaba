@@ -285,6 +285,8 @@ namespace LigaBA.Reportes.DataSet {
             
             private global::System.Data.DataColumn columnDni;
             
+            private global::System.Data.DataColumn columnHabilitado;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public p_ReporteFichaPartidoDataTable() {
@@ -344,6 +346,14 @@ namespace LigaBA.Reportes.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn HabilitadoColumn {
+                get {
+                    return this.columnHabilitado;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -379,12 +389,13 @@ namespace LigaBA.Reportes.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public p_ReporteFichaPartidoRow Addp_ReporteFichaPartidoRow(string Nombre, string Apellido, int Dni) {
+            public p_ReporteFichaPartidoRow Addp_ReporteFichaPartidoRow(string Nombre, string Apellido, int Dni, string Habilitado) {
                 p_ReporteFichaPartidoRow rowp_ReporteFichaPartidoRow = ((p_ReporteFichaPartidoRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Nombre,
                         Apellido,
-                        Dni};
+                        Dni,
+                        Habilitado};
                 rowp_ReporteFichaPartidoRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowp_ReporteFichaPartidoRow);
                 return rowp_ReporteFichaPartidoRow;
@@ -410,6 +421,7 @@ namespace LigaBA.Reportes.DataSet {
                 this.columnNombre = base.Columns["Nombre"];
                 this.columnApellido = base.Columns["Apellido"];
                 this.columnDni = base.Columns["Dni"];
+                this.columnHabilitado = base.Columns["Habilitado"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -421,11 +433,15 @@ namespace LigaBA.Reportes.DataSet {
                 base.Columns.Add(this.columnApellido);
                 this.columnDni = new global::System.Data.DataColumn("Dni", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDni);
+                this.columnHabilitado = new global::System.Data.DataColumn("Habilitado", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnHabilitado);
                 this.columnNombre.AllowDBNull = false;
                 this.columnNombre.MaxLength = 50;
                 this.columnApellido.AllowDBNull = false;
                 this.columnApellido.MaxLength = 50;
                 this.columnDni.AllowDBNull = false;
+                this.columnHabilitado.ReadOnly = true;
+                this.columnHabilitado.MaxLength = 12;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -598,6 +614,35 @@ namespace LigaBA.Reportes.DataSet {
                     this[this.tablep_ReporteFichaPartido.DniColumn] = value;
                 }
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Habilitado {
+                get {
+                    try {
+                        return ((string)(this[this.tablep_ReporteFichaPartido.HabilitadoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Habilitado\' de la tabla \'p_ReporteFichaPartido\' es DBNull" +
+                                ".", e);
+                    }
+                }
+                set {
+                    this[this.tablep_ReporteFichaPartido.HabilitadoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsHabilitadoNull() {
+                return this.IsNull(this.tablep_ReporteFichaPartido.HabilitadoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetHabilitadoNull() {
+                this[this.tablep_ReporteFichaPartido.HabilitadoColumn] = global::System.Convert.DBNull;
+            }
         }
         
         /// <summary>
@@ -762,6 +807,7 @@ namespace LigaBA.Reportes.DataSet.FichaPartidoDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("Nombre", "Nombre");
             tableMapping.ColumnMappings.Add("Apellido", "Apellido");
             tableMapping.ColumnMappings.Add("Dni", "Dni");
+            tableMapping.ColumnMappings.Add("Habilitado", "Habilitado");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -782,19 +828,33 @@ namespace LigaBA.Reportes.DataSet.FichaPartidoDataSetTableAdapters {
             this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Equipo", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Torneo", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Categoria", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(FichaPartidoDataSet.p_ReporteFichaPartidoDataTable dataTable, global::System.Nullable<int> Equipo) {
+        public virtual int Fill(FichaPartidoDataSet.p_ReporteFichaPartidoDataTable dataTable, global::System.Nullable<int> Equipo, global::System.Nullable<int> Torneo, global::System.Nullable<int> Categoria) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((Equipo.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((int)(Equipo.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((Torneo.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((int)(Torneo.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            if ((Categoria.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[3].Value = ((int)(Categoria.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -807,13 +867,25 @@ namespace LigaBA.Reportes.DataSet.FichaPartidoDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual FichaPartidoDataSet.p_ReporteFichaPartidoDataTable GetData(global::System.Nullable<int> Equipo) {
+        public virtual FichaPartidoDataSet.p_ReporteFichaPartidoDataTable GetData(global::System.Nullable<int> Equipo, global::System.Nullable<int> Torneo, global::System.Nullable<int> Categoria) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((Equipo.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((int)(Equipo.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((Torneo.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((int)(Torneo.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            if ((Categoria.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[3].Value = ((int)(Categoria.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
             FichaPartidoDataSet.p_ReporteFichaPartidoDataTable dataTable = new FichaPartidoDataSet.p_ReporteFichaPartidoDataTable();
             this.Adapter.Fill(dataTable);

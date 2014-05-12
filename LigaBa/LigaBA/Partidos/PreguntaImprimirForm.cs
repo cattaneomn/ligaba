@@ -12,7 +12,7 @@ namespace LigaBA.Partidos
 {
     public partial class PreguntaImprimirForm : Form
     {
-        public PreguntaImprimirForm(string LocalId, string VisitanteId, string Local, string Visitante,string Fecha,string nombretorneo,string nombrecategoria)
+        public PreguntaImprimirForm(string LocalId, string VisitanteId, string Local, string Visitante, string Fecha, string nombretorneo, string nombrecategoria, string TorneoId, string CategoriaId)
         {
             InitializeComponent();
 
@@ -23,6 +23,8 @@ namespace LigaBA.Partidos
             this.Fecha = Fecha;
             this.nombreCategoria = nombrecategoria;
             this.nombreTorneo = nombretorneo;
+            this.TorneoId = TorneoId;
+            this.CategoriaId = CategoriaId;
         }
 
         string LocalId;
@@ -32,6 +34,8 @@ namespace LigaBA.Partidos
         string Fecha;
         string nombreTorneo;
         string nombreCategoria;
+        string TorneoId;
+        string CategoriaId;
 
         private void PreguntaImprimirForm_Load(object sender, EventArgs e)
         {
@@ -59,13 +63,13 @@ namespace LigaBA.Partidos
 
         private void AbrirFormReporteLocal()
         {
-            ReportePartidoForm abrir = new ReportePartidoForm(LocalId, VisitanteId, Local, Visitante, nombreTorneo, nombreCategoria, Fecha, "Local");
+            ReportePartidoForm abrir = new ReportePartidoForm(LocalId, VisitanteId, Local, Visitante, nombreTorneo, nombreCategoria, Fecha,TorneoId,CategoriaId,"Local");
             abrir.ShowDialog();
         }
 
         private void AbrirFormReporteVisitante()
         {
-            ReportePartidoForm abrir = new ReportePartidoForm(LocalId, VisitanteId, Local, Visitante, nombreTorneo, nombreCategoria, Fecha, "Visitante");
+            ReportePartidoForm abrir = new ReportePartidoForm(LocalId, VisitanteId, Local, Visitante, nombreTorneo, nombreCategoria, Fecha,TorneoId,CategoriaId, "Visitante");
             abrir.ShowDialog();
         }
 

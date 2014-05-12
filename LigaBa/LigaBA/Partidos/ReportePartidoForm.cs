@@ -18,7 +18,7 @@ namespace LigaBA.Partidos
 {
     public partial class ReportePartidoForm : Form
     {
-        public ReportePartidoForm(string LocalId,string VisitanteId,string Local,string Visitante,string Torneo,string Categoria,string Fecha,string Flag)
+        public ReportePartidoForm(string LocalId,string VisitanteId,string Local,string Visitante,string Torneo,string Categoria,string Fecha,string TorneoId,string CategoriaId,string Flag)
         {
             InitializeComponent();
             
@@ -30,6 +30,8 @@ namespace LigaBA.Partidos
             this.Categoria = Categoria;
             this.Fecha = Fecha;
             this.Flag = Flag;
+            this.TorneoId = TorneoId;
+            this.CategoriaId = CategoriaId;
         }
 
         string LocalId;
@@ -40,6 +42,8 @@ namespace LigaBA.Partidos
         string Categoria;
         string Fecha;
         string Flag;
+        string TorneoId;
+        string CategoriaId;
 
         private void crystalReportViewer1_Load(object sender, EventArgs e)
         {
@@ -57,6 +61,9 @@ namespace LigaBA.Partidos
                 {
                     param.Add(new SqlParameter("@Equipo", VisitanteId));
                 }
+
+                param.Add(new SqlParameter("@Torneo", TorneoId));
+                param.Add(new SqlParameter("@Categoria", CategoriaId));
 
                 DataSet ds = BaseDeDatos.GetInstance.ejecutarConsulta("p_ReporteFichaPartido", param, "p_ReporteFichaPartido", this.Text);
 
@@ -103,11 +110,16 @@ namespace LigaBA.Partidos
                 //DataSet
                 List<SqlParameter> param = new List<SqlParameter>();
                 param.Add(new SqlParameter("@Equipo", LocalId));
+                param.Add(new SqlParameter("@Torneo", TorneoId));
+                param.Add(new SqlParameter("@Categoria", CategoriaId));
+
                 DataSet ds = BaseDeDatos.GetInstance.ejecutarConsulta("p_ReporteFichaPartido", param, "p_ReporteFichaPartido", this.Text);
 
                 //2 Consulta
                 List<SqlParameter> param2 = new List<SqlParameter>();
                 param2.Add(new SqlParameter("@Equipo", VisitanteId));
+                param2.Add(new SqlParameter("@Torneo", TorneoId));
+                param2.Add(new SqlParameter("@Categoria", CategoriaId));
                 DataSet ds2 = BaseDeDatos.GetInstance.ejecutarConsulta("p_ReporteFichaPartido", param2, "p_ReporteFichaPartido",this.Text);
 
                 //Reporte Jugadores

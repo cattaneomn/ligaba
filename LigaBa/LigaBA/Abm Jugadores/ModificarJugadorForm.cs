@@ -154,7 +154,7 @@ namespace LigaBA.Abm_Jugador
        
         private void CargarInstitucionesComboBox()
         {
-            CargadorDeDatos.CargarInstitucionComboBox(InstitucionComboBox, this.Text););
+            CargadorDeDatos.CargarInstitucionComboBox(InstitucionComboBox, this.Text);
             InstitucionComboBox.SelectedValue = Convert.ToInt32(this.institucionOnload);
         }
 
