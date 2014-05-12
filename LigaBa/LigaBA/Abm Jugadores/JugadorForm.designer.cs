@@ -58,7 +58,7 @@
             this.EliminarButton = new System.Windows.Forms.Button();
             this.ModificarButton = new System.Windows.Forms.Button();
             this.ImprimirCarnetButton = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.TarjetasButton = new System.Windows.Forms.Button();
             this.JugadorGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Jugador_DataGridView)).BeginInit();
             this.SuspendLayout();
@@ -86,7 +86,7 @@
             this.JugadorGroupBox.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.JugadorGroupBox.Location = new System.Drawing.Point(12, 12);
             this.JugadorGroupBox.Name = "JugadorGroupBox";
-            this.JugadorGroupBox.Size = new System.Drawing.Size(760, 175);
+            this.JugadorGroupBox.Size = new System.Drawing.Size(835, 175);
             this.JugadorGroupBox.TabIndex = 1;
             this.JugadorGroupBox.TabStop = false;
             this.JugadorGroupBox.Text = "Filtros";
@@ -94,7 +94,7 @@
             // inhabilitadoRadioButton
             // 
             this.inhabilitadoRadioButton.AutoSize = true;
-            this.inhabilitadoRadioButton.Location = new System.Drawing.Point(182, 139);
+            this.inhabilitadoRadioButton.Location = new System.Drawing.Point(242, 139);
             this.inhabilitadoRadioButton.Name = "inhabilitadoRadioButton";
             this.inhabilitadoRadioButton.Size = new System.Drawing.Size(145, 19);
             this.inhabilitadoRadioButton.TabIndex = 14;
@@ -105,7 +105,7 @@
             // habilitadoRadioButton
             // 
             this.habilitadoRadioButton.AutoSize = true;
-            this.habilitadoRadioButton.Location = new System.Drawing.Point(32, 139);
+            this.habilitadoRadioButton.Location = new System.Drawing.Point(92, 139);
             this.habilitadoRadioButton.Name = "habilitadoRadioButton";
             this.habilitadoRadioButton.Size = new System.Drawing.Size(136, 19);
             this.habilitadoRadioButton.TabIndex = 13;
@@ -117,7 +117,7 @@
             // 
             this.CategoriasComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CategoriasComboBox.FormattingEnabled = true;
-            this.CategoriasComboBox.Location = new System.Drawing.Point(517, 64);
+            this.CategoriasComboBox.Location = new System.Drawing.Point(579, 64);
             this.CategoriasComboBox.Name = "CategoriasComboBox";
             this.CategoriasComboBox.Size = new System.Drawing.Size(172, 23);
             this.CategoriasComboBox.TabIndex = 4;
@@ -130,7 +130,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(365, 66);
+            this.label6.Location = new System.Drawing.Point(427, 66);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(67, 16);
             this.label6.TabIndex = 12;
@@ -140,7 +140,7 @@
             // 
             this.FechaNacimientoDateTimePicker.CustomFormat = "";
             this.FechaNacimientoDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.FechaNacimientoDateTimePicker.Location = new System.Drawing.Point(517, 136);
+            this.FechaNacimientoDateTimePicker.Location = new System.Drawing.Point(579, 136);
             this.FechaNacimientoDateTimePicker.Name = "FechaNacimientoDateTimePicker";
             this.FechaNacimientoDateTimePicker.Size = new System.Drawing.Size(172, 21);
             this.FechaNacimientoDateTimePicker.TabIndex = 7;
@@ -153,7 +153,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(365, 138);
+            this.label5.Location = new System.Drawing.Point(427, 138);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(133, 16);
             this.label5.TabIndex = 10;
@@ -166,7 +166,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(365, 101);
+            this.label4.Location = new System.Drawing.Point(427, 101);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(51, 16);
             this.label4.TabIndex = 9;
@@ -177,7 +177,7 @@
             this.EquipoComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.EquipoComboBox.Enabled = false;
             this.EquipoComboBox.FormattingEnabled = true;
-            this.EquipoComboBox.Location = new System.Drawing.Point(517, 99);
+            this.EquipoComboBox.Location = new System.Drawing.Point(579, 99);
             this.EquipoComboBox.Name = "EquipoComboBox";
             this.EquipoComboBox.Size = new System.Drawing.Size(172, 23);
             this.EquipoComboBox.TabIndex = 6;
@@ -189,7 +189,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(365, 28);
+            this.label3.Location = new System.Drawing.Point(427, 28);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(66, 16);
             this.label3.TabIndex = 7;
@@ -199,7 +199,7 @@
             // 
             this.InstitucionComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.InstitucionComboBox.FormattingEnabled = true;
-            this.InstitucionComboBox.Location = new System.Drawing.Point(517, 26);
+            this.InstitucionComboBox.Location = new System.Drawing.Point(579, 26);
             this.InstitucionComboBox.Name = "InstitucionComboBox";
             this.InstitucionComboBox.Size = new System.Drawing.Size(172, 23);
             this.InstitucionComboBox.TabIndex = 5;
@@ -207,7 +207,7 @@
             // 
             // ApellidoTextBox
             // 
-            this.ApellidoTextBox.Location = new System.Drawing.Point(111, 99);
+            this.ApellidoTextBox.Location = new System.Drawing.Point(171, 99);
             this.ApellidoTextBox.Name = "ApellidoTextBox";
             this.ApellidoTextBox.Size = new System.Drawing.Size(172, 21);
             this.ApellidoTextBox.TabIndex = 3;
@@ -219,7 +219,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(29, 101);
+            this.label2.Location = new System.Drawing.Point(89, 101);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(58, 16);
             this.label2.TabIndex = 4;
@@ -227,7 +227,7 @@
             // 
             // NombreTextBox
             // 
-            this.NombreTextBox.Location = new System.Drawing.Point(111, 62);
+            this.NombreTextBox.Location = new System.Drawing.Point(171, 62);
             this.NombreTextBox.Name = "NombreTextBox";
             this.NombreTextBox.Size = new System.Drawing.Size(172, 21);
             this.NombreTextBox.TabIndex = 2;
@@ -239,7 +239,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(29, 64);
+            this.label1.Location = new System.Drawing.Point(89, 64);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(57, 16);
             this.label1.TabIndex = 2;
@@ -247,7 +247,7 @@
             // 
             // DniTextBox
             // 
-            this.DniTextBox.Location = new System.Drawing.Point(111, 26);
+            this.DniTextBox.Location = new System.Drawing.Point(171, 26);
             this.DniTextBox.Name = "DniTextBox";
             this.DniTextBox.Size = new System.Drawing.Size(172, 21);
             this.DniTextBox.TabIndex = 1;
@@ -259,7 +259,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.NombreJugadorLabel.AutoSize = true;
             this.NombreJugadorLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NombreJugadorLabel.Location = new System.Drawing.Point(29, 28);
+            this.NombreJugadorLabel.Location = new System.Drawing.Point(89, 28);
             this.NombreJugadorLabel.Name = "NombreJugadorLabel";
             this.NombreJugadorLabel.Size = new System.Drawing.Size(28, 16);
             this.NombreJugadorLabel.TabIndex = 0;
@@ -302,14 +302,14 @@
             this.Jugador_DataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Jugador_DataGridView.RowsDefaultCellStyle = dataGridViewCellStyle4;
-            this.Jugador_DataGridView.Size = new System.Drawing.Size(760, 287);
+            this.Jugador_DataGridView.Size = new System.Drawing.Size(835, 287);
             this.Jugador_DataGridView.TabIndex = 2;
             // 
             // BuscarButton
             // 
             this.BuscarButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BuscarButton.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BuscarButton.Location = new System.Drawing.Point(697, 525);
+            this.BuscarButton.Location = new System.Drawing.Point(772, 525);
             this.BuscarButton.Name = "BuscarButton";
             this.BuscarButton.Size = new System.Drawing.Size(75, 23);
             this.BuscarButton.TabIndex = 11;
@@ -391,7 +391,7 @@
             this.ImprimirCarnetButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ImprimirCarnetButton.Image = ((System.Drawing.Image)(resources.GetObject("ImprimirCarnetButton.Image")));
             this.ImprimirCarnetButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ImprimirCarnetButton.Location = new System.Drawing.Point(620, 193);
+            this.ImprimirCarnetButton.Location = new System.Drawing.Point(695, 193);
             this.ImprimirCarnetButton.Name = "ImprimirCarnetButton";
             this.ImprimirCarnetButton.Size = new System.Drawing.Size(152, 35);
             this.ImprimirCarnetButton.TabIndex = 14;
@@ -400,19 +400,20 @@
             this.ImprimirCarnetButton.UseVisualStyleBackColor = true;
             this.ImprimirCarnetButton.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button1
+            // TarjetasButton
             // 
-            this.button1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(509, 193);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(105, 35);
-            this.button1.TabIndex = 15;
-            this.button1.Text = " Tarjetas";
-            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            this.TarjetasButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.TarjetasButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TarjetasButton.Image = ((System.Drawing.Image)(resources.GetObject("TarjetasButton.Image")));
+            this.TarjetasButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.TarjetasButton.Location = new System.Drawing.Point(584, 193);
+            this.TarjetasButton.Name = "TarjetasButton";
+            this.TarjetasButton.Size = new System.Drawing.Size(105, 35);
+            this.TarjetasButton.TabIndex = 15;
+            this.TarjetasButton.Text = " Tarjetas";
+            this.TarjetasButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.TarjetasButton.UseVisualStyleBackColor = true;
+            this.TarjetasButton.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // JugadorForm
             // 
@@ -420,8 +421,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.CancelarButton;
-            this.ClientSize = new System.Drawing.Size(784, 562);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(859, 562);
+            this.Controls.Add(this.TarjetasButton);
             this.Controls.Add(this.ImprimirCarnetButton);
             this.Controls.Add(this.ModificarButton);
             this.Controls.Add(this.EliminarButton);
@@ -469,7 +470,7 @@
         private System.Windows.Forms.ComboBox CategoriasComboBox;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button ImprimirCarnetButton;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button TarjetasButton;
         private System.Windows.Forms.RadioButton inhabilitadoRadioButton;
         private System.Windows.Forms.RadioButton habilitadoRadioButton;
     }
