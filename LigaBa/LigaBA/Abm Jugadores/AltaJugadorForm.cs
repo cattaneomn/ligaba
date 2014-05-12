@@ -95,6 +95,11 @@ namespace LigaBA.Abm_Jugador
                     MessageBox.Show("Debe completar los campos vacios.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return -1;
                 }
+                if (objeto is ComboBox && ((ComboBox)objeto).SelectedValue == null)
+                {
+                    MessageBox.Show("Debe completar los campos vacios.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return -1;
+                }
             }
 
             //Solo numeros

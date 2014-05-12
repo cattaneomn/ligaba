@@ -22,13 +22,13 @@ namespace LigaBA.Abm_Jugador
         string apellido;
         string fecha_nacimiento;
         string institucion;
+        string institucionOnload;
         string categoria;
+        string categoriaOnload;
         string equipo;
-        string amarillas;
-        string rojas;
         string habilitado;
 
-        public ModificarJugadorForm(string id,string dni,string nombre,string apellido,string fecha_nac,string habilitado)//(string id,string dni,string nombre,string apellido,string fecha_nac,string amarillas,string rojas)
+        public ModificarJugadorForm(string id,string dni,string nombre,string apellido,string fecha_nac,string habilitado)
         {
             InitializeComponent();
 
@@ -38,9 +38,6 @@ namespace LigaBA.Abm_Jugador
             this.apellido = apellido;
             this.fecha_nacimiento = fecha_nac;
             this.habilitado = habilitado;
-
-            consultarEquipo(dni);
-
         }
 
         private void ModificarJugadorForm_Load(object sender, EventArgs e)
@@ -52,8 +49,11 @@ namespace LigaBA.Abm_Jugador
             this.FechaNacimeintiDateTimePicker.Text = this.fecha_nacimiento;
             this.habilitadoCheckBox.Checked = Convert.ToBoolean(this.habilitado);
 
+            consultarEquipo(dni);
+            
             CargarInstitucionesComboBox();
             CargarCategoriaComboBox();
+            CargarEquiposComboBoxOnLoad();
 
         }
 
@@ -100,6 +100,11 @@ namespace LigaBA.Abm_Jugador
                     MessageBox.Show("Debe completar los campos vacios.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return -1;
                 }
+                if (objeto is ComboBox && ((ComboBox)objeto).SelectedValue == null)
+                {
+                    MessageBox.Show("Debe completar los campos vacios.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return -1;
+                }
             }          
 
             return 1;
@@ -133,7 +138,9 @@ namespace LigaBA.Abm_Jugador
 
             this.equipo = ds.Rows[0]["id"].ToString();
             this.institucion = ds.Rows[0]["institucion"].ToString();
+            this.institucionOnload = ds.Rows[0]["institucion"].ToString();
             this.categoria = ds.Rows[0]["categoria"].ToString();
+            this.categoriaOnload = ds.Rows[0]["categoria"].ToString();
             this.equipo = ds.Rows[0]["id"].ToString();
         }
 
@@ -142,19 +149,25 @@ namespace LigaBA.Abm_Jugador
             if (institucion != "" && categoria != "")
             {
                 CargadorDeDatos.CargarEquipoComboBox(EquipoComboBox, this.Text, institucion, categoria);
-                EquipoComboBox.SelectedValue = Convert.ToInt32(this.equipo);
             }
         }
+       
         private void CargarInstitucionesComboBox()
         {
-            CargadorDeDatos.CargarInstitucionComboBox(InstitucionComboBox, this.Text);
-            InstitucionComboBox.SelectedValue = Convert.ToInt32(this.institucion);
+            CargadorDeDatos.CargarInstitucionComboBox(InstitucionComboBox, this.Text););
+            InstitucionComboBox.SelectedValue = Convert.ToInt32(this.institucionOnload);
         }
 
         private void CargarCategoriaComboBox()
         {
             CargadorDeDatos.CargarCategoriaComboBox(CategoriasComboBox, this.Text);
-            CategoriasComboBox.SelectedValue = Convert.ToInt32(this.categoria);
-        }   
+            CategoriasComboBox.SelectedValue = Convert.ToInt32(this.categoriaOnload);
+        }
+
+        private void CargarEquiposComboBoxOnLoad()
+        {
+            CargadorDeDatos.CargarEquipoComboBox(EquipoComboBox, this.Text, institucion, categoria);
+            EquipoComboBox.SelectedValue = Convert.ToInt32(this.equipo);
+        }  
     }
 }

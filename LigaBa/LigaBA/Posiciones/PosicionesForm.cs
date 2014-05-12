@@ -206,6 +206,7 @@ namespace LigaBA.Posiciones
         private void PosicionesGeneralRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             this.CategoriasComboBox.Enabled = false;
+            this.Posiciones_DataGridView.DataSource = null;
             this.CategoriasComboBox.DataSource = null;
             //cargotorneos que tienen tabla general
             CargadorDeDatos.CargarTorneoGeneralComboBox(TorneosComboBox, this.Text);
@@ -214,6 +215,7 @@ namespace LigaBA.Posiciones
         private void PosicionesCategoriaRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             this.CategoriasComboBox.Enabled = true;
+            this.Posiciones_DataGridView.DataSource = null;
             CargadorDeDatos.CargarTorneoComboBox(TorneosComboBox, this.Text);
             CargadorDeDatos.CargarCategoriaComboBox(CategoriasComboBox, this.Text);
         }
