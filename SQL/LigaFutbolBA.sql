@@ -642,9 +642,9 @@ CREATE PROCEDURE [LigaBA].[p_ModificarTipoDeTorneo]
 AS
 BEGIN transaction
         
-        IF EXISTS(SELECT 1 FROM LigaBA.TipoDeTorneo WHERE nombre = @nombre)
+        IF EXISTS(SELECT 1 FROM LigaBA.TipoDeTorneo WHERE nombre = @nombre and id!=@id)
         BEGIN
-                RAISERROR ('Ya existe un tipo de torneo con ese nombre,el  no pudo tipo de torneo no puedo ser modificado.',16,1)
+                RAISERROR ('Ya existe un tipo de torneo con ese nombre,el tipo de torneo no pudo ser modificado.',16,1)
                 ROLLBACK
                 RETURN          
         END
