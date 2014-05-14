@@ -63,7 +63,7 @@ namespace LigaBA.Abm_Torneo
 
             consulta += "INNER JOIN LigaBA.Categoria as C ON E.categoria = C.id ";
             consulta += "INNER JOIN LigaBA.Institucion as I ON E.institucion=I.id ";
-            consulta += "WHERE E.institucion IN ("+institucionesConsulta+") AND ";
+            consulta += "WHERE E.borrado = 0 AND E.institucion IN ("+institucionesConsulta+") AND ";
             consulta += " E.categoria IN (" + categoriasConsulta + ")";
             consulta += " ORDER BY C.nombre";
 
@@ -460,6 +460,11 @@ namespace LigaBA.Abm_Torneo
                         if (cantidadEquipos > 1)
                         {
                             MessageBox.Show("Error: Hay instituciones con mas de un equipo en un categoria.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return -1;
+                        }
+                        if (cantidadEquipos == 0)
+                        {
+                            MessageBox.Show("Error: Hay instituciones que no poseen un equipo en una categoria.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return -1;
                         }
                     }

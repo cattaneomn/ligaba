@@ -138,7 +138,7 @@ namespace LigaBA.Abm_Torneo
                     MessageBox.Show("Debe completar los campos vacios.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return -1;
                 }
-                if (objeto is ComboBox && ((ComboBox)objeto).SelectedItem == null && ((ComboBox)objeto).Name != "TipoTablaComboBox")
+                if (objeto is ComboBox && ((ComboBox)objeto).SelectedItem == null && TipoTablaComboBox.Enabled == true)
                 {
                     MessageBox.Show("Debe completar los campos vacios.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return -1;
