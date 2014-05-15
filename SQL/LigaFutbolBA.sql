@@ -184,7 +184,7 @@ CREATE TABLE LigaBA.Partido(
         id int NOT NULL IDENTITY,
         equipolocal int NOT NULL,
         equipovisitante int NOT NULL,
-        fecha nvarchar(50) NOT NULL,
+        fecha int NOT NULL,
         goleslocal int DEFAULT -1,
         golesvisiante int DEFAULT -1,
         torneoxcategoria int NOT NULL, 

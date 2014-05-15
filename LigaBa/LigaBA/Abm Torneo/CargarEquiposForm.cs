@@ -437,7 +437,7 @@ namespace LigaBA.Abm_Torneo
                     MessageBox.Show("Error: Debe seleccionar al menos 2(dos) equipos de cada categoria elegida.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return -1;
                 }
-
+                
                 if (GenerarFixture.mutex)
                 {
                     MessageBox.Show("Error: No se ha generado el fixture.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -460,11 +460,6 @@ namespace LigaBA.Abm_Torneo
                         if (cantidadEquipos > 1)
                         {
                             MessageBox.Show("Error: Hay instituciones con mas de un equipo en un categoria.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return -1;
-                        }
-                        if (cantidadEquipos == 0)
-                        {
-                            MessageBox.Show("Error: Hay instituciones que no poseen un equipo en una categoria.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return -1;
                         }
                     }

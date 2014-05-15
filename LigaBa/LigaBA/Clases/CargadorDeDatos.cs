@@ -52,7 +52,7 @@ namespace LigaBA.Clases
 
         public static void CargarFechasComboBox(ComboBox comboBox, string torneo, string txt)
         {
-            CargadorDeDatos.CargarComboBox("select distinct fecha as id, fecha from LigaBA.Partido WHERE torneoxcategoria = (select TOP 1 id  from LigaBA.TorneoXCategoria WHERE torneogeneral=" + torneo + ")", new List<SqlParameter>(), comboBox, txt, "id", "fecha");
+            CargadorDeDatos.CargarComboBox("select distinct fecha as id, fecha from LigaBA.Partido WHERE torneoxcategoria = (select TOP 1 id  from LigaBA.TorneoXCategoria WHERE torneogeneral=" + torneo + ") ORDER BY fecha", new List<SqlParameter>(), comboBox, txt, "id", "fecha");
         }
 
         public static void CargarEquipoComboBox(ComboBox comboBox, string txt,string institucion ,string categoria)
