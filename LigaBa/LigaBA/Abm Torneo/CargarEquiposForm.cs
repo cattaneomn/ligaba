@@ -204,6 +204,11 @@ namespace LigaBA.Abm_Torneo
 
         private void GuardarButton_Click(object sender, EventArgs e)
         {
+            //Para que tome todo el DataGrid
+            this.EquipoTextBox.Clear();
+            this.InstitucionTextBox.Clear();
+            this.CategoriasTextBox.Clear();
+            
             if (Validaciones() == -1) return;
 
             if (!InsertarTorneoApertura())
