@@ -94,7 +94,7 @@ namespace LigaBA.Posiciones
         private void CustomDataGridView()
         {
             this.Posiciones_DataGridView.Columns["Pos"].Width = 50;
-            this.Posiciones_DataGridView.Columns["Equipo"].Width = 140;
+            this.Posiciones_DataGridView.Columns["Equipo"].Width = 170;
             this.Posiciones_DataGridView.Columns["PJ"].Width = 50;
             this.Posiciones_DataGridView.Columns["PG"].Width = 50;
             this.Posiciones_DataGridView.Columns["PE"].Width = 50;
@@ -115,7 +115,7 @@ namespace LigaBA.Posiciones
         private void CustomGeneralDataGridView()
         {
             this.Posiciones_DataGridView.Columns["Pos"].Width = 50;
-            this.Posiciones_DataGridView.Columns["Institucion"].Width = 140;           
+            this.Posiciones_DataGridView.Columns["Institucion"].Width = 170;           
             this.Posiciones_DataGridView.Columns["Puntos"].Width = 60;
 
             Posiciones_DataGridView.Columns["Pos"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;           

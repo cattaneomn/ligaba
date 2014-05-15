@@ -75,6 +75,9 @@ namespace LigaBA.Abm_Torneo
             this.Equipos_DataGridView.Columns["idCat"].Visible = false;
             this.Equipos_DataGridView.Columns["idInt"].Visible = false;
             this.Equipos_DataGridView.Columns["elegido"].Visible = false;
+            this.Equipos_DataGridView.Columns["Equipo"].Width = 170;
+            this.Equipos_DataGridView.Columns["Institucion"].Width = 170;
+            this.Equipos_DataGridView.Columns["Categoria"].Width = 120;
             this.Equipos_DataGridView.Focus();
         }
 

@@ -34,6 +34,9 @@ namespace LigaBA.Abm_Torneo
 
             Equipo_DataGridView.DataSource = BaseDeDatos.GetInstance.ExecuteCustomQuery(Consulta, param, this.Text);
 
+            this.Equipo_DataGridView.Columns["Equipo"].Width = 170;
+            this.Equipo_DataGridView.Columns["Institucion"].Width = 170;
+
         }
 
         private string ArmarConsulta()

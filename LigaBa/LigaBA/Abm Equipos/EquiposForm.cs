@@ -67,6 +67,9 @@ namespace LigaBA.Abm_Equipos
             }
 
             this.Equipos_DataGridView.Columns["id"].Visible = false;
+            this.Equipos_DataGridView.Columns["Equipo"].Width = 170;
+            this.Equipos_DataGridView.Columns["Institucion"].Width = 170;
+            this.Equipos_DataGridView.Columns["Categoria"].Width = 120;
             this.Equipos_DataGridView.Focus();
         }
 

@@ -122,6 +122,9 @@ namespace LigaBA.AbmIntituciones
             }
 
             this.Instituciones_DataGridView.Columns["id"].Visible = false;
+            this.Instituciones_DataGridView.Columns["Nombre"].Width = 170;
+            this.Instituciones_DataGridView.Columns["Telefono"].Width = 170;
+            this.Instituciones_DataGridView.Columns["Direccion"].Width = 170;
             this.Instituciones_DataGridView.Focus();
         }
 

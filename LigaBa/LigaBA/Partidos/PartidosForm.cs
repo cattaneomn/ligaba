@@ -69,6 +69,8 @@ namespace LigaBA.Partidos
  	        this.Partidos_DataGridView.Columns["id"].Visible = false;
             this.Partidos_DataGridView.Columns["LocalId"].Visible = false;
             this.Partidos_DataGridView.Columns["VisitanteId"].Visible = false;
+            this.Partidos_DataGridView.Columns["Local"].Width = 170;
+            this.Partidos_DataGridView.Columns["Visitante"].Width = 170;
  	        this.Partidos_DataGridView.Focus();
         }
 
