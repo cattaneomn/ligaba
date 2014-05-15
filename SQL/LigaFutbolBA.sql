@@ -697,11 +697,10 @@ CREATE PROCEDURE [LigaBA].[p_BajaEquipo]
 AS
 BEGIN transaction
         
-IF EXISTS(SELECT 1 FROM LigaBA.Partido WHERE goleslocal=-1 AND 
-equipolocal IN (SELECT id FROM LigaBA.Equipo WHERE institucion =@id) OR  
-equipovisitante IN (SELECT id FROM LigaBA.Equipo WHERE institucion =@id))
+IF EXISTS(SELECT 1 FROM LigaBA.TorneoXCategoriaXEquipo WHERE  
+equipo = @id)
 BEGIN
-                RAISERROR ('No puede eliminar el equipo porque participa en torneos que aun no han finalizado.',16,1)
+                RAISERROR ('No puede eliminar el equipo porque participa en al menos un torneo.',16,1)
                 ROLLBACK
                 RETURN  
 END              
@@ -787,11 +786,10 @@ CREATE PROCEDURE [LigaBA].[p_BajaInstitucion]
 AS
 BEGIN transaction
 
-IF EXISTS(SELECT 1 FROM LigaBA.Partido WHERE goleslocal IS NULL AND 
-equipolocal IN (SELECT id FROM LigaBA.Equipo WHERE institucion =@id) OR  
-equipovisitante IN (SELECT id FROM LigaBA.Equipo WHERE institucion =@id))
+IF EXISTS(SELECT 1 FROM LigaBA.TorneoXCategoriaXEquipo WHERE  
+equipo IN (SELECT id FROM LigaBA.Equipo WHERE institucion =@id))
 BEGIN
-                RAISERROR ('No puede eliminar la institucion porque esta posee equipos que participan en torneos que aun no han finalizado.',16,1)
+                RAISERROR ('No puede eliminar la institucion porque esta posee equipos que participan en torneos.',16,1)
                 ROLLBACK
                 RETURN  
 END
