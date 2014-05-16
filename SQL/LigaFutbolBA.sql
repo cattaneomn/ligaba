@@ -215,7 +215,36 @@ GO
 --CREAR USUARIO
 
 INSERT INTO LigaBA.Usuarios (username,password) VALUES ('admin','8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918')
---
+
+GO
+
+--CREAR INSTITUCION LIBRE
+SET IDENTITY_INSERT ligaba.Institucion ON
+
+INSERT INTO ligaba.Institucion(id,nombre,borrado) 
+VALUES (0,'Libre',1)
+
+SET IDENTITY_INSERT ligaba.Institucion OFF
+
+GO
+
+--CREAR CATEGORIA LIBRE
+SET IDENTITY_INSERT ligaba.Categoria ON
+
+INSERT INTO ligaba.Categoria(id,nombre,borrado) 
+VALUES (0,'Libre',1)
+
+SET IDENTITY_INSERT ligaba.Categoria OFF
+
+GO
+
+--CREAR EQUIPO LIBRE
+SET IDENTITY_INSERT ligaba.Equipo ON
+
+INSERT INTO ligaba.Equipo(id, nombre,institucion,categoria,borrado) 
+VALUES (0,'Libre',0,0,1)
+
+SET IDENTITY_INSERT ligaba.Equipo OFF
 
 GO
 

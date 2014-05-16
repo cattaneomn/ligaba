@@ -237,6 +237,12 @@ namespace LigaBA.Partidos
                 MessageBox.Show("Debe seleccionar una fila.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
+
+            if (Partidos_DataGridView.CurrentRow.Cells["LocalId"].Value.ToString() == "0" || Partidos_DataGridView.CurrentRow.Cells["VisitanteId"].Value.ToString() == "0")
+            {
+                MessageBox.Show("El Partido no puede jugarse.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
             
             if (Partidos_DataGridView.CurrentRow.Cells["Resultado"].Value.ToString() != " - ")
             {
