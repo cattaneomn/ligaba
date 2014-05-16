@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(JugarPartidoForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.GolesTab = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.AddGolButton = new System.Windows.Forms.Button();
@@ -61,10 +61,10 @@
             this.LocalNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
             this.VisitanteLabel = new System.Windows.Forms.Label();
-            this.LocalLabel = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.LocalLabel = new System.Windows.Forms.TextBox();
             this.GolesTab.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Goles_DataGridView)).BeginInit();
@@ -151,8 +151,8 @@
             this.Goles_DataGridView.Location = new System.Drawing.Point(6, 47);
             this.Goles_DataGridView.Name = "Goles_DataGridView";
             this.Goles_DataGridView.ReadOnly = true;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Goles_DataGridView.RowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Goles_DataGridView.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.Goles_DataGridView.Size = new System.Drawing.Size(690, 249);
             this.Goles_DataGridView.TabIndex = 10;
             // 
@@ -243,8 +243,8 @@
             this.Amarillas_DataGridView.Location = new System.Drawing.Point(6, 47);
             this.Amarillas_DataGridView.Name = "Amarillas_DataGridView";
             this.Amarillas_DataGridView.ReadOnly = true;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Amarillas_DataGridView.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Amarillas_DataGridView.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.Amarillas_DataGridView.Size = new System.Drawing.Size(690, 249);
             this.Amarillas_DataGridView.TabIndex = 14;
             // 
@@ -299,8 +299,8 @@
             this.Rojas_DataGridView.Location = new System.Drawing.Point(6, 47);
             this.Rojas_DataGridView.Name = "Rojas_DataGridView";
             this.Rojas_DataGridView.ReadOnly = true;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Rojas_DataGridView.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Rojas_DataGridView.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.Rojas_DataGridView.Size = new System.Drawing.Size(690, 249);
             this.Rojas_DataGridView.TabIndex = 14;
             // 
@@ -364,6 +364,7 @@
             // 
             this.GroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.GroupBox.Controls.Add(this.LocalLabel);
             this.GroupBox.Controls.Add(this.FechaLabel);
             this.GroupBox.Controls.Add(this.CategoriaLabel);
             this.GroupBox.Controls.Add(this.TorneoLabel);
@@ -371,7 +372,6 @@
             this.GroupBox.Controls.Add(this.LocalNumericUpDown);
             this.GroupBox.Controls.Add(this.label4);
             this.GroupBox.Controls.Add(this.VisitanteLabel);
-            this.GroupBox.Controls.Add(this.LocalLabel);
             this.GroupBox.Controls.Add(this.label3);
             this.GroupBox.Controls.Add(this.label2);
             this.GroupBox.Controls.Add(this.label1);
@@ -440,17 +440,6 @@
             this.VisitanteLabel.TabIndex = 4;
             this.VisitanteLabel.Text = "Visitante";
             // 
-            // LocalLabel
-            // 
-            this.LocalLabel.AutoSize = true;
-            this.LocalLabel.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LocalLabel.Location = new System.Drawing.Point(197, 83);
-            this.LocalLabel.Name = "LocalLabel";
-            this.LocalLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.LocalLabel.Size = new System.Drawing.Size(46, 18);
-            this.LocalLabel.TabIndex = 3;
-            this.LocalLabel.Text = "Local";
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -480,6 +469,19 @@
             this.label1.Size = new System.Drawing.Size(48, 15);
             this.label1.TabIndex = 0;
             this.label1.Text = "Torneo:";
+            // 
+            // LocalLabel
+            // 
+            this.LocalLabel.BackColor = System.Drawing.SystemColors.Control;
+            this.LocalLabel.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.LocalLabel.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LocalLabel.Location = new System.Drawing.Point(48, 82);
+            this.LocalLabel.Name = "LocalLabel";
+            this.LocalLabel.ReadOnly = true;
+            this.LocalLabel.Size = new System.Drawing.Size(200, 18);
+            this.LocalLabel.TabIndex = 12;
+            this.LocalLabel.Text = "Local";
+            this.LocalLabel.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // JugarPartidoForm
             // 
@@ -536,7 +538,6 @@
         private System.Windows.Forms.NumericUpDown LocalNumericUpDown;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label VisitanteLabel;
-        private System.Windows.Forms.Label LocalLabel;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
@@ -550,5 +551,6 @@
         private System.Windows.Forms.Button AddAmarrillaButton;
         private System.Windows.Forms.TextBox CantidadAmarillaTextBox;
         private System.Windows.Forms.TextBox NombreAmarillaTextBox;
+        private System.Windows.Forms.TextBox LocalLabel;
     }
 }
