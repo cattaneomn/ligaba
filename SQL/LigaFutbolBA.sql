@@ -757,7 +757,7 @@ CREATE PROCEDURE [LigaBA].[p_ModificarEquipo]
 AS
 BEGIN transaction
         
-        IF EXISTS(SELECT 1 FROM LigaBA.Equipo WHERE nombre = @nombre AND categoria = @categoria AND institucion=@institucion )
+        IF EXISTS(SELECT 1 FROM LigaBA.Equipo WHERE nombre = @nombre AND categoria = @categoria AND institucion=@institucion AND id!=@id )
         BEGIN
                 RAISERROR ('No se puede modificar el equipo porque ya existe un equipo con ese nombre y categoria.',16,1)
                 ROLLBACK
@@ -855,7 +855,7 @@ CREATE PROCEDURE [LigaBA].[p_ModificarInstitucion]
 AS
 BEGIN transaction
         
-        IF EXISTS(SELECT 1 FROM LigaBA.Institucion WHERE nombre = @nombre)
+        IF EXISTS(SELECT 1 FROM LigaBA.Institucion WHERE nombre = @nombre AND id!=@id)
         BEGIN
                 RAISERROR ('Ya existe una institucion con ese nombre.',16,1)
                 ROLLBACK
