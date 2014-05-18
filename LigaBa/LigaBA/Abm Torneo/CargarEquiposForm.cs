@@ -233,7 +233,7 @@ namespace LigaBA.Abm_Torneo
 
         private void InsertarPartidos(bool apertura)
         {
-            foreach (Fecha partido in GenerarFixture.fixtureFinal.GetFechas())
+            foreach (Fecha partido in GenerarFixture.fixtureFinal.GetFechas())//Para carga manual AltaTorneoForm.fechas_inst)
             {
                 //TO DO VALIDAR
                 EquipoInsertado local;

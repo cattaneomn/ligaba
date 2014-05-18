@@ -49,12 +49,27 @@ namespace LigaBA.Abm_Torneo
             return instituciones;
         }
 
+        //Para carga manual
+        //public static List<Fecha> fechas_inst;
+
+
         private void CrearFixture()
         {
             GenerarFixture.Inicializar(this.cargarInstituciones());
             GenerarFixture.Generar();
+
+            //Carga manual del fixture
+            //List<Fecha> fixture_ins = new List<Fecha>();
+            //fixture_ins.Add(new Fecha(	, new Institucion(	, ""), new Institucion(	, "")));
+            //AltaTorneoForm.fechas_inst = fixture_ins;
+
             //MessageBox.Show(GenerarFixture.fixtureFinal.imprimirFixture());
+
+           
+            
         }
+
+        
 
         private void GuardarButton_Click(object sender, EventArgs e)
         {
