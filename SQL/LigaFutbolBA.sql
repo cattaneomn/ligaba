@@ -1478,7 +1478,7 @@ BEGIN transaction
         
         SELECT @TorneoXCategoria=id FROM LigaBA.TorneoXCategoria WHERE torneogeneral=@Torneo AND categoria=@Categoria
         
-        SELECT ROW_NUMBER() OVER(ORDER BY TCE.puntos DESC,(TCE.golesafavor - TCE.golesencontra) ASC) AS Pos,
+        SELECT ROW_NUMBER() OVER(ORDER BY TCE.puntos DESC,(TCE.golesafavor - TCE.golesencontra) DESC) AS Pos,
         E.nombre as Equipo,TCE.partidosjugados as PJ,TCE.partidosganados as PG,TCE.partidosempatados as PE,
         TCE.partidosperdidos as PP,TCE.golesafavor as GF, TCE.golesencontra as GC,TCE.puntos as Puntos 
         FROM LigaBA.TorneoXCategoriaXEquipo as TCE
