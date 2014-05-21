@@ -143,8 +143,9 @@ namespace LigaBA.Abm_Jugador
             }
 
             string JugadorBorrado =Jugador_DataGridView.CurrentRow.Cells["Id"].Value.ToString();
+            string NombreApellido = Jugador_DataGridView.CurrentRow.Cells["Nombre"].Value.ToString() + " " + Jugador_DataGridView.CurrentRow.Cells["Apellido"].Value.ToString();
 
-            DialogResult Resultado = MessageBox.Show("¿Esta seguro que desea eliminar al jugador '" + JugadorBorrado + "'?",this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult Resultado = MessageBox.Show("¿Esta seguro que desea eliminar al jugador '" + NombreApellido + "'?",this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (Resultado == DialogResult.Yes)
             {
                 List<SqlParameter> param = new List<SqlParameter>();
@@ -153,10 +154,8 @@ namespace LigaBA.Abm_Jugador
 
                 if (TerminoBien == true)
                 {
-                    
                     Jugador_DataGridView.Rows.Remove(Jugador_DataGridView.CurrentRow);
-                    MessageBox.Show("Se ha dado de baja al jugador '" + JugadorBorrado + "' correctamente.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    Jugador_DataGridView.DataSource = null;
+                    MessageBox.Show("Se ha dado de baja al jugador '" + NombreApellido + "' correctamente.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }

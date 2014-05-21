@@ -432,7 +432,21 @@ BEGIN transaction
                 IF NOT(EXISTS(SELECT 1 FROM LigaBA.JugadorXEquipo WHERE jugador = @id AND equipo = @equipo)) 
                 BEGIN
                     INSERT INTO LigaBA.JugadorXEquipo(jugador,equipo) VALUES (@id,@equipo)
-                END                                             
+                END     
+                
+                --Si el equipo esta jugando en algun torneo se agrga el jugador al torneo x categoria
+                IF(exists(SELECT 1 from LigaBA.TorneoXCategoriaXEquipo as TCE WHERE TCE.equipo=@equipo))
+                BEGIN           
+                    INSERT INTO LigaBA.TorneoXCategoriaXJugador
+                    SELECT TCE.torneoxcategoria,@id,0,0,0,0,1 
+                    from LigaBA.TorneoXCategoriaXEquipo as TCE
+                    WHERE equipo=@equipo
+                    AND NOT(EXISTS
+                    (SELECT 1 FROM LigaBA.TorneoXCategoriaXJugador AS TJ 
+                    WHERE TJ.jugador=@id AND TJ.torneoxcategoria=TCE.torneoxcategoria))
+                    --Si ya esta no lo crea(caso del jugador borrado)
+                END
+                                                    
         END 
         ELSE
         BEGIN
@@ -444,20 +458,20 @@ BEGIN transaction
             INSERT INTO LigaBA.JugadorXEquipo(jugador,equipo) VALUES (@jugador,@equipo)
             
             --Si el equipo esta jugando en algun torneo se agrga el jugador al torneo x categoria
-            IF(
-            exists(SELECT 1 FROM LigaBA.TorneoXCategoria  AS TC INNER JOIN LigaBA.Partido AS P ON P.torneoxcategoria = TC.id WHERE (P.equipolocal = @equipo OR P.equipovisitante = @equipo) AND P.goleslocal = -1 AND P.golesvisiante = -1) 
-            
-			)
-			BEGIN			
-				INSERT INTO LigaBA.TorneoXCategoriaXJugador
-				SELECT TC.id,@jugador,0,0,0,0,1 FROM LigaBA.TorneoXCategoria  AS TC
-					INNER JOIN LigaBA.Partido AS P ON P.torneoxcategoria = TC.id
-					WHERE (P.equipolocal = @equipo OR P.equipovisitante = @equipo) AND (P.goleslocal = -1 AND P.golesvisiante = -1) AND NOT(EXISTS(SELECT 1 FROM LigaBA.TorneoXCategoriaXJugador AS TJ WHERE TJ.jugador=@jugador AND TJ.torneoxcategoria=TC.ID))--Si ya esta no lo crea(caso del jugador borrado)
-			END
+            IF(exists(SELECT 1 from LigaBA.TorneoXCategoriaXEquipo WHERE equipo=@equipo))
+            BEGIN           
+                INSERT INTO LigaBA.TorneoXCategoriaXJugador
+                SELECT TCE.torneoxcategoria,@jugador,0,0,0,0,1 
+                from LigaBA.TorneoXCategoriaXEquipo as TCE
+                WHERE equipo=@equipo
+                AND NOT(EXISTS
+                (SELECT 1 FROM LigaBA.TorneoXCategoriaXJugador AS TJ 
+                WHERE TJ.jugador=@jugador AND TJ.torneoxcategoria=TCE.torneoxcategoria))
+                --Si ya esta no lo crea(caso del jugador borrado)
+            END
             
         END
 COMMIT
-
 GO
 
 
