@@ -61,7 +61,7 @@ namespace LigaBA.Web
 
         private void BuscarButton_Click(object sender, EventArgs e)
         {
-            string Consulta1 = "select * from liga.institucion";
+            string Consulta1 = "select * from ligaba.institucion";
 
             List<SqlParameter> param1 = new List<SqlParameter>();
 
@@ -92,6 +92,10 @@ namespace LigaBA.Web
             direccion.DataType = "text";
             direccion.DestinationColumn = "direccion";
             direccion.SourceColumn = "direccion";
+
+            localidad.DataType = "text";
+            localidad.DestinationColumn = "localidad";
+            localidad.SourceColumn = "localidad";
 
 
             delegado.DataType = "text";
@@ -127,16 +131,15 @@ namespace LigaBA.Web
             collection.Add(email);
             collection.Add(borrado);
 
+            connectionString = "Server=127.0.0.1; Port=3306; Database=ligabadbweb ;Uid=root; Pwd=;";
+            Connection.ConnectionString = connectionString;
+            Connection.Open();
 
             MySqlBulkCopy upload = new MySqlBulkCopy();
-            upload.DestinationTableName = "session";
-            upload.Upload(reader);
-            reader.Close();
-            connection.Close();
-            connection.Dispose();
-            sourceConnection.Close();
-            sourceConnection.Dispose();
-
+            upload.DestinationTableName = "institucion";
+            upload.Upload(Dt);
+            Connection.Close();
+            Connection.Dispose();
 
 
             if (Equipos_DataGridView.DataSource == null)
