@@ -61,13 +61,82 @@ namespace LigaBA.Web
 
         private void BuscarButton_Click(object sender, EventArgs e)
         {
+            string Consulta1 = "select * from liga.institucion";
 
-        
-            string Consulta = "Select * from ligabadbweb.institucion";
+            List<SqlParameter> param1 = new List<SqlParameter>();
 
-            List<SqlParameter> param = new List<SqlParameter>();
+            DataTable Dt = BaseDeDatos.GetInstance.ExecuteCustomQuery(Consulta1, param1, this.Text);
 
-            Equipos_DataGridView.DataSource = ExecuteCustomQuery(Consulta, param, this.Text);
+
+            ColumnMapItem id = new ColumnMapItem();
+            ColumnMapItem nombre = new ColumnMapItem();
+            ColumnMapItem direccion = new ColumnMapItem();
+            ColumnMapItem localidad = new ColumnMapItem();
+            ColumnMapItem delegado = new ColumnMapItem();
+            ColumnMapItem coordinador = new ColumnMapItem();
+            ColumnMapItem telefono = new ColumnMapItem();
+            ColumnMapItem email = new ColumnMapItem();
+            ColumnMapItem borrado = new ColumnMapItem();
+
+
+
+            id.DataType = "int";
+            id.DestinationColumn = "id";
+            id.SourceColumn = "id";
+
+            nombre.DataType = "text";
+            nombre.DestinationColumn = "nombre";
+            nombre.SourceColumn = "nombre";
+
+
+            direccion.DataType = "text";
+            direccion.DestinationColumn = "direccion";
+            direccion.SourceColumn = "direccion";
+
+
+            delegado.DataType = "text";
+            delegado.DestinationColumn = "delegado";
+            delegado.SourceColumn = "delegado";
+
+
+            coordinador.DataType = "text";
+            coordinador.DestinationColumn = "coordinador";
+            coordinador.SourceColumn = "coordinador";
+
+            telefono.DataType = "text";
+            telefono.DestinationColumn = "telefono";
+            telefono.SourceColumn = "telefono";
+
+            email.DataType = "text";
+            email.DestinationColumn = "email";
+            email.SourceColumn = "email";
+
+            borrado.DataType = "int";
+            borrado.DestinationColumn = "borrado";
+            borrado.SourceColumn = "borrado";
+
+
+            ColumnMapItemCollection collection = new ColumnMapItemCollection();
+            collection.Add(id);
+            collection.Add(nombre);
+            collection.Add(direccion);
+            collection.Add(localidad);
+            collection.Add(delegado);
+            collection.Add(coordinador);
+            collection.Add(telefono);
+            collection.Add(email);
+            collection.Add(borrado);
+
+
+            MySqlBulkCopy upload = new MySqlBulkCopy();
+            upload.DestinationTableName = "session";
+            upload.Upload(reader);
+            reader.Close();
+            connection.Close();
+            connection.Dispose();
+            sourceConnection.Close();
+            sourceConnection.Dispose();
+
 
 
             if (Equipos_DataGridView.DataSource == null)
