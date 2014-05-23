@@ -413,7 +413,7 @@ CREATE PROCEDURE [LigaBA].[p_AltaJugador]
 AS
 BEGIN transaction
         
-        IF EXISTS(SELECT 1 FROM LigaBA.Jugador INNER JOIN LigaBA.JugadorXEquipo AS JXE ON JXE.equipo=@equipo WHERE  dni = @dni AND borrado=0)
+        IF EXISTS(SELECT 1 FROM LigaBA.Jugador WHERE  dni = @dni AND borrado=0) AND EXISTS(SELECT 1 FROM LigaBA.Jugador AS J INNER JOIN LigaBA.JugadorXEquipo AS JXE ON J.id = JXE.jugador WHERE J.dni = @dni AND JXE.equipo=@equipo AND J.borrado = 0)
         BEGIN
                 RAISERROR ('El jugador que intenta agregar ya existe en ese equipo.',16,1)
                 ROLLBACK
@@ -422,7 +422,7 @@ BEGIN transaction
         
         declare @id int
         
-        IF EXISTS(SELECT 1 FROM LigaBA.Jugador INNER JOIN LigaBA.JugadorXEquipo AS JXE ON JXE.equipo=@equipo WHERE dni = @dni AND borrado=1)
+        IF EXISTS(SELECT 1 FROM LigaBA.Jugador WHERE  dni = @dni AND borrado=1) AND EXISTS(SELECT 1 FROM LigaBA.Jugador AS J INNER JOIN LigaBA.JugadorXEquipo AS JXE ON J.id = JXE.jugador WHERE J.dni = @dni AND JXE.equipo=@equipo AND J.borrado = 1)
         BEGIN   
                 SELECT @id=id FROM LigaBA.Jugador WHERE dni = @dni AND borrado=1
 
