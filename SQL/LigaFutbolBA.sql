@@ -44,7 +44,7 @@ GO
 --JUGADOR
 CREATE TABLE LigaBA.Jugador(
         id int IDENTITY NOT NULL,
-        dni int NOT NULL UNIQUE,
+        dni int NOT NULL,
         nombre nvarchar(50) NOT NULL,
         apellido nvarchar(50) NOT NULL,
         fecha_de_nacimiento date NOT NULL,
@@ -413,16 +413,16 @@ CREATE PROCEDURE [LigaBA].[p_AltaJugador]
 AS
 BEGIN transaction
         
-        IF EXISTS(SELECT 1 FROM LigaBA.Jugador WHERE dni = @dni AND borrado=0)
+        IF EXISTS(SELECT 1 FROM LigaBA.Jugador INNER JOIN LigaBA.JugadorXEquipo AS JXE ON JXE.equipo=@equipo WHERE  dni = @dni AND borrado=0)
         BEGIN
-                RAISERROR ('El jugador que intenta agregar ya existe.',16,1)
+                RAISERROR ('El jugador que intenta agregar ya existe en ese equipo.',16,1)
                 ROLLBACK
                 RETURN          
         END                
         
         declare @id int
         
-        IF EXISTS(SELECT 1 FROM LigaBA.Jugador WHERE dni = @dni AND borrado=1)
+        IF EXISTS(SELECT 1 FROM LigaBA.Jugador INNER JOIN LigaBA.JugadorXEquipo AS JXE ON JXE.equipo=@equipo WHERE dni = @dni AND borrado=1)
         BEGIN   
                 SELECT @id=id FROM LigaBA.Jugador WHERE dni = @dni AND borrado=1
 
