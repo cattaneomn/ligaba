@@ -1,4 +1,1 @@
-1- Agregar Torneo apertura y clausura.
-2- Agregar Imprimir jugadores en abmJugadores.
-3 - agregar imprimir datos de instituciones de las instituciones que participan en un torneo
-iria en abm torneo un boton.
+1-Agregar Reporte fecha completa.
