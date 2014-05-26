@@ -10,7 +10,11 @@ using System.Data.SqlClient;
 using System.Diagnostics;
 using System.IO;
 using System.Net;
-
+using Ionic;
+using Ionic.Zip;
+using Ionic.BZip2;
+using Ionic.Crc;
+using Ionic.Zlib;
 
 namespace LigaBA.Web
 {
@@ -35,23 +39,26 @@ namespace LigaBA.Web
                 ExecuteCommand(ArmarConsulta(tabla));
            }
 
+           //Zip files
+           ZipFiles();
+
            //Enviar archivos
            SendFile();
-
+  
            //Borrar csv de tablas
            foreach (string tabla in tablas)
            {
-                DeleteFile(tabla);
+                DeleteFile(tabla,".csv");
            }
-           
+
+           DeleteFile("Send", ".zip");
         }
 
         private void SendFile()
         {
             string address= "http://127.0.0.1:81/Ingeniar/Prueba.php";
-            string filePath = ".\\institucion.csv";
-            //string filePath = "C:\\Users\\sa\\Documents\\GitHub\\ligaba\\TO DO.txt";
-
+            string filePath = ".\\Send.zip";
+       
             WebClient myWebClient = new WebClient();
             // Upload the file to the URL using the HTTP 1.0 POST.
             byte[] responseArray = myWebClient.UploadFile(address, "POST", filePath);
@@ -59,6 +66,18 @@ namespace LigaBA.Web
             richTextBox1.Text = System.Text.Encoding.ASCII.GetString(responseArray);
         }
 
+        private void ZipFiles()
+        {
+            using (ZipFile zip = new ZipFile())
+            {
+                foreach (string tabla in tablas)
+                {
+                    // add a named entry to the zip file, using a string for content
+                    zip.AddFile(tabla + ".csv", ".\\");
+                }
+                zip.Save(".\\Send.zip");
+            }
+        }
 
         private string ArmarConsulta(string tabla)
         {
@@ -87,13 +106,13 @@ namespace LigaBA.Web
             Console.WriteLine(result);
         }
 
-        private void DeleteFile(string tabla)
+        private void DeleteFile(string tabla,string extension)
         {
-            if (System.IO.File.Exists(@".\\" + tabla + ".csv"))
+            if (System.IO.File.Exists(@".\\" + tabla + extension))
             {
                 try
                 {
-                    System.IO.File.Delete(@".\\" + tabla + ".csv");  
+                    System.IO.File.Delete(@".\\" + tabla + extension);  
                 }
                 catch (System.IO.IOException e)
                 {
@@ -101,6 +120,7 @@ namespace LigaBA.Web
                 }
             }
         }
+
 
         private string GetValue(string connectionString, params string[] keyAliases)
         {
@@ -137,107 +157,10 @@ namespace LigaBA.Web
             tablas.Add("torneoxcategoria");
             tablas.Add("torneoxcategoriaxjugador");
             tablas.Add("torneoxcategoriaxequipo");
-            tablas.Add("usuarios");
             tablas.Add("partido");
             tablas.Add("partidoxjugador");
             tablas.Add("jugadorxequipo");
         }
-    
-
-/*
-            private void Enviar(string[] args)
-            {
-                string URLAuth = "https://technet.rapaport.com/HTTP/Authenticate.aspx";
-                WebClient webClient = new WebClient();
-
-                NameValueCollection formData = new NameValueCollection();
-                formData["Username"] = "myUser";
-                formData["Password"] = "myPassword";
-
-                byte[] responseBytes = webClient.UploadValues(URLAuth, "POST", formData);
-                string resultAuthTicket = Encoding.UTF8.GetString(responseBytes);
-                webClient.Dispose();
-
-                string URL = "http://technet.rapaport.com/HTTP/Upload/Upload.aspx?Method=file";
-                string boundary = "----------------------------" + DateTime.Now.Ticks.ToString("x");
-                System.Net.WebRequest webRequest = System.Net.WebRequest.Create(URL);
-
-                webRequest.Method = "POST";
-                webRequest.ContentType = "multipart/form-data; boundary=" + boundary;
-
-                string FilePath = "C:\\test.csv";
-                formData.Clear();
-                formData["ticket"] = resultAuthTicket;
-                formData["ReplaceAll"] = "false";
-
-                Stream postDataStream = GetPostStream(FilePath, formData, boundary);
-
-                webRequest.ContentLength = postDataStream.Length;
-                Stream reqStream = webRequest.GetRequestStream();
-
-                postDataStream.Position = 0;
-
-                byte[] buffer = new byte[1024];
-                int bytesRead = 0;
-
-                while ((bytesRead = postDataStream.Read(buffer, 0, buffer.Length)) != 0)
-                {
-                reqStream.Write(buffer, 0, bytesRead);
-                }
-
-                postDataStream.Close();
-                reqStream.Close();
-
-                StreamReader sr = new StreamReader(webRequest.GetResponse().GetResponseStream());
-                string Result = sr.ReadToEnd();
-            }
-
-            private static Stream GetPostStream(string filePath, NameValueCollection formData, string boundary)
-            {
-                Stream postDataStream = new System.IO.MemoryStream();
-
-                //adding form data
-                string formDataHeaderTemplate = Environment.NewLine + "--" + boundary + Environment.NewLine +
-                "Content-Disposition: form-data; name=\"{0}\";" + Environment.NewLine + Environment .NewLine + "{1}";
-
-                foreach (string key in formData.Keys)
-                {
-                byte[] formItemBytes = System.Text.Encoding.UTF8.GetBytes(string.Format(formDataHeaderTemplate,
-                key, formData[key]));
-                postDataStream.Write(formItemBytes, 0, formItemBytes.Length);
-                }
-
-                //adding file data
-                FileInfo fileInfo = new FileInfo(filePath);
-
-                string fileHeaderTemplate = Environment.NewLine + "--" + boundary + Environment.NewLine +
-                "Content-Disposition: form-data; name=\"{0}\"; filename=\"{1}\"" +
-                Environment.NewLine + "Content-Type: application/vnd.ms-excel" + Environment.NewLine + Environment.NewLine;
-
-                byte[] fileHeaderBytes = System.Text.Encoding.UTF8.GetBytes(string.Format(fileHeaderTemplate,
-                "UploadCSVFile", fileInfo.FullName));
-
-                postDataStream.Write(fileHeaderBytes, 0, fileHeaderBytes.Length);
-
-                FileStream fileStream = fileInfo.OpenRead();
-
-                byte[] buffer = new byte[1024];
-
-                int bytesRead = 0;
-
-                while ((bytesRead = fileStream.Read(buffer, 0, buffer.Length)) != 0)
-                {
-                postDataStream.Write(buffer, 0, bytesRead);
-                }
-
-                fileStream.Close();
-
-                byte[] endBoundaryBytes = System.Text.Encoding.UTF8.GetBytes("--" + boundary + "--");
-                postDataStream.Write(endBoundaryBytes, 0, endBoundaryBytes.Length);
-
-                return postDataStream;
-            }
-            }*/
     
     }      
 }
