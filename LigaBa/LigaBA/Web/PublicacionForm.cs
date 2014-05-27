@@ -15,12 +15,13 @@ using Ionic.Zip;
 using Ionic.BZip2;
 using Ionic.Crc;
 using Ionic.Zlib;
+using LigaBA.Clases;
 
 namespace LigaBA.Web
 {
-    public partial class PublicacionForm : Form
+    public partial class PublicacionesForm : Form
     {
-        public PublicacionForm()
+        public PublicacionesForm()
         {
             InitializeComponent();
         }
@@ -29,9 +30,11 @@ namespace LigaBA.Web
         string user;
         string password;
         string server;
+        string consulta;
 
         private void BuscarButton_Click(object sender, EventArgs e)
         {
+            ArmarQuery();
 
            //Crear csv de tablas
            foreach (string tabla in tablas)
@@ -52,6 +55,41 @@ namespace LigaBA.Web
            }
 
            DeleteFile("Send", ".zip");
+
+           LimpiarCheckBoxList();
+        }
+
+        private void LimpiarCheckBoxList()
+        {
+            for (int i = 0; i < this.TorneosCheckedListBox.Items.Count; i++)
+            {
+                this.TorneosCheckedListBox.SetItemCheckState(i, CheckState.Unchecked);
+
+            }
+        }
+        
+        private void ArmarQuery()
+        {
+            string torneo = " torneogeneral = ";
+            string conector = " OR ";
+            consulta = "SELECT id FROM Ligaba.torneoxcategoria WHERE ";
+            int contador = 0;
+
+            foreach (var itemChecked in this.TorneosCheckedListBox.CheckedItems)
+            {
+                if (contador == 0)
+                {
+                    var row = (itemChecked as DataRowView).Row;
+                    consulta += torneo + row["id"].ToString();
+                    contador++;
+                }
+                else
+                {
+                    var row = (itemChecked as DataRowView).Row;
+                    consulta += conector + torneo + row["id"].ToString();
+                    contador++;
+                }
+            }
         }
 
         private void SendFile()
@@ -81,8 +119,28 @@ namespace LigaBA.Web
 
         private string ArmarConsulta(string tabla)
         {
-            string Command = "bcp \"select * from ligabadb.LigaBA." + tabla + "\" queryout \".\\" + tabla + ".csv\" -U "+ user + " -P " + password +" -c -S " + server;
-            return Command;
+            string query = " WHERE torneoxcategoria IN (";
+            string queryPartidoxjugador = " WHERE partido IN (SELECT id FROM LigaBA.Partido ";
+            string Command;
+            if (tabla != "torneo" || tabla != "torneoxcategoria" ||
+                tabla != "torneoxcategoriaxequipo" || tabla != "torneoxcategoriaxjugador" || tabla != "partido")
+            {
+                Command = "bcp \"select * from ligabadb.LigaBA." + tabla + "\" queryout \".\\" + tabla + ".csv\" -U " + user + " -P " + password + " -c -S " + server;
+                return Command;
+            }
+            else
+            {
+                if (tabla != "partidoxjugador")
+                {
+                    Command = "bcp \"select * from ligabadb.LigaBA." + tabla + query + consulta +")" + "\" queryout \".\\" + tabla + ".csv\" -U " + user + " -P " + password + " -c -S " + server;
+                    return Command;
+                }
+                else
+                {
+                    Command = "bcp \"select * from ligabadb.LigaBA." + tabla + queryPartidoxjugador + query + consulta + ")" + "\" queryout \".\\" + tabla + ".csv\" -U " + user + " -P " + password + " -c -S " + server;
+                    return Command;
+                }
+            }
         }
 
         static void ExecuteCommand(string _Command)
@@ -114,7 +172,7 @@ namespace LigaBA.Web
                 {
                     System.IO.File.Delete(@".\\" + tabla + extension);  
                 }
-                catch (System.IO.IOException e)
+                catch 
                 {
                     return;
                 }
@@ -153,13 +211,21 @@ namespace LigaBA.Web
             tablas.Add("equipo");
             tablas.Add("jugador");
             tablas.Add("tipodetorneo");
+            tablas.Add("jugadorxequipo");
             tablas.Add("torneo");
             tablas.Add("torneoxcategoria");
             tablas.Add("torneoxcategoriaxjugador");
             tablas.Add("torneoxcategoriaxequipo");
             tablas.Add("partido");
             tablas.Add("partidoxjugador");
-            tablas.Add("jugadorxequipo");
+            
+
+            CargadorDeDatos.CargarTorneosCheckedListBox(TorneosCheckedListBox, this.Text);
+        }
+
+        private void CancelarButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     
     }      

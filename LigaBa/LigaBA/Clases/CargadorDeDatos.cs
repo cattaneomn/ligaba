@@ -100,9 +100,15 @@ namespace LigaBA.Clases
         {
             CargadorDeDatos.CargarCheckedListBox("select id,nombre from LigaBA.Categoria WHERE borrado=0", new List<SqlParameter>(), checkedListBox, txt, "id", "nombre");
         }
+
         public static void CargarInstitucionesCheckedListBox(CheckedListBox checkedListBox, string txt)
         {
             CargadorDeDatos.CargarCheckedListBox("select id,nombre from LigaBA.Institucion WHERE borrado=0", new List<SqlParameter>(), checkedListBox, txt, "id", "nombre");
+        }
+
+        public static void CargarTorneosCheckedListBox(CheckedListBox checkedListBox, string txt)
+        {
+            CargadorDeDatos.CargarCheckedListBox("select id,nombre from LigaBA.Torneo", new List<SqlParameter>(), checkedListBox, txt, "id", "nombre");
         }
 
     }
