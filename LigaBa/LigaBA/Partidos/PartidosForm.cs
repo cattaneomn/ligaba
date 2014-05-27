@@ -293,6 +293,7 @@ namespace LigaBA.Partidos
 
         string idTorneo;
         string nomTorneo;
+        string fecha;
 
         private void ImprimirPosicionesButton_Click(object sender, EventArgs e)
         {
@@ -301,9 +302,15 @@ namespace LigaBA.Partidos
                 MessageBox.Show("Debe seleccionar un torneo obligatoriamente.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
+            if (FechaComboBox.SelectedValue == null)
+            {
+                MessageBox.Show("Debe seleccionar una fecha obligatoriamente.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
 
             idTorneo = TorneosComboBox.SelectedValue.ToString();
             nomTorneo = TorneosComboBox.Text;
+            fecha = FechaComboBox.Text;
 
             Thread hilo = new Thread(AbrirFormReporteXCategoria);
             hilo.SetApartmentState(System.Threading.ApartmentState.STA);
@@ -313,7 +320,7 @@ namespace LigaBA.Partidos
 
         private void AbrirFormReporteXCategoria()
         {
-            ReporteFechaForm abrir = new ReporteFechaForm(nomTorneo, idTorneo);
+            ReporteFechaForm abrir = new ReporteFechaForm(nomTorneo, idTorneo,fecha);
             abrir.ShowDialog();
         }
     }

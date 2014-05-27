@@ -1589,6 +1589,30 @@ BEGIN transaction
 COMMIT
 GO
 
+--REPORTE FECHA RESULTADOS
+CREATE PROCEDURE [LigaBA].[p_ReporteFechaResultados]
+(
+        @Torneo int,
+        @Fecha int
+)       
+AS
+BEGIN transaction
+
+        SELECT C.nombre as Categoria,P.fecha as Fecha,LigaBA.f_NombreEquipo(P.equipolocal) as Local,
+        CASE 
+          WHEN P.goleslocal >= 0 THEN (CAST(P.goleslocal as nvarchar(10)) + ' - ' + CAST(P.golesvisiante as nvarchar(10))) 
+          WHEN P.goleslocal  < 0 THEN ' - '  
+        END as Resultado,
+        LigaBA.f_NombreEquipo(P.equipovisitante) as Visitante 
+        FROM LigaBA.Partido as P
+        INNER JOIN LigaBA.TorneoXCategoria AS TC ON TC.id = P.torneoxcategoria
+        INNER JOIN LigaBA.Categoria as C ON C.id=TC.categoria
+        WHERE P.fecha=@Fecha AND P.torneoxcategoria IN 
+        (SELECT id FROM LigaBA.TorneoXCategoria WHERE torneogeneral=@Torneo)
+       
+COMMIT
+GO
+
 --CONTROL DE SUSPENCIONES
 CREATE TRIGGER [LigaBA].[t_suspencion]
 	ON [LigaBA].[TorneoXCategoriaXJugador]

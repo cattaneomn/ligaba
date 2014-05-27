@@ -17,16 +17,18 @@ namespace LigaBA.Partidos
 {
     public partial class ReporteFechaForm : Form
     {
-        public ReporteFechaForm(string nombreTorneo,string idTorneo)
+        public ReporteFechaForm(string nombreTorneo,string idTorneo, string fecha)
         {
             InitializeComponent();
 
             this.nombreTorneo = nombreTorneo;
             this.idTorneo = idTorneo;
+            this.fecha = fecha;
         }
 
         string nombreTorneo;
         string idTorneo;
+        string fecha;
 
 
 
@@ -36,6 +38,12 @@ namespace LigaBA.Partidos
             param.Add(new SqlParameter("@Torneo", idTorneo));
 
             DataSet ds = BaseDeDatos.GetInstance.ejecutarConsulta("p_ReporteFechaPosicionesXCategoria", param, "PosicionesXCategoria", this.Text);
+
+            List<SqlParameter> param3 = new List<SqlParameter>();
+            param3.Add(new SqlParameter("@Torneo", idTorneo));
+            param3.Add(new SqlParameter("@Fecha", fecha));
+
+            DataSet ds3 = BaseDeDatos.GetInstance.ejecutarConsulta("p_ReporteFechaResultados", param3, "Resultados", this.Text);
             
             //Me fijo si tiene tabla general
             CargadorDeDatos.CargarTorneoGeneralComboBox(this.TorneosComboBox, this.Text);
@@ -47,6 +55,7 @@ namespace LigaBA.Partidos
                 List<SqlParameter> param2 = new List<SqlParameter>();
                 param2.Add(new SqlParameter("@Torneo", idTorneo));
                 ds2 = BaseDeDatos.GetInstance.ejecutarConsulta("p_BuscarPosicionesGeneral", param2, "PosicionesGeneral", this.Text);
+            
             }
             FechaReporte Repo = new FechaReporte();
 
@@ -55,13 +64,17 @@ namespace LigaBA.Partidos
             TorneoRepo = (TextObject)Repo.ReportDefinition.ReportObjects["nombreTorneo"];
             TorneoRepo.Text = nombreTorneo;
 
+            TextObject FechaRepo;
+            FechaRepo = (TextObject)Repo.ReportDefinition.ReportObjects["FechaText"];
+            FechaRepo.Text = fecha;
+
 
             if (this.TorneosComboBox.SelectedValue != null)
             {
                 Repo.Subreports[0].SetDataSource(ds2.Tables[0]);
             }
-            
-            
+
+            Repo.Subreports[1].SetDataSource(ds3.Tables[0]);
             Repo.SetDataSource(ds.Tables[0]);
 
             //doy Resporte al form
