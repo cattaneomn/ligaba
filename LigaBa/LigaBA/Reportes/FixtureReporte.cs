@@ -16,14 +16,14 @@ namespace LigaBA.Reportes {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class Fixture1 : ReportClass {
+    public class FixtureReporte : ReportClass {
         
-        public Fixture1() {
+        public FixtureReporte() {
         }
         
         public override string ResourceName {
             get {
-                return "Fixture1.rpt";
+                return "FixtureReporte.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace LigaBA.Reportes {
         
         public override string FullResourceName {
             get {
-                return "LigaBA.Reportes.Fixture1.rpt";
+                return "LigaBA.Reportes.FixtureReporte.rpt";
             }
             set {
                 // Do nothing
@@ -66,7 +66,7 @@ namespace LigaBA.Reportes {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section Section3 {
+        public CrystalDecisions.CrystalReports.Engine.Section GroupHeaderSection1 {
             get {
                 return this.ReportDefinition.Sections[2];
             }
@@ -74,7 +74,7 @@ namespace LigaBA.Reportes {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section Section4 {
+        public CrystalDecisions.CrystalReports.Engine.Section Section3 {
             get {
                 return this.ReportDefinition.Sections[3];
             }
@@ -82,17 +82,33 @@ namespace LigaBA.Reportes {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section Section5 {
+        public CrystalDecisions.CrystalReports.Engine.Section GroupFooterSection1 {
             get {
                 return this.ReportDefinition.Sections[4];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.CrystalReports.Engine.Section Section4 {
+            get {
+                return this.ReportDefinition.Sections[5];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.CrystalReports.Engine.Section Section5 {
+            get {
+                return this.ReportDefinition.Sections[6];
             }
         }
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedFixture1 : Component, ICachedReport {
+    public class CachedFixtureReporte : Component, ICachedReport {
         
-        public CachedFixture1() {
+        public CachedFixtureReporte() {
         }
         
         [Browsable(false)]
@@ -129,7 +145,7 @@ namespace LigaBA.Reportes {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            Fixture1 rpt = new Fixture1();
+            FixtureReporte rpt = new FixtureReporte();
             rpt.Site = this.Site;
             return rpt;
         }

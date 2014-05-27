@@ -50,7 +50,7 @@ namespace LigaBA.Fixture
             DataSet ds = BaseDeDatos.GetInstance.ejecutarConsulta("p_BuscarFixture", param, "Fixture", this.Text);
 
             //Reporte Jugadores
-            Fixture1 Repo = new Fixture1();
+            FixtureReporte Repo = new FixtureReporte();
 
             //Repo.ExportToDisk(ExportFormatType.PortableDocFormat, "Instituciones");
 
