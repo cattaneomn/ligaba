@@ -47,6 +47,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.CategoriasComboBox = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.ImprimirPosicionesButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Partidos_DataGridView)).BeginInit();
             this.GroupBox.SuspendLayout();
             this.SuspendLayout();
@@ -256,6 +257,21 @@
             this.label6.TabIndex = 25;
             this.label6.Text = "Categoria*";
             // 
+            // ImprimirPosicionesButton
+            // 
+            this.ImprimirPosicionesButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ImprimirPosicionesButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ImprimirPosicionesButton.Image = ((System.Drawing.Image)(resources.GetObject("ImprimirPosicionesButton.Image")));
+            this.ImprimirPosicionesButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ImprimirPosicionesButton.Location = new System.Drawing.Point(458, 156);
+            this.ImprimirPosicionesButton.Name = "ImprimirPosicionesButton";
+            this.ImprimirPosicionesButton.Size = new System.Drawing.Size(152, 35);
+            this.ImprimirPosicionesButton.TabIndex = 30;
+            this.ImprimirPosicionesButton.Text = " Imprimir Fecha";
+            this.ImprimirPosicionesButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.ImprimirPosicionesButton.UseVisualStyleBackColor = true;
+            this.ImprimirPosicionesButton.Click += new System.EventHandler(this.ImprimirPosicionesButton_Click);
+            // 
             // PartidosForm
             // 
             this.AcceptButton = this.BuscarButton;
@@ -263,6 +279,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.CancelarButton;
             this.ClientSize = new System.Drawing.Size(784, 562);
+            this.Controls.Add(this.ImprimirPosicionesButton);
             this.Controls.Add(this.GroupBox);
             this.Controls.Add(this.ImprimirPartidoButton);
             this.Controls.Add(this.ModificarButton);
@@ -300,5 +317,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox TorneosComboBox;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button ImprimirPosicionesButton;
     }
 }

@@ -289,6 +289,32 @@ namespace LigaBA.Partidos
                 }
             }
 	
+        }
+
+        string idTorneo;
+        string nomTorneo;
+
+        private void ImprimirPosicionesButton_Click(object sender, EventArgs e)
+        {
+            if (TorneosComboBox.SelectedValue == null)
+            {
+                MessageBox.Show("Debe seleccionar un torneo obligatoriamente.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            idTorneo = TorneosComboBox.SelectedValue.ToString();
+            nomTorneo = TorneosComboBox.Text;
+
+            Thread hilo = new Thread(AbrirFormReporteXCategoria);
+            hilo.SetApartmentState(System.Threading.ApartmentState.STA);
+            hilo.Start();
         }        
+
+
+        private void AbrirFormReporteXCategoria()
+        {
+            ReporteFechaForm abrir = new ReporteFechaForm(nomTorneo, idTorneo);
+            abrir.ShowDialog();
+        }
     }
 }

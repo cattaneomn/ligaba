@@ -37,12 +37,15 @@
             this.torneoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fixtureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.partidosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.posicionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.goleadoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Usuarios = new System.Windows.Forms.ToolStripMenuItem();
             this.configuracionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.categoriasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tipoDeTorneoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.backUpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -52,8 +55,6 @@
             this.InstitucionesButton = new System.Windows.Forms.Button();
             this.JugadoresButton = new System.Windows.Forms.Button();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
-            this.posicionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.goleadoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -120,6 +121,20 @@
             this.partidosToolStripMenuItem.Text = "Partidos";
             this.partidosToolStripMenuItem.Click += new System.EventHandler(this.partidosToolStripMenuItem_Click);
             // 
+            // posicionesToolStripMenuItem
+            // 
+            this.posicionesToolStripMenuItem.Name = "posicionesToolStripMenuItem";
+            this.posicionesToolStripMenuItem.Size = new System.Drawing.Size(88, 20);
+            this.posicionesToolStripMenuItem.Text = "Posiciones";
+            this.posicionesToolStripMenuItem.Click += new System.EventHandler(this.posicionesToolStripMenuItem_Click);
+            // 
+            // goleadoresToolStripMenuItem
+            // 
+            this.goleadoresToolStripMenuItem.Name = "goleadoresToolStripMenuItem";
+            this.goleadoresToolStripMenuItem.Size = new System.Drawing.Size(93, 20);
+            this.goleadoresToolStripMenuItem.Text = "Goleadores";
+            this.goleadoresToolStripMenuItem.Click += new System.EventHandler(this.goleadoresToolStripMenuItem_Click);
+            // 
             // Usuarios
             // 
             this.Usuarios.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -164,6 +179,7 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.panel1.Controls.Add(this.button5);
             this.panel1.Controls.Add(this.button4);
             this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.button2);
@@ -176,6 +192,20 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1008, 95);
             this.panel1.TabIndex = 1;
+            // 
+            // button5
+            // 
+            this.button5.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button5.Image = ((System.Drawing.Image)(resources.GetObject("button5.Image")));
+            this.button5.Location = new System.Drawing.Point(881, 3);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(109, 89);
+            this.button5.TabIndex = 16;
+            this.button5.Text = "Web";
+            this.button5.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.button5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button4
             // 
@@ -294,20 +324,6 @@
             this.notifyIcon1.Text = "notifyIcon1";
             this.notifyIcon1.Visible = true;
             // 
-            // posicionesToolStripMenuItem
-            // 
-            this.posicionesToolStripMenuItem.Name = "posicionesToolStripMenuItem";
-            this.posicionesToolStripMenuItem.Size = new System.Drawing.Size(88, 20);
-            this.posicionesToolStripMenuItem.Text = "Posiciones";
-            this.posicionesToolStripMenuItem.Click += new System.EventHandler(this.posicionesToolStripMenuItem_Click);
-            // 
-            // goleadoresToolStripMenuItem
-            // 
-            this.goleadoresToolStripMenuItem.Name = "goleadoresToolStripMenuItem";
-            this.goleadoresToolStripMenuItem.Size = new System.Drawing.Size(93, 20);
-            this.goleadoresToolStripMenuItem.Text = "Goleadores";
-            this.goleadoresToolStripMenuItem.Click += new System.EventHandler(this.goleadoresToolStripMenuItem_Click);
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -355,6 +371,7 @@
         private System.Windows.Forms.ToolStripMenuItem partidosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem posicionesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem goleadoresToolStripMenuItem;
+        private System.Windows.Forms.Button button5;
 
     }
 }

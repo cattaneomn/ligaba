@@ -18,6 +18,7 @@ using LigaBA.Partidos;
 using LigaBA.Fixture;
 using LigaBA.Goleadores;
 using LigaBA.Posiciones;
+using LigaBA.Web;
 
 
 
@@ -155,6 +156,12 @@ namespace LigaBA
         private void goleadoresToolStripMenuItem_Click(object sender, EventArgs e)
         {
             GoleadoresForm abrir = new GoleadoresForm();
+            abrir.ShowDialog();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            PublicacionesForm abrir = new PublicacionesForm();
             abrir.ShowDialog();
         }
 

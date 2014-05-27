@@ -1569,6 +1569,26 @@ COMMIT
 
 GO
 
+--REPORTE FECHA POSICIONESXCATEGORIA
+CREATE PROCEDURE [LigaBA].[p_ReporteFechaPosicionesXCategoria]
+(
+        @Torneo int
+)       
+AS
+BEGIN transaction
+
+    SELECT C.nombre,ROW_NUMBER() OVER(PARTITION BY C.nombre ORDER BY TCE.puntos DESC,(TCE.golesafavor - TCE.golesencontra) DESC) AS Pos,
+    E.nombre as Equipo,TCE.partidosjugados as PJ,TCE.partidosganados as PG,TCE.partidosempatados as PE,
+    TCE.partidosperdidos as PP,TCE.golesafavor as GF, TCE.golesencontra as GC,TCE.puntos as Puntos 
+    FROM LigaBA.TorneoXCategoriaXEquipo as TCE
+    JOIN LigaBA.Equipo as E ON E.id=TCE.equipo
+    JOIN LigaBA.TorneoXCategoria AS TC ON TC.id=TCE.torneoxcategoria
+    JOIN LigaBA.Categoria as C ON C.id=TC.categoria
+    WHERE torneoxcategoria IN (SELECT id FROM LigaBA.TorneoXCategoria WHERE torneogeneral=@Torneo)
+
+COMMIT
+GO
+
 --CONTROL DE SUSPENCIONES
 CREATE TRIGGER [LigaBA].[t_suspencion]
 	ON [LigaBA].[TorneoXCategoriaXJugador]
