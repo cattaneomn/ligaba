@@ -16,6 +16,8 @@ using Ionic.BZip2;
 using Ionic.Crc;
 using Ionic.Zlib;
 using LigaBA.Clases;
+using System.Collections.Specialized;
+
 
 namespace LigaBA.Web
 {
@@ -32,32 +34,57 @@ namespace LigaBA.Web
         string server;
         string consulta;
 
+        public static string usernameWeb;
+        public static string passwordWeb;
+
         private void BuscarButton_Click(object sender, EventArgs e)
         {
-            ArmarQuery();
+            if (!Validar()) { return; };
 
-           //Crear csv de tablas
-           foreach (string tabla in tablas)
-           {
-                ExecuteCommand(ArmarConsulta(tabla));
-           }
+            LoginWebForm abrir = new LoginWebForm();
+            DialogResult Resultado = abrir.ShowDialog();
+      
 
-           //Zip files
-           ZipFiles();
+            if (Resultado == DialogResult.OK)
+            {
+                
+                 ArmarQuery();
 
-           //Enviar archivos
-           SendFile();
+                //Crear csv de tablas
+                foreach (string tabla in tablas)
+                {
+                     ExecuteCommand(ArmarConsulta(tabla));
+                }
+
+                //Zip files
+                ZipFiles();
+
+                //Enviar archivos
+                SendFile();
   
-           //Borrar csv de tablas
-           foreach (string tabla in tablas)
-           {
-                DeleteFile(tabla,".csv");
-           }
+                //Borrar csv de tablas
+                foreach (string tabla in tablas)
+                {
+                     DeleteFile(tabla,".csv");
+                }
 
-           DeleteFile("Send", ".zip");
+                DeleteFile("Send", ".zip");
 
-           LimpiarCheckBoxList();
+                LimpiarCheckBoxList();
+             }
+
         }
+
+        private bool Validar()
+        {
+            if (TorneosCheckedListBox.CheckedItems.Count <= 0)
+            {
+                MessageBox.Show("Debe seleccionar al menos un torneo.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return false;
+            }
+            return true;
+        }
+
 
         private void LimpiarCheckBoxList()
         {
@@ -94,15 +121,27 @@ namespace LigaBA.Web
 
         private void SendFile()
         {
-            string address= "http://127.0.0.1:81/Ingeniar/Prueba.php";
-            string filePath = ".\\Send.zip";
-       
-            WebClient myWebClient = new WebClient();
-            // Upload the file to the URL using the HTTP 1.0 POST.
-            byte[] responseArray = myWebClient.UploadFile(address, "POST", filePath);
+            try
+            {
+                string address = Properties.Settings.Default.Url;
+                string filePath = ".\\Send.zip";
+                NameValueCollection parameters = new NameValueCollection();
+                WebClient myWebClient = new WebClient();
 
-            richTextBox1.Text = System.Text.Encoding.ASCII.GetString(responseArray);
+                parameters.Add("xx", usernameWeb);
+                parameters.Add("yy", passwordWeb);
+                myWebClient.QueryString = parameters;
+                
+                // Upload the file to the URL using the HTTP 1.0 POST.
+                byte[] responseArray = myWebClient.UploadFile(address, "POST", filePath);
+                richTextBox1.Text = System.Text.Encoding.ASCII.GetString(responseArray);
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
         }
+
 
         private void ZipFiles()
         {
@@ -227,6 +266,5 @@ namespace LigaBA.Web
         {
             this.Close();
         }
-    
     }      
 }
