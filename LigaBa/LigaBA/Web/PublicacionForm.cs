@@ -17,6 +17,7 @@ using Ionic.Crc;
 using Ionic.Zlib;
 using LigaBA.Clases;
 using System.Collections.Specialized;
+using System.Threading;
 
 
 namespace LigaBA.Web
@@ -47,32 +48,45 @@ namespace LigaBA.Web
 
             if (Resultado == DialogResult.OK)
             {
-                
-                 ArmarQuery();
-
-                //Crear csv de tablas
-                foreach (string tabla in tablas)
-                {
-                     ExecuteCommand(ArmarConsulta(tabla));
-                }
-
-                //Zip files
-                ZipFiles();
-
-                //Enviar archivos
-                SendFile();
-  
-                //Borrar csv de tablas
-                foreach (string tabla in tablas)
-                {
-                     DeleteFile(tabla,".csv");
-                }
-
-                DeleteFile("Send", ".zip");
-
-                LimpiarCheckBoxList();
+            
+                Thread hilo = new Thread(Start);
+                hilo.SetApartmentState(System.Threading.ApartmentState.STA);
+                CheckForIllegalCrossThreadCalls = false;
+                hilo.Start();
              }
+            
+        }
 
+        private void Start()
+        {
+            this.BuscarButton.Enabled = false;
+            this.UseWaitCursor = true;
+
+            ArmarQuery();
+
+            //Crear csv de tablas
+            foreach (string tabla in tablas)
+            {
+                ExecuteCommand(ArmarConsulta(tabla));
+            }
+
+            //Zip files
+            ZipFiles();
+
+            //Enviar archivos
+            SendFile();
+
+            //Borrar csv de tablas
+            foreach (string tabla in tablas)
+            {
+                DeleteFile(tabla, ".csv");
+            }
+
+            DeleteFile("Send", ".zip");
+
+            LimpiarCheckBoxList();
+
+            this.BuscarButton.Enabled = true;
         }
 
         private bool Validar()
@@ -134,6 +148,9 @@ namespace LigaBA.Web
                 
                 // Upload the file to the URL using the HTTP 1.0 POST.
                 byte[] responseArray = myWebClient.UploadFile(address, "POST", filePath);
+
+                this.UseWaitCursor = false;
+                //mostrar texto termino bien.
                 richTextBox1.Text = System.Text.Encoding.ASCII.GetString(responseArray);
             }
             catch(Exception e)

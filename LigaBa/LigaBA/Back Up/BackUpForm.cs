@@ -29,14 +29,15 @@ namespace LigaBA.Back_Up
 
             Thread hilo = new Thread(CrearBackUp);
             hilo.SetApartmentState(System.Threading.ApartmentState.STA);
+            CheckForIllegalCrossThreadCalls = false;
             hilo.Start();
-
-            this.DirTextBox.Clear();
-     
         }
 
         private void CrearBackUp()
-        {   
+        {
+            this.GenerarButton.Enabled = false;
+            this.UseWaitCursor = true;
+
             string Consulta = "BACKUP DATABASE [LigabaDB] TO ";
             Consulta += "DISK = N'" + Directorio + "\\LigabaDB.bak' ";
             Consulta += "WITH NOFORMAT, NOINIT,  NAME = N'LigabaDB-Back Up',";
@@ -45,8 +46,11 @@ namespace LigaBA.Back_Up
             List<SqlParameter> param = new List<SqlParameter>();
 
             BaseDeDatos.GetInstance.ExecuteCustomQuery(Consulta, param, this.Text);
-            
+
+            this.UseWaitCursor = false;
             MessageBox.Show("Se ha generado el back up correctamente.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            this.DirTextBox.Clear();
+            this.GenerarButton.Enabled = true;
         }
 
         private int Validaciones()
