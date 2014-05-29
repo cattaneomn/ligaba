@@ -299,6 +299,8 @@ namespace LigaBA.Reportes.DataSet {
             
             private global::System.Data.DataColumn columnPuntos;
             
+            private global::System.Data.DataColumn columnDIF;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public p_ReporteFechaPosicionesXCategoriaDataTable() {
@@ -414,6 +416,14 @@ namespace LigaBA.Reportes.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn DIFColumn {
+                get {
+                    return this.columnDIF;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -449,7 +459,7 @@ namespace LigaBA.Reportes.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public p_ReporteFechaPosicionesXCategoriaRow Addp_ReporteFechaPosicionesXCategoriaRow(string nombre, long Pos, string Equipo, int PJ, int PG, int PE, int PP, int GF, int GC, int Puntos) {
+            public p_ReporteFechaPosicionesXCategoriaRow Addp_ReporteFechaPosicionesXCategoriaRow(string nombre, long Pos, string Equipo, int PJ, int PG, int PE, int PP, int GF, int GC, int Puntos, string DIF) {
                 p_ReporteFechaPosicionesXCategoriaRow rowp_ReporteFechaPosicionesXCategoriaRow = ((p_ReporteFechaPosicionesXCategoriaRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         nombre,
@@ -461,7 +471,8 @@ namespace LigaBA.Reportes.DataSet {
                         PP,
                         GF,
                         GC,
-                        Puntos};
+                        Puntos,
+                        DIF};
                 rowp_ReporteFechaPosicionesXCategoriaRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowp_ReporteFechaPosicionesXCategoriaRow);
                 return rowp_ReporteFechaPosicionesXCategoriaRow;
@@ -494,6 +505,7 @@ namespace LigaBA.Reportes.DataSet {
                 this.columnGF = base.Columns["GF"];
                 this.columnGC = base.Columns["GC"];
                 this.columnPuntos = base.Columns["Puntos"];
+                this.columnDIF = base.Columns["DIF"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -519,6 +531,8 @@ namespace LigaBA.Reportes.DataSet {
                 base.Columns.Add(this.columnGC);
                 this.columnPuntos = new global::System.Data.DataColumn("Puntos", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPuntos);
+                this.columnDIF = new global::System.Data.DataColumn("DIF", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDIF);
                 this.columnnombre.AllowDBNull = false;
                 this.columnnombre.MaxLength = 50;
                 this.columnPos.ReadOnly = true;
@@ -789,6 +803,23 @@ namespace LigaBA.Reportes.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string DIF {
+                get {
+                    try {
+                        return ((string)(this[this.tablep_ReporteFechaPosicionesXCategoria.DIFColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'DIF\' de la tabla \'p_ReporteFechaPosicionesXCategoria\' es " +
+                                "DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablep_ReporteFechaPosicionesXCategoria.DIFColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsPosNull() {
                 return this.IsNull(this.tablep_ReporteFechaPosicionesXCategoria.PosColumn);
             }
@@ -797,6 +828,18 @@ namespace LigaBA.Reportes.DataSet {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetPosNull() {
                 this[this.tablep_ReporteFechaPosicionesXCategoria.PosColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsDIFNull() {
+                return this.IsNull(this.tablep_ReporteFechaPosicionesXCategoria.DIFColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetDIFNull() {
+                this[this.tablep_ReporteFechaPosicionesXCategoria.DIFColumn] = global::System.Convert.DBNull;
             }
         }
         

@@ -1494,7 +1494,7 @@ BEGIN transaction
         
         SELECT ROW_NUMBER() OVER(ORDER BY TCE.puntos DESC,(TCE.golesafavor - TCE.golesencontra) DESC) AS Pos,
         E.nombre as Equipo,TCE.partidosjugados as PJ,TCE.partidosganados as PG,TCE.partidosempatados as PE,
-        TCE.partidosperdidos as PP,TCE.golesafavor as GF, TCE.golesencontra as GC,TCE.puntos as Puntos 
+        TCE.partidosperdidos as PP,TCE.golesafavor as GF, TCE.golesencontra as GC,TCE.golesafavor-TCE.golesencontra as DIF,TCE.puntos as Puntos 
         FROM LigaBA.TorneoXCategoriaXEquipo as TCE
         JOIN LigaBA.Equipo as E ON E.id=TCE.equipo
         WHERE torneoxcategoria=@TorneoXCategoria
@@ -1579,7 +1579,7 @@ BEGIN transaction
 
     SELECT C.nombre,ROW_NUMBER() OVER(PARTITION BY C.nombre ORDER BY TCE.puntos DESC,(TCE.golesafavor - TCE.golesencontra) DESC) AS Pos,
     E.nombre as Equipo,TCE.partidosjugados as PJ,TCE.partidosganados as PG,TCE.partidosempatados as PE,
-    TCE.partidosperdidos as PP,TCE.golesafavor as GF, TCE.golesencontra as GC,TCE.puntos as Puntos 
+    TCE.partidosperdidos as PP,TCE.golesafavor as GF, TCE.golesencontra as GC,TCE.golesafavor-TCE.golesencontra as DIF,TCE.puntos as Puntos 
     FROM LigaBA.TorneoXCategoriaXEquipo as TCE
     JOIN LigaBA.Equipo as E ON E.id=TCE.equipo
     JOIN LigaBA.TorneoXCategoria AS TC ON TC.id=TCE.torneoxcategoria

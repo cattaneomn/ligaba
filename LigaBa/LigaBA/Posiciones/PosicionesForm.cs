@@ -101,6 +101,7 @@ namespace LigaBA.Posiciones
             this.Posiciones_DataGridView.Columns["PP"].Width = 50;
             this.Posiciones_DataGridView.Columns["GF"].Width = 50;
             this.Posiciones_DataGridView.Columns["GC"].Width = 50;
+            this.Posiciones_DataGridView.Columns["DIF"].Width = 50;
             this.Posiciones_DataGridView.Columns["Puntos"].Width = 60;
             Posiciones_DataGridView.Columns["Pos"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             Posiciones_DataGridView.Columns["PJ"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -109,6 +110,7 @@ namespace LigaBA.Posiciones
             Posiciones_DataGridView.Columns["PP"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             Posiciones_DataGridView.Columns["GF"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             Posiciones_DataGridView.Columns["GC"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            Posiciones_DataGridView.Columns["DIF"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             Posiciones_DataGridView.Columns["Puntos"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter; 
         }
 

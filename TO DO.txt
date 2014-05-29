@@ -3,6 +3,6 @@
 -Cambiar Procedure alta juegador en version 1.0 instalada en notebook
 -Crear procedure de reportes fecha.
 [p_ReporteFechaResultados]
-[p_ReporteFechaPosicionesGeneral]
-
+[p_ReporteFechaPosicionesXCategoria]
+-Cambiar procedure BuscarPosicionesXCategoria
 - Reemplazar version 1.0
