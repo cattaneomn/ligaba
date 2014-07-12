@@ -69,7 +69,7 @@ namespace LigaBA.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://192.168.0.47/template%20adm%20mvc%20php%20-%20copia/desktop.php")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://www.ingeniar-it.com.ar/ligaba/adm/desktop.php")]
         public string Url {
             get {
                 return ((string)(this["Url"]));

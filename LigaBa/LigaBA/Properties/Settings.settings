@@ -30,7 +30,7 @@
       <Value Profile="(Default)">Data Source=|DataDirectory|\LigaBA.sdf;Max Database Size=2047</Value>
     </Setting>
     <Setting Name="Url" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">http://192.168.0.47/template%20adm%20mvc%20php%20-%20copia/desktop.php</Value>
+      <Value Profile="(Default)">http://www.ingeniar-it.com.ar/ligaba/adm/desktop.php</Value>
     </Setting>
   </Settings>
 </SettingsFile>

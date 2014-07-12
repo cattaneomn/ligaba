@@ -34,6 +34,7 @@ namespace LigaBA.Web
         string password;
         string server;
         string consulta;
+        string consultaTorneo;
 
         public static string usernameWeb;
         public static string passwordWeb;
@@ -53,7 +54,7 @@ namespace LigaBA.Web
                 hilo.SetApartmentState(System.Threading.ApartmentState.STA);
                 CheckForIllegalCrossThreadCalls = false;
                 hilo.Start();
-             }
+            }
             
         }
 
@@ -83,7 +84,7 @@ namespace LigaBA.Web
             }
 
             DeleteFile("Send", ".zip");
-
+            
             LimpiarCheckBoxList();
 
             this.BuscarButton.Enabled = true;
@@ -112,8 +113,10 @@ namespace LigaBA.Web
         private void ArmarQuery()
         {
             string torneo = " torneogeneral = ";
+            string columnaId = "id = ";
             string conector = " OR ";
-            consulta = "SELECT id FROM Ligaba.torneoxcategoria WHERE ";
+            consultaTorneo = "SELECT * FROM ligabadb.Ligaba.torneo WHERE ";
+            consulta = "SELECT id FROM ligabadb.Ligaba.torneoxcategoria WHERE ";
             int contador = 0;
 
             foreach (var itemChecked in this.TorneosCheckedListBox.CheckedItems)
@@ -121,16 +124,19 @@ namespace LigaBA.Web
                 if (contador == 0)
                 {
                     var row = (itemChecked as DataRowView).Row;
+                    consultaTorneo += columnaId + row["id"].ToString();
                     consulta += torneo + row["id"].ToString();
                     contador++;
                 }
                 else
                 {
                     var row = (itemChecked as DataRowView).Row;
-                    consulta += conector + torneo + row["id"].ToString();
+                    consultaTorneo += conector + columnaId + row["id"].ToString();
+                    consulta += conector + torneo + row["id"].ToString(); 
                     contador++;
                 }
             }
+
         }
 
         private void SendFile()
@@ -145,13 +151,25 @@ namespace LigaBA.Web
                 parameters.Add("xx", usernameWeb);
                 parameters.Add("yy", passwordWeb);
                 myWebClient.QueryString = parameters;
-                
+            
                 // Upload the file to the URL using the HTTP 1.0 POST.
                 byte[] responseArray = myWebClient.UploadFile(address, "POST", filePath);
 
                 this.UseWaitCursor = false;
-                //mostrar texto termino bien.
-                richTextBox1.Text = System.Text.Encoding.ASCII.GetString(responseArray);
+                
+               string respuesta = System.Text.Encoding.ASCII.GetString(responseArray); 
+               
+                //mostrar respuesta.
+                if (respuesta == "1La actualizacion fue exitosa.")
+                {
+                    MessageBox.Show("La actualizacion se realizo con exito.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    Logs.GetInstance.LogError(respuesta, "Publicacion Web");
+                    MessageBox.Show("Hubo un error al realizar la actualizacion, por favor vuelva a intentarlo.",this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
             }
             catch(Exception e)
             {
@@ -176,26 +194,38 @@ namespace LigaBA.Web
         private string ArmarConsulta(string tabla)
         {
             string query = " WHERE torneoxcategoria IN (";
+            string queryTorneoXCategoria = " WHERE id IN (";
             string queryPartidoxjugador = " WHERE partido IN (SELECT id FROM LigaBA.Partido ";
             string Command;
-            if (tabla != "torneo" || tabla != "torneoxcategoria" ||
-                tabla != "torneoxcategoriaxequipo" || tabla != "torneoxcategoriaxjugador" || tabla != "partido")
+            if (tabla != "torneo" && tabla != "torneoxcategoria" &&
+                tabla != "torneoxcategoriaxequipo" && tabla != "torneoxcategoriaxjugador" && tabla != "partido")
             {
                 Command = "bcp \"select * from ligabadb.LigaBA." + tabla + "\" queryout \".\\" + tabla + ".csv\" -U " + user + " -P " + password + " -c -S " + server;
                 return Command;
             }
             else
             {
-                if (tabla != "partidoxjugador")
+                if (tabla == "torneo")
                 {
-                    Command = "bcp \"select * from ligabadb.LigaBA." + tabla + query + consulta +")" + "\" queryout \".\\" + tabla + ".csv\" -U " + user + " -P " + password + " -c -S " + server;
+                    Command = "bcp \"" + consultaTorneo + "\" queryout \".\\" + tabla + ".csv\" -U " + user + " -P " + password + " -c -S " + server;
                     return Command;
+
                 }
-                else
+                if (tabla == "torneoxcategoria")
+                {
+                    Command = "bcp \"select * from ligabadb.LigaBA." + tabla + queryTorneoXCategoria + consulta + ")" + "\" queryout \".\\" + tabla + ".csv\" -U " + user + " -P " + password + " -c -S " + server;
+                    return Command;
+
+                }
+                if (tabla == "partidoxjugador")
                 {
                     Command = "bcp \"select * from ligabadb.LigaBA." + tabla + queryPartidoxjugador + query + consulta + ")" + "\" queryout \".\\" + tabla + ".csv\" -U " + user + " -P " + password + " -c -S " + server;
                     return Command;
                 }
+
+                    Command = "bcp \"select * from ligabadb.LigaBA." + tabla + query + consulta + ")" + "\" queryout \".\\" + tabla + ".csv\" -U " + user + " -P " + password + " -c -S " + server;
+                    return Command;
+
             }
         }
 

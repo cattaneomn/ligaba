@@ -23,6 +23,7 @@ namespace LigaBA
         public string obtenerConnectionString()
         {
             return LigaBA.Properties.Settings.Default.ConnectionString;
-        }     
+        }
+
     }
 }

@@ -30,15 +30,24 @@ namespace LigaBA.Web
 
             if (Validaciones() == -1) return;
 
-            if (loginPost() == "1")
+            string respuesta = loginPost();
+
+            if (respuesta == "1")
             {
                 PublicacionesForm.usernameWeb = this.usuarioTextBox.Text;
                 PublicacionesForm.passwordWeb = this.passwordTextBox.Text;
                 DialogResult = DialogResult.OK;
+                return;
+            }
+
+            if (respuesta == "0")
+            {
+                MessageBox.Show("Usuario o contraseña inválidos.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
             else
             {
-                MessageBox.Show("Usuario o contraseña inválidos.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Hubo un error al conectarse al servidor, por favor vuelva a intentarlo.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
