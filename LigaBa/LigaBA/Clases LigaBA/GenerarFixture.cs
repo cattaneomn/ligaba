@@ -18,6 +18,8 @@ namespace LigaBA.ClasesLigaBA
 
         public static void Inicializar(List<Institucion> equipos)
         {
+            var rnd = new Random();
+            equipos.OrderBy(item => rnd.Next());
             GenerarFixture.equipos = equipos;
             GenerarFixture.fixtureFinal = null;
             GenerarFixture.hilos = new List<Thread>();
