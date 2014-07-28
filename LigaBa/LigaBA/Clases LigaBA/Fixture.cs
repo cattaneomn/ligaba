@@ -12,90 +12,20 @@ namespace LigaBA.ClasesLigaBA
         /**************************************************************************************
          * Documentacion clase Fixture
          * **************************************************************************************/
-
         /*
-         * CONSTRUCTORES
          * 
-         *         
-         * Fixture(List<Institucion> equipos) -> Cuando se va a crear el fixture
-         * 
-         * Fixture(List<Fecha> f) -> Cuando el fixture ya esta creado y solo se necesitan los metodos de manejo del fixture
-         * 
-         * */
+         * Ver libro de Paenza pagina 239 del libro =( ---> =S ---> =)
 
-        /*
-         * ATRIBUTOS
-         * +IMP:Atributos importantes
-         * 
-         *  List<Institucion> equipos ->Conjunto de Instituciones que participan del torneo, siempre son par, ej:Institucion Comodin(id->0,nombre->"Libre")
-         *  
-         * List<Fecha> fixture ->Conjunto de Partidos que forman el fixture. Fecha(fecha,local,visitante)
-         * 
-         * int[] tolerancia -> Array de tolerancia tolerancia[indice_equipo] = {n -> numero de tolerancias de localia repetida}
-         * 
-         * int estadisticaCarrera -> cantidad de veces que se produjo una condicion de carrega(borrar toda una fecha)(90 vueltas)
-         * 
-         * int estadisticaVueltas -> cantidad de vueltas totales por reinicio, vuelta -> cantidad de veces que se trato de calcular una fecha sin borrarla.
-         * 
-         * int reinicios -> cantidad de veces que se borro todo el fixture para calcularlo desde 0 (condicionesDeCarrera = 1000)        
-         * 
-         * METODOS
-         * +IMP:Metodos importantes
-         * 
-         * 
-         * void inicializar() -> Inicializa los atributos y realiza los calculos previos (cantidad de fechas, cantidad de partidos, etc...)
-         * 
-         * IMP: bool armarFixture() -> Crea el fixture y lo guarda en una lista de objetos Fecha
-         *      return True -> El fixture se creo correctamente.
-         *      return False -> Si intento mas de 1000 veces crear el fixture desde 0, no tiene solucion.
-         * 
-         * void limpiar() -> reinicia las listas principales para volver a generar el fixture.
-         * 
-         * string imprimirFixture() -> devuelve un string con todo el fixture para mostrar.
-         * 
-         * IMP: int condicionDeCarrera(int f, List<int> noDisponibles) -> se produce una condicion de carrera cuando ha intentado reacer una fecha del fixture mas de 90 veces (ej: equipos{1,2,3,4,5,6} fecha_1{1-vs-2,3-vs-4,5-vs-6} fecha_2{1-vs-3,2-vs-4,5-vs-6} 5-vs-6 YA JUGO y los demas ya estan asignados
-         *                                                              ->Este metodo borra toda una fecha del fixture para recalcularla completamente.
-         *        param: int f -> fecha a borrar y recalcular
-         *        param: List<int> noDisponibles -> equipos que ya estan jugando (se reinicia)
-         *        
-         *        return int -> Cantidad de partidos que hay que volver a recalcular.
-         *        
-         * void reiniciarTolerancia(int[] tolerancia) -> Reinicia la matriz de tolerancia asiganndo aleatoreamente la tolerancia a los equipos.
-         *        param: int[] tolerancia -> Matris de tolerancia,matriz[indice_equipo]=> 0 sin tolerancia, 1 con tolerancia
-         *        
-         * bool noPuedenJugar(int f, Institucion local, Institucion visitante) -> Controla si:
-         *                                                                             +Jugo el Local O el Vistante en esta fecha (f)
-         *                                                                              +Local fue local en la fecha anterior (f-1) y no tiene tolerancia
-         *                                                                              +Visitante fue visitante en la fecha anterior (f-1) y no tiene tolerancia
-         *                                                                              +Jugo Local vs Visitante O Visitante vs Local en alguna fecha
-         * 
-         *      param: int f ->Fecha actual.
-         *      return True -> alguno no puede jugar.
-         *      return False -> pueden jugar.
-         * 
-         * bool toleranciaDeEstado(Institucion equipo) -> Se fija si el equipo tiene tolerancia para repetir la localia, SI: se la decrementa
-         *      return True -> Tiene tolerancia
-         *      return False -> No tiene tolerancia
-         *      
-         * List<Fecha> GetFechas() 
-         *      return List<Fecha> -> Fixture 
-         *
-         * 
-         **/
+         /***/
 
         private List<Institucion> equipos = new List<Institucion>();
         public List<Fecha> fixture;
         private int[] tolerancia;
-        
+
         private int cantidadDePartidos;
         private int cantidadDePartidosSimultaneos;
         private int cantidadDeFechas;
         private int cantidadEquipos;
-
-        //Atributos de estadisticas
-        private int estadisticaCarrera = 0;
-        private int estadisticaVueltas = 0;
-        public int reinicios = 0;        
 
         public Fixture(List<Fecha> f)
         {
@@ -130,121 +60,207 @@ namespace LigaBA.ClasesLigaBA
         {
             if (equipos.Count > 1)
             {
-                Random random1 = new Random();
-                Random random2 = new Random();
-                int aleatorio1;
-                int aleatorio2;
-                Institucion local;
-                Institucion visitante;
-                List<int> noDisponibles = new List<int>();
-                bool ok = true;
+                //Inicializaciones
+                Institucion local = null;
+                Institucion visitante = null;
 
-                for (int i = 1; i <= cantidadDeFechas; i++)
+                int total = equipos.Count;
+                int[,] matrizFixture = new int[total, total - 1];//Para empezar del 1 y no del 0
+                List<int> equiposQueJugaron = new List<int>();
+
+                List<int> equiposDePrimeraMitad = new List<int>();
+                List<int> equiposDeSegundaMitad = new List<int>();
+
+                //Repartir entre las listas
+                for (int i = 0; i < total / 2; i++)
                 {
-                    reiniciarTolerancia(tolerancia);
-                    noDisponibles.Clear();
-                    for (int j = 1; j <= cantidadDePartidosSimultaneos; j++)
+                    equiposDePrimeraMitad.Add(i);
+                }
+                for (int i = total / 2; i < total; i++)
+                {
+                    equiposDeSegundaMitad.Add(i);
+                }
+
+                //Calculo de fixture para 1 equipo
+                int contrincante = 1;
+                int equipo_comodin = total;
+                int equipo = 1;
+                int[] filaParaUnEquipo = new int[total - 1];
+
+                for (int columna = 0; columna < total - 1; columna++)
+                {
+                    filaParaUnEquipo[columna] = contrincante;
+                    contrincante++;
+                }
+
+                //Calculo de matriz del fixture
+                for (int fila = 0; fila < total; fila++)
+                {
+                    for (int columna = 0; columna < total - 1; columna++)
                     {
-                        if (noDisponibles.Count == equipos.Count - 2)
+                        if (filaParaUnEquipo[columna] == fila + 1)
                         {
-                            List<Institucion> aux = equipos.FindAll(e => !noDisponibles.Contains(equipos.IndexOf(e)));
-                            if (ok)
-                            {
-                                ok = false;
-                                aleatorio1 = equipos.IndexOf(aux.ElementAt(0));
-                                aleatorio2 = equipos.IndexOf(aux.ElementAt(1));
-                            }
-                            else
-                            {
-                                aleatorio1 = equipos.IndexOf(aux.ElementAt(0));
-                                aleatorio2 = equipos.IndexOf(aux.ElementAt(1));
-                                ok = true;
-                            }
+                            matrizFixture[fila, columna] = equipo_comodin;
                         }
                         else
                         {
-                            do
-                            {
-                                aleatorio1 = random1.Next(equipos.Count);
-                                aleatorio2 = random1.Next(equipos.Count);
-                            } while ((aleatorio1 == aleatorio2 || noDisponibles.Contains(aleatorio1) || noDisponibles.Contains(aleatorio2)) && !(noDisponibles.Count == (equipos.Count - 2)));
+                            matrizFixture[fila, columna] = filaParaUnEquipo[columna];
                         }
-
-                        local = equipos[aleatorio1];
-                        visitante = equipos[aleatorio2];
-
-                        int vueltas = 1;
-                        while (noPuedenJugar(i, local, visitante))
-                        {
-                            if (vueltas == 90)
-                            {
-                                j -= condicionDeCarrera(i, noDisponibles);
-                                vueltas = 1;
-
-                                estadisticaCarrera++;
-                                if (estadisticaCarrera == 10000)//1500 ->12
-                                {
-                                    return false;
-                                }
-                            }
-                            else
-                            {
-                                vueltas++;
-                                estadisticaVueltas++;
-                            }
-
-                            if (noDisponibles.Count == equipos.Count - 2)
-                            {
-                                List<Institucion> aux = equipos.FindAll(e => !noDisponibles.Contains(equipos.IndexOf(e)));
-                                if (ok)
-                                {
-                                    ok = false;
-                                    aleatorio1 = equipos.IndexOf(aux.ElementAt(0));
-                                    aleatorio2 = equipos.IndexOf(aux.ElementAt(1));
-                                }
-                                else
-                                {
-                                    aleatorio1 = equipos.IndexOf(aux.ElementAt(0));
-                                    aleatorio2 = equipos.IndexOf(aux.ElementAt(1));
-                                    ok = true;
-                                }
-                            }
-                            else
-                            {
-                                do
-                                {
-                                    aleatorio1 = random1.Next(equipos.Count);
-                                    aleatorio2 = random1.Next(equipos.Count);
-                                } while ((aleatorio1 == aleatorio2 || noDisponibles.Contains(aleatorio1) || noDisponibles.Contains(aleatorio2)) && !(noDisponibles.Count == (equipos.Count - 2)));
-                            }
-
-                            local = equipos[aleatorio1];
-                            visitante = equipos[aleatorio2];
-                        }
-                        Fecha fecha = new Fecha(i, local, visitante);
-                        fixture.Add(fecha);
-                        noDisponibles.Add(aleatorio1);
-                        noDisponibles.Add(aleatorio2);
                     }
+
+                    filaParaUnEquipo = cambiarOrden(filaParaUnEquipo, total);
+                }
+
+                int equipoQueJugoContraComodin = -1;
+                //MessageBox.Show(imprimirMatriz(matrizFixture,total));
+
+                for (int columna = 0; columna < total - 1; columna++)
+                {
+                    for (int fila = 0; fila < total; fila++)
+                    {
+                        contrincante = matrizFixture[fila, columna];
+
+                        if (!equiposQueJugaron.Contains(contrincante - 1) && !equiposQueJugaron.Contains(fila))
+                        {
+                            //Solo para la primera fecha
+                            if (columna + 1 == 1)
+                            {
+                                if (equiposDePrimeraMitad.Contains(fila))
+                                {
+                                    local = equipos[fila];
+                                    visitante = equipos[contrincante - 1];
+                                }
+                                else if (equiposDeSegundaMitad.Contains(fila))
+                                {
+                                    local = equipos[contrincante - 1];
+                                    visitante = equipos[fila];
+                                }
+                            }
+
+                            //Luego de la primera fecha
+                            if (columna + 1 > 1 && contrincante != equipo_comodin)
+                            {
+                                if (jugoAntesDeLocal(equipos[fila], columna + 1))
+                                {
+                                    visitante = equipos[fila];
+                                    local = equipos[contrincante - 1];
+                                }
+                                else if (jugoAntesDeVisitante(equipos[fila], columna + 1))
+                                {
+                                    local = equipos[fila];
+                                    visitante = equipos[contrincante - 1];
+                                }
+                            }
+
+                            if (fila == equipoQueJugoContraComodin)
+                            {
+                                if (equiposDePrimeraMitad.Contains(fila))
+                                {
+                                    local = equipos[fila];
+                                    visitante = equipos[contrincante - 1];
+                                }
+                                else if (equiposDeSegundaMitad.Contains(fila))
+                                {
+                                    local = equipos[fila];
+                                    visitante = equipos[contrincante - 1];
+                                }
+                            }
+
+                            //Caso especial al jugar contra el comodin
+                            if (contrincante == equipo_comodin)
+                            {
+                                if (equiposDePrimeraMitad.Contains(fila))
+                                {
+                                    local = equipos[fila];
+                                    visitante = equipos[contrincante - 1];
+                                }
+                                else if (equiposDeSegundaMitad.Contains(fila))
+                                {
+                                    visitante = equipos[fila];
+                                    local = equipos[contrincante - 1];
+                                }
+
+                                equipoQueJugoContraComodin = fila;
+                            }
+
+                            equiposQueJugaron.Add(fila);
+                            equiposQueJugaron.Add(contrincante - 1);
+
+                            Fecha fecha = new Fecha(columna + 1, local, visitante);
+                            fixture.Add(fecha);
+                        }
+                    }
+                    equiposQueJugaron = new List<int>();
                 }
                 GenerarFixture.ActualizarFixture(fixture);
                 GenerarFixture.ActualizarMutex();
                 return true;
             }
-            MessageBox.Show("Se necesita mas de un equipo para generar el fixture");
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool jugoAntesDeLocal(Institucion equipo, int fechaActual)
+        {
+            foreach (Fecha fecha in fixture)
+            {
+                if (fecha.get_fecha() == fechaActual - 1 && fecha.jugo(equipo))
+                {
+                    return fecha.get_local() == equipo;
+                }
+            }
             return false;
         }
 
+        public bool jugoAntesDeVisitante(Institucion equipo, int fechaActual)
+        {
+            foreach (Fecha fecha in fixture)
+            {
+                if (fecha.get_fecha() == fechaActual - 1 && fecha.jugo(equipo))
+                {
+                    return fecha.get_visitante() == equipo;
+                }
+            }
+            return false;
+        }
+
+        public int[] cambiarOrden(int[] array, int cant)
+        {
+            int ultimo = array[array.Length - 1];
+            int x;
+
+            for (x = array.Length - 1; x > 0; x--)
+            {
+                array[x] = array[x - 1];
+            }
+
+            array[0] = ultimo;
+
+            return array;
+        }
+        public string imprimirMatriz(int[,] matriz, int cant)
+        {
+            string msg = "";
+            for (int i = 0; i < cant; i++)
+            {
+                for (int j = 0; j < cant - 1; j++)
+                {
+                    msg += matriz[i, j] + "  ";
+                }
+                msg += "\n\n";
+            }
+            return msg;
+        }
         public void limpiar()
         {
             fixture = new List<Fecha>();
-            estadisticaCarrera = 0;
-            estadisticaVueltas = 0;
         }
 
         public string imprimirFixture()
-        {        
-            string msg ="";
+        {
+            string msg = "";
             foreach (Fecha fecha in fixture)
             {
                 msg += "Fecha:" + fecha.get_fecha() + " -> " + (fecha.get_local()).get_nombre() + " vs " + (fecha.get_visitante()).get_nombre() + "\n";
@@ -269,25 +285,40 @@ namespace LigaBA.ClasesLigaBA
             }
 
             //Solo dejamos tolerancia para 1 equipo por fecha
-            Random random = new Random();
+            //Random random = new Random();
             int contador = 0;
-            while (contador < (cantidadEquipos / 2))
+            /*while (contador < (cantidadEquipos / 2))
             {
-                int i = random.Next(0, cantidadEquipos - 1);
+                /*int i = random.Next(0, cantidadEquipos - 1);
                 if (tolerancia[i] == 0)
                 {
                     tolerancia[i] = 1;
                     contador++;
-                }
-            }
+                }*/
+
+            //}
+            //tolerancia[1] = 1;
+            //tolerancia[2] = 1;
         }
 
         private bool noPuedenJugar(int f, Institucion local, Institucion visitante)
         {
             for (int i = 0; i < fixture.Count; i++)
             {
+                //Son el mismo
+                if (local.get_id() == visitante.get_id())
+                {
+                    return true;
+                }
+
                 //Jugo antes LOCAL o VISITANTE
                 if (fixture[i].get_fecha() == f && fixture[i].jugo(local) || fixture[i].get_fecha() == f && fixture[i].jugo(visitante))
+                {
+                    return true;
+                }
+
+                //Jugaron juntos antes
+                if (fixture[i].jugaronJuntos(local, visitante))
                 {
                     return true;
                 }
@@ -303,14 +334,6 @@ namespace LigaBA.ClasesLigaBA
                 {
                     return true;
                 }
-
-                //Jugaron juntos antes
-                if (fixture[i].jugaronJuntos(local, visitante))
-                {
-                    return true;
-                }
-
-
             }
 
             return false;
@@ -318,23 +341,36 @@ namespace LigaBA.ClasesLigaBA
 
         private bool toleranciaDeEstado(Institucion equipo)
         {
-            if (tolerancia[equipos.IndexOf(equipo)] < 1)
+            /*if (tolerancia[equipos.IndexOf(equipo)] < 1)
             {
                 return false;
             }
             else
             {
-                tolerancia[equipos.IndexOf(equipo)]--;
+                //tolerancia[equipos.IndexOf(equipo)]--;
+            }*/
+            int contador = 0;
+            for (int i = 0; i < this.equipos.Count; i++)
+            {
+                if (tolerancia[equipos.IndexOf(equipo)] == 1)
+                {
+                    contador++;
+                }
+            }
+
+            if (contador >= this.equipos.Count / 2)
+            {
+                return false;
             }
 
             return true;
         }
-        
+
         public List<Fecha> GetFechas()
         {
             return fixture;
         }
-        
+
         //Metodos matematicos        
         public long factorial(int num)
         {
@@ -345,6 +381,5 @@ namespace LigaBA.ClasesLigaBA
             }
             return fact;
         }
-
     }
 }

@@ -14,7 +14,7 @@ namespace LigaBA.ClasesLigaBA
         public static bool mutex = false;
         public static Fixture fixtureFinal;
         public static List<Thread> hilos;
-        public static int cantidadDeHilos = 10;
+        public static int cantidadDeHilos = 1;
 
         public static void Inicializar(List<Institucion> equipos)
         {
@@ -76,8 +76,7 @@ namespace LigaBA.ClasesLigaBA
             fx.limpiar();
             while (!fx.armarFixture())
             {
-                fx.limpiar();
-                fx.reinicios++;
+                fx.limpiar();                
             }
         }
     }
