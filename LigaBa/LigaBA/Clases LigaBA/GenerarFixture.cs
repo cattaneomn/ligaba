@@ -18,11 +18,34 @@ namespace LigaBA.ClasesLigaBA
 
         public static void Inicializar(List<Institucion> equipos)
         {
-            var rnd = new Random();
-            equipos.OrderBy(item => rnd.Next());
-            GenerarFixture.equipos = equipos;
+            Institucion ultimo = equipos.Last();
+
+            if (ultimo.get_id() == 0)
+            {
+                GenerarFixture.equipos = equipos;
+            }
+            else
+            {
+                GenerarFixture.equipos = GenerarFixture.ShuffleList(equipos);
+            }
             GenerarFixture.fixtureFinal = null;
             GenerarFixture.hilos = new List<Thread>();
+        }
+
+        private static List<E> ShuffleList<E>(List<E> inputList)
+        {
+            List<E> randomList = new List<E>();
+
+            Random r = new Random();
+            int randomIndex = 0;
+            while (inputList.Count > 0)
+            {
+                randomIndex = r.Next(0, inputList.Count); //Choose a random object in the list
+                randomList.Add(inputList[randomIndex]); //add it to the new, random list
+                inputList.RemoveAt(randomIndex); //remove to avoid duplicates
+            }
+
+            return randomList; //return the new random list
         }
 
 
